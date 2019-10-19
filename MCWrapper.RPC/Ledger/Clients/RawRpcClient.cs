@@ -11,15 +11,11 @@ using System.Threading.Tasks;
 namespace MCWrapper.RPC.Ledger.Clients.Raw
 {
     /// <summary>
-    /// 
-    /// MutliChain methods implemented by the concrete RawRPCClient class:
+    /// MutliChain methods implemented:
     /// 
     /// appendrawchange, appendrawdata, appendrawtransaction, 
     /// createrawtransaction, decoderawtransaction, decodescript, 
     /// getrawtransaction, sendrawtransaction, signrawtransaction
-    /// 
-    /// <para>Inherits from an RPCClient and implements the IRawRPC contract</para>
-    /// 
     /// </summary>
     public class RawRpcClient : RpcConnection
     {

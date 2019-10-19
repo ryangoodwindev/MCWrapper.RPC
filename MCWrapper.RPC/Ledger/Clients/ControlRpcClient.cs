@@ -5,19 +5,16 @@ using MCWrapper.RPC.Ledger.Models.Control;
 using MCWrapper.RPC.Options;
 using Microsoft.Extensions.Options;
 using System.Net.Http;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 
 namespace MCWrapper.RPC.Ledger.Clients.Control
 {
     /// <summary>
-    /// 
-    /// MutliChain methods implemented by the concrete ControlRPCClient class:
+    /// MutliChain methods implemented:
     /// 
     /// clearmempool, getblockchainparams, getinfo, getruntimeparams,
     /// help, pause, resume, setlastblock, setruntimeparam, stop
-    /// 
-    /// <para>Inherits from an RPCClient and implements the IControlRPC contract</para>
-    /// 
     /// </summary>
     public class ControlRpcClient : RpcConnection
     {
@@ -72,7 +69,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Control
         /// <param name="display_names">Use display names instead of internal</param>
         /// <param name="with_upgrades">Take upgrades into account</param>
         /// <returns></returns>
-        public async Task<RpcResponse<GetBlockchainParamsResult>> GetBlockchainParamsAsync(string blockchainName, string id, bool display_names, bool with_upgrades)
+        public async Task<RpcResponse<GetBlockchainParamsResult>> GetBlockchainParamsAsync(string blockchainName, string id, bool display_names = false, bool with_upgrades = false)
         {
             var response = await TransactAsync<RpcResponse<GetBlockchainParamsResult>>(blockchainName, ControlAction.GetBlockchainParamsMethod, id, display_names, with_upgrades);
 
@@ -88,7 +85,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Control
         /// <param name="display_names">Use display names instead of internal</param>
         /// <param name="with_upgrades">Take upgrades into account</param>
         /// <returns></returns>
-        public Task<RpcResponse<GetBlockchainParamsResult>> GetBlockchainParamsAsync(bool display_names, bool with_upgrades)
+        public Task<RpcResponse<GetBlockchainParamsResult>> GetBlockchainParamsAsync(bool display_names = false, bool with_upgrades = false)
         {
             return GetBlockchainParamsAsync(BlockchainOptions.ChainName, UUID.NoHyphens, display_names, with_upgrades);
         }
@@ -160,11 +157,11 @@ namespace MCWrapper.RPC.Ledger.Clients.Control
         /// </summary>
         /// <param name="blockchainName">Name of target blockchain</param>
         /// <param name="id">String value to identify this transaction</param>
-        /// <param name="command">The command to get help on</param>
+        /// <param name="command">The command to get help with</param>
         /// <returns></returns>
-        public async Task<RpcResponse<object>> HelpAsync(string blockchainName, string id, string command)
+        public async Task<RpcResponse<object>> HelpAsync(string blockchainName, string id, string command = "")
         {
-            var response = await TransactAsync<RpcResponse<object>>(blockchainName, ControlAction.HelpMethod, id, command ?? string.Empty);
+            var response = await TransactAsync<RpcResponse<object>>(blockchainName, ControlAction.HelpMethod, id, command);
 
             return response;
         }
@@ -175,9 +172,9 @@ namespace MCWrapper.RPC.Ledger.Clients.Control
         /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
         ///
         /// </summary>
-        /// <param name="command">The command to get help on</param>
+        /// <param name="command">The command to get help with</param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> HelpAsync(string command)
+        public Task<RpcResponse<object>> HelpAsync(string command = "")
         {
             return HelpAsync(BlockchainOptions.ChainName, UUID.NoHyphens, command);
         }
@@ -259,7 +256,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Control
         ///     <para>(numeric, optional) The block height in active chain or height before current tip (if negative)</para>
         /// </param>
         /// <returns></returns>
-        public async Task<RpcResponse<object>> SetLastBlockAsync(string blockchainName, string id, object hash_or_height)
+        public async Task<RpcResponse<object>> SetLastBlockAsync(string blockchainName, string id, [Optional] object hash_or_height)
         {
             var response = await TransactAsync<RpcResponse<object>>(blockchainName, ControlAction.SetLastBlockMethod, id, hash_or_height);
 
@@ -279,7 +276,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Control
         ///     <para>(numeric, optional) The block height in active chain or height before current tip (if negative)</para>
         /// </param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> SetLastBlockAsync(object hash_or_height)
+        public Task<RpcResponse<object>> SetLastBlockAsync([Optional] object hash_or_height)
         {
             return SetLastBlockAsync(BlockchainOptions.ChainName, UUID.NoHyphens, hash_or_height);
         }

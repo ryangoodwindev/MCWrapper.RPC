@@ -10,14 +10,10 @@ using System.Threading.Tasks;
 namespace MCWrapper.RPC.Ledger.Clients.Network
 {
     /// <summary>
-    /// 
-    /// MutliChain methods implemented by the concrete NetworkRPCClient class:
+    /// MutliChain methods implemented:
     /// 
     /// addnode, getaddednodeinfo, getchunkqueueinfo, getchunkqueuetotals, 
     /// getconnectioncount, getnettotals, getnetworkinfo, getpeerinfo, ping
-    /// 
-    /// <para>Inherits from an RPCClient and implements the INetworkRPC contract</para>
-    /// 
     /// </summary>
     public class NetworkRpcClient : RpcConnection
     {

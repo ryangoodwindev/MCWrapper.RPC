@@ -9,17 +9,18 @@ using System.Threading.Tasks;
 namespace MCWrapper.RPC.Ledger.Clients.Mining
 {
     /// <summary>
-    /// 
-    /// MutliChain methods implemented by the concrete MineRPCClient class:
+    /// MutliChain methods implemented:
     /// 
     /// getblocktemplate, getmininginfo, getnetworkhashps, 
     /// prioritisetransaction, submitblock
-    /// 
-    /// <para>Inherits from an RPCClient and implements the IMineRPC contract</para>
-    /// 
     /// </summary>
     public class MiningRpcClient : RpcConnection
     {
+        /// <summary>
+        /// Create a new Mining RPC client
+        /// </summary>
+        /// <param name="client"></param>
+        /// <param name="options"></param>
         public MiningRpcClient(HttpClient client, IOptions<BlockchainRpcOptions> options) 
             : base(client, options) { }
 

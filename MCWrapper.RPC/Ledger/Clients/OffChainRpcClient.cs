@@ -9,17 +9,13 @@ using System.Threading.Tasks;
 namespace MCWrapper.RPC.Ledger.Clients.OffChain
 {
     /// <summary>
-    /// 
-    /// MutliChain methods implemented by th concrete OffChainRPCClient class:
+    /// MutliChain methods implemented:
     /// 
     /// purgepublisheditems, purgestreamitems, retrievestreamitems
     /// 
-    ///  OffChain services to support MultiChain Enterprise users
+    /// OffChain services to support MultiChain Enterprise users
     /// I do not have access to an Enterprise version of MultiChain 
     /// so no unit testing can be performed against these methods
-    /// 
-    /// <para>Inherits from an RPCClient and implements the IOffChainRPC contract</para>
-    /// 
     /// </summary>
     public class OffChainRpcClient : RpcConnection
     {

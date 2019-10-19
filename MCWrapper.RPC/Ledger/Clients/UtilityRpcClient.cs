@@ -10,15 +10,11 @@ using System.Threading.Tasks;
 namespace MCWrapper.RPC.Ledger.Clients.Utility
 {
     /// <summary>
-    /// 
-    /// MutliChain methods implemented by the concrete UtilityRPCClient class:
+    /// MutliChain methods implemented:
     /// 
     /// appendbinarycache, createbinarycache, createkeypairs, 
     /// createmultisig, deletebinarycache, estimatefee, estimatepriority,
     /// validateaddress, verifymessage
-    /// 
-    /// <para>Inherits from an RPCClient and implements the IUtilityRPC contract</para>
-    /// 
     /// </summary>
     public class UtilityRpcClient : RpcConnection
     {

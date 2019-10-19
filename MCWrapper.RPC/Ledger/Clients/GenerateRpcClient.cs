@@ -9,13 +9,9 @@ using System.Threading.Tasks;
 namespace MCWrapper.RPC.Ledger.Clients.Generate
 {
     /// <summary>
-    /// 
-    /// MutliChain methods implemented by the concrete GenerateRPCClient class:
+    /// MutliChain methods implemented:
     /// 
     /// getgenerate, gethashespersec, setgenerate
-    /// 
-    /// <para>Inherits from an RPCClient and implements the IGenerateRPC contract</para>
-    /// 
     /// </summary>
     public class GenerateRpcClient : RpcConnection
     {
@@ -29,7 +25,6 @@ namespace MCWrapper.RPC.Ledger.Clients.Generate
 
 
         /// <summary>
-        /// 
         /// <para>Return if the server is set to generate coins or not. The default is false.</para>
         /// <para>It is set with the command line argument -gen (or bitcoin.conf setting gen)</para>
         /// <para>It can also be set with the setgenerate call.</para>
@@ -47,7 +42,6 @@ namespace MCWrapper.RPC.Ledger.Clients.Generate
         }
 
         /// <summary>
-        /// 
         /// <para>Return if the server is set to generate coins or not. The default is false.</para>
         /// <para>It is set with the command line argument -gen (or bitcoin.conf setting gen)</para>
         /// <para>It can also be set with the setgenerate call.</para>
@@ -62,7 +56,6 @@ namespace MCWrapper.RPC.Ledger.Clients.Generate
 
 
         /// <summary>
-        /// 
         /// <para>Returns a recent hashes per second performance measurement while generating.</para>
         /// <para>See the getgenerate and setgenerate calls to turn generation on and off.</para>
         /// <para>Blockchain name is explicitly passed as parameter.</para>
@@ -79,7 +72,6 @@ namespace MCWrapper.RPC.Ledger.Clients.Generate
         }
 
         /// <summary>
-        /// 
         /// <para>Returns a recent hashes per second performance measurement while generating.</para>
         /// <para>See the getgenerate and setgenerate calls to turn generation on and off.</para>
         /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
