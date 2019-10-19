@@ -32,7 +32,7 @@ namespace MCWrapper.RPC.Extensions
         ///     local environment variable store.
         /// </para>
         /// </summary>
-        /// <param name="services"></param>
+        /// <param name="services">Service container</param>
         /// <returns></returns>
         public static IServiceCollection AddMultiChainCoreRPCServices(this IServiceCollection services)
         {
@@ -90,8 +90,8 @@ namespace MCWrapper.RPC.Extensions
         ///     IConfiguration interface (appsettings.json file usually).
         /// </para>
         /// </summary>
-        /// <param name="services"></param>
-        /// <param name="configuration"></param>
+        /// <param name="services">Service container</param>
+        /// <param name="configuration">Configuration pipeline</param>
         /// <returns></returns>
         public static IServiceCollection AddMultiChainCoreRPCServices(this IServiceCollection services, IConfiguration configuration)
         {
@@ -151,9 +151,9 @@ namespace MCWrapper.RPC.Extensions
         ///     Action parameters when added to the DI pipeline.
         /// </para>
         /// </summary>
-        /// <param name="services"></param>
-        /// <param name="profileConfig"></param>
-        /// <param name="runtimeConfig"></param>
+        /// <param name="services">Service container</param>
+        /// <param name="profileConfig">Blockchain profile configuration (Information the app will use to connect to a MultiChain ledger)</param>
+        /// <param name="runtimeConfig">Runtime parameter configuration (How a MultiChain ledger should behave)</param>
         /// <returns></returns>
         public static IServiceCollection AddMultiChainCoreRPCServices(this IServiceCollection services, Action<BlockchainProfileOptions> profileConfig, [Optional] Action<RuntimeParamOptions> runtimeConfig)
         {
