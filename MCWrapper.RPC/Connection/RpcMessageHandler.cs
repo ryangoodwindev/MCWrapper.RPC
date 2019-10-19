@@ -20,7 +20,7 @@ namespace MCWrapper.RPC.Connection
         /// <returns></returns>
         public static HttpClientHandler Create()
         {
-            var options = new BlockchainProfileOptions();
+            var options = new BlockchainRpcOptions();
 
             var clientHandler = new HttpClientHandler
             {
@@ -37,9 +37,9 @@ namespace MCWrapper.RPC.Connection
         /// Return new customized HttpClientHandler instance
         /// </summary>
         /// <returns></returns>
-        public static HttpClientHandler Create(BlockchainProfileOptions options)
+        public static HttpClientHandler Create(BlockchainRpcOptions options)
         {
-            var fallbackOptions = options ?? new BlockchainProfileOptions();
+            var fallbackOptions = options ?? new BlockchainRpcOptions();
 
             var clientHandler = new HttpClientHandler
             {
@@ -58,18 +58,18 @@ namespace MCWrapper.RPC.Connection
         /// <returns></returns>
         public static HttpClientHandler Create(IConfiguration configuration)
         {
-            var fallbackOptions = new BlockchainProfileOptions();
+            var fallbackOptions = new BlockchainRpcOptions();
 
-            var sslPath = !string.IsNullOrEmpty(configuration.GetValue<string>(nameof(BlockchainProfileOptions.ChainSslPath)))
-                ? configuration.GetValue<string>(nameof(BlockchainProfileOptions.ChainSslPath))
+            var sslPath = !string.IsNullOrEmpty(configuration.GetValue<string>(nameof(BlockchainRpcOptions.ChainSslPath)))
+                ? configuration.GetValue<string>(nameof(BlockchainRpcOptions.ChainSslPath))
                 : fallbackOptions.ChainSslPath;
 
-            var username = !string.IsNullOrEmpty(configuration.GetValue<string>(nameof(BlockchainProfileOptions.ChainUsername)))
-                ? configuration.GetValue<string>(nameof(BlockchainProfileOptions.ChainUsername))
+            var username = !string.IsNullOrEmpty(configuration.GetValue<string>(nameof(BlockchainRpcOptions.ChainUsername)))
+                ? configuration.GetValue<string>(nameof(BlockchainRpcOptions.ChainUsername))
                 : fallbackOptions.ChainUsername;
 
-            var password = !string.IsNullOrEmpty(configuration.GetValue<string>(nameof(BlockchainProfileOptions.ChainPassword)))
-                ? configuration.GetValue<string>(nameof(BlockchainProfileOptions.ChainPassword))
+            var password = !string.IsNullOrEmpty(configuration.GetValue<string>(nameof(BlockchainRpcOptions.ChainPassword)))
+                ? configuration.GetValue<string>(nameof(BlockchainRpcOptions.ChainPassword))
                 : fallbackOptions.ChainPassword;
 
             var clientHandler = new HttpClientHandler
@@ -89,7 +89,7 @@ namespace MCWrapper.RPC.Connection
         /// <returns></returns>
         public static string GetServiceUrl()
         {
-            BlockchainProfileOptions options = new BlockchainProfileOptions();
+            BlockchainRpcOptions options = new BlockchainRpcOptions();
 
             var serviceUrl = string.Format(ClientUrlComponent.Format,
                 options.ChainUseSsl == true ? ClientUrlComponent.Https : ClientUrlComponent.Http, options.ChainHostname, options.ChainRpcPort);
@@ -101,7 +101,7 @@ namespace MCWrapper.RPC.Connection
         /// Construct MultiChain blockchain Service URL
         /// </summary>
         /// <returns></returns>
-        public static string GetServiceUrl(BlockchainProfileOptions options)
+        public static string GetServiceUrl(BlockchainRpcOptions options)
         {
             var serviceUrl = string.Format(ClientUrlComponent.Format,
                 options.ChainUseSsl == true ? ClientUrlComponent.Https : ClientUrlComponent.Http, options.ChainHostname, options.ChainRpcPort);
@@ -115,7 +115,7 @@ namespace MCWrapper.RPC.Connection
         /// <returns></returns>
         public static AuthenticationHeaderValue GetAuthenticationHeaderValue()
         {
-            BlockchainProfileOptions options = new BlockchainProfileOptions();
+            BlockchainRpcOptions options = new BlockchainRpcOptions();
 
             var authHeader = new AuthenticationHeaderValue(
                 ClientUrlComponent.BasicHeaderValue,
@@ -128,7 +128,7 @@ namespace MCWrapper.RPC.Connection
         /// Construct Authentication Header Value
         /// </summary>
         /// <returns></returns>
-        public static AuthenticationHeaderValue GetAuthenticationHeaderValue(BlockchainProfileOptions options)
+        public static AuthenticationHeaderValue GetAuthenticationHeaderValue(BlockchainRpcOptions options)
         {
             var authHeader = new AuthenticationHeaderValue(
                 ClientUrlComponent.BasicHeaderValue,

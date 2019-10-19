@@ -6,11 +6,11 @@ namespace MCWrapper.RPC.Options
     /// RuntimeParamOption values can be used to initiate a blockchain on startup
     /// MCWrapper doesn't provide the logic for doing so at this time, users wishing
     /// to initialize their runtime params via the RuntimeParamOptions pipeline will
-    /// be required to do so via the MCWrapper CLI or RPC client methods associated
+    /// be required to do so via the MCWrapper.RPC client methods associated
     /// with this task (i.e. setruntimeparam blockchain method via either client)
     /// 
     /// <para>
-    ///     Neither the MCWrapper RPC nor the CLI client require RuntimeParamOptions to function normally.
+    ///     MCWrapper.RPC does not client require RuntimeParamOptions to function normally.
     ///     RuntimeParamOptions are purely optional at this time.
     /// </para>
     /// </summary>

@@ -32,7 +32,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Blockchain
         /// </summary>
         /// <param name="client"></param>
         /// <param name="options"></param>
-        public BlockchainRpcClient(HttpClient client, IOptions<BlockchainProfileOptions> options) 
+        public BlockchainRpcClient(HttpClient client, IOptions<BlockchainRpcOptions> options) 
             : base(client, options) { }
 
 

@@ -28,7 +28,7 @@ namespace MCWrapper.RPC.Ledger.Clients.OffChain
         /// </summary>
         /// <param name="client"></param>
         /// <param name="options"></param>
-        public OffChainRpcClient(HttpClient client, IOptions<BlockchainProfileOptions> options) 
+        public OffChainRpcClient(HttpClient client, IOptions<BlockchainRpcOptions> options) 
             : base(client, options) { }
 
 

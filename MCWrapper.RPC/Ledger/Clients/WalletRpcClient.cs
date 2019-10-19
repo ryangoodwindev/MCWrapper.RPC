@@ -51,7 +51,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// </summary>
         /// <param name="client"></param>
         /// <param name="options"></param>
-        public WalletRpcClient(HttpClient client, IOptions<BlockchainProfileOptions> options)
+        public WalletRpcClient(HttpClient client, IOptions<BlockchainRpcOptions> options)
             : base(client, options) { }
 
 

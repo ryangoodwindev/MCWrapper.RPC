@@ -26,7 +26,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Control
         /// </summary>
         /// <param name="client"></param>
         /// <param name="options"></param>
-        public ControlRpcClient(HttpClient client, IOptions<BlockchainProfileOptions> options) 
+        public ControlRpcClient(HttpClient client, IOptions<BlockchainRpcOptions> options) 
             : base(client, options) { }
 
 

@@ -20,7 +20,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Mining
     /// </summary>
     public class MiningRpcClient : RpcConnection
     {
-        public MiningRpcClient(HttpClient client, IOptions<BlockchainProfileOptions> options) 
+        public MiningRpcClient(HttpClient client, IOptions<BlockchainRpcOptions> options) 
             : base(client, options) { }
 
 
