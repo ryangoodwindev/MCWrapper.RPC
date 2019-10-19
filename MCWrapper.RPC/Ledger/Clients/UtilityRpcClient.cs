@@ -48,7 +48,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Utility
         /// <summary>
         /// 
         /// <para>Appends data to binary cache.</para>
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         /// 
         /// </summary>
         /// <param name="identifier">Binary cache item identifier</param>
@@ -78,7 +78,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Utility
         /// <summary>
         /// 
         /// <para>Returns random string, which can be used as binary cache item identifier</para>
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         /// 
         /// </summary>
         /// <returns></returns>
@@ -98,7 +98,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Utility
         /// <param name="id">String value to identify this transaction</param>
         /// <param name="count">Number of key pairs to generate</param>
         /// <returns></returns>
-        public async Task<RpcResponse<CreateKeyPairsResult[]>> CreateKeyPairsAsync(string blockchainName, string id, int count)
+        public async Task<RpcResponse<CreateKeyPairsResult[]>> CreateKeyPairsAsync(string blockchainName, string id, int count = 1)
         {
             var response = await TransactAsync<RpcResponse<CreateKeyPairsResult[]>>(blockchainName, UtilityAction.CreateKeyPairsMethod, id, count);
 
@@ -108,12 +108,12 @@ namespace MCWrapper.RPC.Ledger.Clients.Utility
         /// <summary>
         /// 
         /// <para>Creates public/private key pairs. These key pairs are not stored in the wallet.</para>
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         /// 
         /// </summary>
         /// <param name="count">Number of key pairs to generate</param>
         /// <returns></returns>
-        public Task<RpcResponse<CreateKeyPairsResult[]>> CreateKeyPairsAsync(int count)
+        public Task<RpcResponse<CreateKeyPairsResult[]>> CreateKeyPairsAsync(int count = 1)
         {
             return CreateKeyPairsAsync(BlockchainOptions.ChainName, UUID.NoHyphens, count);
         }
@@ -142,7 +142,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Utility
         /// 
         /// <para>Creates a multi-signature address with n signature of m keys required.</para>
         /// <para>It returns a json object with the address and redeemScript.</para>
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         ///
         /// </summary>
         /// <param name="n_required">The number of required signatures out of the n keys or addresses</param>
@@ -174,7 +174,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Utility
         /// <summary>
         /// 
         /// <para>Clear binary cache item</para>
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         ///
         /// </summary>
         /// <param name="identifier">Binary cache item identifier, "*" - to clear all items</param>
@@ -205,7 +205,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Utility
         /// <summary>
         /// 
         /// <para>Estimates the approximate fee per kilobyte needed for a transaction to begin confirmation within nblocks blocks.</para>
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         /// 
         /// </summary>
         /// <param name="n_blocks">Number of blocks to estimate fee for</param>
@@ -238,7 +238,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Utility
         /// 
         /// <para>Estimates the approximate priority  a zero-fee transaction needs to begin confirmation within nblocks blocks.</para>
         /// <para>-1.0 is returned if not enough transactions and blocks have been observed to make an estimate.</para>
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         /// 
         /// </summary>
         /// <param name="n_blocks">Number of blocks to estimate priority for</param>
@@ -276,7 +276,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Utility
         /// 
         /// <para>Return information about the given address or public key or private key.</para>
         /// <para>Blockchain name is explicitly passed as parameter.</para>
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         /// 
         /// </summary>
         /// <param name="address_pubkey_privkey">
@@ -315,7 +315,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Utility
         /// <summary>
         /// 
         /// <para>Verify a signed message</para>
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         /// 
         /// </summary>
         /// <param name="address">The address to use for the signature</param>

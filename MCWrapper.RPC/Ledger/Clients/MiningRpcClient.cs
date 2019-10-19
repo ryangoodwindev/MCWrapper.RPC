@@ -110,10 +110,10 @@ namespace MCWrapper.RPC.Ledger.Clients.Mining
         /// </summary>
         /// <param name="blockchainName">Name of target blockchain</param>
         /// <param name="id">String value to identify this transaction</param>
-        /// <param name="blocks">The number of blocks, or -1 for blocks since last difficulty change</param>
-        /// <param name="height">To estimate at the time of the given height</param>
+        /// <param name="blocks">(numeric, optional, default=120) The number of blocks, or -1 for blocks since last difficulty change</param>
+        /// <param name="height">(numeric, optional, default=-1) To estimate at the time of the given height</param>
         /// <returns></returns>
-        public async Task<RpcResponse<object>> GetNetworkHashPsAsync(string blockchainName, string id, int blocks, int height)
+        public async Task<RpcResponse<object>> GetNetworkHashPsAsync(string blockchainName, string id, int blocks = 120, int height = -1)
         {
             RpcResponse<object> response;
             if (blocks == 0 && height == 0)
@@ -134,10 +134,10 @@ namespace MCWrapper.RPC.Ledger.Clients.Mining
         /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
         ///
         /// </summary>
-        /// <param name="blocks">The number of blocks, or -1 for blocks since last difficulty change</param>
-        /// <param name="height">To estimate at the time of the given height</param>
+        /// <param name="blocks">(numeric, optional, default=120) The number of blocks, or -1 for blocks since last difficulty change</param>
+        /// <param name="height">(numeric, optional, default=-1) To estimate at the time of the given height</param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> GetNetworkHashPsAsync(int blocks, int height)
+        public Task<RpcResponse<object>> GetNetworkHashPsAsync(int blocks = 120, int height = -1)
         {
             return GetNetworkHashPsAsync(BlockchainOptions.ChainName, UUID.NoHyphens, blocks, height);
         }

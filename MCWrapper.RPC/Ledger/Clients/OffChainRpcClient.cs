@@ -58,7 +58,7 @@ namespace MCWrapper.RPC.Ledger.Clients.OffChain
         /// 
         /// <para>Available only in Enterprise Edition.</para>
         /// <para>Purges offchain items published by this node</para>
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         ///
         /// </summary>
         /// <param name="items">
@@ -110,7 +110,7 @@ namespace MCWrapper.RPC.Ledger.Clients.OffChain
         /// 
         /// <para>Available only in Enterprise Edition.</para>
         /// <para>Purges offchain data for specific items in the stream.</para>
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         /// 
         /// </summary>
         /// <param name="stream">One of: create txid, stream reference, stream name</param>
@@ -165,7 +165,7 @@ namespace MCWrapper.RPC.Ledger.Clients.OffChain
         ///
         /// <para>Available only in Enterprise Edition.</para>
         /// <para>Schedules retrieval of offchain data for specific items in the stream</para>
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         /// 
         /// </summary>
         /// <param name="stream">One of: create txid, stream reference, stream name</param>
