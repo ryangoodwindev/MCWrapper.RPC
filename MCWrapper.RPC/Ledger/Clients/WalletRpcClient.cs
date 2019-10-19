@@ -2890,7 +2890,18 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         }
 
 
-
+        /// <summary>
+        /// 
+        /// Prepares exchange transaction output for createrawexchange, appendrawexchange
+        /// <para>Requires wallet passphrase to be set with walletpassphrase call.</para>
+        /// <para>Blockchain name is explicitly passed as parameter.</para>
+        ///  
+        /// </summary>
+        /// <param name="blockchainName">Name of target blockchain</param>
+        /// <param name="id">String value to identify this transaction</param>
+        /// <param name="asset_quantities">A json object of assets to send</param>
+        /// <param name="_lock">Lock prepared unspent output. Default is true</param>
+        /// <returns></returns>
         public async Task<RpcResponse<PrepareLockUnspentResult>> PrepareLockUnspentAsync(string blockchainName, string id, object asset_quantities, bool _lock)
         {
             var response = await TransactAsync<RpcResponse<PrepareLockUnspentResult>>(blockchainName, WalletAction.PrepareLockUnspentMethod, id, asset_quantities, _lock);
@@ -2898,12 +2909,35 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
             return response;
         }
 
+        /// <summary>
+        /// 
+        /// Prepares exchange transaction output for createrawexchange, appendrawexchange
+        /// <para>Requires wallet passphrase to be set with walletpassphrase call.</para>
+        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        ///  
+        /// </summary>
+        /// <param name="asset_quantities">A json object of assets to send</param>
+        /// <param name="_lock">Lock prepared unspent output. Default is true</param>
+        /// <returns></returns>
         public Task<RpcResponse<PrepareLockUnspentResult>> PrepareLockUnspentAsync(object asset_quantities, bool _lock)
         {
             return PrepareLockUnspentAsync(BlockchainOptions.ChainName, UUID.NoHyphens, asset_quantities, _lock);
         }
 
 
+        /// <summary>
+        /// 
+        /// Prepares exchange transaction output for createrawexchange, appendrawexchange using specific address
+        /// <para>Requires wallet passphrase to be set with walletpassphrase call.</para>
+        /// <para>Blockchain name is explicitly passed as parameter.</para>
+        ///
+        /// </summary>
+        /// <param name="blockchainName">Name of target blockchain</param>
+        /// <param name="id">String value to identify this transaction</param>
+        /// <param name="from_address">Address to send from</param>
+        /// <param name="asset_quantities">A json object of assets to send</param>
+        /// <param name="_lock">Lock prepared unspent output</param>
+        /// <returns></returns>
         public async Task<RpcResponse<PrepareLockUnspentFromResult>> PrepareLockUnspentFromAsync(string blockchainName, string id, string from_address, object asset_quantities, bool _lock)
         {
             var response = await TransactAsync<RpcResponse<PrepareLockUnspentFromResult>>(blockchainName, WalletAction.PrepareLockUnspentFromMethod, id, from_address, asset_quantities, _lock);
@@ -2911,12 +2945,36 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
             return response;
         }
 
+        /// <summary>
+        /// 
+        /// Prepares exchange transaction output for createrawexchange, appendrawexchange using specific address
+        /// <para>Requires wallet passphrase to be set with walletpassphrase call.</para>
+        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        ///
+        /// </summary>
+        /// <param name="from_address">Address to send from</param>
+        /// <param name="asset_quantities">A json object of assets to send</param>
+        /// <param name="_lock">Lock prepared unspent output</param>
+        /// <returns></returns>
         public Task<RpcResponse<PrepareLockUnspentFromResult>> PrepareLockUnspentFromAsync(string from_address, object asset_quantities, bool _lock)
         {
             return PrepareLockUnspentFromAsync(BlockchainOptions.ChainName, UUID.NoHyphens, from_address, asset_quantities, _lock);
         }
 
 
+        /// <summary>
+        /// 
+        /// Publishes stream item. Requires wallet passphrase to be set with walletpassphrase call.
+        /// <para>Blockchain name is explicitly passed as parameter.</para>
+        ///
+        /// </summary>
+        /// <param name="blockchainName">Name of target blockchain</param>
+        /// <param name="id">String value to identify this transaction</param>
+        /// <param name="stream_identifier">One of the following: stream txid, stream reference, stream name</param>
+        /// <param name="keys">Item key or Array of item keys</param>
+        /// <param name="data_hex_or_object">Data hex string or JSON data object or Text data object or Binary raw data created with appendbinarycache</param>
+        /// <param name="options">Should be "offchain" or omitted</param>
+        /// <returns></returns>
         public async Task<RpcResponse<string>> PublishAsync(string blockchainName, string id, string stream_identifier, object keys, object data_hex_or_object, string options)
         {
             RpcResponse<string> response;
@@ -2928,12 +2986,37 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
             return response;
         }
 
+        /// <summary>
+        /// 
+        /// Publishes stream item. Requires wallet passphrase to be set with walletpassphrase call.
+        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        ///
+        /// </summary>
+        /// <param name="stream_identifier">One of the following: stream txid, stream reference, stream name</param>
+        /// <param name="keys">Item key or Array of item keys</param>
+        /// <param name="data_hex_or_object">Data hex string or JSON data object or Text data object or Binary raw data created with appendbinarycache</param>
+        /// <param name="options">Should be "offchain" or omitted</param>
+        /// <returns></returns>
         public Task<RpcResponse<string>> PublishAsync(string stream_identifier, object keys, object data_hex_or_object, string options)
         {
             return PublishAsync(BlockchainOptions.ChainName, UUID.NoHyphens, stream_identifier, keys, data_hex_or_object, options);
         }
 
 
+        /// <summary>
+        /// 
+        /// Publishes stream item from specific address. Requires wallet passphrase to be set with walletpassphrase call.
+        /// <para>Blockchain name is explicitly passed as parameter.</para>
+        ///
+        /// </summary>
+        /// <param name="blockchainName">Name of target blockchain</param>
+        /// <param name="id">String value to identify this transaction</param>
+        /// <param name="from_address">Address used for issuing</param>
+        /// <param name="stream_identifier">One of the following: stream txid, stream reference, stream name</param>
+        /// <param name="keys">Item key or Array of item keys</param>
+        /// <param name="data_hex_or_object">Data hex string or JSON data object or Text data object or Binary raw data created with appendbinarycache</param>
+        /// <param name="options">Should be "offchain" or omitted</param>
+        /// <returns></returns>
         public async Task<RpcResponse<string>> PublishFromAsync(string blockchainName, string id, string from_address, string stream_identifier, object keys, object data_hex_or_object, string options)
         {
             RpcResponse<string> response;
@@ -2945,12 +3028,36 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
             return response;
         }
 
+        /// <summary>
+        /// 
+        /// Publishes stream item from specific address. Requires wallet passphrase to be set with walletpassphrase call.
+        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        ///
+        /// </summary>
+        /// <param name="from_address">Address used for issuing</param>
+        /// <param name="stream_identifier">One of the following: stream txid, stream reference, stream name</param>
+        /// <param name="keys">Item key or Array of item keys</param>
+        /// <param name="data_hex_or_object">Data hex string or JSON data object or Text data object or Binary raw data created with appendbinarycache</param>
+        /// <param name="options">Should be "offchain" or omitted</param>
+        /// <returns></returns>
         public Task<RpcResponse<string>> PublishFromAsync(string from_address, string stream_identifier, object keys, object data_hex_or_object, string options)
         {
             return PublishFromAsync(BlockchainOptions.ChainName, UUID.NoHyphens, from_address, stream_identifier, keys, data_hex_or_object, options);
         }
 
 
+        /// <summary>
+        /// 
+        /// Publishes several stream items.
+        /// <para>Blockchain name is explicitly passed as parameter.</para>
+        /// 
+        /// </summary>
+        /// <param name="blockchainName">Name of target blockchain</param>
+        /// <param name="id">String value to identify this transaction</param>
+        /// <param name="stream_identifier">One of: create txid, stream reference, stream name. Default for items if "for" field is omitted</param>
+        /// <param name="items">Array of stream items.</param>
+        /// <param name="options">Should be "offchain" or omitted. Default for items if "options" field is omitted</param>
+        /// <returns></returns>
         public async Task<RpcResponse<string>> PublishMultiAsync(string blockchainName, string id, string stream_identifier, object[] items, string options)
         {
             RpcResponse<string> response;
@@ -2962,12 +3069,35 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
             return response;
         }
 
+        /// <summary>
+        /// 
+        /// Publishes several stream items.
+        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// 
+        /// </summary>
+        /// <param name="stream_identifier">One of: create txid, stream reference, stream name. Default for items if "for" field is omitted</param>
+        /// <param name="items">Array of stream items.</param>
+        /// <param name="options">Should be "offchain" or omitted. Default for items if "options" field is omitted</param>
+        /// <returns></returns>
         public Task<RpcResponse<string>> PublishMultiAsync(string stream_identifier, object[] items, string options)
         {
             return PublishMultiAsync(BlockchainOptions.ChainName, UUID.NoHyphens, stream_identifier, items, options);
         }
 
 
+        /// <summary>
+        /// 
+        /// Publishes several stream items
+        /// <para>Blockchain name is explicitly passed as parameter.</para>
+        /// 
+        /// </summary>
+        /// <param name="blockchainName">Name of target blockchain</param>
+        /// <param name="id">String value to identify this transaction</param>
+        /// <param name="from_address"> Address used for publishing</param>
+        /// <param name="stream_identifier">One of: create txid, stream reference, stream name. Default for items if "for" field is omitted</param>
+        /// <param name="items">Array of stream items.</param>
+        /// <param name="options">Should be "offchain" or omitted. Default for items if "options" field is omitted</param>
+        /// <returns></returns>
         public async Task<RpcResponse<string>> PublishMultiFromAsync(string blockchainName, string id, string from_address, string stream_identifier, object[] items, string options)
         {
             RpcResponse<string> response;
@@ -2979,12 +3109,32 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
             return response;
         }
 
+        /// <summary>
+        /// 
+        /// Publishes several stream items
+        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// 
+        /// </summary>
+        /// <param name="from_address"> Address used for publishing</param>
+        /// <param name="stream_identifier">One of: create txid, stream reference, stream name. Default for items if "for" field is omitted</param>
+        /// <param name="items">Array of stream items.</param>
+        /// <param name="options">Should be "offchain" or omitted. Default for items if "options" field is omitted</param>
+        /// <returns></returns>
         public Task<RpcResponse<string>> PublishMultiFromAsync(string from_address, string stream_identifier, object[] items, string options)
         {
             return PublishMultiFromAsync(BlockchainOptions.ChainName, UUID.NoHyphens, from_address, stream_identifier, items, options);
         }
 
 
+        /// <summary>
+        /// 
+        /// Resends wallet transactions
+        /// <para>Blockchain name is explicitly passed as parameter.</para>
+        /// 
+        /// </summary>
+        /// <param name="blockchainName">Name of target blockchain</param>
+        /// <param name="id">String value to identify this transaction</param>
+        /// <returns></returns>
         public async Task<RpcResponse<object>> ResendWalletTransactionsAsync(string blockchainName, string id)
         {
             var response = await TransactAsync<RpcResponse<object>>(blockchainName, WalletAction.ResendWalletTransactionsMethod, id);
@@ -2992,12 +3142,37 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
             return response;
         }
 
+        /// <summary>
+        /// 
+        /// Resends wallet transactions
+        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public Task<RpcResponse<object>> ResendWalletTransactionsAsync()
         {
             return ResendWalletTransactionsAsync(BlockchainOptions.ChainName, UUID.NoHyphens);
         }
 
 
+        /// <summary>
+        /// 
+        /// Revoke permission from a given address. The amount is a real. Requires wallet passphrase to be set with walletpassphrase call.
+        /// <para>Blockchain name is explicitly passed as parameter.</para>
+        /// 
+        /// </summary>
+        /// <param name="blockchainName">Name of target blockchain</param>
+        /// <param name="id">String value to identify this transaction</param>
+        /// <param name="addresses">The addresses(es) to revoke permissions from</param>
+        /// <param name="permissions">
+        ///     <para>
+        ///         Permission strings, comma delimited. Global: connect,send,receive,issue,mine,admin,activate,create or per-asset: asset-identifier.issue,admin,activate,send,receive or per-stream: stream-identifier.write,activate,admin
+        ///     </para> 
+        /// </param>
+        /// <param name="native_amount">native currency amount to send. eg 0.1. Default - 0</param>
+        /// <param name="comment">A comment used to store what the transaction is for. This is not part of the transaction, just kept in your wallet.</param>
+        /// <param name="comment_to">A comment to store the name of the person or organization to which you're sending the transaction. This is not part of the transaction, just kept in your wallet.</param>
+        /// <returns></returns>
         public async Task<RpcResponse<object>> RevokeAsync(string blockchainName, string id, string addresses, string permissions, double native_amount, string comment, string comment_to)
         {
             var response = await TransactAsync<RpcResponse<object>>(blockchainName, WalletAction.RevokeMethod, id, addresses, permissions, native_amount, comment, comment_to);
@@ -3005,12 +3180,47 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
             return response;
         }
 
+        /// <summary>
+        /// 
+        /// Revoke permission from a given address. The amount is a real. Requires wallet passphrase to be set with walletpassphrase call.
+        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// 
+        /// </summary>
+        /// <param name="addresses">The addresses(es) to revoke permissions from</param>
+        /// <param name="permissions">
+        ///     <para>
+        ///         Permission strings, comma delimited. Global: connect,send,receive,issue,mine,admin,activate,create or per-asset: asset-identifier.issue,admin,activate,send,receive or per-stream: stream-identifier.write,activate,admin
+        ///     </para> 
+        /// </param>
+        /// <param name="native_amount">native currency amount to send. eg 0.1. Default - 0</param>
+        /// <param name="comment">A comment used to store what the transaction is for. This is not part of the transaction, just kept in your wallet.</param>
+        /// <param name="comment_to">A comment to store the name of the person or organization to which you're sending the transaction. This is not part of the transaction, just kept in your wallet.</param>
+        /// <returns></returns>
         public Task<RpcResponse<object>> RevokeAsync(string addresses, string permissions, double native_amount, string comment, string comment_to)
         {
             return RevokeAsync(BlockchainOptions.ChainName, UUID.NoHyphens, addresses, permissions, native_amount, comment, comment_to);
         }
 
 
+        /// <summary>
+        /// 
+        /// Revoke permissions using specific address. Requires wallet passphrase to be set with walletpassphrase call.
+        /// <para>Blockchain name is explicitly passed as parameter.</para>
+        /// 
+        /// </summary>
+        /// <param name="blockchainName">Name of target blockchain</param>
+        /// <param name="id">String value to identify this transaction</param>
+        /// <param name="from_address">Addresses used for revoke.</param>
+        /// <param name="to_addresses">The addresses(es) to revoke permissions from</param>
+        /// <param name="permissions">
+        ///     <para>
+        ///         Permission strings, comma delimited. Global: connect,send,receive,issue,mine,admin,activate,create or per-asset: asset-identifier.issue,admin,activate,send,receive or per-stream: stream-identifier.write,activate,admin
+        ///     </para> 
+        /// </param>
+        /// <param name="native_amount">native currency amount to send. eg 0.1. Default - 0</param>
+        /// <param name="comment">A comment used to store what the transaction is for. This is not part of the transaction, just kept in your wallet.</param>
+        /// <param name="comment_to">A comment to store the name of the person or organization to which you're sending the transaction. This is not part of the transaction, just kept in your wallet.</param>
+        /// <returns></returns>
         public async Task<RpcResponse<object>> RevokeFromAsync(string blockchainName, string id, string from_address, string to_addresses, string permissions, double native_amount, string comment, string comment_to)
         {
             var response = await TransactAsync<RpcResponse<object>>(blockchainName, WalletAction.RevokeFromMethod, id, from_address, to_addresses, permissions, native_amount, comment, comment_to);
@@ -3018,12 +3228,42 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
             return response;
         }
 
+        /// <summary>
+        /// 
+        /// Revoke permissions using specific address. Requires wallet passphrase to be set with walletpassphrase call.
+        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// 
+        /// </summary>
+        /// <param name="from_address">Addresses used for revoke.</param>
+        /// <param name="to_addresses">The addresses(es) to revoke permissions from</param>
+        /// <param name="permissions">
+        ///     <para>
+        ///         Permission strings, comma delimited. Global: connect,send,receive,issue,mine,admin,activate,create or per-asset: asset-identifier.issue,admin,activate,send,receive or per-stream: stream-identifier.write,activate,admin
+        ///     </para> 
+        /// </param>
+        /// <param name="native_amount">native currency amount to send. eg 0.1. Default - 0</param>
+        /// <param name="comment">A comment used to store what the transaction is for. This is not part of the transaction, just kept in your wallet.</param>
+        /// <param name="comment_to">A comment to store the name of the person or organization to which you're sending the transaction. This is not part of the transaction, just kept in your wallet.</param>
+        /// <returns></returns>
         public Task<RpcResponse<object>> RevokeFromAsync(string from_address, string to_addresses, string permissions, double native_amount, string comment, string comment_to)
         {
             return RevokeFromAsync(BlockchainOptions.ChainName, UUID.NoHyphens, from_address, to_addresses, permissions, native_amount, comment, comment_to);
         }
 
 
+        /// <summary>
+        /// 
+        /// Send an amount (or several asset amounts) to a given address. The amount is a real and is rounded to the nearest 0.00000001. Requires wallet passphrase to be set with walletpassphrase call.
+        /// <para>Blockchain name is explicitly passed as parameter.</para>
+        /// 
+        /// </summary>
+        /// <param name="blockchainName">Name of target blockchain</param>
+        /// <param name="id">String value to identify this transaction</param>
+        /// <param name="to_address">The address to send to</param>
+        /// <param name="amount_or_asset_quantities">(numeric, required) The amount in native currency to send. eg 0.1 or (object, required) A json object of assets to send</param>
+        /// <param name="comment">A comment used to store what the transaction is for. This is not part of the transaction, just kept in your wallet.</param>
+        /// <param name="comment_to">A comment to store the name of the person or organization to which you're sending the transaction. This is not part of the transaction, just kept in your wallet.</param>
+        /// <returns></returns>
         public async Task<RpcResponse<string>> SendAsync(string blockchainName, string id, string to_address, object amount_or_asset_quantities, string comment, string comment_to)
         {
             var response = await TransactAsync<RpcResponse<string>>(blockchainName, WalletAction.SendMethod, id, to_address, amount_or_asset_quantities, comment, comment_to);
@@ -3031,12 +3271,38 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
             return response;
         }
 
+        /// <summary>
+        /// 
+        /// Send an amount (or several asset amounts) to a given address. The amount is a real and is rounded to the nearest 0.00000001. Requires wallet passphrase to be set with walletpassphrase call.
+        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// 
+        /// </summary>
+        /// <param name="to_address">The address to send to</param>
+        /// <param name="amount_or_asset_quantities">(numeric, required) The amount in native currency to send. eg 0.1 or (object, required) A json object of assets to send</param>
+        /// <param name="comment">A comment used to store what the transaction is for. This is not part of the transaction, just kept in your wallet.</param>
+        /// <param name="comment_to">A comment to store the name of the person or organization to which you're sending the transaction. This is not part of the transaction, just kept in your wallet.</param>
+        /// <returns></returns>
         public Task<RpcResponse<string>> SendAsync(string to_address, object amount_or_asset_quantities, string comment, string comment_to)
         {
             return SendAsync(BlockchainOptions.ChainName, UUID.NoHyphens, to_address, amount_or_asset_quantities, comment, comment_to);
         }
 
 
+        /// <summary>
+        /// 
+        /// Send asset amount to a given address. The amounts are real. Requires wallet passphrase to be set with walletpassphrase call.
+        /// <para>Blockchain name is explicitly passed as parameter.</para>
+        /// 
+        /// </summary>
+        /// <param name="blockchainName">Name of target blockchain</param>
+        /// <param name="id">String value to identify this transaction</param>
+        /// <param name="to_address">The address to send to</param>
+        /// <param name="asset_identifier">One of the following: issue txid, asset reference, asset name</param>
+        /// <param name="asset_quantity">Asset quantity to send. eg 0.1</param>
+        /// <param name="native_amount">native currency amount to send. eg 0.1, Default: minimum-per-output</param>
+        /// <param name="comment">A comment used to store what the transaction is for. This is not part of the transaction, just kept in your wallet.</param>
+        /// <param name="comment_to">A comment to store the name of the person or organization to which you're sending the transaction. This is not part of the transaction, just kept in your wallet.</param>
+        /// <returns></returns>
         public async Task<RpcResponse<object>> SendAssetAsync(string blockchainName, string id, string to_address, string asset_identifier, int asset_quantity, double native_amount, string comment, string comment_to)
         {
             var response = await TransactAsync<RpcResponse<object>>(blockchainName, WalletAction.SendAssetMethod, id, to_address, asset_identifier, asset_quantity, native_amount, comment, comment_to);
@@ -3044,12 +3310,41 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
             return response;
         }
 
+        /// <summary>
+        /// 
+        /// Send asset amount to a given address. The amounts are real. Requires wallet passphrase to be set with walletpassphrase call.
+        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// 
+        /// </summary>
+        /// <param name="to_address">The address to send to</param>
+        /// <param name="asset_identifier">One of the following: issue txid, asset reference, asset name</param>
+        /// <param name="asset_quantity">Asset quantity to send. eg 0.1</param>
+        /// <param name="native_amount">native currency amount to send. eg 0.1, Default: minimum-per-output</param>
+        /// <param name="comment">A comment used to store what the transaction is for. This is not part of the transaction, just kept in your wallet.</param>
+        /// <param name="comment_to">A comment to store the name of the person or organization to which you're sending the transaction. This is not part of the transaction, just kept in your wallet.</param>
+        /// <returns></returns>
         public Task<RpcResponse<object>> SendAssetAsync(string to_address, string asset_identifier, int asset_quantity, double native_amount, string comment, string comment_to)
         {
             return SendAssetAsync(BlockchainOptions.ChainName, UUID.NoHyphens, to_address, asset_identifier, asset_quantity, native_amount, comment, comment_to);
         }
 
 
+        /// <summary>
+        /// 
+        /// Send an asset amount using specific address. Requires wallet passphrase to be set with walletpassphrase call.
+        /// <para>Blockchain name is explicitly passed as parameter.</para>
+        /// 
+        /// </summary>
+        /// <param name="blockchainName">Name of target blockchain</param>
+        /// <param name="id">String value to identify this transaction</param>
+        /// <param name="from_address">Address to send from</param>
+        /// <param name="to_address">The address to send to</param>
+        /// <param name="asset_identifier">One of the following: issue txid, asset reference, asset name</param>
+        /// <param name="asset_quantity">Asset quantity to send. eg 0.1</param>
+        /// <param name="native_amount">native currency amount to send. eg 0.1, Default: minimum-per-output</param>
+        /// <param name="comment">A comment used to store what the transaction is for. This is not part of the transaction, just kept in your wallet.</param>
+        /// <param name="comment_to">A comment to store the name of the person or organization to which you're sending the transaction. This is not part of the transaction, just kept in your wallet.</param>
+        /// <returns></returns>
         public async Task<RpcResponse<object>> SendAssetFromAsync(string blockchainName, string id, string from_address, string to_address, string asset_identifier, int asset_quantity, double native_amount, string comment, string comment_to)
         {
             var response = await TransactAsync<RpcResponse<object>>(blockchainName, WalletAction.SendAssetFromMethod, id, from_address, to_address, asset_identifier, asset_quantity, native_amount, comment, comment_to);
@@ -3057,12 +3352,40 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
             return response;
         }
 
+        /// <summary>
+        /// 
+        /// Send an asset amount using specific address. Requires wallet passphrase to be set with walletpassphrase call.
+        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// 
+        /// </summary>
+        /// <param name="from_address">Address to send from</param>
+        /// <param name="to_address">The address to send to</param>
+        /// <param name="asset_identifier">One of the following: issue txid, asset reference, asset name</param>
+        /// <param name="asset_quantity">Asset quantity to send. eg 0.1</param>
+        /// <param name="native_amount">native currency amount to send. eg 0.1, Default: minimum-per-output</param>
+        /// <param name="comment">A comment used to store what the transaction is for. This is not part of the transaction, just kept in your wallet.</param>
+        /// <param name="comment_to">A comment to store the name of the person or organization to which you're sending the transaction. This is not part of the transaction, just kept in your wallet.</param>
+        /// <returns></returns>
         public Task<RpcResponse<object>> SendAssetFromAsync(string from_address, string to_address, string asset_identifier, int asset_quantity, double native_amount, string comment, string comment_to)
         {
             return SendAssetFromAsync(BlockchainOptions.ChainName, UUID.NoHyphens, from_address, to_address, asset_identifier, asset_quantity, native_amount, comment, comment_to);
         }
 
 
+        /// <summary>
+        /// 
+        /// Send an amount (or several asset amounts) using specific address. Requires wallet passphrase to be set with walletpassphrase call.
+        /// <para>Blockchain name is explicitly passed as parameter.</para>
+        /// 
+        /// </summary>
+        /// <param name="blockchainName">Name of target blockchain</param>
+        /// <param name="id">String value to identify this transaction</param>
+        /// <param name="from_address">Address to send from</param>
+        /// <param name="to_address">The address to send to</param>
+        /// <param name="amount_or_asset_quantities">(numeric, required) The amount in native currency to send. eg 0.1 or (object, required) A json object of assets to send</param>
+        /// <param name="comment">A comment used to store what the transaction is for. This is not part of the transaction, just kept in your wallet.</param>
+        /// <param name="comment_to">A comment to store the name of the person or organization to which you're sending the transaction. This is not part of the transaction, just kept in your wallet.</param>
+        /// <returns></returns>
         public async Task<RpcResponse<object>> SendFromAsync(string blockchainName, string id, string from_address, string to_address, object amount_or_asset_quantities, string comment, string comment_to)
         {
             var response = await TransactAsync<RpcResponse<object>>(blockchainName, WalletAction.SendFromMethod, id, from_address, to_address, amount_or_asset_quantities, comment, comment_to);
@@ -3070,12 +3393,39 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
             return response;
         }
 
+        /// <summary>
+        /// 
+        /// Send an amount (or several asset amounts) using specific address. Requires wallet passphrase to be set with walletpassphrase call.
+        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// 
+        /// </summary>
+        /// <param name="from_address">Address to send from</param>
+        /// <param name="to_address">The address to send to</param>
+        /// <param name="amount_or_asset_quantities">(numeric, required) The amount in native currency to send. eg 0.1 or (object, required) A json object of assets to send</param>
+        /// <param name="comment">A comment used to store what the transaction is for. This is not part of the transaction, just kept in your wallet.</param>
+        /// <param name="comment_to">A comment to store the name of the person or organization to which you're sending the transaction. This is not part of the transaction, just kept in your wallet.</param>
+        /// <returns></returns>
         public Task<RpcResponse<object>> SendFromAsync(string from_address, string to_address, object amount_or_asset_quantities, string comment, string comment_to)
         {
             return SendFromAsync(BlockchainOptions.ChainName, UUID.NoHyphens, from_address, to_address, amount_or_asset_quantities, comment, comment_to);
         }
 
 
+        /// <summary>
+        /// 
+        /// Sent an amount from an account to a address. The amount is a real and is rounded to the nearest 0.00000001. Requires wallet passphrase to be set with walletpassphrase call.
+        /// <para>Blockchain name is explicitly passed as parameter.</para>
+        ///
+        /// </summary>
+        /// <param name="blockchainName">Name of target blockchain</param>
+        /// <param name="id">String value to identify this transaction</param>
+        /// <param name="from_account">The name of the account to send funds from. May be the default account using "".</param>
+        /// <param name="to_address">The address to send funds to</param>
+        /// <param name="amount">The amount in native currency. (transaction fee is added on top)</param>
+        /// <param name="min_conf">Only use funds with at least this many confirmations</param>
+        /// <param name="comment">A comment used to store what the transaction is for. This is not part of the transaction, just kept in your wallet.</param>
+        /// <param name="comment_to">A comment to store the name of the person or organization to which you're sending the transaction. This is not part of the transaction, just kept in your wallet.</param>
+        /// <returns></returns>
         public async Task<RpcResponse<object>> SendFromAccountAsync(string blockchainName, string id, string from_account, string to_address, object amount, int min_conf, string comment, string comment_to)
         {
             var response = await TransactAsync<RpcResponse<object>>(blockchainName, WalletAction.SendFromAccountMethod, id, from_account, to_address, amount, min_conf, comment, comment_to);
@@ -3083,12 +3433,38 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
             return response;
         }
 
+        /// <summary>
+        /// 
+        /// Sent an amount from an account to a address. The amount is a real and is rounded to the nearest 0.00000001. Requires wallet passphrase to be set with walletpassphrase call.
+        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        ///
+        /// </summary>
+        /// <param name="from_account">The name of the account to send funds from. May be the default account using "".</param>
+        /// <param name="to_address">The address to send funds to</param>
+        /// <param name="amount">The amount in native currency. (transaction fee is added on top)</param>
+        /// <param name="min_conf">Only use funds with at least this many confirmations</param>
+        /// <param name="comment">A comment used to store what the transaction is for. This is not part of the transaction, just kept in your wallet.</param>
+        /// <param name="comment_to">A comment to store the name of the person or organization to which you're sending the transaction. This is not part of the transaction, just kept in your wallet.</param>
+        /// <returns></returns>
         public Task<RpcResponse<object>> SendFromAccountAsync(string from_account, string to_address, object amount, int min_conf, string comment, string comment_to)
         {
             return SendFromAccountAsync(BlockchainOptions.ChainName, UUID.NoHyphens, from_account, to_address, amount, min_conf, comment, comment_to);
         }
 
 
+        /// <summary>
+        /// 
+        /// Send multiple times. Amounts are double-precision floating point numbers. Requires wallet passphrase to be set with walletpassphrase call.
+        /// <para>Blockchain name is explicitly passed as parameter.</para>
+        ///
+        /// </summary>
+        /// <param name="blockchainName">Name of target blockchain</param>
+        /// <param name="id">String value to identify this transaction</param>
+        /// <param name="from_account">The account to send the funds from, can be "" for the default account</param>
+        /// <param name="amounts">A json object with addresses and amounts</param>
+        /// <param name="min_conf">Only use the balance confirmed at least this many times</param>
+        /// <param name="comment">A comment</param>
+        /// <returns></returns>
         public async Task<RpcResponse<object>> SendManyAsync(string blockchainName, string id, string from_account, object[] amounts, int min_conf, string comment)
         {
             var response = await TransactAsync<RpcResponse<object>>(blockchainName, WalletAction.SendManyMethod, id, from_account, amounts, min_conf, comment);
@@ -3096,12 +3472,35 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
             return response;
         }
 
+        /// <summary>
+        /// 
+        /// Send multiple times. Amounts are double-precision floating point numbers. Requires wallet passphrase to be set with walletpassphrase call.
+        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        ///
+        /// </summary>
+        /// <param name="from_account">The account to send the funds from, can be "" for the default account</param>
+        /// <param name="amounts">A json object with addresses and amounts</param>
+        /// <param name="min_conf">Only use the balance confirmed at least this many times</param>
+        /// <param name="comment">A comment</param>
+        /// <returns></returns>
         public Task<RpcResponse<object>> SendManyAsync(string from_account, object[] amounts, int min_conf, string comment)
         {
             return SendManyAsync(BlockchainOptions.ChainName, UUID.NoHyphens, from_account, amounts, min_conf, comment);
         }
 
 
+        /// <summary>
+        /// 
+        /// Send an amount (or several asset amounts) to a given address with appended metadata. Requires wallet passphrase to be set with walletpassphrase call.
+        /// <para>Blockchain name is explicitly passed as parameter.</para>
+        /// 
+        /// </summary>
+        /// <param name="blockchainName">Name of target blockchain</param>
+        /// <param name="id">String value to identify this transaction</param>
+        /// <param name="to_address">The address to send to</param>
+        /// <param name="amount_or_asset_quantities">The amount in native currency to send. eg 0.1 or a json object of assets to send</param>
+        /// <param name="data_or_publish_new_stream_item">(string or object, required) Data, see help data-with for details.</param>
+        /// <returns></returns>
         public async Task<RpcResponse<object>> SendWithDataAsync(string blockchainName, string id, string to_address, object amount_or_asset_quantities, object data_or_publish_new_stream_item)
         {
             var response = await TransactAsync<RpcResponse<object>>(blockchainName, WalletAction.SendWithDataMethod, id, to_address, amount_or_asset_quantities, data_or_publish_new_stream_item);
@@ -3109,11 +3508,35 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
             return response;
         }
 
+        /// <summary>
+        /// 
+        /// Send an amount (or several asset amounts) to a given address with appended metadata. Requires wallet passphrase to be set with walletpassphrase call.
+        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// 
+        /// </summary>
+        /// <param name="to_address">The address to send to</param>
+        /// <param name="amount_or_asset_quantities">The amount in native currency to send. eg 0.1 or a json object of assets to send</param>
+        /// <param name="data_or_publish_new_stream_item">(string or object, required) Data, see help data-with for details.</param>
+        /// <returns></returns>
         public Task<RpcResponse<object>> SendWithDataAsync(string to_address, object amount_or_asset_quantities, object data_or_publish_new_stream_item)
         {
             return SendWithDataAsync(BlockchainOptions.ChainName, UUID.NoHyphens, to_address, amount_or_asset_quantities, data_or_publish_new_stream_item);
         }
 
+
+        /// <summary>
+        /// 
+        /// Send an amount (or several asset amounts) using specific address. Requires wallet passphrase to be set with walletpassphrase call.
+        /// <para>Blockchain name is explicitly passed as parameter.</para>
+        /// 
+        /// </summary>
+        /// <param name="blockchainName">Name of target blockchain</param>
+        /// <param name="id">String value to identify this transaction</param>
+        /// <param name="from_address">Address to send from.</param>
+        /// <param name="to_address">The address to send to</param>
+        /// <param name="amount_or_asset_quantities">The amount in native currency to send. eg 0.1 or a json object of assets to send</param>
+        /// <param name="data_or_publish_new_stream_item">(string or object, required) Data, see help data-with for details.</param>
+        /// <returns></returns>
         public async Task<RpcResponse<object>> SendWithDataFromAsync(string blockchainName, string id, string from_address, string to_address, object amount_or_asset_quantities, object data_or_publish_new_stream_item)
         {
             var response = await TransactAsync<RpcResponse<object>>(blockchainName, WalletAction.SendWithDataFromMethod, id, from_address, to_address, amount_or_asset_quantities, data_or_publish_new_stream_item);
@@ -3121,12 +3544,34 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
             return response;
         }
 
+        /// <summary>
+        /// 
+        /// Send an amount (or several asset amounts) using specific address. Requires wallet passphrase to be set with walletpassphrase call.
+        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// 
+        /// </summary>
+        /// <param name="from_address">Address to send from.</param>
+        /// <param name="to_address">The address to send to</param>
+        /// <param name="amount_or_asset_quantities">The amount in native currency to send. eg 0.1 or a json object of assets to send</param>
+        /// <param name="data_or_publish_new_stream_item">(string or object, required) Data, see help data-with for details.</param>
+        /// <returns></returns>
         public Task<RpcResponse<object>> SendWithDataFromAsync(string from_address, string to_address, object amount_or_asset_quantities, object data_or_publish_new_stream_item)
         {
             return SendWithDataFromAsync(BlockchainOptions.ChainName, UUID.NoHyphens, from_address, to_address, amount_or_asset_quantities, data_or_publish_new_stream_item);
         }
 
 
+        /// <summary>
+        /// 
+        /// Sets the account associated with the given address.
+        /// <para>Blockchain name is explicitly passed as parameter.</para>
+        /// 
+        /// </summary>
+        /// <param name="blockchainName">Name of target blockchain</param>
+        /// <param name="id">String value to identify this transaction</param>
+        /// <param name="address">The address to be associated with an account</param>
+        /// <param name="account">The account to assign the address to</param>
+        /// <returns></returns>
         public async Task<RpcResponse<object>> SetAccountAsync(string blockchainName, string id, string address, string account)
         {
             var response = await TransactAsync<RpcResponse<object>>(blockchainName, WalletAction.SetAccountMethod, id, address, account);
@@ -3134,12 +3579,31 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
             return response;
         }
 
+        /// <summary>
+        /// 
+        /// Sets the account associated with the given address.
+        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// 
+        /// </summary>
+        /// <param name="address">The address to be associated with an account</param>
+        /// <param name="account">The account to assign the address to</param>
+        /// <returns></returns>
         public Task<RpcResponse<object>> SetAccountAsync(string address, string account)
         {
             return SetAccountAsync(BlockchainOptions.ChainName, UUID.NoHyphens, address, account);
         }
 
 
+        /// <summary>
+        /// 
+        /// Set the transaction fee per kB.
+        /// <para>Blockchain name is explicitly passed as parameter.</para>
+        /// 
+        /// </summary>
+        /// <param name="blockchainName">Name of target blockchain</param>
+        /// <param name="id">String value to identify this transaction</param>
+        /// <param name="amount">The transaction fee in native currency/kB rounded to the nearest 0.00000001</param>
+        /// <returns></returns>
         public async Task<RpcResponse<object>> SetTxFeeAsync(string blockchainName, string id, double amount)
         {
             var response = await TransactAsync<RpcResponse<object>>(blockchainName, WalletAction.SetTxFeeMethod, id, amount);
@@ -3147,12 +3611,31 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
             return response;
         }
 
+        /// <summary>
+        /// 
+        /// Set the transaction fee per kB.
+        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// 
+        /// </summary>
+        /// <param name="amount">The transaction fee in native currency/kB rounded to the nearest 0.00000001</param>
+        /// <returns></returns>
         public Task<RpcResponse<object>> SetTxFeeAsync(double amount)
         {
             return SetTxFeeAsync(BlockchainOptions.ChainName, UUID.NoHyphens, amount);
         }
 
 
+        /// <summary>
+        /// 
+        /// Sign a message with the private key of an address. Requires wallet passphrase to be set with walletpassphrase call.
+        /// <para>Blockchain name is explicitly passed as parameter.</para>
+        ///
+        /// </summary>
+        /// <param name="blockchainName">Name of target blockchain</param>
+        /// <param name="id">String value to identify this transaction</param>
+        /// <param name="address_privkey">The address to use for the private key or the private key (see dumpprivkey and createkeypairs)</param>
+        /// <param name="message">The message to create a signature of</param>
+        /// <returns></returns>
         public async Task<RpcResponse<string>> SignMessageAsync(string blockchainName, string id, string address_or_privkey, string message)
         {
             var response = await TransactAsync<RpcResponse<string>>(blockchainName, WalletAction.SignMessageMethod, id, address_or_privkey, message);
@@ -3160,12 +3643,33 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
             return response;
         }
 
+        /// <summary>
+        /// 
+        /// Sign a message with the private key of an address. Requires wallet passphrase to be set with walletpassphrase call.
+        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        ///
+        /// </summary>
+        /// <param name="address_privkey">The address to use for the private key or the private key (see dumpprivkey and createkeypairs)</param>
+        /// <param name="message">The message to create a signature of</param>
+        /// <returns></returns>
         public Task<RpcResponse<string>> SignMessageAsync(string address_privkey, string message)
         {
             return SignMessageAsync(BlockchainOptions.ChainName, UUID.NoHyphens, address_privkey, message);
         }
 
 
+        /// <summary>
+        /// 
+        /// <para>Subscribes to a stream or asset.</para>
+        /// <para>Blockchain name is explicitly passed as parameter.</para>
+        /// 
+        /// </summary>
+        /// <param name="blockchainName">Name of target blockchain</param>
+        /// <param name="id">String value to identify this transaction</param>
+        /// <param name="entity_identifiers">One of: create txid, stream reference, stream name or one of: issue txid, asset reference, asset name or A json array of stream or asset identifiers</param>
+        /// <param name="rescan">Rescan the wallet for transactions. Default true</param>
+        /// <param name="parameters">Available only in Enterprise Edition</param>
+        /// <returns></returns>
         public async Task<RpcResponse<object>> SubscribeAsync(string blockchainName, string id, object entity_identifiers, bool rescan, string parameters)
         {
             RpcResponse<object> response;
@@ -3177,12 +3681,33 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
             return response;
         }
 
+        /// <summary>
+        /// 
+        /// <para>Subscribes to a stream or asset.</para>
+        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// 
+        /// </summary>
+        /// <param name="entity_identifiers">One of: create txid, stream reference, stream name or one of: issue txid, asset reference, asset name or A json array of stream or asset identifiers</param>
+        /// <param name="rescan">Rescan the wallet for transactions. Default true</param>
+        /// <param name="parameters">Available only in Enterprise Edition</param>
+        /// <returns></returns>
         public Task<RpcResponse<object>> SubscribeAsync(object entity_identifiers, bool rescan, string parameters)
         {
             return SubscribeAsync(BlockchainOptions.ChainName, UUID.NoHyphens, entity_identifiers, rescan, parameters);
         }
 
 
+        /// <summary>
+        /// 
+        /// Available only in Enterprise Edition. Removes indexes from subscriptions to the stream.
+        /// <para>Blockchain name is explicitly passed as parameter.</para>
+        /// 
+        /// </summary>
+        /// <param name="blockchainName">Name of target blockchain</param>
+        /// <param name="id">String value to identify this transaction</param>
+        /// <param name="streams">One of: create txid, stream reference, stream name or a json array of stream identifiers</param>
+        /// <param name="parameters"></param>
+        /// <returns></returns>
         public async Task<RpcResponse<object>> TrimSubscribeAsync(string blockchainName, string id, object streams, string parameters)
         {
             var response = await TransactAsync<RpcResponse<object>>(blockchainName, WalletAction.TrimSubscribeMethod, id, streams, parameters);
@@ -3190,12 +3715,35 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
             return response;
         }
 
+        /// <summary>
+        /// 
+        /// Available only in Enterprise Edition. Removes indexes from subscriptions to the stream.
+        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// 
+        /// </summary>
+        /// <param name="streams">One of: create txid, stream reference, stream name or a json array of stream identifiers</param>
+        /// <param name="parameters"></param>
+        /// <returns></returns>
         public Task<RpcResponse<object>> TrimSubscribeAsync(object streams, string parameters)
         {
             return TrimSubscribeAsync(BlockchainOptions.ChainName, UUID.NoHyphens, streams, parameters);
         }
 
 
+        /// <summary>
+        /// 
+        /// Stores metadata of transaction output in binary cache.
+        /// <para>Blockchain name is explicitly passed as parameter.</para>
+        /// 
+        /// </summary>
+        /// <param name="blockchainName">Name of target blockchain</param>
+        /// <param name="id">String value to identify this transaction</param>
+        /// <param name="identifier">Binary cache item identifier</param>
+        /// <param name="txid">The transaction id</param>
+        /// <param name="vout">vout value</param>
+        /// <param name="count_bytes">Number of bytes to return</param>
+        /// <param name="start_byte">start from specific byte</param>
+        /// <returns></returns>
         public async Task<RpcResponse<double>> TxOutToBinaryCacheAsync(string blockchainName, string id, string identifier, string txid, int vout, int count_bytes, int start_byte)
         {
             var response = await TransactAsync<RpcResponse<double>>(blockchainName, WalletAction.TxOutToBinaryCacheMethod, id, identifier, txid, vout, count_bytes, start_byte);
@@ -3203,12 +3751,35 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
             return response;
         }
 
+        /// <summary>
+        /// 
+        /// Stores metadata of transaction output in binary cache.
+        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// 
+        /// </summary>
+        /// <param name="identifier">Binary cache item identifier</param>
+        /// <param name="txid">The transaction id</param>
+        /// <param name="vout">vout value</param>
+        /// <param name="count_bytes">Number of bytes to return</param>
+        /// <param name="start_byte">start from specific byte</param>
+        /// <returns></returns>
         public Task<RpcResponse<double>> TxOutToBinaryCacheAsync(string identifier, string txid, int vout, int count_bytes, int start_byte)
         {
             return TxOutToBinaryCacheAsync(BlockchainOptions.ChainName, UUID.NoHyphens, identifier, txid, vout, count_bytes, start_byte);
         }
 
 
+        /// <summary>
+        /// 
+        /// Unsubscribes from the stream.
+        /// <para>Blockchain name is explicitly passed as parameter.</para>
+        /// 
+        /// </summary>
+        /// <param name="blockchainName">Name of target blockchain</param>
+        /// <param name="id">String value to identify this transaction</param>
+        /// <param name="entity_identifiers">Stream identifier - one of the following: stream txid, stream reference, stream name or Asset identifier - one of the following: asset txid, asset reference, asset name or a json array of stream or asset identifiers </param>
+        /// <param name="purge"> Purge all offchain data for the stream</param>
+        /// <returns></returns>
         public async Task<RpcResponse<object>> UnsubscribeAsync(string blockchainName, string id, object entity_identifiers, bool purge)
         {
             var response = await TransactAsync<RpcResponse<object>>(blockchainName, WalletAction.UnsubscribeMethod, id, entity_identifiers, purge);
@@ -3216,12 +3787,31 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
             return response;
         }
 
+        /// <summary>
+        /// 
+        /// Unsubscribes from the stream.
+        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// 
+        /// </summary>
+        /// <param name="entity_identifiers">Stream identifier - one of the following: stream txid, stream reference, stream name or Asset identifier - one of the following: asset txid, asset reference, asset name or a json array of stream or asset identifiers </param>
+        /// <param name="purge"> Purge all offchain data for the stream</param>
+        /// <returns></returns>
         public Task<RpcResponse<object>> UnsubscribeAsync(object entity_identifiers, bool purge)
         {
             return UnsubscribeAsync(BlockchainOptions.ChainName, UUID.NoHyphens, entity_identifiers, purge);
         }
 
 
+        /// <summary>
+        /// 
+        /// Removes the wallet encryption key from memory, locking the wallet.
+        /// <para>After calling this method, you will need to call walletpassphrase again before being able to call any methods which require the wallet to be unlocked.</para>
+        /// <para>Blockchain name is explicitly passed as parameter.</para>
+        ///
+        /// </summary>
+        /// <param name="blockchainName">Name of target blockchain</param>
+        /// <param name="id">String value to identify this transaction</param>
+        /// <returns></returns>
         public async Task<RpcResponse<object>> WalletLockAsync(string blockchainName, string id)
         {
             var response = await TransactAsync<RpcResponse<object>>(blockchainName, WalletAction.WalletLockMethod, id);
@@ -3229,12 +3819,32 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
             return response;
         }
 
+        /// <summary>
+        /// 
+        /// Removes the wallet encryption key from memory, locking the wallet.
+        /// <para>After calling this method, you will need to call walletpassphrase again before being able to call any methods which require the wallet to be unlocked.</para>
+        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        ///
+        /// </summary>
+        /// <returns></returns>
         public Task<RpcResponse<object>> WalletLockAsync()
         {
             return WalletLockAsync(BlockchainOptions.ChainName, UUID.NoHyphens);
         }
 
 
+        /// <summary>
+        /// 
+        /// Stores the wallet decryption key in memory for 'timeout' seconds.
+        /// <para>This is needed prior to performing transactions related to private keys such as sending assets</para>
+        /// <para>Blockchain name is explicitly passed as parameter.</para>
+        /// 
+        /// </summary>
+        /// <param name="blockchainName">Name of target blockchain</param>
+        /// <param name="id">String value to identify this transaction</param>
+        /// <param name="passphrase">The wallet passphrase</param>
+        /// <param name="time_out">The time to keep the decryption key in seconds.</param>
+        /// <returns></returns>
         public async Task<RpcResponse<object>> WalletPassphraseAsync(string blockchainName, string id, string passphrase, int time_out)
         {
             var response = await TransactAsync<RpcResponse<object>>(blockchainName, WalletAction.WalletPassphraseMethod, id, passphrase, time_out);
@@ -3242,12 +3852,33 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
             return response;
         }
 
+        /// <summary>
+        /// 
+        /// Stores the wallet decryption key in memory for 'timeout' seconds.
+        /// <para>This is needed prior to performing transactions related to private keys such as sending assets</para>
+        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// 
+        /// </summary>
+        /// <param name="passphrase">The wallet passphrase</param>
+        /// <param name="time_out">The time to keep the decryption key in seconds.</param>
+        /// <returns></returns>
         public Task<RpcResponse<object>> WalletPassphraseAsync(string passphrase, int time_out)
         {
             return WalletPassphraseAsync(BlockchainOptions.ChainName, UUID.NoHyphens, passphrase, time_out);
         }
 
 
+        /// <summary>
+        /// 
+        /// Changes the wallet passphrase from 'oldpassphrase' to 'newpassphrase'.
+        /// <para>Blockchain name is explicitly passed as parameter.</para>
+        /// 
+        /// </summary>
+        /// <param name="blockchainName">Name of target blockchain</param>
+        /// <param name="id">String value to identify this transaction</param>
+        /// <param name="old_passphrase">The current passphrase</param>
+        /// <param name="new_passphrase">The new passphrase</param>
+        /// <returns></returns>
         public async Task<RpcResponse<object>> WalletPassphraseChangeAsync(string blockchainName, string id, string old_passphrase, string new_passphrase)
         {
             var response = await TransactAsync<RpcResponse<object>>(blockchainName, WalletAction.WalletPassphraseChangeMethod, id, old_passphrase, new_passphrase);
@@ -3255,6 +3886,15 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
             return response;
         }
 
+        /// <summary>
+        /// 
+        /// Changes the wallet passphrase from 'oldpassphrase' to 'newpassphrase'.
+        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// 
+        /// </summary>
+        /// <param name="old_passphrase">The current passphrase</param>
+        /// <param name="new_passphrase">The new passphrase</param>
+        /// <returns></returns>
         public Task<RpcResponse<object>> WalletPassphraseChangeAsync(string old_passphrase, string new_passphrase)
         {
             return WalletPassphraseChangeAsync(BlockchainOptions.ChainName, UUID.NoHyphens, old_passphrase, new_passphrase);
