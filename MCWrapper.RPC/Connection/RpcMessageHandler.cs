@@ -12,7 +12,7 @@ using System.Text;
 
 namespace MCWrapper.RPC.Connection
 {
-    public class MessageHandler
+    public class RpcMessageHandler
     {
         /// <summary>
         /// Return new customized HttpClientHandler instance

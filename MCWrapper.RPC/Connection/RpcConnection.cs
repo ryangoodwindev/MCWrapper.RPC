@@ -31,9 +31,9 @@ namespace MCWrapper.RPC.Connection
         public RpcConnection(HttpClient client)
         {
             // set base address for blockchain
-            client.BaseAddress = new Uri(MessageHandler.GetServiceUrl());
+            client.BaseAddress = new Uri(RpcMessageHandler.GetServiceUrl());
             // set Authorization header value
-            client.DefaultRequestHeaders.Authorization = MessageHandler.GetAuthenticationHeaderValue();
+            client.DefaultRequestHeaders.Authorization = RpcMessageHandler.GetAuthenticationHeaderValue();
 
             // assign web client from factory
             _httpClient = client;
@@ -49,9 +49,9 @@ namespace MCWrapper.RPC.Connection
         public RpcConnection(HttpClient client, IOptions<BlockchainProfileOptions> options)
         {
             // set base address for blockchain
-            client.BaseAddress = new Uri(MessageHandler.GetServiceUrl(options.Value));
+            client.BaseAddress = new Uri(RpcMessageHandler.GetServiceUrl(options.Value));
             // set Authorization header value
-            client.DefaultRequestHeaders.Authorization = MessageHandler.GetAuthenticationHeaderValue(options.Value);
+            client.DefaultRequestHeaders.Authorization = RpcMessageHandler.GetAuthenticationHeaderValue(options.Value);
 
             // assign web client from factory
             _httpClient = client;
