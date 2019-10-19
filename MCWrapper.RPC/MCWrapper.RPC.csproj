@@ -4,7 +4,7 @@
     <TargetFrameworks>netcoreapp3.0;netcoreapp2.2;netcoreapp2.1</TargetFrameworks>
     <AssemblyVersion>1.0.0.1</AssemblyVersion>
     <FileVersion>1.0.0.1</FileVersion>
-    <Version>1.0.0.1</Version>
+    <Version>1.0.1</Version>
     <Authors>Myndblock LLC, Ryan Goodwin</Authors>
     <Company>Myndblock LLC</Company>
     <Copyright>2019</Copyright>
@@ -20,9 +20,9 @@
 
 MCWrapper.RPC and MCWrapper.CLI are the two projects with MCWrapper.CLI still in testing and unreleased at the moment.
 
-Version 1.0.0.1:
+Version 1.0.1:
 Code comments added to RPC clients
-AddMultiChainServices Extension changed to AddMultiChainRPCServices</PackageReleaseNotes>
+AddMultiChainCoreServices Extension changed to AddMultiChainCoreRPCServices</PackageReleaseNotes>
     <PackageTags>MultiChain,CSharp,DotNetCore,Blockchain,API</PackageTags>
   </PropertyGroup>
 
