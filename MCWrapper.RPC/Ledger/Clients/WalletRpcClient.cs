@@ -2584,7 +2584,21 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         }
 
 
-
+        /// <summary>
+        /// 
+        /// Returns stream publishers.
+        /// <para>Blockchain name is explicitly passed as parameter.</para>
+        /// 
+        /// </summary>
+        /// <param name="blockchainName">Name of target blockchain</param>
+        /// <param name="id">String value to identify this transaction</param>
+        /// <param name="stream_identifier">One of the following: stream txid, stream reference, stream name</param>
+        /// <param name="addresses">Publisher addresses, comma delimited or a json array of publisher addresses</param>
+        /// <param name="verbose">If true, returns information about item transaction</param>
+        /// <param name="count">The number of items to display</param>
+        /// <param name="start">Start from specific item, 0 based, if negative - from the end</param>
+        /// <param name="local_ordering">If true, items appear in the order they were processed by the wallet, if false - in the order they appear in blockchain</param>
+        /// <returns></returns>
         public async Task<RpcResponse<ListStreamPublishersResult[]>> ListStreamPublishersAsync(string blockchainName, string id, string stream_identifier, object addresses, bool verbose, int count, int start, bool local_ordering)
         {
             var response = await TransactAsync<RpcResponse<ListStreamPublishersResult[]>>(blockchainName, WalletAction.ListStreamPublishersMethod, id, stream_identifier, addresses, verbose, count, start, local_ordering);
@@ -2592,12 +2606,37 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
             return response;
         }
 
+        /// <summary>
+        /// 
+        /// Returns stream publishers.
+        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// 
+        /// </summary>
+        /// <param name="stream_identifier">One of the following: stream txid, stream reference, stream name</param>
+        /// <param name="addresses">Publisher addresses, comma delimited or a json array of publisher addresses</param>
+        /// <param name="verbose">If true, returns information about item transaction</param>
+        /// <param name="count">The number of items to display</param>
+        /// <param name="start">Start from specific item, 0 based, if negative - from the end</param>
+        /// <param name="local_ordering">If true, items appear in the order they were processed by the wallet, if false - in the order they appear in blockchain</param>
+        /// <returns></returns>
         public Task<RpcResponse<ListStreamPublishersResult[]>> ListStreamPublishersAsync(string stream_identifier, object addresses, bool verbose, int count, int start, bool local_ordering)
         {
             return ListStreamPublishersAsync(BlockchainOptions.ChainName, UUID.NoHyphens, stream_identifier, addresses, verbose, count, start, local_ordering);
         }
 
 
+        /// <summary>
+        /// 
+        /// Returns stream items for specific query.
+        /// <para>Blockchain name is explicitly passed as parameter.</para>
+        ///
+        /// </summary>
+        /// <param name="blockchainName">Name of target blockchain</param>
+        /// <param name="id">String value to identify this transaction</param>
+        /// <param name="stream_identifier">One of the following: stream txid, stream reference, stream name</param>
+        /// <param name="query">Query { "key" : "key" (string, optional, default: "") Item key, or "keys" : keys (array, optional) Item keys, array of strings, and or  "publisher" : "publisher" (string, optional, default: "") Publisher or "publishers" : publishers (array, optional) Publishers, array of strings }</param>
+        /// <param name="verbose">If true, returns information about item transaction</param>
+        /// <returns></returns>
         public async Task<RpcResponse<object>> ListStreamQueryItemsAsync(string blockchainName, string id, string stream_identifier, object query, bool verbose)
         {
             var response = await TransactAsync<RpcResponse<object>>(blockchainName, WalletAction.ListStreamQueryItemsMethod, id, stream_identifier, query, verbose);
@@ -2605,12 +2644,34 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
             return response;
         }
 
+        /// <summary>
+        /// 
+        /// Returns stream items for specific query.
+        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        ///
+        /// </summary>
+        /// <param name="stream_identifier">One of the following: stream txid, stream reference, stream name</param>
+        /// <param name="query">Query { "key" : "key" (string, optional, default: "") Item key, or "keys" : keys (array, optional) Item keys, array of strings, and or  "publisher" : "publisher" (string, optional, default: "") Publisher or "publishers" : publishers (array, optional) Publishers, array of strings }</param>
+        /// <param name="verbose">If true, returns information about item transaction</param>
+        /// <returns></returns>
         public Task<RpcResponse<object>> ListStreamQueryItemsAsync(string stream_identifier, object query, bool verbose)
         {
             return ListStreamQueryItemsAsync(BlockchainOptions.ChainName, UUID.NoHyphens, stream_identifier, query, verbose);
         }
 
 
+        /// <summary>
+        /// 
+        /// Returns stream items.
+        /// <para>Blockchain name is explicitly passed as parameter.</para>
+        /// 
+        /// </summary>
+        /// <param name="blockchainName">Name of target blockchain</param>
+        /// <param name="id">String value to identify this transaction</param>
+        /// <param name="stream_identifiers">One of the following: stream txid, stream reference, stream name</param>
+        /// <param name="txids"> Transaction IDs, comma delimited or Array of transaction IDs</param>
+        /// <param name="verbose">If true, returns information about item transaction</param>
+        /// <returns></returns>
         public async Task<RpcResponse<object>> ListStreamTxItemsAsync(string blockchainName, string id, string stream_identifiers, object txids, bool verbose)
         {
             var response = await TransactAsync<RpcResponse<object>>(blockchainName, WalletAction.ListStreamTxItemsMethod, id, stream_identifiers, txids, verbose);
@@ -2618,12 +2679,35 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
             return response;
         }
 
+        /// <summary>
+        /// 
+        /// Returns stream items.
+        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// 
+        /// </summary>
+        /// <param name="stream_identifiers">One of the following: stream txid, stream reference, stream name</param>
+        /// <param name="txids"> Transaction IDs, comma delimited or Array of transaction IDs</param>
+        /// <param name="verbose">If true, returns information about item transaction</param>
+        /// <returns></returns>
         public Task<RpcResponse<object>> ListStreamTxItemsAsync(string stream_identifiers, object txids, bool verbose)
         {
             return ListStreamTxItemsAsync(BlockchainOptions.ChainName, UUID.NoHyphens, stream_identifiers, txids, verbose);
         }
 
 
+        /// <summary>
+        /// 
+        /// Returns up to 'count' most recent transactions skipping the first 'from' transactions for account 'account'.
+        /// <para>Blockchain name is explicitly passed as parameter.</para>
+        ///
+        /// </summary>
+        /// <param name="blockchainName">Name of target blockchain</param>
+        /// <param name="id">String value to identify this transaction</param>
+        /// <param name="account">The account name. If not included, it will list all transactions for all accounts. If "" is set, it will list transactions for the default account.</param>
+        /// <param name="count">The number of transactions to return</param>
+        /// <param name="from">The number of transactions to skip</param>
+        /// <param name="include_watch_only">Include transactions to watchonly addresses (see 'importaddress')</param>
+        /// <returns></returns>
         public async Task<RpcResponse<ListTransactionsResult[]>> ListTransactionsAsync(string blockchainName, string id, string account, int count, int from, bool include_watch_only)
         {
             var response = await TransactAsync<RpcResponse<ListTransactionsResult[]>>(blockchainName, WalletAction.ListTransactionsMethod, id, account, count, from, include_watch_only);
@@ -2631,12 +2715,38 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
             return response;
         }
 
+        /// <summary>
+        /// 
+        /// Returns up to 'count' most recent transactions skipping the first 'from' transactions for account 'account'.
+        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        ///
+        /// </summary>
+        /// <param name="account">The account name. If not included, it will list all transactions for all accounts. If "" is set, it will list transactions for the default account.</param>
+        /// <param name="count">The number of transactions to return</param>
+        /// <param name="from">The number of transactions to skip</param>
+        /// <param name="include_watch_only">Include transactions to watchonly addresses (see 'importaddress')</param>
+        /// <returns></returns>
         public Task<RpcResponse<ListTransactionsResult[]>> ListTransactionsAsync(string account, int count, int from, bool include_watch_only)
         {
             return ListTransactionsAsync(BlockchainOptions.ChainName, UUID.NoHyphens, account, count, from, include_watch_only);
         }
 
 
+        /// <summary>
+        /// 
+        /// Returns array of unspent transaction outputs with between minconf and maxconf (inclusive) confirmations.
+        /// 
+        /// <para>Optionally filter to only include txouts paid to specified addresses.</para>
+        /// <para>Results are an array of Objects, each of which has: {txid, vout, scriptPubKey, amount, confirmations}</para>
+        /// <para>Blockchain name is explicitly passed as parameter.</para>
+        /// 
+        /// </summary>
+        /// <param name="blockchainName">Name of target blockchain</param>
+        /// <param name="id">String value to identify this transaction</param>
+        /// <param name="min_conf">The minimum confirmations to filter</param>
+        /// <param name="max_conf">The maximum confirmations to filter</param>
+        /// <param name="addresses">A json array of addresses to filter</param>
+        /// <returns></returns>
         public async Task<RpcResponse<ListUnspentResult[]>> ListUnspentAsync(string blockchainName, string id, int min_conf, int max_conf, object addresses)
         {
             var response = await TransactAsync<RpcResponse<ListUnspentResult[]>>(blockchainName, WalletAction.ListUnspentMethod, id, min_conf, max_conf, addresses);
@@ -2644,12 +2754,38 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
             return response;
         }
 
+        /// <summary>
+        /// 
+        /// Returns array of unspent transaction outputs with between minconf and maxconf (inclusive) confirmations.
+        /// 
+        /// <para>Optionally filter to only include txouts paid to specified addresses.</para>
+        /// <para>Results are an array of Objects, each of which has: {txid, vout, scriptPubKey, amount, confirmations}</para>
+        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// 
+        /// </summary>
+        /// <param name="min_conf">The minimum confirmations to filter</param>
+        /// <param name="max_conf">The maximum confirmations to filter</param>
+        /// <param name="addresses">A json array of addresses to filter</param>
+        /// <returns></returns>
         public Task<RpcResponse<ListUnspentResult[]>> ListUnspentAsync(int min_conf, int max_conf, object addresses)
         {
             return ListUnspentAsync(BlockchainOptions.ChainName, UUID.NoHyphens, min_conf, max_conf, addresses);
         }
 
 
+        /// <summary>
+        /// 
+        /// Lists information about the count most recent transactions in this nodeΓÇÖs wallet.
+        /// <para>Blockchain name is explicitly passed as parameter.</para>
+        ///
+        /// </summary>
+        /// <param name="blockchainName">Name of target blockchain</param>
+        /// <param name="id">String value to identify this transaction</param>
+        /// <param name="count">The number of transactions to return</param>
+        /// <param name="skip">The number of transactions to skip</param>
+        /// <param name="include_watch_only">Include transactions to watchonly addresses (see 'importaddress')</param>
+        /// <param name="verbose">If true, returns detailed array of inputs and outputs and raw hex of transactions</param>
+        /// <returns></returns>
         public async Task<RpcResponse<ListWalletTransactionsResult[]>> ListWalletTransactionsAsync(string blockchainName, string id, int count, int skip, bool include_watch_only, bool verbose)
         {
             var response = await TransactAsync<RpcResponse<ListWalletTransactionsResult[]>>(blockchainName, WalletAction.ListWalletTransactionsMethod, id, count, skip, include_watch_only, verbose);
@@ -2657,12 +2793,38 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
             return response;
         }
 
+        /// <summary>
+        /// 
+        /// Lists information about the count most recent transactions in this nodeΓÇÖs wallet.
+        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        ///
+        /// </summary>
+        /// <param name="count">The number of transactions to return</param>
+        /// <param name="skip">The number of transactions to skip</param>
+        /// <param name="include_watch_only">Include transactions to watchonly addresses (see 'importaddress')</param>
+        /// <param name="verbose">If true, returns detailed array of inputs and outputs and raw hex of transactions</param>
+        /// <returns></returns>
         public Task<RpcResponse<ListWalletTransactionsResult[]>> ListWalletTransactionsAsync(int count, int skip, bool include_watch_only, bool verbose)
         {
             return ListWalletTransactionsAsync(BlockchainOptions.ChainName, UUID.NoHyphens, count, skip, include_watch_only, verbose);
         }
 
 
+        /// <summary>
+        /// 
+        /// Updates list of temporarily unspendable outputs.
+        /// <para>Temporarily lock (unlock=false) or unlock (unlock=true) specified transaction outputs.</para>
+        /// <para>A locked transaction output will not be chosen by automatic coin selection, when spending assetss.</para>
+        /// Locks are stored in memory only. Nodes start with zero locked outputs, and the locked output list is always cleared (by virtue of process exit) when a node stops or fails.
+        /// <para>Also see the listunspent call</para>
+        /// <para>Blockchain name is explicitly passed as parameter.</para>
+        /// 
+        /// </summary>
+        /// <param name="blockchainName">Name of target blockchain</param>
+        /// <param name="id">String value to identify this transaction</param>
+        /// <param name="unlock">Whether to unlock (true) or lock (false) the specified transactions</param>
+        /// <param name="unspent">A json array of objects. Each object should have the the txid (string) vout (numeric)</param>
+        /// <returns></returns>
         public async Task<RpcResponse<object>> LockUnspentAsync(string blockchainName, string id, bool unlock, object[] unspent)
         {
             var response = await TransactAsync<RpcResponse<object>>(blockchainName, WalletAction.LockUnspentMethod, id, unlock, unspent);
@@ -2670,12 +2832,39 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
             return response;
         }
 
+        /// <summary>
+        /// 
+        /// Updates list of temporarily unspendable outputs.
+        /// <para>Temporarily lock (unlock=false) or unlock (unlock=true) specified transaction outputs.</para>
+        /// <para>A locked transaction output will not be chosen by automatic coin selection, when spending assetss.</para>
+        /// Locks are stored in memory only. Nodes start with zero locked outputs, and the locked output list is always cleared (by virtue of process exit) when a node stops or fails.
+        /// <para>Also see the listunspent call</para>
+        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// 
+        /// </summary>
+        /// <param name="unlock">Whether to unlock (true) or lock (false) the specified transactions</param>
+        /// <param name="unspent">A json array of objects. Each object should have the the txid (string) vout (numeric)</param>
+        /// <returns></returns>
         public Task<RpcResponse<object>> LockUnspentAsync(bool unlock, object[] unspent)
         {
             return LockUnspentAsync(BlockchainOptions.ChainName, UUID.NoHyphens, unlock, unspent);
         }
 
 
+        /// <summary>
+        /// 
+        /// Move a specified amount from one account in your wallet to another.
+        /// <para>Blockchain name is explicitly passed as parameter.</para>
+        /// 
+        /// </summary>
+        /// <param name="blockchainName">Name of target blockchain</param>
+        /// <param name="id">String value to identify this transaction</param>
+        /// <param name="from_account">The name of the account to move funds from. May be the default account using ""</param>
+        /// <param name="to_account">The name of the account to move funds to. May be the default account using ""</param>
+        /// <param name="amount">Number to move</param>
+        /// <param name="min_conf">Only use funds with at least this many confirmations</param>
+        /// <param name="comment">An optional comment, stored in the wallet only</param>
+        /// <returns></returns>
         public async Task<RpcResponse<object>> MoveAsync(string blockchainName, string id, string from_account, string to_account, object amount, int min_conf, string comment)
         {
             var response = await TransactAsync<RpcResponse<object>>(blockchainName, WalletAction.MoveMethod, id, from_account, to_account, amount, min_conf, comment);
@@ -2683,10 +2872,23 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
             return response;
         }
 
+        /// <summary>
+        /// 
+        /// Move a specified amount from one account in your wallet to another.
+        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// 
+        /// </summary>
+        /// <param name="from_account">The name of the account to move funds from. May be the default account using ""</param>
+        /// <param name="to_account">The name of the account to move funds to. May be the default account using ""</param>
+        /// <param name="amount">Number to move</param>
+        /// <param name="min_conf">Only use funds with at least this many confirmations</param>
+        /// <param name="comment">An optional comment, stored in the wallet only</param>
+        /// <returns></returns>
         public Task<RpcResponse<object>> MoveAsync(string from_account, string to_account, object amount, int min_conf, string comment)
         {
             return MoveAsync(BlockchainOptions.ChainName, UUID.NoHyphens, from_account, to_account, amount, min_conf, comment);
         }
+
 
 
         public async Task<RpcResponse<PrepareLockUnspentResult>> PrepareLockUnspentAsync(string blockchainName, string id, object asset_quantities, bool _lock)
