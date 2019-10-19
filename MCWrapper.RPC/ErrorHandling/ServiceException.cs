@@ -3,14 +3,14 @@
 namespace MCWrapper.RPC.ErrorHandling
 {
     /// <summary>
-    /// BlockchainServiceException extends Exception class
+    /// ServiceException extends Exception class
     /// </summary>
     public class ServiceException : Exception
     {
         /// <summary>
-        /// Create a new custom BlockchainServiceException
+        /// Create a new ServiceException
         /// </summary>
-        /// <param name="message"></param>
+        /// <param name="message">Error message</param>
         public ServiceException(string message) : base(message) { }
     }
 }

@@ -3,14 +3,14 @@
 namespace MCWrapper.RPC.ErrorHandling
 {
     /// <summary>
-    /// Handles any exception thrown from the BlockchainProfileOptions class
+    /// ProfileException extends Exception class
     /// </summary>
     public class ProfileException : Exception
     {
         /// <summary>
-        /// Generate custom BlockchainProfileOptions exception
+        /// Create a new ProfileException
         /// </summary>
-        /// <param name="message"></param>
+        /// <param name="message">Error message</param>
         public ProfileException(string message) : base(message) { }
     }
 }
