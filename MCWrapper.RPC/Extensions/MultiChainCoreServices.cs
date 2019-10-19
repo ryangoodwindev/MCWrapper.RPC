@@ -34,7 +34,7 @@ namespace MCWrapper.RPC.Extensions
         /// </summary>
         /// <param name="services"></param>
         /// <returns></returns>
-        public static IServiceCollection AddMultiChainCoreServices(this IServiceCollection services)
+        public static IServiceCollection AddMultiChainCoreRPCServices(this IServiceCollection services)
         {
             // load RuntimeParamOptions from the local appsettings.json file
             services.Configure<RuntimeParamOptions>(config => new RuntimeParamOptions());
@@ -87,7 +87,7 @@ namespace MCWrapper.RPC.Extensions
         /// <param name="services"></param>
         /// <param name="configuration"></param>
         /// <returns></returns>
-        public static IServiceCollection AddMultiChainCoreServices(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddMultiChainCoreRPCServices(this IServiceCollection services, IConfiguration configuration)
         {
             // load RuntimeParamOptions from the local appsettings.json file
             services.Configure<RuntimeParamOptions>(configuration);
@@ -142,7 +142,7 @@ namespace MCWrapper.RPC.Extensions
         /// <param name="profileConfig"></param>
         /// <param name="runtimeConfig"></param>
         /// <returns></returns>
-        public static IServiceCollection AddMultiChainCoreServices(this IServiceCollection services, Action<BlockchainProfileOptions> profileConfig, [Optional] Action<RuntimeParamOptions> runtimeConfig)
+        public static IServiceCollection AddMultiChainCoreRPCServices(this IServiceCollection services, Action<BlockchainProfileOptions> profileConfig, [Optional] Action<RuntimeParamOptions> runtimeConfig)
         {
             // invoke object and properties from Action<>
             var profile = new BlockchainProfileOptions();
