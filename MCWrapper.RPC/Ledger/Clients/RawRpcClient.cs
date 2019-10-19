@@ -150,7 +150,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Raw
         /// <param name="blockchainName">Name of target blockchain</param>
         /// <param name="id">String value to identify this transaction</param>
         /// <param name="transactions">A json array of json objects</param>
-        /// <param name="addresses">Object with addresses as keys, see help addresses-all for details</param>
+        /// <param name="assets">Object with addresses as keys, see help addresses-all for details</param>
         /// <param name="data">Array of hexadecimal strings or data objects, see help data-all for details</param>
         /// <param name="action">Additional actions: "lock", "sign", "lock,sign", "sign,lock", "send"</param>
         /// <returns></returns>
@@ -168,7 +168,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Raw
         /// 
         /// </summary>
         /// <param name="transactions">A json array of json objects</param>
-        /// <param name="addresses">Object with addresses as keys, see help addresses-all for details</param>
+        /// <param name="assets">Object with addresses as keys, see help addresses-all for details</param>
         /// <param name="data">Array of hexadecimal strings or data objects, see help data-all for details</param>
         /// <param name="action">Additional actions: "lock", "sign", "lock,sign", "sign,lock", "send"</param>
         public Task<RpcResponse<object>> CreateRawTransactionAsync(object[] transactions, object assets, object[] data, string action)

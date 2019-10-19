@@ -293,7 +293,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Control
         /// </summary>
         /// <param name="blockchainName">Name of target blockchain</param>
         /// <param name="id">String value to identify this transaction</param>
-        /// <param name="parameter_name">Parameter name, one of the following: miningrequirespeers,mineemptyrounds,miningturnover,lockadminminerounds,maxshowndata,maxqueryscanitems,bantx,lockblock,autosubscribe,handshakelocal,hideknownopdrops</param>
+        /// <param name="runtimeParam">Parameter name, one of the following: miningrequirespeers,mineemptyrounds,miningturnover,lockadminminerounds,maxshowndata,maxqueryscanitems,bantx,lockblock,autosubscribe,handshakelocal,hideknownopdrops</param>
         /// <param name="parameter_value">parameter value</param>
         /// <returns></returns>
         public async Task<RpcResponse<object>> SetRuntimeParamAsync(string blockchainName, string id, string runtimeParam, object parameter_value)
@@ -309,7 +309,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Control
         /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
         ///
         /// </summary>
-        /// <param name="parameter_name">Parameter name, one of the following: miningrequirespeers,mineemptyrounds,miningturnover,lockadminminerounds,maxshowndata,maxqueryscanitems,bantx,lockblock,autosubscribe,handshakelocal,hideknownopdrops</param>
+        /// <param name="runtimeParam">Parameter name, one of the following: miningrequirespeers,mineemptyrounds,miningturnover,lockadminminerounds,maxshowndata,maxqueryscanitems,bantx,lockblock,autosubscribe,handshakelocal,hideknownopdrops</param>
         /// <param name="parameter_value">parameter value</param>
         /// <returns></returns>
         public Task<RpcResponse<object>> SetRuntimeParamAsync(string runtimeParam, object parameter_value)

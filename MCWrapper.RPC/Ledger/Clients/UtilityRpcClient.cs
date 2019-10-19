@@ -261,7 +261,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Utility
         /// </summary>
         /// <param name="blockchainName">Name of target blockchain</param>
         /// <param name="id">String value to identify this transaction</param>
-        /// <param name="address_pubkey_privkey">
+        /// <param name="address_or_pubkey_or_privkey">
         ///     <para>1. "address" (string, required) The address to validate</para>
         ///     <para>or</para>
         ///     <para>1. "pubkey" (string, required) The public key (hexadecimal) to validate</para>

@@ -3633,7 +3633,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// </summary>
         /// <param name="blockchainName">Name of target blockchain</param>
         /// <param name="id">String value to identify this transaction</param>
-        /// <param name="address_privkey">The address to use for the private key or the private key (see dumpprivkey and createkeypairs)</param>
+        /// <param name="address_or_privkey">The address to use for the private key or the private key (see dumpprivkey and createkeypairs)</param>
         /// <param name="message">The message to create a signature of</param>
         /// <returns></returns>
         public async Task<RpcResponse<string>> SignMessageAsync(string blockchainName, string id, string address_or_privkey, string message)
