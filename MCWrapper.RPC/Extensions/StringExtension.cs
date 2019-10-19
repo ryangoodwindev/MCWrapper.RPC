@@ -10,50 +10,11 @@ namespace MCWrapper.RPC.Extensions
     public static class StringExtension
     {
         /// <summary>
-        /// Serialize any object to a string representation
-        /// </summary>
-        /// <param name="obj"></param>
-        /// <returns></returns>
-        public static string Serialize(this object obj)
-        {
-            return JsonConvert.SerializeObject(obj);
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        public static string EscapeForWindows(this string value)
-        {
-            if (value.Contains("\"") && !value.Contains("\\\""))
-                return value.Replace("\"", "\\\"");
-
-            return value;
-        }
-        public static string SerializeAndEscape(this object obj)
-        {
-            if (OSDetection.IsWindows())
-                return obj.Serialize().EscapeForWindows();
-
-            if (OSDetection.IsLinux())
-                return obj.Serialize();
-
-            if (OSDetection.IsMacOS())
-                return obj.Serialize();
-
-            return obj.Serialize();
-        }
-
-        /// <summary>
         /// Convert strongly Typed oject to Hexadecimal String
         /// </summary>
         /// <param name="obj">Pass in strongly Typed object to receive Hexadecimal string representation</param>
         /// <returns></returns>
-        public static string ObjectToHex(this object obj)
-        {
-            return JsonConvert.SerializeObject(obj).ToHex();
-        }
+        public static string ObjectToHex(this object obj) => JsonConvert.SerializeObject(obj).ToHex();
 
         /// <summary>
         /// Convert Hexadecimal String to strongly Typed Object
@@ -61,10 +22,7 @@ namespace MCWrapper.RPC.Extensions
         /// <typeparam name="T">Generic Type indicates return type</typeparam>
         /// <param name="value">Pass in Hexadecimal string to receive strongly Typed object representation</param>
         /// <returns></returns>
-        public static T HexToObject<T>(this string value)
-        {
-            return JsonConvert.DeserializeObject<T>(value.FromHex());
-        }
+        public static T HexToObject<T>(this string value) => JsonConvert.DeserializeObject<T>(value.FromHex());
 
         /// <summary>
         /// Convert Byte array to Hexadecimal String
@@ -135,10 +93,7 @@ namespace MCWrapper.RPC.Extensions
         /// </summary>
         /// <param name="hex">Pass in Hexadecimal String to reveive Base64 encoded representation</param>
         /// <returns></returns>
-        public static string ToBase64(this string hex)
-        {
-            return Convert.ToBase64String(HexToByteArray(hex));
-        }
+        public static string ToBase64(this string hex) => Convert.ToBase64String(HexToByteArray(hex));
 
         /// <summary>
         /// Fetch environment variables by name
@@ -156,6 +111,9 @@ namespace MCWrapper.RPC.Extensions
         }
     }
 
+    /// <summary>
+    /// Generate a non-hyphenated GUID
+    /// </summary>
     public struct UUID
     {
         public static string NoHyphens => Guid.NewGuid().ToString("N");
