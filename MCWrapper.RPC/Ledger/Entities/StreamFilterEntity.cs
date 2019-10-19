@@ -9,6 +9,11 @@ namespace MCWrapper.RPC.Ledger.Entities
     public class StreamFilterEntity : ChainEntity
     {
         /// <summary>
+        /// An easy to use object for passing stream filter permissions
+        /// </summary>
+        public class StreamFilterRestrictions { }
+
+        /// <summary>
         /// StreamFilterRestrictions property
         /// </summary>
         public StreamFilterRestrictions Restrictions
@@ -61,13 +66,5 @@ namespace MCWrapper.RPC.Ledger.Entities
             _restrictions = restrictions;
             _javaScriptCode = javaScriptCode;
         }
-    }
-
-    /// <summary>
-    /// An easy to use object for passing stream filter permissions
-    /// </summary>
-    public class StreamFilterRestrictions
-    {
-
     }
 }
