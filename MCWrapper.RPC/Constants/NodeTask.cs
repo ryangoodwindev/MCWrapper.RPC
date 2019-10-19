@@ -3,7 +3,7 @@
     /// <summary>
     /// Types of blockchain network tasks;
     /// <para>
-    ///     Generally used when Pausing and/or Resuming the blockchain using either the ControlCLIClient or ControlRPCClient
+    ///     Generally used when Pausing and/or Resuming the blockchain using either the ControlRpcClient
     /// </para>
     /// </summary>
     public struct NodeTask

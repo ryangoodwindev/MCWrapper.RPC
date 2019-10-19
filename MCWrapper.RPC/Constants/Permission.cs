@@ -1,7 +1,7 @@
 ﻿namespace MCWrapper.RPC.Constants
 {
     /// <summary>
-    /// MultiChain Core blockchain permissions types
+    /// MultiChain Core blockchain Permissions types
     /// </summary>
     public struct Permission
     {

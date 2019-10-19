@@ -1,8 +1,10 @@
 ﻿namespace MCWrapper.RPC.Constants
 {
     /// <summary>
-    /// Runtime parameter names used to set values
-    /// All parameter names listed in this struct are supportrf via setruntimeparam blockchain method
+    /// Runtime parameter names used to set values.
+    /// <para>
+    ///     All parameter names listed in this struct are supported via the 'setruntimeparam' blockchain method.
+    /// </para>
     /// </summary>
     public struct RuntimeParam
     {

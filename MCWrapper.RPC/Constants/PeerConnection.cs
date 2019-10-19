@@ -1,5 +1,8 @@
 ﻿namespace MCWrapper.RPC.Constants
 {
+    /// <summary>
+    /// Constant Peer connection command values
+    /// </summary>
     public struct PeerConnection
     {
         /// <summary>

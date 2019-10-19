@@ -1,7 +1,7 @@
 ﻿namespace MCWrapper.RPC.Constants
 {
     /// <summary>
-    /// Helper object that stores some constant values we can use while configuring IThinClient
+    /// Helper object that stores some constant values we can use while configuring the base RpcClient
     /// </summary>
     public struct ClientUrlComponent
     {

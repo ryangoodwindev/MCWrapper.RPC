@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace MCWrapper.RPC.Constants
 {
     /// <summary>
-    /// Somewhat silly but I feel this is a better way to say we are using or paying in the native currency
+    /// A strongly typed method to say we are using or paying in the native currency
     /// </summary>
     public struct NativeCurrency
     {
@@ -19,9 +17,7 @@ namespace MCWrapper.RPC.Constants
         /// </summary>
         /// <param name="n_coins"></param>
         /// <returns></returns>
-        public static Dictionary<string, decimal> Coins(decimal n_coins)
-        {
-            return new Dictionary<string, decimal> { { CoinVerb, n_coins } };
-        }
+        public static Dictionary<string, decimal> Coins(decimal n_coins) => 
+            new Dictionary<string, decimal> { { CoinVerb, n_coins } };
     }
 }

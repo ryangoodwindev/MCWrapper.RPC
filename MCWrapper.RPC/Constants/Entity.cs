@@ -1,7 +1,7 @@
 ﻿namespace MCWrapper.RPC.Constants
 {
     /// <summary>
-    /// Entity types are used in Create methods on the bllockchain network;
+    /// Entity types are used in Create methods on the blockchain network;
     /// e.g. Create and CreateFrom;
     /// </summary>
     public struct Entity

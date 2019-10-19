@@ -1,8 +1,10 @@
 ﻿namespace MCWrapper.RPC.Constants
 {
     /// <summary>
-    /// Only supported for MultiChain Enterprise; 
-    /// Available only in Enterprise Edition
+    /// Only supported for MultiChain Enterprise. 
+    /// <para>
+    ///     Available only in Enterprise Edition.
+    /// </para>
     /// </summary>
     public struct SubscribeParam
     {
