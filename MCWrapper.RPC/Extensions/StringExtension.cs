@@ -116,6 +116,9 @@ namespace MCWrapper.RPC.Extensions
     /// </summary>
     public struct UUID
     {
+        /// <summary>
+        /// Generate a non-hyphenated GUID
+        /// </summary>
         public static string NoHyphens => Guid.NewGuid().ToString("N");
     }
 }

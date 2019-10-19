@@ -12,20 +12,18 @@ namespace MCWrapper.RPC.Extensions
     public static class ServiceRequestExtension
     {
         /// <summary>
-        /// // serialize ServiceRequest object to JSON formatted string
+        /// Serialize ServiceRequest object to JSON formatted string
         /// </summary>
-        /// <param name="request"></param>
+        /// <param name="request">RpcRequest type</param>
         /// <returns></returns>
         public static StringContent ToStringContent(this RpcRequest request)
         {
             // serialize ServiceRequest object to JSON formatted string
-            string json = JsonConvert.SerializeObject(request.GetNamedValues);
-
             // define HTTP StringContent, define Enconding, and MediaType
-            StringContent stringContent = new StringContent(json, Encoding.UTF8, ClientUrlComponent.JsonRPCMediaType);
-
-            // return HTTP string content
-            return stringContent;
+            return new StringContent(
+                content: JsonConvert.SerializeObject(request.GetNamedValues),
+                encoding: Encoding.UTF8,
+                mediaType: ClientUrlComponent.JsonRPCMediaType);
         }
     }
 }
