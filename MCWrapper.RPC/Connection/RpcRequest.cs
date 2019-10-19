@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace MCWrapper.RPC.Connection.Request
 {
     /// <summary>
-    /// Service request object contains required information and format to transact with a blockchain network
+    /// Service request object enforces the required format to transact with a blockchain network
     /// </summary>
     public class RpcRequest
 

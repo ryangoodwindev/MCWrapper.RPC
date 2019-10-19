@@ -25,7 +25,7 @@ namespace MCWrapper.RPC.Connection
         private readonly HttpClient _httpClient;
 
         /// <summary>
-        /// Create a new BlockchainClient object
+        /// Create a new RpcConnection object
         /// </summary>
         /// <param name="client"></param>
         public RpcConnection(HttpClient client)
@@ -42,7 +42,7 @@ namespace MCWrapper.RPC.Connection
         }
 
         /// <summary>
-        /// Create a new BlockchainClient object
+        /// Create a new RpcConnection object
         /// </summary>
         /// <param name="client"></param>
         /// <param name="options"></param>

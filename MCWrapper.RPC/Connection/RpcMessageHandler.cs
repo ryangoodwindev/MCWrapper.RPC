@@ -20,7 +20,6 @@ namespace MCWrapper.RPC.Connection
         /// <returns></returns>
         public static HttpClientHandler Create()
         {
-            // fetch JSON config values
             var options = new BlockchainProfileOptions();
 
             var clientHandler = new HttpClientHandler
@@ -40,7 +39,6 @@ namespace MCWrapper.RPC.Connection
         /// <returns></returns>
         public static HttpClientHandler Create(BlockchainProfileOptions options)
         {
-            // fetch JSON config values
             var fallbackOptions = options ?? new BlockchainProfileOptions();
 
             var clientHandler = new HttpClientHandler
@@ -60,7 +58,6 @@ namespace MCWrapper.RPC.Connection
         /// <returns></returns>
         public static HttpClientHandler Create(IConfiguration configuration)
         {
-            // fetch JSON config values
             var fallbackOptions = new BlockchainProfileOptions();
 
             var sslPath = !string.IsNullOrEmpty(configuration.GetValue<string>(nameof(BlockchainProfileOptions.ChainSslPath)))
