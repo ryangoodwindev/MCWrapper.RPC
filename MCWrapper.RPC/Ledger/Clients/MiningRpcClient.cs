@@ -21,7 +21,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Mining
         /// </summary>
         /// <param name="client"></param>
         /// <param name="options"></param>
-        public MiningRpcClient(HttpClient client, IOptions<BlockchainRpcOptions> options) 
+        public MiningRpcClient(HttpClient client, IOptions<BlockchainRpcOptions> options)
             : base(client, options) { }
 
 
@@ -43,12 +43,8 @@ namespace MCWrapper.RPC.Ledger.Clients.Mining
         ///     <para> ,...]}</para>
         /// </param>
         /// <returns></returns>
-        public async Task<RpcResponse<object>> GetBlockTemplateAsync(string blockchainName, string id, string json_request_object)
-        {
-            var response = await TransactAsync<RpcResponse<object>>(blockchainName, MiningAction.GetBlockTemplateMethod, id, json_request_object);
-
-            return response;
-        }
+        public Task<RpcResponse<object>> GetBlockTemplateAsync(string blockchainName, string id, string json_request_object) =>
+            TransactAsync<RpcResponse<object>>(blockchainName, MiningAction.GetBlockTemplateMethod, id, json_request_object);
 
         /// <summary>
         /// <para>Deprecated for the current version of Multichain; Do Not Use;</para>
@@ -65,10 +61,8 @@ namespace MCWrapper.RPC.Ledger.Clients.Mining
         ///     <para> ,...]}</para>
         /// </param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> GetBlockTemplateAsync(string json_request_object)
-        {
-            return GetBlockTemplateAsync(BlockchainOptions.ChainName, UUID.NoHyphens, json_request_object);
-        }
+        public Task<RpcResponse<object>> GetBlockTemplateAsync(string json_request_object) => 
+            GetBlockTemplateAsync(BlockchainOptions.ChainName, UUID.NoHyphens, json_request_object);
 
 
         /// <summary>
@@ -80,12 +74,8 @@ namespace MCWrapper.RPC.Ledger.Clients.Mining
         /// <param name="blockchainName">Name of target blockchain</param>
         /// <param name="id">String value to identify this transaction</param>
         /// <returns></returns>
-        public async Task<RpcResponse<object>> GetMiningInfoAsync(string blockchainName, string id)
-        {
-            var response = await TransactAsync<RpcResponse<object>>(blockchainName, MiningAction.GetMiningInfoMethod, id);
-
-            return response;
-        }
+        public Task<RpcResponse<object>> GetMiningInfoAsync(string blockchainName, string id) =>
+            TransactAsync<RpcResponse<object>>(blockchainName, MiningAction.GetMiningInfoMethod, id);
 
         /// <summary>
         /// 
@@ -94,10 +84,8 @@ namespace MCWrapper.RPC.Ledger.Clients.Mining
         /// 
         /// </summary>
         /// <returns></returns>
-        public Task<RpcResponse<object>> GetMiningInfoAsync()
-        {
-            return GetMiningInfoAsync(BlockchainOptions.ChainName, UUID.NoHyphens);
-        }
+        public Task<RpcResponse<object>> GetMiningInfoAsync() =>
+            GetMiningInfoAsync(BlockchainOptions.ChainName, UUID.NoHyphens);
 
 
         /// <summary>
@@ -113,17 +101,14 @@ namespace MCWrapper.RPC.Ledger.Clients.Mining
         /// <param name="blocks">(numeric, optional, default=120) The number of blocks, or -1 for blocks since last difficulty change</param>
         /// <param name="height">(numeric, optional, default=-1) To estimate at the time of the given height</param>
         /// <returns></returns>
-        public async Task<RpcResponse<object>> GetNetworkHashPsAsync(string blockchainName, string id, int blocks = 120, int height = -1)
+        public Task<RpcResponse<object>> GetNetworkHashPsAsync(string blockchainName, string id, int blocks = 120, int height = -1)
         {
-            RpcResponse<object> response;
             if (blocks == 0 && height == 0)
-                response = await TransactAsync<RpcResponse<object>>(blockchainName, MiningAction.GetNetworkHashPsMethod, id);
+                return TransactAsync<RpcResponse<object>>(blockchainName, MiningAction.GetNetworkHashPsMethod, id);
             else if (blocks != 0 && height == 0)
-                response = await TransactAsync<RpcResponse<object>>(blockchainName, MiningAction.GetNetworkHashPsMethod, id, blocks);
+                return TransactAsync<RpcResponse<object>>(blockchainName, MiningAction.GetNetworkHashPsMethod, id, blocks);
             else
-                response = await TransactAsync<RpcResponse<object>>(blockchainName, MiningAction.GetNetworkHashPsMethod, id, blocks, height);
-
-            return response;
+                return TransactAsync<RpcResponse<object>>(blockchainName, MiningAction.GetNetworkHashPsMethod, id, blocks, height);
         }
 
         /// <summary>
@@ -137,10 +122,8 @@ namespace MCWrapper.RPC.Ledger.Clients.Mining
         /// <param name="blocks">(numeric, optional, default=120) The number of blocks, or -1 for blocks since last difficulty change</param>
         /// <param name="height">(numeric, optional, default=-1) To estimate at the time of the given height</param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> GetNetworkHashPsAsync(int blocks = 120, int height = -1)
-        {
-            return GetNetworkHashPsAsync(BlockchainOptions.ChainName, UUID.NoHyphens, blocks, height);
-        }
+        public Task<RpcResponse<object>> GetNetworkHashPsAsync(int blocks = 120, int height = -1) =>
+            GetNetworkHashPsAsync(BlockchainOptions.ChainName, UUID.NoHyphens, blocks, height);
 
 
         /// <summary>
@@ -162,12 +145,8 @@ namespace MCWrapper.RPC.Ledger.Clients.Mining
         ///     <para>The fee is not actually paid, only the algorithm for selecting transactions into a block considers the transaction as it would have paid a higher (or lower) fee</para>
         /// </param>
         /// <returns></returns>
-        public async Task<RpcResponse<object>> PrioritiseTransactionAsync(string blockchainName, string id, string txid, double priority_delta, double fee_delta)
-        {
-            var response = await TransactAsync<RpcResponse<object>>(blockchainName, MiningAction.PrioritiseTransactionMethod, id, txid, priority_delta, fee_delta);
-
-            return response;
-        }
+        public Task<RpcResponse<object>> PrioritiseTransactionAsync(string blockchainName, string id, string txid, double priority_delta, double fee_delta) =>
+            TransactAsync<RpcResponse<object>>(blockchainName, MiningAction.PrioritiseTransactionMethod, id, txid, priority_delta, fee_delta);
 
         /// <summary>
         /// 
@@ -186,10 +165,8 @@ namespace MCWrapper.RPC.Ledger.Clients.Mining
         ///     <para>he fee is not actually paid, only the algorithm for selecting transactions into a block considers the transaction as it would have paid a higher (or lower) fee</para>
         /// </param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> PrioritiseTransactionAsync(string txid, double priority_delta, double fee_delta)
-        {
-            return PrioritiseTransactionAsync(BlockchainOptions.ChainName, UUID.NoHyphens, txid, priority_delta, fee_delta);
-        }
+        public Task<RpcResponse<object>> PrioritiseTransactionAsync(string txid, double priority_delta, double fee_delta) => 
+            PrioritiseTransactionAsync(BlockchainOptions.ChainName, UUID.NoHyphens, txid, priority_delta, fee_delta);
 
 
         /// <summary>
@@ -207,12 +184,8 @@ namespace MCWrapper.RPC.Ledger.Clients.Mining
         ///     <para>{ "workid" : "id"               (string, optional) if the server provided a workid, it MUST be included with submissions }</para>
         /// </param>
         /// <returns></returns>
-        public async Task<RpcResponse<object>> SubmitBlockAsync(string blockchainName, string id, object hex_data, string json_parameters_object = "")
-        {
-            var response = await TransactAsync<RpcResponse<object>>(blockchainName, MiningAction.SubmitBlockMethod, id, hex_data, json_parameters_object);
-
-            return response;
-        }
+        public Task<RpcResponse<object>> SubmitBlockAsync(string blockchainName, string id, object hex_data, string json_parameters_object = "") =>
+            TransactAsync<RpcResponse<object>>(blockchainName, MiningAction.SubmitBlockMethod, id, hex_data, json_parameters_object);
 
         /// <summary>
         /// 
@@ -227,9 +200,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Mining
         ///     <para>{ "workid" : "id"               (string, optional) if the server provided a workid, it MUST be included with submissions }</para>
         /// </param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> SubmitBlockAsync(object hex_data, string json_parameters_object = "")
-        {
-            return SubmitBlockAsync(BlockchainOptions.ChainName, UUID.NoHyphens, hex_data, json_parameters_object);
-        }
+        public Task<RpcResponse<object>> SubmitBlockAsync(object hex_data, string json_parameters_object = "") => 
+            SubmitBlockAsync(BlockchainOptions.ChainName, UUID.NoHyphens, hex_data, json_parameters_object);
     }
 }
