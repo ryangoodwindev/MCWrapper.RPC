@@ -57,8 +57,4 @@ AddMultiChainCoreServices Extension changed to AddMultiChainCoreRPCServices</Pac
     <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="2.1.0" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
   </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Ledger\Models\" />
-  </ItemGroup>
 </Project>
