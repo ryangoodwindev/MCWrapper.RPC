@@ -4,62 +4,6 @@
         <name>MCWrapper.RPC</name>
     </assembly>
     <members>
-        <member name="M:MCWrapper.RPC.Connection.MessageHandler.Create">
-            <summary>
-            Return new customized HttpClientHandler instance
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:MCWrapper.RPC.Connection.MessageHandler.Create(MCWrapper.RPC.Options.BlockchainProfileOptions)">
-            <summary>
-            Return new customized HttpClientHandler instance
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:MCWrapper.RPC.Connection.MessageHandler.Create(Microsoft.Extensions.Configuration.IConfiguration)">
-            <summary>
-            Return new customized HttpClientHandler instance
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:MCWrapper.RPC.Connection.MessageHandler.GetServiceUrl">
-            <summary>
-            Construct MultiChain blockchain Service URL
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:MCWrapper.RPC.Connection.MessageHandler.GetServiceUrl(MCWrapper.RPC.Options.BlockchainProfileOptions)">
-            <summary>
-            Construct MultiChain blockchain Service URL
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:MCWrapper.RPC.Connection.MessageHandler.GetAuthenticationHeaderValue">
-            <summary>
-            Construct Authentication Header Value
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:MCWrapper.RPC.Connection.MessageHandler.GetAuthenticationHeaderValue(MCWrapper.RPC.Options.BlockchainProfileOptions)">
-            <summary>
-            Construct Authentication Header Value
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="T:MCWrapper.RPC.Connection.CertificateCallback">
-            <summary>
-            SSL cert callback
-            </summary>
-        </member>
-        <member name="M:MCWrapper.RPC.Connection.CertificateCallback.ValidateCallback(System.Security.Cryptography.X509Certificates.X509Certificate2,System.Net.Security.SslPolicyErrors,System.String)">
-            <summary>
-            Validate certificate callback
-            </summary>
-            <param name="cert"></param>
-            <param name="errors"></param>
-            <param name="certPath"></param>
-            <returns></returns>
-        </member>
         <member name="T:MCWrapper.RPC.Connection.RpcConnection">
             <summary>
             Blockchain client is used to transact with the configured MultiChain network
@@ -72,13 +16,13 @@
         </member>
         <member name="M:MCWrapper.RPC.Connection.RpcConnection.#ctor(System.Net.Http.HttpClient)">
             <summary>
-            Create a new BlockchainClient object
+            Create a new RpcConnection object
             </summary>
             <param name="client"></param>
         </member>
-        <member name="M:MCWrapper.RPC.Connection.RpcConnection.#ctor(System.Net.Http.HttpClient,Microsoft.Extensions.Options.IOptions{MCWrapper.RPC.Options.BlockchainProfileOptions})">
+        <member name="M:MCWrapper.RPC.Connection.RpcConnection.#ctor(System.Net.Http.HttpClient,Microsoft.Extensions.Options.IOptions{MCWrapper.RPC.Options.BlockchainRpcOptions})">
             <summary>
-            Create a new BlockchainClient object
+            Create a new RpcConnection object
             </summary>
             <param name="client"></param>
             <param name="options"></param>
@@ -117,9 +61,65 @@
             <param name="serviceRequest"></param>
             <returns></returns>
         </member>
+        <member name="M:MCWrapper.RPC.Connection.RpcMessageHandler.Create">
+            <summary>
+            Return new customized HttpClientHandler instance
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MCWrapper.RPC.Connection.RpcMessageHandler.Create(MCWrapper.RPC.Options.BlockchainRpcOptions)">
+            <summary>
+            Return new customized HttpClientHandler instance
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MCWrapper.RPC.Connection.RpcMessageHandler.Create(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Return new customized HttpClientHandler instance
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MCWrapper.RPC.Connection.RpcMessageHandler.GetServiceUrl">
+            <summary>
+            Construct MultiChain blockchain Service URL
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MCWrapper.RPC.Connection.RpcMessageHandler.GetServiceUrl(MCWrapper.RPC.Options.BlockchainRpcOptions)">
+            <summary>
+            Construct MultiChain blockchain Service URL
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MCWrapper.RPC.Connection.RpcMessageHandler.GetAuthenticationHeaderValue">
+            <summary>
+            Construct Authentication Header Value
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MCWrapper.RPC.Connection.RpcMessageHandler.GetAuthenticationHeaderValue(MCWrapper.RPC.Options.BlockchainRpcOptions)">
+            <summary>
+            Construct Authentication Header Value
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:MCWrapper.RPC.Connection.CertificateCallback">
+            <summary>
+            SSL cert callback
+            </summary>
+        </member>
+        <member name="M:MCWrapper.RPC.Connection.CertificateCallback.ValidateCallback(System.Security.Cryptography.X509Certificates.X509Certificate2,System.Net.Security.SslPolicyErrors,System.String)">
+            <summary>
+            Validate certificate callback
+            </summary>
+            <param name="cert"></param>
+            <param name="errors"></param>
+            <param name="certPath"></param>
+            <returns></returns>
+        </member>
         <member name="T:MCWrapper.RPC.Connection.Request.RpcRequest">
             <summary>
-            Service request object contains required information and format to transact with a blockchain network
+            Service request object enforces the required format to transact with a blockchain network
             </summary>
         </member>
         <member name="P:MCWrapper.RPC.Connection.Request.RpcRequest.GetNamedValues">
@@ -215,7 +215,7 @@
         </member>
         <member name="T:MCWrapper.RPC.Constants.ClientUrlComponent">
             <summary>
-            Helper object that stores some constant values we can use while configuring IThinClient
+            Helper object that stores some constant values we can use while configuring the base RpcClient
             </summary>
         </member>
         <member name="F:MCWrapper.RPC.Constants.ClientUrlComponent.Http">
@@ -250,7 +250,7 @@
         </member>
         <member name="T:MCWrapper.RPC.Constants.Entity">
             <summary>
-            Entity types are used in Create methods on the bllockchain network;
+            Entity types are used in Create methods on the blockchain network;
             e.g. Create and CreateFrom;
             </summary>
         </member>
@@ -286,7 +286,7 @@
         </member>
         <member name="T:MCWrapper.RPC.Constants.NativeCurrency">
             <summary>
-            Somewhat silly but I feel this is a better way to say we are using or paying in the native currency
+            A strongly typed method to say we are using or paying in the native currency
             </summary>
         </member>
         <member name="F:MCWrapper.RPC.Constants.NativeCurrency.CoinVerb">
@@ -305,7 +305,7 @@
             <summary>
             Types of blockchain network tasks;
             <para>
-                Generally used when Pausing and/or Resuming the blockchain using either the ControlCLIClient or ControlRPCClient
+                Generally used when Pausing and/or Resuming the blockchain using either the ControlRpcClient
             </para>
             </summary>
         </member>
@@ -322,6 +322,11 @@
         <member name="F:MCWrapper.RPC.Constants.NodeTask.All">
             <summary>
             Represents Control task types 'mining,incoming' as plain comma delimited string
+            </summary>
+        </member>
+        <member name="T:MCWrapper.RPC.Constants.PeerConnection">
+            <summary>
+            Constant Peer connection command values
             </summary>
         </member>
         <member name="F:MCWrapper.RPC.Constants.PeerConnection.Add">
@@ -341,7 +346,7 @@
         </member>
         <member name="T:MCWrapper.RPC.Constants.Permission">
             <summary>
-            MultiChain Core blockchain permissions types
+            MultiChain Core blockchain Permissions types
             </summary>
         </member>
         <member name="F:MCWrapper.RPC.Constants.Permission.Connect">
@@ -395,44 +400,12 @@
             A permission is revoked by setting both the start block and end block to 0.
             </summary>
         </member>
-        <member name="T:MCWrapper.RPC.Constants.RuntimeCommand">
-            <summary>
-            Cammands that can be passed to multichaind.exe and/or multichain-util.exe by IForce and IMachinist
-            when starting, stopping, or creating a hot or cold node
-            </summary>
-        </member>
-        <member name="F:MCWrapper.RPC.Constants.RuntimeCommand.UseRpcSSL">
-            <summary>
-            HTTPS swtich starts the specified MultiChain Core blockchain and requires HTTPS JSON-RPC calls;
-            <para>If this switch is thrown while starting a blockchain there must be a valid HTTPS certificate available to node and/or network</para>
-            </summary>
-        </member>
-        <member name="F:MCWrapper.RPC.Constants.RuntimeCommand.Daemon">
-            <summary>
-            Indicates the blockchain should run unobtrusively in the background,
-            rather than under the direct control of a user, waiting to be activated 
-            by the occurance of a specific event or condition.
-            </summary>
-        </member>
-        <member name="F:MCWrapper.RPC.Constants.RuntimeCommand.Stop">
-            <summary>
-            Stops the specified blockchain
-            </summary>
-        </member>
-        <member name="F:MCWrapper.RPC.Constants.RuntimeCommand.Create">
-            <summary>
-            Creates the specified blockchain
-            </summary>
-        </member>
-        <member name="F:MCWrapper.RPC.Constants.RuntimeCommand.Cold">
-            <summary>
-            Cold swith directs commands to the cold node instance of the specificied blockchain if such does exist
-            </summary>
-        </member>
         <member name="T:MCWrapper.RPC.Constants.RuntimeParam">
             <summary>
-            Runtime parameter names used to set values
-            All parameter names listed in this struct are supportrf via setruntimeparam blockchain method
+            Runtime parameter names used to set values.
+            <para>
+                All parameter names listed in this struct are supported via the 'setruntimeparam' blockchain method.
+            </para>
             </summary>
         </member>
         <member name="F:MCWrapper.RPC.Constants.RuntimeParam.AcceptFilterTimeout">
@@ -548,8 +521,10 @@
         </member>
         <member name="T:MCWrapper.RPC.Constants.SubscribeParam">
             <summary>
-            Only supported for MultiChain Enterprise; 
-            Available only in Enterprise Edition
+            Only supported for MultiChain Enterprise. 
+            <para>
+                Available only in Enterprise Edition.
+            </para>
             </summary>
         </member>
         <member name="F:MCWrapper.RPC.Constants.SubscribeParam.Items">
@@ -596,8 +571,14 @@
         </member>
         <member name="T:MCWrapper.RPC.ErrorHandling.ClientException">
             <summary>
-            Custom API Exception object
+            ClientException extends Exception class
             </summary>
+        </member>
+        <member name="M:MCWrapper.RPC.ErrorHandling.ClientException.#ctor(System.String)">
+            <summary>
+            Create a new ClientException
+            </summary>
+            <param name="message">Error message</param>
         </member>
         <member name="P:MCWrapper.RPC.ErrorHandling.ClientException.StatusCode">
             <summary>
@@ -611,97 +592,85 @@
         </member>
         <member name="T:MCWrapper.RPC.ErrorHandling.ProfileException">
             <summary>
-            Handles any exception thrown from the BlockchainProfileOptions class
+            ProfileException extends Exception class
             </summary>
         </member>
         <member name="M:MCWrapper.RPC.ErrorHandling.ProfileException.#ctor(System.String)">
             <summary>
-            Generate custom BlockchainProfileOptions exception
+            Create a new ProfileException
             </summary>
-            <param name="message"></param>
+            <param name="message">Error message</param>
         </member>
         <member name="T:MCWrapper.RPC.ErrorHandling.ServiceException">
             <summary>
-            BlockchainServiceException extends Exception class
+            ServiceException extends Exception class
             </summary>
         </member>
         <member name="M:MCWrapper.RPC.ErrorHandling.ServiceException.#ctor(System.String)">
             <summary>
-            Create a new custom BlockchainServiceException
+            Create a new ServiceException
             </summary>
-            <param name="message"></param>
+            <param name="message">Error message</param>
         </member>
-        <member name="T:MCWrapper.RPC.Extensions.MultiChainCoreServices">
+        <member name="M:MCWrapper.RPC.Extensions.MultiChainCoreRpcServices.AddMultiChainCoreRPCServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
             <summary>
-            Add MultiChain services to the application; Be aware the MultiChain network must be installed and configured externally from your application.
-            The MultiChain library is availabale at https://multichain.com
-            </summary>
-        </member>
-        <member name="M:MCWrapper.RPC.Extensions.MultiChainCoreServices.AddMultiChainCoreRPCServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
-            <summary>
-            Add MultiChainServices (CLI and RPC clients) to thie application's 
-            Dependency Injection (DI) container. 
-            
+            Add MultiChain Remote Procedure Call (RPC) services to an application's service container.
             <para>
-                This method loads the BlockchainProfileOptions and RuntimeParamOptions from the
+                Be aware a MultiChain blockchain network must be installed and configured externally from this application.
+            </para>
+            <para>
+                The MultiChain library and installation instructions are availabale at https://multichain.com
+            </para>
+            <para>
+                This method automatically loads the BlockchainProfileOptions and RuntimeParamOptions from the
                 local environment variable store.
             </para>
             </summary>
-            <param name="services"></param>
+            <param name="services">Service container</param>
             <returns></returns>
         </member>
-        <member name="M:MCWrapper.RPC.Extensions.MultiChainCoreServices.AddMultiChainCoreRPCServices(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
+        <member name="M:MCWrapper.RPC.Extensions.MultiChainCoreRpcServices.AddMultiChainCoreRPCServices(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
             <summary>
-            Add MultiChainServices (CLI and RPC clients) to thie application's 
-            Dependency Injection (DI) container. 
+            Add MultiChain Remote Procedure Call (RPC) services to an application's service container.
             
             <para>
-                This method loads the BlockchainProfileOptions and RuntimeParamOptions from the
-                IConfiguration pipeline (i.e. appsettings.json file).
+                Be aware a MultiChain blockchain network must be installed and configured externally from this application.
+            </para>
+            
+            <para>
+                The MultiChain library and installation instructions are availabale at https://multichain.com
+            </para>
+            
+            <para>
+                This method automatically loads the BlockchainProfileOptions and RuntimeParamOptions from the
+                IConfiguration interface (appsettings.json file usually).
             </para>
             </summary>
-            <param name="services"></param>
-            <param name="configuration"></param>
+            <param name="services">Service container</param>
+            <param name="configuration">Configuration pipeline</param>
             <returns></returns>
         </member>
-        <member name="M:MCWrapper.RPC.Extensions.MultiChainCoreServices.AddMultiChainCoreRPCServices(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{MCWrapper.RPC.Options.BlockchainProfileOptions},System.Action{MCWrapper.RPC.Options.RuntimeParamOptions})">
+        <member name="M:MCWrapper.RPC.Extensions.MultiChainCoreRpcServices.AddMultiChainCoreRPCServices(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{MCWrapper.RPC.Options.BlockchainRpcOptions},System.Action{MCWrapper.RPC.Options.RuntimeParamOptions})">
             <summary>
-            Add MultiChainServices (CLI and RPC clients) to thie application's 
-            Dependency Injection (DI) container. 
+            Add MultiChain Remote Procedure Call (RPC) services to an application's service container.
+            
+            <para>
+                Be aware a MultiChain blockchain network must be installed and configured externally from this application.
+            </para>
+            
+            <para>
+                The MultiChain library and installation instructions are availabale at https://multichain.com
+            </para>
             
             <para>
                 This method requires the BlockchainProfileOptions and RuntimeParamOptions property values to be
-                manually configured via the <paramref name="runtimeConfig"/> and <paramref name="profileConfig"/> 
+                explicitly passed via the <paramref name="runtimeConfig"/> and <paramref name="profileConfig"/> 
                 Action parameters when added to the DI pipeline.
             </para>
             </summary>
-            <param name="services"></param>
-            <param name="profileConfig"></param>
-            <param name="runtimeConfig"></param>
-            <returns></returns>
-        </member>
-        <member name="T:MCWrapper.RPC.Extensions.OSDetection">
-            <summary>
-            Courtesy of https://mariusschulz.com/blog/detecting-the-operating-system-in-net-core
-            Great work, thank you.
-            </summary>
-        </member>
-        <member name="M:MCWrapper.RPC.Extensions.OSDetection.IsWindows">
-            <summary>
-            Detect windows (meh)
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:MCWrapper.RPC.Extensions.OSDetection.IsMacOS">
-            <summary>
-            Detect mac (boooooo)
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:MCWrapper.RPC.Extensions.OSDetection.IsLinux">
-            <summary>
-            Detect Linux (hooray!)
-            </summary>
+            <param name="services">Service container</param>
+            <param name="profileConfig">Blockchain profile configuration (Information the app will use to connect to a MultiChain ledger)</param>
+            <param name="runtimeConfig">Runtime parameter configuration (How a MultiChain ledger should behave)</param>
             <returns></returns>
         </member>
         <member name="T:MCWrapper.RPC.Extensions.ServiceRequestExtension">
@@ -711,29 +680,15 @@
         </member>
         <member name="M:MCWrapper.RPC.Extensions.ServiceRequestExtension.ToStringContent(MCWrapper.RPC.Connection.Request.RpcRequest)">
             <summary>
-            // serialize ServiceRequest object to JSON formatted string
+            Serialize ServiceRequest object to JSON formatted string
             </summary>
-            <param name="request"></param>
+            <param name="request">RpcRequest type</param>
             <returns></returns>
         </member>
         <member name="T:MCWrapper.RPC.Extensions.StringExtension">
             <summary>
             Helper extensions assist with menial tasks that are required to format data correctly to reside on the MultiChain blockchain network
             </summary>
-        </member>
-        <member name="M:MCWrapper.RPC.Extensions.StringExtension.Serialize(System.Object)">
-            <summary>
-            Serialize any object to a string representation
-            </summary>
-            <param name="obj"></param>
-            <returns></returns>
-        </member>
-        <member name="M:MCWrapper.RPC.Extensions.StringExtension.EscapeForWindows(System.String)">
-            <summary>
-            
-            </summary>
-            <param name="value"></param>
-            <returns></returns>
         </member>
         <member name="M:MCWrapper.RPC.Extensions.StringExtension.ObjectToHex(System.Object)">
             <summary>
@@ -793,6 +748,16 @@
             </summary>
             <param name="name"></param>
             <returns></returns>
+        </member>
+        <member name="T:MCWrapper.RPC.Extensions.UUID">
+            <summary>
+            Generate a non-hyphenated GUID
+            </summary>
+        </member>
+        <member name="P:MCWrapper.RPC.Extensions.UUID.NoHyphens">
+            <summary>
+            Generate a non-hyphenated GUID
+            </summary>
         </member>
         <member name="T:MCWrapper.RPC.Ledger.Actions.BlockchainAction">
             <summary>
@@ -1732,7 +1697,7 @@
             
             </summary>
         </member>
-        <member name="M:MCWrapper.RPC.Ledger.Clients.Blockchain.BlockchainRpcClient.#ctor(System.Net.Http.HttpClient,Microsoft.Extensions.Options.IOptions{MCWrapper.RPC.Options.BlockchainProfileOptions})">
+        <member name="M:MCWrapper.RPC.Ledger.Clients.Blockchain.BlockchainRpcClient.#ctor(System.Net.Http.HttpClient,Microsoft.Extensions.Options.IOptions{MCWrapper.RPC.Options.BlockchainRpcOptions})">
             <summary>
             Create a new Blockchain RPC client
             </summary>
@@ -2503,17 +2468,13 @@
         </member>
         <member name="T:MCWrapper.RPC.Ledger.Clients.Control.ControlRpcClient">
             <summary>
-            
-            MutliChain methods implemented by the concrete ControlRPCClient class:
+            MutliChain methods implemented:
             
             clearmempool, getblockchainparams, getinfo, getruntimeparams,
             help, pause, resume, setlastblock, setruntimeparam, stop
-            
-            <para>Inherits from an RPCClient and implements the IControlRPC contract</para>
-            
             </summary>
         </member>
-        <member name="M:MCWrapper.RPC.Ledger.Clients.Control.ControlRpcClient.#ctor(System.Net.Http.HttpClient,Microsoft.Extensions.Options.IOptions{MCWrapper.RPC.Options.BlockchainProfileOptions})">
+        <member name="M:MCWrapper.RPC.Ledger.Clients.Control.ControlRpcClient.#ctor(System.Net.Http.HttpClient,Microsoft.Extensions.Options.IOptions{MCWrapper.RPC.Options.BlockchainRpcOptions})">
             <summary>
             Create a new Control RPC client
             </summary>
@@ -2615,7 +2576,7 @@
              </summary>
              <param name="blockchainName">Name of target blockchain</param>
              <param name="id">String value to identify this transaction</param>
-             <param name="command">The command to get help on</param>
+             <param name="command">The command to get help with</param>
              <returns></returns>
         </member>
         <member name="M:MCWrapper.RPC.Ledger.Clients.Control.ControlRpcClient.HelpAsync(System.String)">
@@ -2625,7 +2586,7 @@
              <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
             
              </summary>
-             <param name="command">The command to get help on</param>
+             <param name="command">The command to get help with</param>
              <returns></returns>
         </member>
         <member name="M:MCWrapper.RPC.Ledger.Clients.Control.ControlRpcClient.PauseAsync(System.String,System.String,System.String)">
@@ -2749,16 +2710,12 @@
         </member>
         <member name="T:MCWrapper.RPC.Ledger.Clients.Generate.GenerateRpcClient">
             <summary>
-            
-            MutliChain methods implemented by the concrete GenerateRPCClient class:
+            MutliChain methods implemented:
             
             getgenerate, gethashespersec, setgenerate
-            
-            <para>Inherits from an RPCClient and implements the IGenerateRPC contract</para>
-            
             </summary>
         </member>
-        <member name="M:MCWrapper.RPC.Ledger.Clients.Generate.GenerateRpcClient.#ctor(System.Net.Http.HttpClient,Microsoft.Extensions.Options.IOptions{MCWrapper.RPC.Options.BlockchainProfileOptions})">
+        <member name="M:MCWrapper.RPC.Ledger.Clients.Generate.GenerateRpcClient.#ctor(System.Net.Http.HttpClient,Microsoft.Extensions.Options.IOptions{MCWrapper.RPC.Options.BlockchainRpcOptions})">
             <summary>
             Create a new Generate RPC client
             </summary>
@@ -2767,7 +2724,6 @@
         </member>
         <member name="M:MCWrapper.RPC.Ledger.Clients.Generate.GenerateRpcClient.GetGenerateAsync(System.String,System.String)">
              <summary>
-             
              <para>Return if the server is set to generate coins or not. The default is false.</para>
              <para>It is set with the command line argument -gen (or bitcoin.conf setting gen)</para>
              <para>It can also be set with the setgenerate call.</para>
@@ -2780,7 +2736,6 @@
         </member>
         <member name="M:MCWrapper.RPC.Ledger.Clients.Generate.GenerateRpcClient.GetGenerateAsync">
              <summary>
-             
              <para>Return if the server is set to generate coins or not. The default is false.</para>
              <para>It is set with the command line argument -gen (or bitcoin.conf setting gen)</para>
              <para>It can also be set with the setgenerate call.</para>
@@ -2791,7 +2746,6 @@
         </member>
         <member name="M:MCWrapper.RPC.Ledger.Clients.Generate.GenerateRpcClient.GetHashesPerSecAsync(System.String,System.String)">
              <summary>
-             
              <para>Returns a recent hashes per second performance measurement while generating.</para>
              <para>See the getgenerate and setgenerate calls to turn generation on and off.</para>
              <para>Blockchain name is explicitly passed as parameter.</para>
@@ -2803,7 +2757,6 @@
         </member>
         <member name="M:MCWrapper.RPC.Ledger.Clients.Generate.GenerateRpcClient.GetHashesPerSecAsync">
              <summary>
-             
              <para>Returns a recent hashes per second performance measurement while generating.</para>
              <para>See the getgenerate and setgenerate calls to turn generation on and off.</para>
              <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
@@ -2841,15 +2794,18 @@
         </member>
         <member name="T:MCWrapper.RPC.Ledger.Clients.Mining.MiningRpcClient">
             <summary>
-            
-            MutliChain methods implemented by the concrete MineRPCClient class:
+            MutliChain methods implemented:
             
             getblocktemplate, getmininginfo, getnetworkhashps, 
             prioritisetransaction, submitblock
-            
-            <para>Inherits from an RPCClient and implements the IMineRPC contract</para>
-            
             </summary>
+        </member>
+        <member name="M:MCWrapper.RPC.Ledger.Clients.Mining.MiningRpcClient.#ctor(System.Net.Http.HttpClient,Microsoft.Extensions.Options.IOptions{MCWrapper.RPC.Options.BlockchainRpcOptions})">
+            <summary>
+            Create a new Mining RPC client
+            </summary>
+            <param name="client"></param>
+            <param name="options"></param>
         </member>
         <member name="M:MCWrapper.RPC.Ledger.Clients.Mining.MiningRpcClient.GetBlockTemplateAsync(System.String,System.String,System.String)">
              <summary>
@@ -2919,8 +2875,8 @@
              </summary>
              <param name="blockchainName">Name of target blockchain</param>
              <param name="id">String value to identify this transaction</param>
-             <param name="blocks">The number of blocks, or -1 for blocks since last difficulty change</param>
-             <param name="height">To estimate at the time of the given height</param>
+             <param name="blocks">(numeric, optional, default=120) The number of blocks, or -1 for blocks since last difficulty change</param>
+             <param name="height">(numeric, optional, default=-1) To estimate at the time of the given height</param>
              <returns></returns>
         </member>
         <member name="M:MCWrapper.RPC.Ledger.Clients.Mining.MiningRpcClient.GetNetworkHashPsAsync(System.Int32,System.Int32)">
@@ -2932,8 +2888,8 @@
              <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
             
              </summary>
-             <param name="blocks">The number of blocks, or -1 for blocks since last difficulty change</param>
-             <param name="height">To estimate at the time of the given height</param>
+             <param name="blocks">(numeric, optional, default=120) The number of blocks, or -1 for blocks since last difficulty change</param>
+             <param name="height">(numeric, optional, default=-1) To estimate at the time of the given height</param>
              <returns></returns>
         </member>
         <member name="M:MCWrapper.RPC.Ledger.Clients.Mining.MiningRpcClient.PrioritiseTransactionAsync(System.String,System.String,System.String,System.Double,System.Double)">
@@ -3010,17 +2966,13 @@
         </member>
         <member name="T:MCWrapper.RPC.Ledger.Clients.Network.NetworkRpcClient">
             <summary>
-            
-            MutliChain methods implemented by the concrete NetworkRPCClient class:
+            MutliChain methods implemented:
             
             addnode, getaddednodeinfo, getchunkqueueinfo, getchunkqueuetotals, 
             getconnectioncount, getnettotals, getnetworkinfo, getpeerinfo, ping
-            
-            <para>Inherits from an RPCClient and implements the INetworkRPC contract</para>
-            
             </summary>
         </member>
-        <member name="M:MCWrapper.RPC.Ledger.Clients.Network.NetworkRpcClient.#ctor(System.Net.Http.HttpClient,Microsoft.Extensions.Options.IOptions{MCWrapper.RPC.Options.BlockchainProfileOptions})">
+        <member name="M:MCWrapper.RPC.Ledger.Clients.Network.NetworkRpcClient.#ctor(System.Net.Http.HttpClient,Microsoft.Extensions.Options.IOptions{MCWrapper.RPC.Options.BlockchainRpcOptions})">
             <summary>
             Create a new Network RPC client
             </summary>
@@ -3046,7 +2998,7 @@
             
             <para>Attempts add or remove a node from the addnode list.</para>
             <para>Or try a connection to a node once.</para>
-            <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+            <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
             
             </summary>
             <param name="node">The node (see getpeerinfo for nodes)</param>
@@ -3074,7 +3026,7 @@
              <para>Returns information about the given added node, or all added nodes</para>
              <para>(note that onetry addnodes are not listed here)</para>
              <para>If dns is false, only a list of added nodes will be provided, otherwise connected information will also be available.</para>
-             <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+             <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
             
              </summary>
              <param name="dns">If false, only a list of added nodes will be provided, otherwise connected information will also be available</param>
@@ -3096,7 +3048,7 @@
              <summary>
             
              <para>Returns data about each current chunk queue status.</para>
-             <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+             <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
              
              </summary>
              <returns></returns>
@@ -3116,7 +3068,7 @@
              <summary>
              
              <para>Returns chunks delivery statistics.</para>
-             <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+             <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
             
              </summary>
              <returns></returns>
@@ -3136,7 +3088,7 @@
              <summary>
              
              <para>Returns the number of connections to other nodes.</para>
-             <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+             <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
             
              </summary>
              <returns></returns>
@@ -3156,7 +3108,7 @@
              <summary>
              
              <para>Returns information about network traffic, including bytes in, bytes out, and current time.</para>
-             <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+             <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
             
              </summary>
              <returns></returns>
@@ -3176,7 +3128,7 @@
              <summary>
              
              <para>Returns an object containing various state info regarding P2P networking.</para>
-             <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+             <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
             
              </summary>
              <returns></returns>
@@ -3196,7 +3148,7 @@
              <summary>
              
              <para>Returns data about each connected network node as a json array of objects.</para>
-             <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+             <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
             
              </summary>
              <returns></returns>
@@ -3220,27 +3172,23 @@
             <para>Requests that a ping be sent to all other nodes, to measure ping time.</para>
             <para>Results provided in getpeerinfo, pingtime and pingwait fields are decimal seconds.</para>
             <para>Ping command is handled in queue with all other commands, so it measures processing backlog, not just network ping.</para>
-            <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+            <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
             
             </summary>
             <returns></returns>
         </member>
         <member name="T:MCWrapper.RPC.Ledger.Clients.OffChain.OffChainRpcClient">
             <summary>
-            
-            MutliChain methods implemented by th concrete OffChainRPCClient class:
+            MutliChain methods implemented:
             
             purgepublisheditems, purgestreamitems, retrievestreamitems
             
-             OffChain services to support MultiChain Enterprise users
+            OffChain services to support MultiChain Enterprise users
             I do not have access to an Enterprise version of MultiChain 
             so no unit testing can be performed against these methods
-            
-            <para>Inherits from an RPCClient and implements the IOffChainRPC contract</para>
-            
             </summary>
         </member>
-        <member name="M:MCWrapper.RPC.Ledger.Clients.OffChain.OffChainRpcClient.#ctor(System.Net.Http.HttpClient,Microsoft.Extensions.Options.IOptions{MCWrapper.RPC.Options.BlockchainProfileOptions})">
+        <member name="M:MCWrapper.RPC.Ledger.Clients.OffChain.OffChainRpcClient.#ctor(System.Net.Http.HttpClient,Microsoft.Extensions.Options.IOptions{MCWrapper.RPC.Options.BlockchainRpcOptions})">
             <summary>
             Create a OffChain RPC client
             </summary>
@@ -3273,7 +3221,7 @@
              
              <para>Available only in Enterprise Edition.</para>
              <para>Purges offchain items published by this node</para>
-             <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+             <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
             
              </summary>
              <param name="items">
@@ -3316,7 +3264,7 @@
             
             <para>Available only in Enterprise Edition.</para>
             <para>Purges offchain data for specific items in the stream.</para>
-            <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+            <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
             
             </summary>
             <param name="stream">One of: create txid, stream reference, stream name</param>
@@ -3362,7 +3310,7 @@
             
              <para>Available only in Enterprise Edition.</para>
              <para>Schedules retrieval of offchain data for specific items in the stream</para>
-             <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+             <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
              
              </summary>
              <param name="stream">One of: create txid, stream reference, stream name</param>
@@ -3381,18 +3329,14 @@
         </member>
         <member name="T:MCWrapper.RPC.Ledger.Clients.Raw.RawRpcClient">
             <summary>
-            
-            MutliChain methods implemented by the concrete RawRPCClient class:
+            MutliChain methods implemented:
             
             appendrawchange, appendrawdata, appendrawtransaction, 
             createrawtransaction, decoderawtransaction, decodescript, 
             getrawtransaction, sendrawtransaction, signrawtransaction
-            
-            <para>Inherits from an RPCClient and implements the IRawRPC contract</para>
-            
             </summary>
         </member>
-        <member name="M:MCWrapper.RPC.Ledger.Clients.Raw.RawRpcClient.#ctor(System.Net.Http.HttpClient,Microsoft.Extensions.Options.IOptions{MCWrapper.RPC.Options.BlockchainProfileOptions})">
+        <member name="M:MCWrapper.RPC.Ledger.Clients.Raw.RawRpcClient.#ctor(System.Net.Http.HttpClient,Microsoft.Extensions.Options.IOptions{MCWrapper.RPC.Options.BlockchainRpcOptions})">
             <summary>
             Create a new Raw RPC client
             </summary>
@@ -3418,7 +3362,7 @@
             
             <para>Appends change output to raw transaction, containing any remaining assets / native currency in the inputs that are not already sent to other outputs.</para>
             <para>Blockchain name is explicitly passed as parameter.</para>
-            <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+            <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
             
             </summary>
             <param name="tx_hex">The hex string of the raw transaction)</param>
@@ -3436,8 +3380,8 @@
             </summary>
             <param name="blockchainName">Name of target blockchain</param>
             <param name="id">String value to identify this transaction</param>
-            <param name="tx_hex">The transaction hex string</param>
-            <param name="data">Data, see help data-all for details</param>
+            <param name="tx_hex">(string, required) The transaction hex string</param>
+            <param name="data">(string or object, required) Data, see help data-all for details</param>
             <returns></returns>
         </member>
         <member name="M:MCWrapper.RPC.Ledger.Clients.Raw.RawRpcClient.AppendRawDataAsync(System.String,System.Object)">
@@ -3445,11 +3389,11 @@
             
             <para>Appends new OP_RETURN output to existing raw transaction</para>
             <para>Returns hex-encoded raw transaction.</para>
-            <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+            <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
             
             </summary>
-            <param name="tx_hex">The transaction hex string</param>
-            <param name="data">Data, see help data-all for details</param>
+            <param name="tx_hex">(string, required) The transaction hex string</param>
+            <param name="data">(string or object, required) Data, see help data-all for details</param>
             <returns></returns>
         </member>
         <member name="M:MCWrapper.RPC.Ledger.Clients.Raw.RawRpcClient.AppendRawTransactionAsync(System.String,System.String,System.String,System.Object[],System.Object,System.Object[],System.String)">
@@ -3472,7 +3416,7 @@
             <summary>
             
             <para>Append inputs and outputs to raw transaction</para>
-            <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+            <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
             
             </summary>
             <param name="tx_hex">Source transaction hex string</param>
@@ -3500,7 +3444,7 @@
             <summary>
             
             <para>Create a transaction spending the given inputs.</para>
-            <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+            <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
             
             </summary>
             <param name="transactions">A json array of json objects</param>
@@ -3510,10 +3454,7 @@
         </member>
         <member name="M:MCWrapper.RPC.Ledger.Clients.Raw.RawRpcClient.DecodeRawTransactionAsync(System.String,System.String,System.String)">
             <summary>
-            
-            <para>Return a JSON object representing the serialized, hex-encoded transaction.</para>
-            
-            
+            Return a JSON object representing the serialized, hex-encoded transaction.
             </summary>
             <param name="blockchainName">Name of target blockchain</param>
             <param name="id">String value to identify this transaction</param>
@@ -3524,7 +3465,7 @@
             <summary>
             
             <para>Return a JSON object representing the serialized, hex-encoded transaction.</para>
-            <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+            <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
             
             </summary>
             <param name="tx_hex">The transaction hex string</param>
@@ -3546,13 +3487,13 @@
             <summary>
             
             <para>Decode a hex-encoded script.</para>
-            <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+            <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
             
             </summary>
             <param name="script_hex">The hex encoded script</param>
             <returns></returns>
         </member>
-        <member name="M:MCWrapper.RPC.Ledger.Clients.Raw.RawRpcClient.GetRawTransactionAsync(System.String,System.String,System.String,System.Boolean)">
+        <member name="M:MCWrapper.RPC.Ledger.Clients.Raw.RawRpcClient.GetRawTransactionAsync(System.String,System.String,System.String,System.Object)">
              <summary>
              
              <para>
@@ -3564,22 +3505,22 @@
              </summary>
              <param name="blockchainName">Name of target blockchain</param>
              <param name="id">String value to identify this transaction</param>
-             <param name="txid">The transaction id</param>
-             <param name="verbose">If 0, return a string, other return a json object</param>
+             <param name="txid">(string, required) The transaction id</param>
+             <param name="verbose">(numeric or boolean, optional, default=0(false)) If 0, return a string, other return a json object</param>
              <returns></returns>
         </member>
-        <member name="M:MCWrapper.RPC.Ledger.Clients.Raw.RawRpcClient.GetRawTransactionAsync(System.String,System.Boolean)">
+        <member name="M:MCWrapper.RPC.Ledger.Clients.Raw.RawRpcClient.GetRawTransactionAsync(System.String,System.Object)">
              <summary>
              
              <para>
                  NOTE: By default this function only works sometimes. This is when the tx is in the mempool or there is an unspent 
                  output in the utxo for this transaction. To make it always work, you need to maintain a transaction index, using the -txindex command line option.
              </para>
-             <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+             <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
             
              </summary>
-             <param name="txid">The transaction id</param>
-             <param name="verbose">If 0, return a string, other return a json object</param>
+             <param name="txid">(string, required) The transaction id</param>
+             <param name="verbose">(numeric or boolean, optional, default=0(false)) If 0, return a string, other return a json object</param>
              <returns></returns>
         </member>
         <member name="M:MCWrapper.RPC.Ledger.Clients.Raw.RawRpcClient.SendRawTransactionAsync(System.String,System.String,System.String,System.Boolean)">
@@ -3601,7 +3542,7 @@
              
              <para>Submits raw transaction (serialized, hex-encoded) to local node and network.</para>
              <para>Also see createrawtransaction and signrawtransaction calls.</para>
-             <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+             <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
             
              </summary>
              <param name="tx_hex">The hex string of the raw transaction)</param>
@@ -3648,7 +3589,7 @@
             </para>
             
             <para>Requires wallet passphrase to be set with walletpassphrase call.</para>
-            <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+            <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
             
             </summary>
             <param name="tx_hex">The transaction hex string</param>
@@ -3659,18 +3600,14 @@
         </member>
         <member name="T:MCWrapper.RPC.Ledger.Clients.Utility.UtilityRpcClient">
             <summary>
-            
-            MutliChain methods implemented by the concrete UtilityRPCClient class:
+            MutliChain methods implemented:
             
             appendbinarycache, createbinarycache, createkeypairs, 
             createmultisig, deletebinarycache, estimatefee, estimatepriority,
             validateaddress, verifymessage
-            
-            <para>Inherits from an RPCClient and implements the IUtilityRPC contract</para>
-            
             </summary>
         </member>
-        <member name="M:MCWrapper.RPC.Ledger.Clients.Utility.UtilityRpcClient.#ctor(System.Net.Http.HttpClient,Microsoft.Extensions.Options.IOptions{MCWrapper.RPC.Options.BlockchainProfileOptions})">
+        <member name="M:MCWrapper.RPC.Ledger.Clients.Utility.UtilityRpcClient.#ctor(System.Net.Http.HttpClient,Microsoft.Extensions.Options.IOptions{MCWrapper.RPC.Options.BlockchainRpcOptions})">
             <summary>
             Create a new Utility RPC client
             </summary>
@@ -3694,7 +3631,7 @@
             <summary>
             
             <para>Appends data to binary cache.</para>
-            <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+            <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
             
             </summary>
             <param name="identifier">Binary cache item identifier</param>
@@ -3715,7 +3652,7 @@
             <summary>
             
             <para>Returns random string, which can be used as binary cache item identifier</para>
-            <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+            <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
             
             </summary>
             <returns></returns>
@@ -3736,7 +3673,7 @@
             <summary>
             
             <para>Creates public/private key pairs. These key pairs are not stored in the wallet.</para>
-            <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+            <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
             
             </summary>
             <param name="count">Number of key pairs to generate</param>
@@ -3761,7 +3698,7 @@
              
              <para>Creates a multi-signature address with n signature of m keys required.</para>
              <para>It returns a json object with the address and redeemScript.</para>
-             <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+             <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
             
              </summary>
              <param name="n_required">The number of required signatures out of the n keys or addresses</param>
@@ -3784,7 +3721,7 @@
              <summary>
              
              <para>Clear binary cache item</para>
-             <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+             <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
             
              </summary>
              <param name="identifier">Binary cache item identifier, "*" - to clear all items</param>
@@ -3806,7 +3743,7 @@
             <summary>
             
             <para>Estimates the approximate fee per kilobyte needed for a transaction to begin confirmation within nblocks blocks.</para>
-            <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+            <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
             
             </summary>
             <param name="n_blocks">Number of blocks to estimate fee for</param>
@@ -3830,7 +3767,7 @@
             
             <para>Estimates the approximate priority  a zero-fee transaction needs to begin confirmation within nblocks blocks.</para>
             <para>-1.0 is returned if not enough transactions and blocks have been observed to make an estimate.</para>
-            <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+            <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
             
             </summary>
             <param name="n_blocks">Number of blocks to estimate priority for</param>
@@ -3859,7 +3796,7 @@
             
             <para>Return information about the given address or public key or private key.</para>
             <para>Blockchain name is explicitly passed as parameter.</para>
-            <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+            <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
             
             </summary>
             <param name="address_pubkey_privkey">
@@ -3889,7 +3826,7 @@
             <summary>
             
             <para>Verify a signed message</para>
-            <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+            <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
             
             </summary>
             <param name="address">The address to use for the signature</param>
@@ -3933,7 +3870,7 @@
             
             </summary>
         </member>
-        <member name="M:MCWrapper.RPC.Ledger.Clients.Wallet.WalletRpcClient.#ctor(System.Net.Http.HttpClient,Microsoft.Extensions.Options.IOptions{MCWrapper.RPC.Options.BlockchainProfileOptions})">
+        <member name="M:MCWrapper.RPC.Ledger.Clients.Wallet.WalletRpcClient.#ctor(System.Net.Http.HttpClient,Microsoft.Extensions.Options.IOptions{MCWrapper.RPC.Options.BlockchainRpcOptions})">
             <summary>
             Create a new Wallet RPC client
             </summary>
@@ -5321,9 +5258,9 @@
             <param name="to_address">The address to send newly created asset to</param>
             <param name="asset_params"> (string, required) Asset name, if not "" should be unique or (object, required) A json object of with asset params</param>
             <param name="quantity">The asset total amount in display units. eg. 1234.56</param>
-            <param name="units">Number of raw units in one displayed unit, eg 0.01 for cents. Default value is 1</param>
+            <param name="smallest_unit">Number of raw units in one displayed unit, eg 0.01 for cents. Default value is 1</param>
             <param name="native_amount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
-            <param name="metadata">a json object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
+            <param name="custom_fields">a json object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
             <returns></returns>
         </member>
         <member name="M:MCWrapper.RPC.Ledger.Clients.Wallet.WalletRpcClient.IssueAsync(System.String,System.Object,System.Int32,System.Double,System.Decimal,System.Object)">
@@ -5336,9 +5273,9 @@
             <param name="to_address">The address to send newly created asset to</param>
             <param name="asset_params"> (string, required) Asset name, if not "" should be unique or (object, required) A json object of with asset params</param>
             <param name="quantity">The asset total amount in display units. eg. 1234.56</param>
-            <param name="units">Number of raw units in one displayed unit, eg 0.01 for cents. Default value is 1</param>
+            <param name="smallest_unit">Number of raw units in one displayed unit, eg 0.01 for cents. Default value is 1</param>
             <param name="native_amount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
-            <param name="metadata">a json object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
+            <param name="custom_fields">a json object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
             <returns></returns>
         </member>
         <member name="M:MCWrapper.RPC.Ledger.Clients.Wallet.WalletRpcClient.IssueFromAsync(System.String,System.String,System.String,System.String,System.Object,System.Int32,System.Double,System.Decimal,System.Object)">
@@ -5354,9 +5291,9 @@
              <param name="to_address">The address to send newly created asset to</param>
              <param name="asset_params"> (string, required) Asset name, if not "" should be unique or (object, required) A json object of with asset params</param>
              <param name="quantity">The asset total amount in display units. eg. 1234.56</param>
-             <param name="units">Number of raw units in one displayed unit, eg 0.01 for cents. Default value is 1</param>
+             <param name="smallest_unit">Number of raw units in one displayed unit, eg 0.01 for cents. Default value is 1</param>
              <param name="native_amount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
-             <param name="metadata">a json object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
+             <param name="custom_fields">a json object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
              <returns></returns>
         </member>
         <member name="M:MCWrapper.RPC.Ledger.Clients.Wallet.WalletRpcClient.IssueFromAsync(System.String,System.String,System.Object,System.Int32,System.Double,System.Decimal,System.Object)">
@@ -5370,9 +5307,9 @@
              <param name="to_address">The address to send newly created asset to</param>
              <param name="asset_params"> (string, required) Asset name, if not "" should be unique or (object, required) A json object of with asset params</param>
              <param name="quantity">The asset total amount in display units. eg. 1234.56</param>
-             <param name="units">Number of raw units in one displayed unit, eg 0.01 for cents. Default value is 1</param>
+             <param name="smallest_unit">Number of raw units in one displayed unit, eg 0.01 for cents. Default value is 1</param>
              <param name="native_amount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
-             <param name="metadata">a json object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
+             <param name="custom_fields">a json object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
              <returns></returns>
         </member>
         <member name="M:MCWrapper.RPC.Ledger.Clients.Wallet.WalletRpcClient.IssueMoreAsync(System.String,System.String,System.String,System.String,System.Int32,System.Decimal,System.Object)">
@@ -6019,7 +5956,7 @@
              <param name="verbose">If true, returns detailed array of inputs and outputs and raw hex of transactions</param>
              <returns></returns>
         </member>
-        <member name="M:MCWrapper.RPC.Ledger.Clients.Wallet.WalletRpcClient.LockUnspentAsync(System.String,System.String,System.Boolean,System.Object[])">
+        <member name="M:MCWrapper.RPC.Ledger.Clients.Wallet.WalletRpcClient.LockUnspentAsync(System.String,System.String,System.Boolean,MCWrapper.RPC.Ledger.Models.Wallet.CustomModels.Transaction[])">
             <summary>
             
             Updates list of temporarily unspendable outputs.
@@ -6033,10 +5970,10 @@
             <param name="blockchainName">Name of target blockchain</param>
             <param name="id">String value to identify this transaction</param>
             <param name="unlock">Whether to unlock (true) or lock (false) the specified transactions</param>
-            <param name="unspent">A json array of objects. Each object should have the the txid (string) vout (numeric)</param>
+            <param name="transactions">A json array of objects. Each object should have the the txid (string) vout (numeric)</param>
             <returns></returns>
         </member>
-        <member name="M:MCWrapper.RPC.Ledger.Clients.Wallet.WalletRpcClient.LockUnspentAsync(System.Boolean,System.Object[])">
+        <member name="M:MCWrapper.RPC.Ledger.Clients.Wallet.WalletRpcClient.LockUnspentAsync(System.Boolean,MCWrapper.RPC.Ledger.Models.Wallet.CustomModels.Transaction[])">
             <summary>
             
             Updates list of temporarily unspendable outputs.
@@ -6048,7 +5985,7 @@
             
             </summary>
             <param name="unlock">Whether to unlock (true) or lock (false) the specified transactions</param>
-            <param name="unspent">A json array of objects. Each object should have the the txid (string) vout (numeric)</param>
+            <param name="transactions">A json array of objects. Each object should have the the txid (string) vout (numeric)</param>
             <returns></returns>
         </member>
         <member name="M:MCWrapper.RPC.Ledger.Clients.Wallet.WalletRpcClient.MoveAsync(System.String,System.String,System.String,System.String,System.Object,System.Int32,System.String)">
@@ -7816,6 +7753,11 @@
             StreamFilterEntity is POCO representation of a Stream filter for MultiChain Core
             </summary>
         </member>
+        <member name="T:MCWrapper.RPC.Ledger.Entities.StreamFilterEntity.StreamFilterRestrictions">
+            <summary>
+            An easy to use object for passing stream filter permissions
+            </summary>
+        </member>
         <member name="P:MCWrapper.RPC.Ledger.Entities.StreamFilterEntity.Restrictions">
             <summary>
             StreamFilterRestrictions property
@@ -7837,25 +7779,20 @@
             </summary>
             <param name="name"></param>
         </member>
-        <member name="M:MCWrapper.RPC.Ledger.Entities.StreamFilterEntity.#ctor(System.String,MCWrapper.RPC.Ledger.Entities.StreamFilterRestrictions)">
+        <member name="M:MCWrapper.RPC.Ledger.Entities.StreamFilterEntity.#ctor(System.String,MCWrapper.RPC.Ledger.Entities.StreamFilterEntity.StreamFilterRestrictions)">
             <summary>
             Creaes a new StreamEntity instance with name and restrictions parameter
             </summary>
             <param name="name"></param>
             <param name="restrictions"></param>
         </member>
-        <member name="M:MCWrapper.RPC.Ledger.Entities.StreamFilterEntity.#ctor(System.String,MCWrapper.RPC.Ledger.Entities.StreamFilterRestrictions,System.String)">
+        <member name="M:MCWrapper.RPC.Ledger.Entities.StreamFilterEntity.#ctor(System.String,MCWrapper.RPC.Ledger.Entities.StreamFilterEntity.StreamFilterRestrictions,System.String)">
             <summary>
             Creaes a new StreamEntity instance with name and restrictions parameter
             </summary>
             <param name="name"></param>
             <param name="restrictions"></param>
             <param name="javaScriptCode"></param>
-        </member>
-        <member name="T:MCWrapper.RPC.Ledger.Entities.StreamFilterRestrictions">
-            <summary>
-            An easy to use object for passing stream filter permissions
-            </summary>
         </member>
         <member name="T:MCWrapper.RPC.Ledger.Entities.DataJson">
             <summary>
@@ -14146,10 +14083,10 @@
             
             </summary>
         </member>
-        <member name="T:MCWrapper.RPC.Options.BlockchainProfileOptions">
+        <member name="T:MCWrapper.RPC.Options.BlockchainRpcOptions">
             <summary>
-            BlockchainProfileOptions values are mostly required for proper blockchain interaction to occur
-            via the MCWrapper CLI and RPC clients.
+            BlockchainRpcOptions values are mostly required for proper blockchain interaction to occur
+            via the MCWrapper.RPC client.
             <para>
                 The MCWrapper RPC client requires the following BlockchainProfileOptions be assigned a valid value
                     ChainUseSsl;
@@ -14163,81 +14100,58 @@
                     ChainAdminAddress;
                     ChainHostname;
             </para>
-            
-            <para>
-                The MCWrapper CLI client requires the following BlockchainProfileOptions be assigned a valid value
-                    ChainName;
-                    ChainAdminAddress;
-                    ChainBinaryLocation
-                        (ChainBinaryLocation property will map MCWraper to the MultiChain Core binary files);
-                    ChainDefaultLocation
-                        (ChainDefaultLocation proerty will map MCWrapper to a directly where the target
-                         blockchain hot node resides);
-                    ChainDefaultColdNodeLocation;
-                        (ChainDefaultColdNodeLocation proerty will map MCWrapper to a directly where the target
-                         blockchain cold node resides);
-            </para>
             </summary>
         </member>
-        <member name="M:MCWrapper.RPC.Options.BlockchainProfileOptions.#ctor">
+        <member name="M:MCWrapper.RPC.Options.BlockchainRpcOptions.#ctor">
             <summary>
-            Create a new BlockchainProfileOptions object
+            Create a new BlockchainRpcOptions object
             No arguments
             </summary>
         </member>
-        <member name="P:MCWrapper.RPC.Options.BlockchainProfileOptions.ChainName">
+        <member name="P:MCWrapper.RPC.Options.BlockchainRpcOptions.ChainName">
             <summary>
             Multichain blockchain name as declared in the params.dat file;
             
             <para>
-                ChainName value is required for RPC and CLI clients to 
+                ChainName value is required for the RPC client to 
                 function as expected when using methods that infer
                 the blockchain name value;
             </para>
             
             <para>
                 When using methods that support using the blockchain
-                name explicitly with the RPC and CLI clients,the 
+                name explicitly with the RPC client,the 
                 ChainName value is not necessary or required.
             </para>
             
             </summary>
         </member>
-        <member name="P:MCWrapper.RPC.Options.BlockchainProfileOptions.ChainRpcPort">
+        <member name="P:MCWrapper.RPC.Options.BlockchainRpcOptions.ChainRpcPort">
             <summary>
             RPC port number as declared in the params.dat file or as override value in multichain.conf
             <para>
                 ChainRpcPort number is required for the RPC client to function as expected;
             </para>
-            <para>
-                ChainRpcPort number is not required for the CLI client to function as expected;
-            </para>
             </summary>
         </member>
-        <member name="P:MCWrapper.RPC.Options.BlockchainProfileOptions.ChainAdminAddress">
+        <member name="P:MCWrapper.RPC.Options.BlockchainRpcOptions.ChainAdminAddress">
             <summary>
             Your blockchain node administror's public key. In v2 we are only supporting a 
             single node administrator per application instance.
             <para>
                 ChainAdminAddress is required for the RPC client to function as expected;
             </para>
-            <para>
-                ChainAdminAddress is required for the CLI client to function as expected;
-            </para>
             </summary>
         </member>
-        <member name="P:MCWrapper.RPC.Options.BlockchainProfileOptions.ChainHostname">
+        <member name="P:MCWrapper.RPC.Options.BlockchainRpcOptions.ChainHostname">
             <summary>
             IPv4 or FQDN of where the MultiChain network is hosted and/or accessible
             <para>
                 ChainHostname is required for the RPC client to function as expected;
             </para>
-            <para>
-                ChainHostname is not required for the CLI client to function as expected;
-            </para>
             </summary>
         </member>
-        <member name="P:MCWrapper.RPC.Options.BlockchainProfileOptions.ChainBurnAddress">
+        <member name="P:MCWrapper.RPC.Options.BlockchainRpcOptions.ChainBurnAddress">
             <summary>
             Blockchain address used for 'burning' Assets/Streams. 
             This is not a required property, however, it is nice to have the value available
@@ -14245,87 +14159,25 @@
             <para>
                 ChainBurnAddress is not required for the RPC client to function as expected;
             </para>
-            <para>
-                ChainBurnAddress is not required for the CLI client to function as expected;
-            </para>
             </summary>
         </member>
-        <member name="P:MCWrapper.RPC.Options.BlockchainProfileOptions.ChainUsername">
+        <member name="P:MCWrapper.RPC.Options.BlockchainRpcOptions.ChainUsername">
             <summary>
             RPCJSON username for target blockchain
              <para>
                 ChainUsername is required for the RPC client to function as expected;
             </para>
-            <para>
-                ChainUsername is not required for the CLI client to function as expected;
-            </para>
-            <para>
-                Which is sort of the whole point of the CLI client, not passing blockchain
-                credentials over the network or needing to store them with your server
-                configuration or environment variables;
-            </para>
             </summary>
         </member>
-        <member name="P:MCWrapper.RPC.Options.BlockchainProfileOptions.ChainPassword">
+        <member name="P:MCWrapper.RPC.Options.BlockchainRpcOptions.ChainPassword">
             <summary>
             RPCJSON password for target blockchain
             <para>
                 ChainPassword is required for the RPC client to function as expected;
             </para>
-            <para>
-                ChainPassword is not required for the CLI client to function as expected;
-            </para>
-            <para>
-                Which is sort of the whole point of the CLI client, not passing blockchain
-                credentials over the network or needing to store them with your server
-                configuration or environment variables;
-            </para>
             </summary>
         </member>
-        <member name="P:MCWrapper.RPC.Options.BlockchainProfileOptions.ChainBinaryLocation">
-            <summary>
-            Local directory to find the Multichain library files (multichaind.exe, multichain-util.exe, and multichain-cli.exe, etc..)
-            <para>
-                ChainBinaryLocation is not required for the RPC client to function as expected;
-            </para>
-            <para>
-                ChainBinaryLocation is required for the CLI and Forge clients to function as expected;
-            </para>
-            </summary>
-        </member>
-        <member name="P:MCWrapper.RPC.Options.BlockchainProfileOptions.ChainDefaultLocation">
-            <summary>
-            Default directory that blockchains are found
-            <para>
-                ChainDefaultLocation is not required for the RPC client to function as expected;
-            </para>
-            <para>
-                ChainDefaultLocation is required for the CLI and Forge clients to function as expected;
-            </para>
-            <para>
-                Generally, this location in Windows is %AppData%\MultiChain, the full path is 
-                C:\Users\{Current User}\AppData\Roaming\MultiChain
-            </para>
-            <para>Generally, this location in Linux is ~/.multichain</para>
-            </summary>
-        </member>
-        <member name="P:MCWrapper.RPC.Options.BlockchainProfileOptions.ChainDefaultColdNodeLocation">
-            <summary>
-            Default  directory that cold nodes are found
-            <para>
-                ChainDefaultColdNodeLocation is not required for the RPC client to function as expected;
-            </para>
-            <para>
-                ChainDefaultColdNodeLocation is required for the CLI and Forge clients to function as expected;
-            </para>
-            <para>
-                Generally, this location in Windows is %AppData%\MultiChainCold, the full path is 
-                C:\Users\{Current User}\AppData\Roaming\MultiChainCold
-            </para>
-            <para>Generally, this location in Linux is ~/.multichain-cold</para>
-            </summary>
-        </member>
-        <member name="P:MCWrapper.RPC.Options.BlockchainProfileOptions.ChainUseSsl">
+        <member name="P:MCWrapper.RPC.Options.BlockchainRpcOptions.ChainUseSsl">
             <summary>
             SSL Flag
             <para>
@@ -14339,12 +14191,9 @@
                 you pass the -rpcssl flag and properly configure your multichain.conf file
                 properly to support HTTPS connection.
             </para>
-            <para>
-                ChainUseSsl is not required for the CLI client to function as expected;
-            </para>
             </summary>
         </member>
-        <member name="P:MCWrapper.RPC.Options.BlockchainProfileOptions.ChainSslPath">
+        <member name="P:MCWrapper.RPC.Options.BlockchainRpcOptions.ChainSslPath">
             <summary>
             Local or remote file path to a copy of the same SSL certificate that is securing
             the current node the application is interacting with.
@@ -14357,9 +14206,6 @@
                 you pass the -rpcssl flag and properly configure your multichain.conf file
                 properly to support HTTPS connections.
             </para>
-            <para>
-                ChainSslPath is not required for the CLI client to function as expected;
-            </para>
             </summary>
         </member>
         <member name="T:MCWrapper.RPC.Options.RuntimeParamOptions">
@@ -14367,11 +14213,11 @@
             RuntimeParamOption values can be used to initiate a blockchain on startup
             MCWrapper doesn't provide the logic for doing so at this time, users wishing
             to initialize their runtime params via the RuntimeParamOptions pipeline will
-            be required to do so via the MCWrapper CLI or RPC client methods associated
+            be required to do so via the MCWrapper.RPC client methods associated
             with this task (i.e. setruntimeparam blockchain method via either client)
             
             <para>
-                Neither the MCWrapper RPC nor the CLI client require RuntimeParamOptions to function normally.
+                MCWrapper.RPC does not client require RuntimeParamOptions to function normally.
                 RuntimeParamOptions are purely optional at this time.
             </para>
             </summary>

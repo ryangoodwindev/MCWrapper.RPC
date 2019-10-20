@@ -176,9 +176,6 @@ namespace MCWrapper.RPC.Extensions
                 config.ChainUsername = profile.ChainUsername;
                 config.ChainBurnAddress = profile.ChainBurnAddress;
                 config.ChainAdminAddress = profile.ChainAdminAddress;
-                config.ChainBinaryLocation = profile.ChainBinaryLocation;
-                config.ChainDefaultLocation = profile.ChainDefaultLocation;
-                config.ChainDefaultColdNodeLocation = profile.ChainDefaultColdNodeLocation;
             });
 
             // configure RuntimeParamOptions
