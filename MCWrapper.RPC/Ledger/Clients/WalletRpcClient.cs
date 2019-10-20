@@ -89,7 +89,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <param name="keys">A json array of addresses or hex-encoded public keys</param>
         /// <param name="account">An account to assign the addresses to. Accounts are not supported with the current version of MultiChain Core.</param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> AddMultiSigAddressAsync(int n_required, string[] keys, [Optional] string account) => 
+        public Task<RpcResponse<object>> AddMultiSigAddressAsync(int n_required, string[] keys, [Optional] string account) =>
             AddMultiSigAddressAsync(BlockchainOptions.ChainName, UUID.NoHyphens, n_required, keys, account);
 
 
@@ -110,7 +110,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         ///     <para>{ "asset-identifier" : asset-quantity, ...  }</para>
         /// </param>
         /// <returns></returns>
-        public Task<RpcResponse<AppendRawExchangeResult>> AppendRawExchangeAsync(string blockchainName, string id, string hex, string txid, int vout, object ask_assets) => 
+        public Task<RpcResponse<AppendRawExchangeResult>> AppendRawExchangeAsync(string blockchainName, string id, string hex, string txid, int vout, object ask_assets) =>
             TransactAsync<RpcResponse<AppendRawExchangeResult>>(blockchainName, WalletAction.AppendRawExchangeMethod, id, hex, txid, vout, ask_assets);
 
         /// <summary>
@@ -128,7 +128,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         ///     <para>{ "asset-identifier" : asset-quantity, ...  }</para>
         /// </param>
         /// <returns></returns>
-        public Task<RpcResponse<AppendRawExchangeResult>> AppendRawExchangeAsync(string hex, string txid, int vout, object ask_assets) => 
+        public Task<RpcResponse<AppendRawExchangeResult>> AppendRawExchangeAsync(string hex, string txid, int vout, object ask_assets) =>
             AppendRawExchangeAsync(BlockchainOptions.ChainName, UUID.NoHyphens, hex, txid, vout, ask_assets);
 
 
@@ -155,7 +155,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         ///     <para>{ "approve" : approve  (boolean, required) Approve or disapprove "for" : "stream-identifier"   (string, required)  Stream identifier - one of: create txid, stream reference, stream name. }</para>
         /// </param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> ApproveFromAsync(string blockchainName, string id, string fromAddress, string entityIdentifier, object approve) => 
+        public Task<RpcResponse<object>> ApproveFromAsync(string blockchainName, string id, string fromAddress, string entityIdentifier, object approve) =>
             TransactAsync<RpcResponse<object>>(blockchainName, WalletAction.ApproveFromMethod, id, fromAddress, entityIdentifier, approve);
 
         /// <summary>
@@ -179,7 +179,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         ///     <para>{ "approve" : approve  (boolean, required) Approve or disapprove "for" : "stream-identifier"   (string, required)  Stream identifier - one of: create txid, stream reference, stream name. }</para>
         /// </param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> ApproveFromAsync(string fromAddress, string entityIdentifier, object approve) => 
+        public Task<RpcResponse<object>> ApproveFromAsync(string fromAddress, string entityIdentifier, object approve) =>
             ApproveFromAsync(BlockchainOptions.ChainName, UUID.NoHyphens, fromAddress, entityIdentifier, approve);
 
 
@@ -192,7 +192,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <param name="blockchainName">Name of target blockchain</param>
         /// <param name="id">String value to identify this transaction</param>
         /// <param name="destination">The destination directory or file</param>
-        public Task<RpcResponse<object>> BackupWalletAsync(string blockchainName, string id, string destination) => 
+        public Task<RpcResponse<object>> BackupWalletAsync(string blockchainName, string id, string destination) =>
             TransactAsync<RpcResponse<object>>(blockchainName, WalletAction.BackupWalletMethod, id, destination);
 
         /// <summary>
@@ -203,7 +203,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// </summary>
         /// <param name="destination">The destination directory or file</param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> BackupWalletAsync(string destination) => 
+        public Task<RpcResponse<object>> BackupWalletAsync(string destination) =>
             BackupWalletAsync(BlockchainOptions.ChainName, UUID.NoHyphens, destination);
 
 
@@ -225,7 +225,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <returns></returns>
         public Task<RpcResponse<object>> CombineUnspentAsync(string blockchainName, string id, [Optional] string addresses,
                                                                    [Optional] int min_conf, [Optional] int max_combines, [Optional] int min_inputs,
-                                                                   [Optional] int max_inputs, [Optional] int max_time) => 
+                                                                   [Optional] int max_inputs, [Optional] int max_time) =>
             TransactAsync<RpcResponse<object>>(blockchainName, WalletAction.CombineUnspentMethod, id, addresses, min_conf, max_combines, min_inputs, max_inputs, max_time);
 
         /// <summary>
@@ -244,7 +244,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <returns></returns>
         public Task<RpcResponse<object>> CombineUnspentAsync([Optional] string addresses,
                                                              [Optional] int min_conf, [Optional] int max_combines, [Optional] int min_inputs,
-                                                             [Optional] int max_inputs, [Optional] int max_time) => 
+                                                             [Optional] int max_inputs, [Optional] int max_time) =>
             CombineUnspentAsync(BlockchainOptions.ChainName, UUID.NoHyphens, addresses, min_conf, max_combines, min_inputs, max_inputs, max_time);
 
 
@@ -264,7 +264,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <param name="ask_assets">A json object of assets to ask; { "asset-identifier" : asset-quantity, ... }</param>
         /// <param name="data">Data, see help data-with for details</param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> CompleteRawExchangeAsync(string blockchainName, string id, string hex, string txid, int vout, object ask_assets, [Optional] object data) => 
+        public Task<RpcResponse<object>> CompleteRawExchangeAsync(string blockchainName, string id, string hex, string txid, int vout, object ask_assets, [Optional] object data) =>
             TransactAsync<RpcResponse<object>>(blockchainName, WalletAction.CompleteRawExchangeMethod, id, hex, txid, vout, ask_assets, data);
 
         /// <summary>
@@ -281,7 +281,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <param name="ask_assets">A json object of assets to ask; { "asset-identifier" : asset-quantity, ... }</param>
         /// <param name="data">Data, see help data-with for details</param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> CompleteRawExchangeAsync(string hex, string txid, int vout, object ask_assets, [Optional] object data) => 
+        public Task<RpcResponse<object>> CompleteRawExchangeAsync(string hex, string txid, int vout, object ask_assets, [Optional] object data) =>
             CompleteRawExchangeAsync(BlockchainOptions.ChainName, UUID.NoHyphens, hex, txid, vout, ask_assets, data);
 
 
@@ -298,7 +298,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <param name="restrictions_or_open">A json object with optional stream, upgrade, or filter restrictions</param>
         /// <param name="custom_fields">Custom fields objects or JavaScript code string</param>
         /// <returns></returns>
-        public Task<RpcResponse<string>> CreateAsync(string blockchainName, string id, string entity_type, string entity_name, object restrictions_or_open, object custom_fields) => 
+        public Task<RpcResponse<string>> CreateAsync(string blockchainName, string id, string entity_type, string entity_name, object restrictions_or_open, object custom_fields) =>
             TransactAsync<RpcResponse<string>>(blockchainName, WalletAction.CreateMethod, id, entity_type, entity_name, restrictions_or_open, custom_fields);
 
         /// <summary>
@@ -312,7 +312,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <param name="restrictions_or_open">A json object with optional stream, upgrade, or filter restrictions</param>
         /// <param name="custom_fields">Custom fields objects or JavaScript code string</param>
         /// <returns></returns>
-        public Task<RpcResponse<string>> CreateAsync(string entity_type, string entity_name, object restrictions_or_open, object custom_fields) => 
+        public Task<RpcResponse<string>> CreateAsync(string entity_type, string entity_name, object restrictions_or_open, object custom_fields) =>
             CreateAsync(BlockchainOptions.ChainName, UUID.NoHyphens, entity_type, entity_name, restrictions_or_open, custom_fields);
 
 
@@ -331,7 +331,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <param name="restrictions_or_open">A json object with optional stream, upgrade, or filter restrictions</param>
         /// <param name="custom_fields">Custom fields objects or JavaScript code string</param>
         /// <returns></returns>
-        public Task<RpcResponse<string>> CreateFromAsync(string blockchainName, string id, string from_address, string entity_type, string entity_name, object restrictions_or_open, object custom_fields) => 
+        public Task<RpcResponse<string>> CreateFromAsync(string blockchainName, string id, string from_address, string entity_type, string entity_name, object restrictions_or_open, object custom_fields) =>
             TransactAsync<RpcResponse<string>>(blockchainName, WalletAction.CreateFromMethod, id, from_address, entity_type, entity_name, restrictions_or_open, custom_fields);
 
         /// <summary>
@@ -347,7 +347,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <param name="restrictions_or_open">A json object with optional stream, upgrade, or filter restrictions</param>
         /// <param name="custom_fields">Custom fields objects or JavaScript code string</param>
         /// <returns></returns>
-        public Task<RpcResponse<string>> CreateFromAsync(string from_address, string entity_type, string entity_name, object restrictions_or_open, object custom_fields) => 
+        public Task<RpcResponse<string>> CreateFromAsync(string from_address, string entity_type, string entity_name, object restrictions_or_open, object custom_fields) =>
             CreateFromAsync(BlockchainOptions.ChainName, UUID.NoHyphens, from_address, entity_type, entity_name, restrictions_or_open, custom_fields);
 
 
@@ -365,7 +365,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <param name="vout">Output index</param>
         /// <param name="ask_assets">A json object of assets to ask</param>
         /// <returns></returns>
-        public Task<RpcResponse<string>> CreateRawExchangeAsync(string blockchainName, string id, string txid, int vout, object ask_assets) => 
+        public Task<RpcResponse<string>> CreateRawExchangeAsync(string blockchainName, string id, string txid, int vout, object ask_assets) =>
             TransactAsync<RpcResponse<string>>(blockchainName, WalletAction.CreateRawExchangeMethod, id, txid, vout, ask_assets);
 
         /// <summary>
@@ -380,7 +380,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <param name="vout">Output index</param>
         /// <param name="ask_assets">A json object of assets to ask</param>
         /// <returns></returns>
-        public Task<RpcResponse<string>> CreateRawExchangeAsync(string txid, int vout, object ask_assets) => 
+        public Task<RpcResponse<string>> CreateRawExchangeAsync(string txid, int vout, object ask_assets) =>
             CreateRawExchangeAsync(BlockchainOptions.ChainName, UUID.NoHyphens, txid, vout, ask_assets);
 
 
@@ -397,7 +397,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <param name="data">Array of hexadecimal strings or data objects, see help data-all for details</param>
         /// <param name="action">Default is "". Additional actions: "lock", "sign", "lock,sign", "sign,lock", "send"</param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> CreateRawSendFromAsync(string blockchainName, string id, string from_address, object addresses, [Optional] object[] data, [Optional] string action) => 
+        public Task<RpcResponse<object>> CreateRawSendFromAsync(string blockchainName, string id, string from_address, object addresses, [Optional] object[] data, [Optional] string action) =>
             TransactAsync<RpcResponse<object>>(blockchainName, WalletAction.CreateRawSendFromMethod, id, from_address, addresses, data, action);
 
         /// <summary>
@@ -411,7 +411,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <param name="data">Array of hexadecimal strings or data objects, see help data-all for details</param>
         /// <param name="action">Default is "". Additional actions: "lock", "sign", "lock,sign", "sign,lock", "send"</param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> CreateRawSendFromAsync(string from_address, object addresses, [Optional] object[] data, [Optional] string action) => 
+        public Task<RpcResponse<object>> CreateRawSendFromAsync(string from_address, object addresses, [Optional] object[] data, [Optional] string action) =>
             CreateRawSendFromAsync(BlockchainOptions.ChainName, UUID.NoHyphens, from_address, addresses, data, action);
 
 
@@ -426,7 +426,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <param name="tx_hex">The exchange transaction hex string</param>
         /// <param name="verbose">If true, returns array of all exchanges created by createrawexchange or appendrawexchange</param>
         /// <returns></returns>
-        public Task<RpcResponse<DecodeRawExchangeResult>> DecodeRawExchangeAsync(string blockchainName, string id, string tx_hex, bool verbose = false) => 
+        public Task<RpcResponse<DecodeRawExchangeResult>> DecodeRawExchangeAsync(string blockchainName, string id, string tx_hex, bool verbose = false) =>
             TransactAsync<RpcResponse<DecodeRawExchangeResult>>(blockchainName, WalletAction.DecodeRawExchangeMethod, id, tx_hex, verbose);
 
         /// <summary>
@@ -438,7 +438,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <param name="tx_hex">The exchange transaction hex string</param>
         /// <param name="verbose">If true, returns array of all exchanges created by createrawexchange or appendrawexchange</param>
         /// <returns></returns>
-        public Task<RpcResponse<DecodeRawExchangeResult>> DecodeRawExchangeAsync(string tx_hex, bool verbose = false) => 
+        public Task<RpcResponse<DecodeRawExchangeResult>> DecodeRawExchangeAsync(string tx_hex, bool verbose = false) =>
             DecodeRawExchangeAsync(BlockchainOptions.ChainName, UUID.NoHyphens, tx_hex, verbose);
 
 
@@ -463,7 +463,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// </summary>
         /// <param name="tx_hex">The transaction hex string</param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> DisableRawTransactionAsync(string tx_hex) => 
+        public Task<RpcResponse<object>> DisableRawTransactionAsync(string tx_hex) =>
             DisableRawTransactionAsync(BlockchainOptions.ChainName, UUID.NoHyphens, tx_hex);
 
 
@@ -478,7 +478,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <param name="id">String value to identify this transaction</param>
         /// <param name="address">The MultiChain address for the private key</param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> DumpPrivKeyAsync(string blockchainName, string id, string address) => 
+        public Task<RpcResponse<object>> DumpPrivKeyAsync(string blockchainName, string id, string address) =>
             TransactAsync<RpcResponse<object>>(blockchainName, WalletAction.DumpPrivKeyMethod, id, address);
 
         /// <summary>
@@ -490,7 +490,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// </summary>
         /// <param name="address">The MultiChain address for the private key</param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> DumpPrivKeyAsync(string address) => 
+        public Task<RpcResponse<object>> DumpPrivKeyAsync(string address) =>
             DumpPrivKeyAsync(BlockchainOptions.ChainName, UUID.NoHyphens, address);
 
 
@@ -504,7 +504,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <param name="id">String value to identify this transaction</param>
         /// <param name="filename">The filename</param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> DumpWalletAsync(string blockchainName, string id, string filename) => 
+        public Task<RpcResponse<object>> DumpWalletAsync(string blockchainName, string id, string filename) =>
             TransactAsync<RpcResponse<object>>(blockchainName, WalletAction.DumpWalletMethod, id, filename);
 
         /// <summary>
@@ -515,7 +515,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// </summary>
         /// <param name="filename">The filename</param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> DumpWalletAsync(string filename) => 
+        public Task<RpcResponse<object>> DumpWalletAsync(string filename) =>
             DumpWalletAsync(BlockchainOptions.ChainName, UUID.NoHyphens, filename);
 
 
@@ -535,7 +535,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <param name="id">String value to identify this transaction</param>
         /// <param name="passphrase">The pass phrase to encrypt the wallet with. It must be at least 1 character, but should be long</param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> EncryptWalletAsync(string blockchainName, string id, string passphrase) => 
+        public Task<RpcResponse<object>> EncryptWalletAsync(string blockchainName, string id, string passphrase) =>
             TransactAsync<RpcResponse<object>>(blockchainName, WalletAction.EncryptWalletMethod, id, passphrase);
 
         /// <summary>
@@ -552,7 +552,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// </summary>
         /// <param name="passphrase">The pass phrase to encrypt the wallet with. It must be at least 1 character, but should be long</param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> EncryptWalletAsync(string passphrase) => 
+        public Task<RpcResponse<object>> EncryptWalletAsync(string passphrase) =>
             EncryptWalletAsync(BlockchainOptions.ChainName, UUID.NoHyphens, passphrase);
 
 
@@ -566,7 +566,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <param name="id">String value to identify this transaction</param>
         /// <param name="address">The address for account lookup</param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> GetAccountAsync(string blockchainName, string id, string address) => 
+        public Task<RpcResponse<object>> GetAccountAsync(string blockchainName, string id, string address) =>
             TransactAsync<RpcResponse<object>>(blockchainName, WalletAction.GetAccountMethod, id, address);
 
         /// <summary>
@@ -577,7 +577,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// </summary>
         /// <param name="address">The address for account lookup</param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> GetAccountAsync(string address) => 
+        public Task<RpcResponse<object>> GetAccountAsync(string address) =>
             GetAccountAsync(BlockchainOptions.ChainName, UUID.NoHyphens, address);
 
 
@@ -602,7 +602,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// </summary>
         /// <param name="account">The account name for the address. It can also be set to the empty string "" to represent the default account. The account does not need to exist, it will be created and a new address created if there is no account by the given name.</param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> GetAccountAddressAsync(string account = "") => 
+        public Task<RpcResponse<object>> GetAccountAddressAsync(string account = "") =>
             GetAccountAddressAsync(BlockchainOptions.ChainName, UUID.NoHyphens, account);
 
 
@@ -631,7 +631,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <param name="min_conf">Only include transactions confirmed at least this many times</param>
         /// <param name="include_locked">Also take locked outputs into account</param>
         /// <returns></returns>
-        public Task<RpcResponse<GetAddressBalancesResult[]>> GetAddressBalancesAsync(string address, int min_conf = 1, bool include_locked = false) => 
+        public Task<RpcResponse<GetAddressBalancesResult[]>> GetAddressBalancesAsync(string address, int min_conf = 1, bool include_locked = false) =>
             GetAddressBalancesAsync(BlockchainOptions.ChainName, UUID.NoHyphens, address, min_conf, include_locked);
 
 
@@ -645,7 +645,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <param name="id">String value to identify this transaction</param>
         /// <param name="verbose">The account name</param>
         /// <returns></returns>
-        public Task<RpcResponse<GetAddressesResult[]>> GetAddressesAsync(string blockchainName, string id, bool verbose = false) => 
+        public Task<RpcResponse<GetAddressesResult[]>> GetAddressesAsync(string blockchainName, string id, bool verbose = false) =>
             TransactAsync<RpcResponse<GetAddressesResult[]>>(blockchainName, WalletAction.GetAddressesMethod, id, verbose);
 
         /// <summary>
@@ -656,7 +656,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// </summary>
         /// <param name="verbose">The account name</param>
         /// <returns></returns>
-        public Task<RpcResponse<GetAddressesResult[]>> GetAddressesAsync(bool verbose = false) => 
+        public Task<RpcResponse<GetAddressesResult[]>> GetAddressesAsync(bool verbose = false) =>
             GetAddressesAsync(BlockchainOptions.ChainName, UUID.NoHyphens, verbose);
 
 
@@ -681,7 +681,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// </summary>
         /// <param name="account">The account name</param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> GetAddressesByAccountAsync(string account) => 
+        public Task<RpcResponse<object>> GetAddressesByAccountAsync(string account) =>
             GetAddressesByAccountAsync(BlockchainOptions.ChainName, UUID.NoHyphens, account);
 
 
@@ -697,7 +697,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <param name="txid">The transaction id</param>
         /// <param name="verbose">If true, returns detailed array of inputs and outputs and raw hex of transactions</param>
         /// <returns></returns>
-        public Task<RpcResponse<GetAddressTransactionResult>> GetAddressTransactionAsync(string blockchainName, string id, string address, string txid, bool verbose = false) => 
+        public Task<RpcResponse<GetAddressTransactionResult>> GetAddressTransactionAsync(string blockchainName, string id, string address, string txid, bool verbose = false) =>
             TransactAsync<RpcResponse<GetAddressTransactionResult>>(blockchainName, WalletAction.GetAddressTransactionMethod, id, address, txid, verbose);
 
         /// <summary>
@@ -710,7 +710,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <param name="txid">The transaction id</param>
         /// <param name="verbose">If true, returns detailed array of inputs and outputs and raw hex of transactions</param>
         /// <returns></returns>
-        public Task<RpcResponse<GetAddressTransactionResult>> GetAddressTransactionAsync(string address, string txid, bool verbose = false) => 
+        public Task<RpcResponse<GetAddressTransactionResult>> GetAddressTransactionAsync(string address, string txid, bool verbose = false) =>
             GetAddressTransactionAsync(BlockchainOptions.ChainName, UUID.NoHyphens, address, txid, verbose);
 
 
@@ -730,7 +730,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <param name="include_watch_only">Also include balance in watchonly addresses (see 'importaddress')</param>
         /// <param name="include_locked">Also take locked outputs into account</param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> GetAssetBalancesAsync(string blockchainName, string id, [Optional] string account, [Optional] int min_conf, [Optional] bool include_watch_only, [Optional] bool include_locked) => 
+        public Task<RpcResponse<object>> GetAssetBalancesAsync(string blockchainName, string id, [Optional] string account, [Optional] int min_conf, [Optional] bool include_watch_only, [Optional] bool include_locked) =>
             TransactAsync<RpcResponse<object>>(blockchainName, WalletAction.GetAssetBalancesMethod, id, account, min_conf, include_watch_only, include_locked);
 
         /// <summary>
@@ -747,7 +747,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <param name="include_watch_only">Also include balance in watchonly addresses (see 'importaddress')</param>
         /// <param name="include_locked">Also take locked outputs into account</param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> GetAssetBalancesAsync([Optional] string account, [Optional] int min_conf, [Optional] bool include_watch_only, [Optional] bool include_locked) => 
+        public Task<RpcResponse<object>> GetAssetBalancesAsync([Optional] string account, [Optional] int min_conf, [Optional] bool include_watch_only, [Optional] bool include_locked) =>
             GetAssetBalancesAsync(BlockchainOptions.ChainName, UUID.NoHyphens, account, min_conf, include_watch_only, include_locked);
 
 
@@ -763,7 +763,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <param name="txid">The transaction id</param>
         /// <param name="verbose">If true, returns information about item transaction</param>
         /// <returns></returns>
-        public Task<RpcResponse<GetAssetTransactionResult>> GetAssetTransactionAsync(string blockchainName, string id, string asset_identifier, string txid, bool verbose = false) => 
+        public Task<RpcResponse<GetAssetTransactionResult>> GetAssetTransactionAsync(string blockchainName, string id, string asset_identifier, string txid, bool verbose = false) =>
             TransactAsync<RpcResponse<GetAssetTransactionResult>>(blockchainName, WalletAction.GetAssetTransactionMethod, id, asset_identifier, txid, verbose);
 
         /// <summary>
@@ -776,7 +776,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <param name="txid">The transaction id</param>
         /// <param name="verbose">If true, returns information about item transaction</param>
         /// <returns></returns>
-        public Task<RpcResponse<GetAssetTransactionResult>> GetAssetTransactionAsync(string asset_identifier, string txid, bool verbose = false) => 
+        public Task<RpcResponse<GetAssetTransactionResult>> GetAssetTransactionAsync(string asset_identifier, string txid, bool verbose = false) =>
             GetAssetTransactionAsync(BlockchainOptions.ChainName, UUID.NoHyphens, asset_identifier, txid, verbose);
 
 
@@ -795,7 +795,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <param name="min_conf">Only include transactions confirmed at least this many times</param>
         /// <param name="include_watch_only">Also include balance in watchonly addresses (see 'importaddress')</param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> GetBalanceAsync(string blockchainName, string id, [Optional] string account, [Optional] int min_conf, [Optional] bool include_watch_only) => 
+        public Task<RpcResponse<object>> GetBalanceAsync(string blockchainName, string id, [Optional] string account, [Optional] int min_conf, [Optional] bool include_watch_only) =>
             TransactAsync<RpcResponse<object>>(blockchainName, WalletAction.GetBalanceMethod, id, account, min_conf, include_watch_only);
 
         /// <summary>
@@ -811,7 +811,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <param name="min_conf">Only include transactions confirmed at least this many times</param>
         /// <param name="include_watch_only">Also include balance in watchonly addresses (see 'importaddress')</param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> GetBalanceAsync([Optional] string account, [Optional] int min_conf, [Optional] bool include_watch_only) => 
+        public Task<RpcResponse<object>> GetBalanceAsync([Optional] string account, [Optional] int min_conf, [Optional] bool include_watch_only) =>
             GetBalanceAsync(BlockchainOptions.ChainName, UUID.NoHyphens, account, min_conf, include_watch_only);
 
 
@@ -844,7 +844,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <param name="include_locked">Include transactions to watchonly addresses (see 'importaddress')</param>
         /// <param name="include_watch_only">Also take locked outputs into account</param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> GetMultiBalancesAsync([Optional] object addresses, [Optional] object assets, [Optional] int min_conf, [Optional] bool include_locked, [Optional] bool include_watch_only) => 
+        public Task<RpcResponse<object>> GetMultiBalancesAsync([Optional] object addresses, [Optional] object assets, [Optional] int min_conf, [Optional] bool include_locked, [Optional] bool include_watch_only) =>
             GetMultiBalancesAsync(BlockchainOptions.ChainName, UUID.NoHyphens, addresses, assets, min_conf, include_locked, include_watch_only);
 
 
@@ -876,7 +876,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// </summary>
         /// <param name="account">The account name for the address to be linked to. If not provided, the default account "" is used. It can also be set to the empty string "" to represent the default account. The account does not need to exist, it will be created if there is no account by the given name.</param>
         /// <returns></returns>
-        public Task<RpcResponse<string>> GetNewAddressAsync([Optional]string account) => 
+        public Task<RpcResponse<string>> GetNewAddressAsync([Optional]string account) =>
             GetNewAddressAsync(BlockchainOptions.ChainName, UUID.NoHyphens, account);
 
 
@@ -890,7 +890,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <param name="blockchainName">Name of target blockchain</param>
         /// <param name="id">String value to identify this transaction</param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> GetRawChangeAddressAsync(string blockchainName, string id) => 
+        public Task<RpcResponse<object>> GetRawChangeAddressAsync(string blockchainName, string id) =>
             TransactAsync<RpcResponse<object>>(blockchainName, WalletAction.GetRawChangeAddressMethod, id);
 
         /// <summary>
@@ -916,7 +916,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <param name="account">The selected account, may be the default account using ""</param>
         /// <param name="min_conf">Only include transactions confirmed at least this many times</param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> GetReceivedByAccountAsync(string blockchainName, string id, string account, int min_conf = 1) => 
+        public Task<RpcResponse<object>> GetReceivedByAccountAsync(string blockchainName, string id, string account, int min_conf = 1) =>
             TransactAsync<RpcResponse<object>>(blockchainName, WalletAction.GetReceivedByAccountMethod, id, account, min_conf);
 
         /// <summary>
@@ -928,7 +928,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <param name="account">The selected account, may be the default account using ""</param>
         /// <param name="min_conf">Only include transactions confirmed at least this many times</param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> GetReceivedByAccountAsync(string account, int min_conf = 1) => 
+        public Task<RpcResponse<object>> GetReceivedByAccountAsync(string account, int min_conf = 1) =>
             GetReceivedByAccountAsync(BlockchainOptions.ChainName, UUID.NoHyphens, account, min_conf);
 
 
@@ -943,7 +943,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <param name="address">The address for transactions</param>
         /// <param name="min_conf">Only include transactions confirmed at least this many times</param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> GetReceivedByAddressAsync(string blockchainName, string id, string address, int min_conf = 1) => 
+        public Task<RpcResponse<object>> GetReceivedByAddressAsync(string blockchainName, string id, string address, int min_conf = 1) =>
             TransactAsync<RpcResponse<object>>(blockchainName, WalletAction.GetReceivedByAddressMethod, id, address, min_conf);
 
         /// <summary>
@@ -955,7 +955,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <param name="address">The address for transactions</param>
         /// <param name="min_conf">Only include transactions confirmed at least this many times</param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> GetReceivedByAddressAsync(string address, int min_conf = 1) => 
+        public Task<RpcResponse<object>> GetReceivedByAddressAsync(string address, int min_conf = 1) =>
             GetReceivedByAddressAsync(BlockchainOptions.ChainName, UUID.NoHyphens, address, min_conf);
 
 
@@ -971,7 +971,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <param name="txid">id</param>
         /// <param name="verbose">If true, returns information about item transaction</param>
         /// <returns></returns>
-        public Task<RpcResponse<GetStreamItemResult>> GetStreamItemAsync(string blockchainName, string id, string stream_identifier, string txid, bool verbose = false) => 
+        public Task<RpcResponse<GetStreamItemResult>> GetStreamItemAsync(string blockchainName, string id, string stream_identifier, string txid, bool verbose = false) =>
             TransactAsync<RpcResponse<GetStreamItemResult>>(blockchainName, WalletAction.GetStreamItemMethod, id, stream_identifier, txid, verbose);
 
         /// <summary>
@@ -984,7 +984,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <param name="txid">id</param>
         /// <param name="verbose">If true, returns information about item transaction</param>
         /// <returns></returns>
-        public Task<RpcResponse<GetStreamItemResult>> GetStreamItemAsync(string stream_identifier, string txid, bool verbose = false) => 
+        public Task<RpcResponse<GetStreamItemResult>> GetStreamItemAsync(string stream_identifier, string txid, bool verbose = false) =>
             GetStreamItemAsync(BlockchainOptions.ChainName, UUID.NoHyphens, stream_identifier, txid, verbose);
 
 
@@ -1009,7 +1009,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         ///     </para>
         /// </param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> GetStreamKeySummaryAsync(string blockchainName, string id, string stream_identifier, string key, string mode) => 
+        public Task<RpcResponse<object>> GetStreamKeySummaryAsync(string blockchainName, string id, string stream_identifier, string key, string mode) =>
             TransactAsync<RpcResponse<object>>(blockchainName, WalletAction.GetStreamKeySummaryMethod, id, stream_identifier, key, mode);
 
         /// <summary>
@@ -1033,7 +1033,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         ///     </para>
         /// </param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> GetStreamKeySummaryAsync(string stream_identifier, string key, string mode) => 
+        public Task<RpcResponse<object>> GetStreamKeySummaryAsync(string stream_identifier, string key, string mode) =>
             GetStreamKeySummaryAsync(BlockchainOptions.ChainName, UUID.NoHyphens, stream_identifier, key, mode);
 
 
@@ -1058,7 +1058,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         ///     </para>
         /// </param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> GetStreamPublisherSummaryAsync(string blockchainName, string id, string stream_identifier, string address, string mode) => 
+        public Task<RpcResponse<object>> GetStreamPublisherSummaryAsync(string blockchainName, string id, string stream_identifier, string address, string mode) =>
             TransactAsync<RpcResponse<object>>(blockchainName, WalletAction.GetStreamPublisherSummaryMethod, id, stream_identifier, address, mode);
 
         /// <summary>
@@ -1080,7 +1080,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         ///     </para>
         /// </param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> GetStreamPublisherSummaryAsync(string stream_identifier, string address, string mode) => 
+        public Task<RpcResponse<object>> GetStreamPublisherSummaryAsync(string stream_identifier, string address, string mode) =>
             GetStreamPublisherSummaryAsync(BlockchainOptions.ChainName, UUID.NoHyphens, stream_identifier, address, mode);
 
 
@@ -1109,7 +1109,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <param name="include_watch_only">Also include balance in watchonly addresses (see 'importaddress')</param>
         /// <param name="include_locked">Also take locked outputs into account</param>
         /// <returns></returns>
-        public Task<RpcResponse<GetTotalBalancesResult[]>> GetTotalBalancesAsync(int min_conf = 1, bool include_watch_only = false, bool include_locked = false) => 
+        public Task<RpcResponse<GetTotalBalancesResult[]>> GetTotalBalancesAsync(int min_conf = 1, bool include_watch_only = false, bool include_locked = false) =>
             GetTotalBalancesAsync(BlockchainOptions.ChainName, UUID.NoHyphens, min_conf, include_watch_only, include_locked);
 
 
@@ -1124,7 +1124,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <param name="txid">The transaction id</param>
         /// <param name="include_watch_only">Whether to include watchonly addresses in balance calculation and details[]</param>
         /// <returns></returns>
-        public Task<RpcResponse<GetTransactionResult>> GetTransactionAsync(string blockchainName, string id, string txid, bool include_watch_only = false) => 
+        public Task<RpcResponse<GetTransactionResult>> GetTransactionAsync(string blockchainName, string id, string txid, bool include_watch_only = false) =>
             TransactAsync<RpcResponse<GetTransactionResult>>(blockchainName, WalletAction.GetTransactionMethod, id, txid, include_watch_only);
 
         /// <summary>
@@ -1136,7 +1136,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <param name="txid">The transaction id</param>
         /// <param name="include_watch_only">Whether to include watchonly addresses in balance calculation and details[]</param>
         /// <returns></returns>
-        public Task<RpcResponse<GetTransactionResult>> GetTransactionAsync(string txid, bool include_watch_only = false) => 
+        public Task<RpcResponse<GetTransactionResult>> GetTransactionAsync(string txid, bool include_watch_only = false) =>
             GetTransactionAsync(BlockchainOptions.ChainName, UUID.NoHyphens, txid, include_watch_only);
 
 
@@ -1172,7 +1172,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <param name="count_bytes">Number of bytes to return</param>
         /// <param name="start_byte">Start from specific byte</param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> GetTxOutDataAsync(string txid, int vout, [Optional] int count_bytes, [Optional] int start_byte) => 
+        public Task<RpcResponse<object>> GetTxOutDataAsync(string txid, int vout, [Optional] int count_bytes, [Optional] int start_byte) =>
             GetTxOutDataAsync(BlockchainOptions.ChainName, UUID.NoHyphens, txid, vout, count_bytes, start_byte);
 
 
@@ -1185,7 +1185,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <param name="blockchainName">Name of target blockchain</param>
         /// <param name="id">String value to identify this transaction</param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> GetUnconfirmedBalanceAsync(string blockchainName, string id) => 
+        public Task<RpcResponse<object>> GetUnconfirmedBalanceAsync(string blockchainName, string id) =>
             TransactAsync<RpcResponse<object>>(blockchainName, WalletAction.GetUnconfirmedBalanceMethod, id);
 
         /// <summary>
@@ -1195,7 +1195,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// 
         /// </summary>
         /// <returns></returns>
-        public Task<RpcResponse<object>> GetUnconfirmedBalanceAsync() => 
+        public Task<RpcResponse<object>> GetUnconfirmedBalanceAsync() =>
             GetUnconfirmedBalanceAsync(BlockchainOptions.ChainName, UUID.NoHyphens);
 
 
@@ -1208,7 +1208,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <param name="blockchainName">Name of target blockchain</param>
         /// <param name="id">String value to identify this transaction</param>
         /// <returns></returns>
-        public Task<RpcResponse<GetWalletInfoResult>> GetWalletInfoAsync(string blockchainName, string id) => 
+        public Task<RpcResponse<GetWalletInfoResult>> GetWalletInfoAsync(string blockchainName, string id) =>
             TransactAsync<RpcResponse<GetWalletInfoResult>>(blockchainName, WalletAction.GetwalletinfoMethod, id);
 
         /// <summary>
@@ -1218,7 +1218,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// 
         /// </summary>
         /// <returns></returns>
-        public Task<RpcResponse<GetWalletInfoResult>> GetWalletInfoAsync() => 
+        public Task<RpcResponse<GetWalletInfoResult>> GetWalletInfoAsync() =>
             GetWalletInfoAsync(BlockchainOptions.ChainName, UUID.NoHyphens);
 
 
@@ -1247,7 +1247,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <param name="include_watch_only">Whether to include watchonly addresses in balance calculation and details[]</param>
         /// <param name="verbose">If true, returns detailed array of inputs and outputs and raw hex of transactions</param>
         /// <returns></returns>
-        public Task<RpcResponse<GetWalletTransactionResult>> GetWalletTransactionAsync(string txid, bool include_watch_only = false, bool verbose = false) => 
+        public Task<RpcResponse<GetWalletTransactionResult>> GetWalletTransactionAsync(string txid, bool include_watch_only = false, bool verbose = false) =>
             GetWalletTransactionAsync(BlockchainOptions.ChainName, UUID.NoHyphens, txid, include_watch_only, verbose);
 
 
@@ -1315,7 +1315,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <param name="comment">A comment used to store what the transaction is for. This is not part of the transaction, just kept in your wallet.</param>
         /// <param name="comment_to"> A comment to store the name of the person or organization to which you're sending the transaction. This is not part of the transaction, just kept in your wallet.</param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> GrantAsync(string addresses, string permissions, [Optional] decimal native_amount, [Optional] int start_block, [Optional] uint end_block, [Optional] string comment, [Optional] string comment_to) => 
+        public Task<RpcResponse<object>> GrantAsync(string addresses, string permissions, [Optional] decimal native_amount, [Optional] int start_block, [Optional] uint end_block, [Optional] string comment, [Optional] string comment_to) =>
             GrantAsync(BlockchainOptions.ChainName, UUID.NoHyphens, addresses, permissions, native_amount, start_block, end_block, comment, comment_to);
 
 
@@ -1387,7 +1387,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <param name="comment">A comment used to store what the transaction is for. This is not part of the transaction, just kept in your wallet.</param>
         /// <param name="comment_to"> A comment to store the name of the person or organization to which you're sending the transaction. This is not part of the transaction, just kept in your wallet.</param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> GrantFromAsync(string from_address, string addresses, string permissions, [Optional] decimal native_amount, [Optional] int start_block, [Optional] uint end_block, [Optional] string comment, [Optional] string comment_to) => 
+        public Task<RpcResponse<object>> GrantFromAsync(string from_address, string addresses, string permissions, [Optional] decimal native_amount, [Optional] int start_block, [Optional] uint end_block, [Optional] string comment, [Optional] string comment_to) =>
             GrantFromAsync(BlockchainOptions.ChainName, UUID.NoHyphens, from_address, addresses, permissions, native_amount, start_block, end_block, comment, comment_to);
 
 
@@ -1417,7 +1417,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <param name="start_block">Block to apply permissions from (inclusive). Default - 0</param>
         /// <param name="end_block">Block to apply permissions to (exclusive). Default - 4294967295; If -1 is specified default value is used.</param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> GrantWithDataAsync(string blockchainName, string id, string addresses, string permissions, object object_or_hex, [Optional] decimal native_amount, [Optional] int start_block, [Optional] uint end_block) => 
+        public Task<RpcResponse<object>> GrantWithDataAsync(string blockchainName, string id, string addresses, string permissions, object object_or_hex, [Optional] decimal native_amount, [Optional] int start_block, [Optional] uint end_block) =>
             TransactAsync<RpcResponse<object>>(blockchainName, WalletAction.GrantWithDataMethod, id, addresses, permissions, object_or_hex, native_amount, start_block, end_block);
 
         /// <summary>
@@ -1444,7 +1444,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <param name="start_block">Block to apply permissions from (inclusive). Default - 0</param>
         /// <param name="end_block">Block to apply permissions to (exclusive). Default - 4294967295; If -1 is specified default value is used.</param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> GrantWithDataAsync(string addresses, string permissions, object object_or_hex, [Optional] decimal native_amount, [Optional] int start_block, [Optional] uint end_block) => 
+        public Task<RpcResponse<object>> GrantWithDataAsync(string addresses, string permissions, object object_or_hex, [Optional] decimal native_amount, [Optional] int start_block, [Optional] uint end_block) =>
             GrantWithDataAsync(BlockchainOptions.ChainName, UUID.NoHyphens, addresses, permissions, object_or_hex, native_amount, start_block, end_block);
 
 
@@ -1476,7 +1476,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <param name="start_block">Block to apply permissions from (inclusive). Default - 0</param>
         /// <param name="end_block">Block to apply permissions to (exclusive). Default - 4294967295; If -1 is specified default value is used.</param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> GrantWithDataFromAsync(string blockchainName, string id, string from_address, string to_addresses, string permissions, object object_or_hex, [Optional] decimal native_amount, [Optional] int start_block, [Optional] uint end_block) => 
+        public Task<RpcResponse<object>> GrantWithDataFromAsync(string blockchainName, string id, string from_address, string to_addresses, string permissions, object object_or_hex, [Optional] decimal native_amount, [Optional] int start_block, [Optional] uint end_block) =>
             TransactAsync<RpcResponse<object>>(blockchainName, WalletAction.GrantWithDataFromMethod, id, from_address, to_addresses, permissions, object_or_hex, native_amount, start_block, end_block);
 
         /// <summary>
@@ -1505,7 +1505,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <param name="start_block">Block to apply permissions from (inclusive). Default - 0</param>
         /// <param name="end_block">Block to apply permissions to (exclusive). Default - 4294967295; If -1 is specified default value is used.</param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> GrantWithDataFromAsync(string from_address, string to_addresses, string permissions, object object_or_hex, [Optional] decimal native_amount, [Optional] int start_block, [Optional] uint end_block) => 
+        public Task<RpcResponse<object>> GrantWithDataFromAsync(string from_address, string to_addresses, string permissions, object object_or_hex, [Optional] decimal native_amount, [Optional] int start_block, [Optional] uint end_block) =>
             GrantWithDataFromAsync(BlockchainOptions.ChainName, UUID.NoHyphens, from_address, to_addresses, permissions, object_or_hex, native_amount, start_block, end_block);
 
 
@@ -1522,7 +1522,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <param name="label">An optional label</param>
         /// <param name="rescan">(boolean or integer, optional, default=true) Rescan the wallet for transactions. If integer rescan from block, if negative - from the end</param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> ImportAddressAsync(string blockchainName, string id, object addresses, [Optional] string label, [Optional] object rescan) => 
+        public Task<RpcResponse<object>> ImportAddressAsync(string blockchainName, string id, object addresses, [Optional] string label, [Optional] object rescan) =>
             TransactAsync<RpcResponse<object>>(blockchainName, WalletAction.ImportAddressMethod, id, addresses, label, rescan);
 
         /// <summary>
@@ -1536,7 +1536,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <param name="label">An optional label</param>
         /// <param name="rescan">(boolean or integer, optional, default=true) Rescan the wallet for transactions. If integer rescan from block, if negative - from the end</param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> ImportAddressAsync(object addresses, [Optional] string label, [Optional] object rescan) => 
+        public Task<RpcResponse<object>> ImportAddressAsync(object addresses, [Optional] string label, [Optional] object rescan) =>
             ImportAddressAsync(BlockchainOptions.ChainName, UUID.NoHyphens, addresses, label, rescan);
 
 
@@ -1552,7 +1552,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <param name="label">An optional label</param>
         /// <param name="rescan">(boolean or integer, optional, default=true) Rescan the wallet for transactions. If integer rescan from block, if negative - from the end</param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> ImportPrivKeyAsync(string blockchainName, string id, object priv_keys, [Optional] string label, [Optional] object rescan) => 
+        public Task<RpcResponse<object>> ImportPrivKeyAsync(string blockchainName, string id, object priv_keys, [Optional] string label, [Optional] object rescan) =>
             TransactAsync<RpcResponse<object>>(blockchainName, WalletAction.ImportPrivKeyMethod, id, priv_keys, label, rescan);
 
         /// <summary>
@@ -1565,7 +1565,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <param name="label">An optional label</param>
         /// <param name="rescan">(boolean or integer, optional, default=true) Rescan the wallet for transactions. If integer rescan from block, if negative - from the end</param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> ImportPrivKeyAsync(object priv_keys, [Optional] string label, [Optional] object rescan) => 
+        public Task<RpcResponse<object>> ImportPrivKeyAsync(object priv_keys, [Optional] string label, [Optional] object rescan) =>
             ImportPrivKeyAsync(BlockchainOptions.ChainName, UUID.NoHyphens, priv_keys, label, rescan);
 
 
@@ -1580,7 +1580,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <param name="filename">The wallet file</param>
         /// <param name="rescan">(boolean or integer, optional, default=true) Rescan the wallet for transactions. If integer rescan from block, if negative - from the end.</param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> ImportWalletAsync(string blockchainName, string id, string filename, [Optional] object rescan) => 
+        public Task<RpcResponse<object>> ImportWalletAsync(string blockchainName, string id, string filename, [Optional] object rescan) =>
             TransactAsync<RpcResponse<object>>(blockchainName, WalletAction.ImportWalletMethod, id, filename, rescan);
 
         /// <summary>
@@ -1592,7 +1592,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <param name="filename">The wallet file</param>
         /// <param name="rescan">(boolean or integer, optional, default=true) Rescan the wallet for transactions. If integer rescan from block, if negative - from the end.</param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> ImportWalletAsync(string filename, [Optional] object rescan) => 
+        public Task<RpcResponse<object>> ImportWalletAsync(string filename, [Optional] object rescan) =>
             ImportWalletAsync(BlockchainOptions.ChainName, UUID.NoHyphens, filename, rescan);
 
 
@@ -1611,7 +1611,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <param name="native_amount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
         /// <param name="custom_fields">a json object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
         /// <returns></returns>
-        public Task<RpcResponse<string>> IssueAsync(string blockchainName, string id, string to_address, object asset_params, int quantity, [Optional] double smallest_unit, [Optional] decimal native_amount, [Optional] object custom_fields) => 
+        public Task<RpcResponse<string>> IssueAsync(string blockchainName, string id, string to_address, object asset_params, int quantity, [Optional] double smallest_unit, [Optional] decimal native_amount, [Optional] object custom_fields) =>
             TransactAsync<RpcResponse<string>>(blockchainName, WalletAction.IssueMethod, id, to_address, asset_params, quantity, smallest_unit, native_amount, custom_fields);
 
         /// <summary>
@@ -1627,7 +1627,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <param name="native_amount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
         /// <param name="custom_fields">a json object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
         /// <returns></returns>
-        public Task<RpcResponse<string>> IssueAsync(string to_address, object asset_params, int quantity, [Optional] double smallest_unit, [Optional] decimal native_amount, [Optional] object custom_fields) => 
+        public Task<RpcResponse<string>> IssueAsync(string to_address, object asset_params, int quantity, [Optional] double smallest_unit, [Optional] decimal native_amount, [Optional] object custom_fields) =>
             IssueAsync(BlockchainOptions.ChainName, UUID.NoHyphens, to_address, asset_params, quantity, smallest_unit, native_amount, custom_fields);
 
 
@@ -1647,7 +1647,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <param name="native_amount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
         /// <param name="custom_fields">a json object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
         /// <returns></returns>
-        public Task<RpcResponse<string>> IssueFromAsync(string blockchainName, string id, string from_address, string to_address, object asset_params, int quantity, [Optional] double smallest_unit, [Optional] decimal native_amount, [Optional] object custom_fields) => 
+        public Task<RpcResponse<string>> IssueFromAsync(string blockchainName, string id, string from_address, string to_address, object asset_params, int quantity, [Optional] double smallest_unit, [Optional] decimal native_amount, [Optional] object custom_fields) =>
             TransactAsync<RpcResponse<string>>(blockchainName, WalletAction.IssueFromMethod, id, from_address, to_address, asset_params, quantity, smallest_unit, native_amount, custom_fields);
 
         /// <summary>
@@ -1664,7 +1664,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <param name="native_amount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
         /// <param name="custom_fields">a json object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
         /// <returns></returns>
-        public Task<RpcResponse<string>> IssueFromAsync(string from_address, string to_address, object asset_params, int quantity, [Optional] double smallest_unit, [Optional] decimal native_amount, [Optional] object custom_fields) => 
+        public Task<RpcResponse<string>> IssueFromAsync(string from_address, string to_address, object asset_params, int quantity, [Optional] double smallest_unit, [Optional] decimal native_amount, [Optional] object custom_fields) =>
             IssueFromAsync(BlockchainOptions.ChainName, UUID.NoHyphens, from_address, to_address, asset_params, quantity, smallest_unit, native_amount, custom_fields);
 
 
@@ -1682,7 +1682,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <param name="native_amount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
         /// <param name="custom_fields">a json object with custom fields</param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> IssueMoreAsync(string blockchainName, string id, string to_address, string asset_identifier, int quantity, [Optional] decimal native_amount, [Optional] object custom_fields) => 
+        public Task<RpcResponse<object>> IssueMoreAsync(string blockchainName, string id, string to_address, string asset_identifier, int quantity, [Optional] decimal native_amount, [Optional] object custom_fields) =>
             TransactAsync<RpcResponse<object>>(blockchainName, WalletAction.IssueMoreMethod, id, to_address, asset_identifier, quantity, native_amount, custom_fields);
 
         /// <summary>
@@ -1697,7 +1697,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <param name="native_amount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
         /// <param name="custom_fields">a json object with custom fields</param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> IssueMoreAsync(string to_address, string asset_identifier, int quantity, [Optional] decimal native_amount, [Optional] object custom_fields) => 
+        public Task<RpcResponse<object>> IssueMoreAsync(string to_address, string asset_identifier, int quantity, [Optional] decimal native_amount, [Optional] object custom_fields) =>
             IssueMoreAsync(BlockchainOptions.ChainName, UUID.NoHyphens, to_address, asset_identifier, quantity, native_amount, custom_fields);
 
 
@@ -1716,7 +1716,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <param name="native_amount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
         /// <param name="custom_fields">a json object with custom fields</param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> IssueMoreFromAsync(string blockchainName, string id, string from_address, string to_address, string asset_identifier, int quantity, [Optional] decimal native_amount, [Optional] object custom_fields) => 
+        public Task<RpcResponse<object>> IssueMoreFromAsync(string blockchainName, string id, string from_address, string to_address, string asset_identifier, int quantity, [Optional] decimal native_amount, [Optional] object custom_fields) =>
             TransactAsync<RpcResponse<object>>(blockchainName, WalletAction.IssueMoreFromMethod, id, from_address, to_address, asset_identifier, quantity, native_amount, custom_fields);
 
         /// <summary>
@@ -1747,7 +1747,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <param name="id">String value to identify this transaction</param>
         /// <param name="new_size">The new keypool size</param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> KeyPoolRefillAsync(string blockchainName, string id, int new_size = 100) => 
+        public Task<RpcResponse<object>> KeyPoolRefillAsync(string blockchainName, string id, int new_size = 100) =>
             TransactAsync<RpcResponse<object>>(blockchainName, WalletAction.KeyPoolRefillMethod, id, new_size);
 
         /// <summary>
@@ -1759,7 +1759,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// </summary>
         /// <param name="new_size">The new keypool size</param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> KeyPoolRefillAsync(int new_size = 100) => 
+        public Task<RpcResponse<object>> KeyPoolRefillAsync(int new_size = 100) =>
             KeyPoolRefillAsync(BlockchainOptions.ChainName, UUID.NoHyphens, new_size);
 
 
@@ -1774,10 +1774,8 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <param name="min_conf"> Only include transactions with at least this many confirmations</param>
         /// <param name="include_watch_only">Include balances in watchonly addresses (see 'importaddress')</param>
         /// <returns></returns>
-        public async Task<RpcResponse<object>> ListAccountsAsync(string blockchainName, string id, int min_conf, bool include_watch_only)
-        {
-            return await TransactAsync<RpcResponse<object>>(blockchainName, WalletAction.ListAccountsMethod, id, min_conf, include_watch_only);
-        }
+        public Task<RpcResponse<object>> ListAccountsAsync(string blockchainName, string id, int min_conf = 1, bool include_watch_only = false) =>
+            TransactAsync<RpcResponse<object>>(blockchainName, WalletAction.ListAccountsMethod, id, min_conf, include_watch_only);
 
         /// <summary>
         /// 
@@ -1788,10 +1786,8 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <param name="min_conf"> Only include transactions with at least this many confirmations</param>
         /// <param name="include_watch_only">Include balances in watchonly addresses (see 'importaddress')</param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> ListAccountsAsync(int min_conf, bool include_watch_only)
-        {
-            return ListAccountsAsync(BlockchainOptions.ChainName, UUID.NoHyphens, min_conf, include_watch_only);
-        }
+        public Task<RpcResponse<object>> ListAccountsAsync(int min_conf = 1, bool include_watch_only = false) =>
+            ListAccountsAsync(BlockchainOptions.ChainName, UUID.NoHyphens, min_conf, include_watch_only);
 
 
         /// <summary>
@@ -1807,10 +1803,8 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <param name="count">The number of addresses to display</param>
         /// <param name="start">Start from specific address, 0 based, if negative - from the end</param>
         /// <returns></returns>
-        public async Task<RpcResponse<ListAddressesResult[]>> ListAddressesAsync(string blockchainName, string id, object addresses, bool verbose, int count, int start)
-        {
-            return await TransactAsync<RpcResponse<ListAddressesResult[]>>(blockchainName, WalletAction.ListAddressesMethod, id, addresses, verbose, count, start);
-        }
+        public Task<RpcResponse<ListAddressesResult[]>> ListAddressesAsync(string blockchainName, string id, [Optional] object addresses, [Optional] bool verbose, [Optional] int count, [Optional] int start) =>
+            TransactAsync<RpcResponse<ListAddressesResult[]>>(blockchainName, WalletAction.ListAddressesMethod, id, addresses, verbose, count, start);
 
         /// <summary>
         /// 
@@ -1823,10 +1817,8 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <param name="count">The number of addresses to display</param>
         /// <param name="start">Start from specific address, 0 based, if negative - from the end</param>
         /// <returns></returns>
-        public Task<RpcResponse<ListAddressesResult[]>> ListAddressesAsync(object addresses, bool verbose, int count, int start)
-        {
-            return ListAddressesAsync(BlockchainOptions.ChainName, UUID.NoHyphens, addresses, verbose, count, start);
-        }
+        public Task<RpcResponse<ListAddressesResult[]>> ListAddressesAsync([Optional] object addresses, [Optional] bool verbose, [Optional] int count, [Optional] int start) =>
+            ListAddressesAsync(BlockchainOptions.ChainName, UUID.NoHyphens, addresses, verbose, count, start);
 
 
         /// <summary>
@@ -1838,10 +1830,8 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <param name="blockchainName">Name of target blockchain</param>
         /// <param name="id">String value to identify this transaction</param>
         /// <returns></returns>
-        public async Task<RpcResponse<object>> ListAddressGroupingsAsync(string blockchainName, string id)
-        {
-            return await TransactAsync<RpcResponse<object>>(blockchainName, WalletAction.ListAddressGroupingsMethod, id);
-        }
+        public Task<RpcResponse<object>> ListAddressGroupingsAsync(string blockchainName, string id) =>
+            TransactAsync<RpcResponse<object>>(blockchainName, WalletAction.ListAddressGroupingsMethod, id);
 
         /// <summary>
         ///
@@ -1850,10 +1840,8 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// 
         /// </summary>
         /// <returns></returns>
-        public Task<RpcResponse<object>> ListAddressGroupingsAsync()
-        {
-            return ListAddressGroupingsAsync(BlockchainOptions.ChainName, UUID.NoHyphens);
-        }
+        public Task<RpcResponse<object>> ListAddressGroupingsAsync() =>
+            ListAddressGroupingsAsync(BlockchainOptions.ChainName, UUID.NoHyphens);
 
 
         /// <summary>
@@ -1869,10 +1857,8 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <param name="skip">The number of transactions to skip</param>
         /// <param name="verbose">If true, returns detailed array of inputs and outputs and raw hex of transactions</param>
         /// <returns></returns>
-        public async Task<RpcResponse<ListAddressTransactionsResult[]>> ListAddressTransactionsAsync(string blockchainName, string id, string address, int count, int skip, bool verbose)
-        {
-            return await TransactAsync<RpcResponse<ListAddressTransactionsResult[]>>(blockchainName, WalletAction.ListAddressTransactionsMethod, id, address, count, skip, verbose);
-        }
+        public Task<RpcResponse<ListAddressTransactionsResult[]>> ListAddressTransactionsAsync(string blockchainName, string id, string address, int count = 10, int skip = 0, bool verbose = false) =>
+            TransactAsync<RpcResponse<ListAddressTransactionsResult[]>>(blockchainName, WalletAction.ListAddressTransactionsMethod, id, address, count, skip, verbose);
 
         /// <summary>
         /// 
@@ -1885,10 +1871,8 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <param name="skip">The number of transactions to skip</param>
         /// <param name="verbose">If true, returns detailed array of inputs and outputs and raw hex of transactions</param>
         /// <returns></returns>
-        public Task<RpcResponse<ListAddressTransactionsResult[]>> ListAddressTransactionsAsync(string address, int count, int skip, bool verbose)
-        {
-            return ListAddressTransactionsAsync(BlockchainOptions.ChainName, UUID.NoHyphens, address, count, skip, verbose);
-        }
+        public Task<RpcResponse<ListAddressTransactionsResult[]>> ListAddressTransactionsAsync(string address, int count = 10, int skip = 0, bool verbose = false) =>
+            ListAddressTransactionsAsync(BlockchainOptions.ChainName, UUID.NoHyphens, address, count, skip, verbose);
 
 
         /// <summary>
@@ -1905,10 +1889,8 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <param name="start">Start from specific transaction, 0 based, if negative - from the end</param>
         /// <param name="local_ordering">If true, transactions appear in the order they were processed by the wallet, if false - in the order they appear in blockchain</param>
         /// <returns></returns>
-        public async Task<RpcResponse<ListAssetTransactionsResult[]>> ListAssetTransactionsAsync(string blockchainName, string id, string asset_identifier, bool verbose, int count, int start, bool local_ordering)
-        {
-            return await TransactAsync<RpcResponse<ListAssetTransactionsResult[]>>(blockchainName, WalletAction.ListAssetTransactionsMethod, id, asset_identifier, verbose, count, start, local_ordering);
-        }
+        public Task<RpcResponse<ListAssetTransactionsResult[]>> ListAssetTransactionsAsync(string blockchainName, string id, string asset_identifier, bool verbose = false, int count = 10, int start = 0, bool local_ordering = false) =>
+            TransactAsync<RpcResponse<ListAssetTransactionsResult[]>>(blockchainName, WalletAction.ListAssetTransactionsMethod, id, asset_identifier, verbose, count, start, local_ordering);
 
         /// <summary>
         /// 
@@ -1922,10 +1904,8 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <param name="start">Start from specific transaction, 0 based, if negative - from the end</param>
         /// <param name="local_ordering">If true, transactions appear in the order they were processed by the wallet, if false - in the order they appear in blockchain</param>
         /// <returns></returns>
-        public Task<RpcResponse<ListAssetTransactionsResult[]>> ListAssetTransactionsAsync(string asset_identifier, bool verbose, int count, int start, bool local_ordering)
-        {
-            return ListAssetTransactionsAsync(BlockchainOptions.ChainName, UUID.NoHyphens, asset_identifier, verbose, count, start, local_ordering);
-        }
+        public Task<RpcResponse<ListAssetTransactionsResult[]>> ListAssetTransactionsAsync(string asset_identifier, bool verbose = false, int count = 10, int start = 0, bool local_ordering = false) =>
+            ListAssetTransactionsAsync(BlockchainOptions.ChainName, UUID.NoHyphens, asset_identifier, verbose, count, start, local_ordering);
 
 
         /// <summary>
@@ -1938,10 +1918,8 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <param name="blockchainName">Name of target blockchain</param>
         /// <param name="id">String value to identify this transaction</param>
         /// <returns></returns>
-        public async Task<RpcResponse<object>> ListLockUnspentAsync(string blockchainName, string id)
-        {
-            return await TransactAsync<RpcResponse<object>>(blockchainName, WalletAction.ListLockUnspentMethod, id);
-        }
+        public Task<RpcResponse<object>> ListLockUnspentAsync(string blockchainName, string id) =>
+            TransactAsync<RpcResponse<object>>(blockchainName, WalletAction.ListLockUnspentMethod, id);
 
         /// <summary>
         /// 
@@ -1951,10 +1929,8 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         ///
         /// </summary>
         /// <returns></returns>
-        public Task<RpcResponse<object>> ListLockUnspentAsync()
-        {
-            return ListLockUnspentAsync(BlockchainOptions.ChainName, UUID.NoHyphens);
-        }
+        public Task<RpcResponse<object>> ListLockUnspentAsync() =>
+            ListLockUnspentAsync(BlockchainOptions.ChainName, UUID.NoHyphens);
 
 
         /// <summary>
@@ -1969,10 +1945,8 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <param name="include_empty">Whether to include accounts that haven't received any payments</param>
         /// <param name="include_watch_only">Whether to include watchonly addresses (see 'importaddress')</param>
         /// <returns></returns>
-        public async Task<RpcResponse<object>> ListReceivedByAccountAsync(string blockchainName, string id, int min_conf, bool include_empty, bool include_watch_only)
-        {
-            return await TransactAsync<RpcResponse<object>>(blockchainName, WalletAction.ListReceivedByAccountMethod, id, min_conf, include_empty, include_watch_only);
-        }
+        public Task<RpcResponse<object>> ListReceivedByAccountAsync(string blockchainName, string id, int min_conf = 1, bool include_empty = false, bool include_watch_only = false) => 
+            TransactAsync<RpcResponse<object>>(blockchainName, WalletAction.ListReceivedByAccountMethod, id, min_conf, include_empty, include_watch_only);
 
         /// <summary>
         /// 
@@ -1984,10 +1958,8 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <param name="include_empty">Whether to include accounts that haven't received any payments</param>
         /// <param name="include_watch_only">Whether to include watchonly addresses (see 'importaddress')</param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> ListReceivedByAccountAsync(int min_conf, bool include_empty, bool include_watch_only)
-        {
-            return ListReceivedByAccountAsync(BlockchainOptions.ChainName, UUID.NoHyphens, min_conf, include_empty, include_watch_only);
-        }
+        public Task<RpcResponse<object>> ListReceivedByAccountAsync(int min_conf = 1, bool include_empty = false, bool include_watch_only = false) => 
+            ListReceivedByAccountAsync(BlockchainOptions.ChainName, UUID.NoHyphens, min_conf, include_empty, include_watch_only);
 
 
         /// <summary>
@@ -2002,10 +1974,8 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <param name="include_empty">Whether to include accounts that haven't received any payments</param>
         /// <param name="include_watch_only">Whether to include watchonly addresses (see 'importaddress')</param>
         /// <returns></returns>
-        public async Task<RpcResponse<object>> ListReceivedByAddressAsync(string blockchainName, string id, int min_conf, bool include_empty, bool include_watch_only)
-        {
-            return await TransactAsync<RpcResponse<object>>(blockchainName, WalletAction.ListReceivedByAddressMethod, id, min_conf, include_empty, include_watch_only);
-        }
+        public Task<RpcResponse<object>> ListReceivedByAddressAsync(string blockchainName, string id, int min_conf = 1, bool include_empty = false, bool include_watch_only = false) => 
+            TransactAsync<RpcResponse<object>>(blockchainName, WalletAction.ListReceivedByAddressMethod, id, min_conf, include_empty, include_watch_only);
 
         /// <summary>
         /// 
@@ -2017,10 +1987,8 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <param name="include_empty">Whether to include accounts that haven't received any payments</param>
         /// <param name="include_watch_only">Whether to include watchonly addresses (see 'importaddress')</param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> ListReceivedByAddressAsync(int min_conf, bool include_empty, bool include_watch_only)
-        {
-            return ListReceivedByAddressAsync(BlockchainOptions.ChainName, UUID.NoHyphens, min_conf, include_empty, include_watch_only);
-        }
+        public Task<RpcResponse<object>> ListReceivedByAddressAsync(int min_conf = 1, bool include_empty = false, bool include_watch_only = false) => 
+            ListReceivedByAddressAsync(BlockchainOptions.ChainName, UUID.NoHyphens, min_conf, include_empty, include_watch_only);
 
 
         /// <summary>
@@ -2035,10 +2003,8 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <param name="target_confirmations">The confirmations required, must be 1 or more</param>
         /// <param name="include_watch_only">Include transactions to watchonly addresses (see 'importaddress')</param>
         /// <returns></returns>
-        public async Task<RpcResponse<object>> ListSinceBlockAsync(string blockchainName, string id, string block_hash, int target_confirmations, bool include_watch_only)
-        {
-            return await TransactAsync<RpcResponse<object>>(blockchainName, WalletAction.ListSinceBlockMethod, id, block_hash, target_confirmations, include_watch_only);
-        }
+        public Task<RpcResponse<object>> ListSinceBlockAsync(string blockchainName, string id, [Optional] string block_hash, [Optional] int target_confirmations, [Optional] bool include_watch_only) => 
+            TransactAsync<RpcResponse<object>>(blockchainName, WalletAction.ListSinceBlockMethod, id, block_hash, target_confirmations, include_watch_only);
 
         /// <summary>
         /// 
@@ -2050,10 +2016,8 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <param name="target_confirmations">The confirmations required, must be 1 or more</param>
         /// <param name="include_watch_only">Include transactions to watchonly addresses (see 'importaddress')</param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> ListSinceBlockAsync(string block_hash, int target_confirmations, bool include_watch_only)
-        {
-            return ListSinceBlockAsync(BlockchainOptions.ChainName, UUID.NoHyphens, block_hash, target_confirmations, include_watch_only);
-        }
+        public Task<RpcResponse<object>> ListSinceBlockAsync([Optional] string block_hash, [Optional] int target_confirmations, [Optional] bool include_watch_only) => 
+            ListSinceBlockAsync(BlockchainOptions.ChainName, UUID.NoHyphens, block_hash, target_confirmations, include_watch_only);
 
 
         /// <summary>
@@ -2070,9 +2034,9 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <param name="count">The number of items to display</param>
         /// <param name="start">Start from specific item, 0 based, if negative - from the end</param>
         /// <returns></returns>
-        public async Task<RpcResponse<object>> ListStreamBlockItemsAsync(string blockchainName, string id, string stream_identifier, object block_set_identifier, bool verbose, int count, int start)
+        public Task<RpcResponse<object>> ListStreamBlockItemsAsync(string blockchainName, string id, string stream_identifier, object block_set_identifier, bool verbose, int count, int start)
         {
-            return await TransactAsync<RpcResponse<object>>(blockchainName, WalletAction.ListStreamBlockItemsMethod, id, stream_identifier, block_set_identifier, verbose, count, start);
+            return TransactAsync<RpcResponse<object>>(blockchainName, WalletAction.ListStreamBlockItemsMethod, id, stream_identifier, block_set_identifier, verbose, count, start);
         }
 
         /// <summary>
@@ -2107,9 +2071,9 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <param name="start">Start from specific item, 0 based, if negative - from the end</param>
         /// <param name="local_ordering">If true, items appear in the order they were processed by the wallet, if false - in the order they appear in blockchain</param>
         /// <returns></returns>
-        public async Task<RpcResponse<ListStreamItemsResult[]>> ListStreamItemsAsync(string blockchainName, string id, string stream_identifier, bool verbose, int count, int start, bool local_ordering)
+        public Task<RpcResponse<ListStreamItemsResult[]>> ListStreamItemsAsync(string blockchainName, string id, string stream_identifier, bool verbose, int count, int start, bool local_ordering)
         {
-            return await TransactAsync<RpcResponse<ListStreamItemsResult[]>>(blockchainName, WalletAction.ListStreamItemsMethod, id, stream_identifier, verbose, count, start, local_ordering);
+            return TransactAsync<RpcResponse<ListStreamItemsResult[]>>(blockchainName, WalletAction.ListStreamItemsMethod, id, stream_identifier, verbose, count, start, local_ordering);
         }
 
         /// <summary>
@@ -2145,9 +2109,9 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <param name="start">Start from specific item, 0 based, if negative - from the end</param>
         /// <param name="local_ordering">If true, items appear in the order they were processed by the wallet, if false - in the order they appear in blockchain</param>
         /// <returns></returns>
-        public async Task<RpcResponse<ListStreamKeyItemsResult[]>> ListStreamKeyItemsAsync(string blockchainName, string id, string stream_identifier, string key, bool verbose, int count, int start, bool local_ordering)
+        public Task<RpcResponse<ListStreamKeyItemsResult[]>> ListStreamKeyItemsAsync(string blockchainName, string id, string stream_identifier, string key, bool verbose, int count, int start, bool local_ordering)
         {
-            return await TransactAsync<RpcResponse<ListStreamKeyItemsResult[]>>(blockchainName, WalletAction.ListStreamKeyItemsMethod, id, stream_identifier, key, verbose, count, start, local_ordering);
+            return TransactAsync<RpcResponse<ListStreamKeyItemsResult[]>>(blockchainName, WalletAction.ListStreamKeyItemsMethod, id, stream_identifier, key, verbose, count, start, local_ordering);
         }
 
         /// <summary>
@@ -2184,9 +2148,9 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <param name="start">Start from specific item, 0 based, if negative - from the end</param>
         /// <param name="local_ordering">If true, items appear in the order they were processed by the wallet, if false - in the order they appear in blockchain</param>
         /// <returns></returns>
-        public async Task<RpcResponse<ListStreamKeysResult[]>> ListStreamKeysAsync(string blockchainName, string id, string stream_identifier, object keys, bool verbose, int count, int start, bool local_ordering)
+        public Task<RpcResponse<ListStreamKeysResult[]>> ListStreamKeysAsync(string blockchainName, string id, string stream_identifier, object keys, bool verbose, int count, int start, bool local_ordering)
         {
-            return await TransactAsync<RpcResponse<ListStreamKeysResult[]>>(blockchainName, WalletAction.ListStreamKeysMethod, id, stream_identifier, keys, verbose, count, start, local_ordering);
+            return TransactAsync<RpcResponse<ListStreamKeysResult[]>>(blockchainName, WalletAction.ListStreamKeysMethod, id, stream_identifier, keys, verbose, count, start, local_ordering);
         }
 
         /// <summary>
@@ -2223,9 +2187,9 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <param name="start">Start from specific item, 0 based, if negative - from the end</param>
         /// <param name="local_ordering">If true, items appear in the order they were processed by the wallet, if false - in the order they appear in blockchain</param>
         /// <returns></returns>
-        public async Task<RpcResponse<ListStreamPublisherItemsResult[]>> ListStreamPublisherItemsAsync(string blockchainName, string id, string stream_identifiers, string address, bool verbose, int count, int start, bool local_ordering)
+        public Task<RpcResponse<ListStreamPublisherItemsResult[]>> ListStreamPublisherItemsAsync(string blockchainName, string id, string stream_identifiers, string address, bool verbose, int count, int start, bool local_ordering)
         {
-            return await TransactAsync<RpcResponse<ListStreamPublisherItemsResult[]>>(blockchainName, WalletAction.ListStreamPublisherItemsMethod, id, stream_identifiers, address, verbose, count, start, local_ordering);
+            return TransactAsync<RpcResponse<ListStreamPublisherItemsResult[]>>(blockchainName, WalletAction.ListStreamPublisherItemsMethod, id, stream_identifiers, address, verbose, count, start, local_ordering);
         }
 
         /// <summary>
@@ -2262,9 +2226,9 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <param name="start">Start from specific item, 0 based, if negative - from the end</param>
         /// <param name="local_ordering">If true, items appear in the order they were processed by the wallet, if false - in the order they appear in blockchain</param>
         /// <returns></returns>
-        public async Task<RpcResponse<ListStreamPublishersResult[]>> ListStreamPublishersAsync(string blockchainName, string id, string stream_identifier, object addresses, bool verbose, int count, int start, bool local_ordering)
+        public Task<RpcResponse<ListStreamPublishersResult[]>> ListStreamPublishersAsync(string blockchainName, string id, string stream_identifier, object addresses, bool verbose, int count, int start, bool local_ordering)
         {
-            return await TransactAsync<RpcResponse<ListStreamPublishersResult[]>>(blockchainName, WalletAction.ListStreamPublishersMethod, id, stream_identifier, addresses, verbose, count, start, local_ordering);
+            return TransactAsync<RpcResponse<ListStreamPublishersResult[]>>(blockchainName, WalletAction.ListStreamPublishersMethod, id, stream_identifier, addresses, verbose, count, start, local_ordering);
         }
 
         /// <summary>
@@ -2298,9 +2262,9 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <param name="query">Query { "key" : "key" (string, optional, default: "") Item key, or "keys" : keys (array, optional) Item keys, array of strings, and or  "publisher" : "publisher" (string, optional, default: "") Publisher or "publishers" : publishers (array, optional) Publishers, array of strings }</param>
         /// <param name="verbose">If true, returns information about item transaction</param>
         /// <returns></returns>
-        public async Task<RpcResponse<object>> ListStreamQueryItemsAsync(string blockchainName, string id, string stream_identifier, object query, bool verbose)
+        public Task<RpcResponse<object>> ListStreamQueryItemsAsync(string blockchainName, string id, string stream_identifier, object query, bool verbose)
         {
-            return await TransactAsync<RpcResponse<object>>(blockchainName, WalletAction.ListStreamQueryItemsMethod, id, stream_identifier, query, verbose);
+            return TransactAsync<RpcResponse<object>>(blockchainName, WalletAction.ListStreamQueryItemsMethod, id, stream_identifier, query, verbose);
         }
 
         /// <summary>
@@ -2331,9 +2295,9 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <param name="txids"> Transaction IDs, comma delimited or Array of transaction IDs</param>
         /// <param name="verbose">If true, returns information about item transaction</param>
         /// <returns></returns>
-        public async Task<RpcResponse<object>> ListStreamTxItemsAsync(string blockchainName, string id, string stream_identifiers, object txids, bool verbose)
+        public Task<RpcResponse<object>> ListStreamTxItemsAsync(string blockchainName, string id, string stream_identifiers, object txids, bool verbose)
         {
-            return await TransactAsync<RpcResponse<object>>(blockchainName, WalletAction.ListStreamTxItemsMethod, id, stream_identifiers, txids, verbose);
+            return TransactAsync<RpcResponse<object>>(blockchainName, WalletAction.ListStreamTxItemsMethod, id, stream_identifiers, txids, verbose);
         }
 
         /// <summary>
@@ -2365,9 +2329,9 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <param name="from">The number of transactions to skip</param>
         /// <param name="include_watch_only">Include transactions to watchonly addresses (see 'importaddress')</param>
         /// <returns></returns>
-        public async Task<RpcResponse<ListTransactionsResult[]>> ListTransactionsAsync(string blockchainName, string id, string account, int count, int from, bool include_watch_only)
+        public Task<RpcResponse<ListTransactionsResult[]>> ListTransactionsAsync(string blockchainName, string id, string account, int count, int from, bool include_watch_only)
         {
-            return await TransactAsync<RpcResponse<ListTransactionsResult[]>>(blockchainName, WalletAction.ListTransactionsMethod, id, account, count, from, include_watch_only);
+            return TransactAsync<RpcResponse<ListTransactionsResult[]>>(blockchainName, WalletAction.ListTransactionsMethod, id, account, count, from, include_watch_only);
         }
 
         /// <summary>
@@ -2402,9 +2366,9 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <param name="max_conf">The maximum confirmations to filter</param>
         /// <param name="addresses">A json array of addresses to filter</param>
         /// <returns></returns>
-        public async Task<RpcResponse<ListUnspentResult[]>> ListUnspentAsync(string blockchainName, string id, int min_conf, int max_conf, object addresses)
+        public Task<RpcResponse<ListUnspentResult[]>> ListUnspentAsync(string blockchainName, string id, int min_conf, int max_conf, object addresses)
         {
-            return await TransactAsync<RpcResponse<ListUnspentResult[]>>(blockchainName, WalletAction.ListUnspentMethod, id, min_conf, max_conf, addresses);
+            return TransactAsync<RpcResponse<ListUnspentResult[]>>(blockchainName, WalletAction.ListUnspentMethod, id, min_conf, max_conf, addresses);
         }
 
         /// <summary>
@@ -2439,9 +2403,9 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <param name="include_watch_only">Include transactions to watchonly addresses (see 'importaddress')</param>
         /// <param name="verbose">If true, returns detailed array of inputs and outputs and raw hex of transactions</param>
         /// <returns></returns>
-        public async Task<RpcResponse<ListWalletTransactionsResult[]>> ListWalletTransactionsAsync(string blockchainName, string id, int count, int skip, bool include_watch_only, bool verbose)
+        public Task<RpcResponse<ListWalletTransactionsResult[]>> ListWalletTransactionsAsync(string blockchainName, string id, int count, int skip, bool include_watch_only, bool verbose)
         {
-            return await TransactAsync<RpcResponse<ListWalletTransactionsResult[]>>(blockchainName, WalletAction.ListWalletTransactionsMethod, id, count, skip, include_watch_only, verbose);
+            return TransactAsync<RpcResponse<ListWalletTransactionsResult[]>>(blockchainName, WalletAction.ListWalletTransactionsMethod, id, count, skip, include_watch_only, verbose);
         }
 
         /// <summary>
@@ -2476,9 +2440,9 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <param name="unlock">Whether to unlock (true) or lock (false) the specified transactions</param>
         /// <param name="unspent">A json array of objects. Each object should have the the txid (string) vout (numeric)</param>
         /// <returns></returns>
-        public async Task<RpcResponse<object>> LockUnspentAsync(string blockchainName, string id, bool unlock, object[] unspent)
+        public Task<RpcResponse<object>> LockUnspentAsync(string blockchainName, string id, bool unlock, object[] unspent)
         {
-            return await TransactAsync<RpcResponse<object>>(blockchainName, WalletAction.LockUnspentMethod, id, unlock, unspent);
+            return TransactAsync<RpcResponse<object>>(blockchainName, WalletAction.LockUnspentMethod, id, unlock, unspent);
         }
 
         /// <summary>
@@ -2514,9 +2478,9 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <param name="min_conf">Only use funds with at least this many confirmations</param>
         /// <param name="comment">An optional comment, stored in the wallet only</param>
         /// <returns></returns>
-        public async Task<RpcResponse<object>> MoveAsync(string blockchainName, string id, string from_account, string to_account, object amount, int min_conf, string comment)
+        public Task<RpcResponse<object>> MoveAsync(string blockchainName, string id, string from_account, string to_account, object amount, int min_conf, string comment)
         {
-            return await TransactAsync<RpcResponse<object>>(blockchainName, WalletAction.MoveMethod, id, from_account, to_account, amount, min_conf, comment);
+            return TransactAsync<RpcResponse<object>>(blockchainName, WalletAction.MoveMethod, id, from_account, to_account, amount, min_conf, comment);
         }
 
         /// <summary>
@@ -2549,9 +2513,9 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <param name="asset_quantities">A json object of assets to send</param>
         /// <param name="_lock">Lock prepared unspent output. Default is true</param>
         /// <returns></returns>
-        public async Task<RpcResponse<PrepareLockUnspentResult>> PrepareLockUnspentAsync(string blockchainName, string id, object asset_quantities, bool _lock)
+        public Task<RpcResponse<PrepareLockUnspentResult>> PrepareLockUnspentAsync(string blockchainName, string id, object asset_quantities, bool _lock)
         {
-            return await TransactAsync<RpcResponse<PrepareLockUnspentResult>>(blockchainName, WalletAction.PrepareLockUnspentMethod, id, asset_quantities, _lock);
+            return TransactAsync<RpcResponse<PrepareLockUnspentResult>>(blockchainName, WalletAction.PrepareLockUnspentMethod, id, asset_quantities, _lock);
         }
 
         /// <summary>
@@ -2583,9 +2547,9 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <param name="asset_quantities">A json object of assets to send</param>
         /// <param name="_lock">Lock prepared unspent output</param>
         /// <returns></returns>
-        public async Task<RpcResponse<PrepareLockUnspentFromResult>> PrepareLockUnspentFromAsync(string blockchainName, string id, string from_address, object asset_quantities, bool _lock)
+        public Task<RpcResponse<PrepareLockUnspentFromResult>> PrepareLockUnspentFromAsync(string blockchainName, string id, string from_address, object asset_quantities, bool _lock)
         {
-            return await TransactAsync<RpcResponse<PrepareLockUnspentFromResult>>(blockchainName, WalletAction.PrepareLockUnspentFromMethod, id, from_address, asset_quantities, _lock);
+            return TransactAsync<RpcResponse<PrepareLockUnspentFromResult>>(blockchainName, WalletAction.PrepareLockUnspentFromMethod, id, from_address, asset_quantities, _lock);
         }
 
         /// <summary>
@@ -2766,9 +2730,9 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <param name="blockchainName">Name of target blockchain</param>
         /// <param name="id">String value to identify this transaction</param>
         /// <returns></returns>
-        public async Task<RpcResponse<object>> ResendWalletTransactionsAsync(string blockchainName, string id)
+        public Task<RpcResponse<object>> ResendWalletTransactionsAsync(string blockchainName, string id)
         {
-            return await TransactAsync<RpcResponse<object>>(blockchainName, WalletAction.ResendWalletTransactionsMethod, id);
+            return TransactAsync<RpcResponse<object>>(blockchainName, WalletAction.ResendWalletTransactionsMethod, id);
         }
 
         /// <summary>
@@ -2802,9 +2766,9 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <param name="comment">A comment used to store what the transaction is for. This is not part of the transaction, just kept in your wallet.</param>
         /// <param name="comment_to">A comment to store the name of the person or organization to which you're sending the transaction. This is not part of the transaction, just kept in your wallet.</param>
         /// <returns></returns>
-        public async Task<RpcResponse<object>> RevokeAsync(string blockchainName, string id, string addresses, string permissions, double native_amount, string comment, string comment_to)
+        public Task<RpcResponse<object>> RevokeAsync(string blockchainName, string id, string addresses, string permissions, double native_amount, string comment, string comment_to)
         {
-            return await TransactAsync<RpcResponse<object>>(blockchainName, WalletAction.RevokeMethod, id, addresses, permissions, native_amount, comment, comment_to);
+            return TransactAsync<RpcResponse<object>>(blockchainName, WalletAction.RevokeMethod, id, addresses, permissions, native_amount, comment, comment_to);
         }
 
         /// <summary>
@@ -2848,9 +2812,9 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <param name="comment">A comment used to store what the transaction is for. This is not part of the transaction, just kept in your wallet.</param>
         /// <param name="comment_to">A comment to store the name of the person or organization to which you're sending the transaction. This is not part of the transaction, just kept in your wallet.</param>
         /// <returns></returns>
-        public async Task<RpcResponse<object>> RevokeFromAsync(string blockchainName, string id, string from_address, string to_addresses, string permissions, double native_amount, string comment, string comment_to)
+        public Task<RpcResponse<object>> RevokeFromAsync(string blockchainName, string id, string from_address, string to_addresses, string permissions, double native_amount, string comment, string comment_to)
         {
-            return await TransactAsync<RpcResponse<object>>(blockchainName, WalletAction.RevokeFromMethod, id, from_address, to_addresses, permissions, native_amount, comment, comment_to);
+            return TransactAsync<RpcResponse<object>>(blockchainName, WalletAction.RevokeFromMethod, id, from_address, to_addresses, permissions, native_amount, comment, comment_to);
         }
 
         /// <summary>
@@ -2889,9 +2853,9 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <param name="comment">A comment used to store what the transaction is for. This is not part of the transaction, just kept in your wallet.</param>
         /// <param name="comment_to">A comment to store the name of the person or organization to which you're sending the transaction. This is not part of the transaction, just kept in your wallet.</param>
         /// <returns></returns>
-        public async Task<RpcResponse<string>> SendAsync(string blockchainName, string id, string to_address, object amount_or_asset_quantities, string comment, string comment_to)
+        public Task<RpcResponse<string>> SendAsync(string blockchainName, string id, string to_address, object amount_or_asset_quantities, string comment, string comment_to)
         {
-            return await TransactAsync<RpcResponse<string>>(blockchainName, WalletAction.SendMethod, id, to_address, amount_or_asset_quantities, comment, comment_to);
+            return TransactAsync<RpcResponse<string>>(blockchainName, WalletAction.SendMethod, id, to_address, amount_or_asset_quantities, comment, comment_to);
         }
 
         /// <summary>
@@ -2926,9 +2890,9 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <param name="comment">A comment used to store what the transaction is for. This is not part of the transaction, just kept in your wallet.</param>
         /// <param name="comment_to">A comment to store the name of the person or organization to which you're sending the transaction. This is not part of the transaction, just kept in your wallet.</param>
         /// <returns></returns>
-        public async Task<RpcResponse<object>> SendAssetAsync(string blockchainName, string id, string to_address, string asset_identifier, int asset_quantity, double native_amount, string comment, string comment_to)
+        public Task<RpcResponse<object>> SendAssetAsync(string blockchainName, string id, string to_address, string asset_identifier, int asset_quantity, double native_amount, string comment, string comment_to)
         {
-            return await TransactAsync<RpcResponse<object>>(blockchainName, WalletAction.SendAssetMethod, id, to_address, asset_identifier, asset_quantity, native_amount, comment, comment_to);
+            return TransactAsync<RpcResponse<object>>(blockchainName, WalletAction.SendAssetMethod, id, to_address, asset_identifier, asset_quantity, native_amount, comment, comment_to);
         }
 
         /// <summary>
@@ -2966,9 +2930,9 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <param name="comment">A comment used to store what the transaction is for. This is not part of the transaction, just kept in your wallet.</param>
         /// <param name="comment_to">A comment to store the name of the person or organization to which you're sending the transaction. This is not part of the transaction, just kept in your wallet.</param>
         /// <returns></returns>
-        public async Task<RpcResponse<object>> SendAssetFromAsync(string blockchainName, string id, string from_address, string to_address, string asset_identifier, int asset_quantity, double native_amount, string comment, string comment_to)
+        public Task<RpcResponse<object>> SendAssetFromAsync(string blockchainName, string id, string from_address, string to_address, string asset_identifier, int asset_quantity, double native_amount, string comment, string comment_to)
         {
-            return await TransactAsync<RpcResponse<object>>(blockchainName, WalletAction.SendAssetFromMethod, id, from_address, to_address, asset_identifier, asset_quantity, native_amount, comment, comment_to);
+            return TransactAsync<RpcResponse<object>>(blockchainName, WalletAction.SendAssetFromMethod, id, from_address, to_address, asset_identifier, asset_quantity, native_amount, comment, comment_to);
         }
 
         /// <summary>
@@ -3005,9 +2969,9 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <param name="comment">A comment used to store what the transaction is for. This is not part of the transaction, just kept in your wallet.</param>
         /// <param name="comment_to">A comment to store the name of the person or organization to which you're sending the transaction. This is not part of the transaction, just kept in your wallet.</param>
         /// <returns></returns>
-        public async Task<RpcResponse<object>> SendFromAsync(string blockchainName, string id, string from_address, string to_address, object amount_or_asset_quantities, string comment, string comment_to)
+        public Task<RpcResponse<object>> SendFromAsync(string blockchainName, string id, string from_address, string to_address, object amount_or_asset_quantities, string comment, string comment_to)
         {
-            return await TransactAsync<RpcResponse<object>>(blockchainName, WalletAction.SendFromMethod, id, from_address, to_address, amount_or_asset_quantities, comment, comment_to);
+            return TransactAsync<RpcResponse<object>>(blockchainName, WalletAction.SendFromMethod, id, from_address, to_address, amount_or_asset_quantities, comment, comment_to);
         }
 
         /// <summary>
