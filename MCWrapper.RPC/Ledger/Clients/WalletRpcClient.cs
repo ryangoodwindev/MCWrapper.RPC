@@ -83,7 +83,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <para>Add a nrequired-to-sign multisignature address to the wallet.</para>>
         /// <para>Each key is a address or hex-encoded public key.</para>
         /// <para> If 'account' is specified, assign address to that account.</para>
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         ///
         /// </summary>
         /// <param name="n_required">The number of required signatures out of the n keys or addresses</param>
@@ -118,7 +118,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// 
         /// <para>Adds to the raw atomic exchange transaction in tx-hex given by a previous call to createrawexchange or appendrawexchange.</para>
         /// <para>Requires wallet passphrase to be set with walletpassphrase call.</para>
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         /// 
         /// </summary>
         /// <param name="hex">The transaction hex string</param>
@@ -162,7 +162,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <summary>
         /// 
         /// <para>Approve upgrade, tx filter, or stream filter using specific address.</para>
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         /// 
         /// </summary>
         /// <param name="fromAddress">Address used for approval</param>
@@ -199,7 +199,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <summary>
         /// 
         /// <para>Safely copies wallet.dat to destination, which can be a directory or a path with filename.</para>
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         /// 
         /// </summary>
         /// <param name="destination">The destination directory or file</param>
@@ -233,7 +233,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// 
         /// <para>Optimizes wallet performance by combining unspent txouts.</para>
         /// <para>Requires wallet passphrase to be set with walletpassphrase call.</para>
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         ///
         /// </summary>
         /// <param name="addresses">Addresses to optimize (comma delimited). Default - "*", all</param>
@@ -273,7 +273,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <para>Completes existing exchange transaction, adds fee if needed</para>
         /// <para>Returns hex-encoded raw transaction.</para>
         /// <para>Requires wallet passphrase to be set with walletpassphrase call.</para>
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         /// 
         /// </summary>
         /// <param name="hex">The transaction hex string</param>
@@ -305,7 +305,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <summary>
         /// 
         /// <para>Creates stream or upgrade</para>
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         /// 
         /// </summary>
         /// <param name="entity_type">One of stream, upgrade, tx filter, stream filter</param>
@@ -339,7 +339,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// 
         /// <para>Creates stream or upgrade using specific address</para>
         /// <para>Requires wallet passphrase to be set with walletpassphrase call.</para>
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         ///
         /// </summary>
         /// <param name="from_address">Address used for creating</param>
@@ -374,7 +374,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <para>Creates new exchange transaction</para>
         /// <para>Note that the transaction should be completed by appendrawexchange</para>
         /// <para>Requires wallet passphrase to be set with walletpassphrase call.</para>
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         ///
         /// </summary>
         /// <param name="txid">Transaction ID of the output prepared by preparelockunspent</param>
@@ -404,7 +404,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <summary>
         /// 
         /// <para>Create a transaction using the given sending address.</para>
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         /// 
         /// </summary>
         /// <param name="from_address">Address to send from</param>
@@ -433,7 +433,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <summary>
         /// 
         /// <para>Return a JSON object representing the serialized, hex-encoded exchange transaction.</para>
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         /// 
         /// </summary>
         /// <param name="tx_hex">The exchange transaction hex string</param>
@@ -459,7 +459,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <summary>
         /// 
         /// <para>Disable raw transaction by spending one of its inputs and sending it back to the wallet.</para>
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         ///
         /// </summary>
         /// <param name="tx_hex">The transaction hex string</param>
@@ -486,7 +486,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// 
         /// <para>Reveals the private key corresponding to 'address'.</para>
         /// <para>Then the importprivkey can be used with this output</para>
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         /// 
         /// </summary>
         /// <param name="address">The MultiChain address for the private key</param>
@@ -511,7 +511,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <summary>
         /// 
         /// <para>Dumps all wallet keys in a human-readable format.</para>
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         /// 
         /// </summary>
         /// <param name="filename">The filename</param>
@@ -548,7 +548,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         ///     If the wallet is already encrypted, use the walletpassphrasechange call.
         ///     Note that this will shutdown the server.
         /// </para>
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         /// 
         /// </summary>
         /// <param name="passphrase">The pass phrase to encrypt the wallet with. It must be at least 1 character, but should be long</param>
@@ -573,7 +573,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <summary>
         /// 
         /// <para>Returns the account associated with the targeted address.</para>
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         ///
         /// </summary>
         /// <param name="address">The address for account lookup</param>
@@ -598,7 +598,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <summary>
         /// 
         /// <para>Returns the current address for receiving payments to this account.</para>
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         /// 
         /// </summary>
         /// <param name="account">The account name for the address. It can also be set to the empty string "" to represent the default account. The account does not need to exist, it will be created and a new address created if there is no account by the given name.</param>
@@ -625,7 +625,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <summary>
         /// 
         /// <para>Returns asset balances for specified address</para>
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         /// 
         /// </summary>
         /// <param name="address">Address to return balance for</param>
@@ -652,7 +652,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <summary>
         /// 
         /// <para>Returns the list of all addresses in the wallet.</para>
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         /// 
         /// </summary>
         /// <param name="verbose">The account name</param>
@@ -677,7 +677,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <summary>
         /// 
         /// <para>Returns the list of addresses for the given account.</para>
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         /// 
         /// </summary>
         /// <param name="account">The account name</param>
@@ -704,7 +704,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <summary>
         /// 
         /// <para>Provides information about transaction txid related to address in this node's wallet</para>
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         /// 
         /// </summary>
         /// <param name="address">Address used for balance calculation</param>
@@ -740,7 +740,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <para>If account is specified, returns the balances in the account.</para>
         /// <para>Note that the account "" is not the same as leaving the parameter out.</para>
         /// <para>The server total may be different to the balance in the default "" account.</para>
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         ///
         /// </summary>
         /// <param name="account">The selected account, or "*" for entire wallet. It may be the default account using ""</param>
@@ -770,7 +770,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <summary>
         /// 
         /// <para>Retrieves a specific transaction txid involving asset.</para>
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         /// 
         /// </summary>
         /// <param name="asset_identifier">One of the following: asset txid, asset reference, asset name</param>
@@ -805,7 +805,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <para>If account is specified, returns the balance in the account.</para>
         /// <para>Note that the account "" is not the same as leaving the parameter out.</para>
         /// <para>The server total may be different to the balance in the default "" account.</para>
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         /// 
         /// </summary>
         /// <param name="account">The selected account, or "*" for entire wallet. It may be the default account using ""</param>
@@ -836,7 +836,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <summary>
         /// 
         /// <para>Returns asset balances for specified address</para>
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         /// 
         /// </summary>
         /// <param name="addresses">Address(es) to return balance for, comma delimited. Default - all or A json array of addresses to return balance for</param>
@@ -872,7 +872,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// 
         /// <para> Returns a new address for receiving payments.</para>
         /// <para>If 'account' is specified (deprecated), it is added to the address book so payments received with the address will be credited to 'account'.</para>
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         ///
         /// </summary>
         /// <param name="account">The account name for the address to be linked to. If not provided, the default account "" is used. It can also be set to the empty string "" to represent the default account. The account does not need to exist, it will be created if there is no account by the given name.</param>
@@ -898,7 +898,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// 
         /// <para>Returns a new address, for receiving change.</para>
         /// <para>This is for use with raw transactions, NOT normal use.</para>
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         /// 
         /// </summary>
         /// <returns></returns>
@@ -923,7 +923,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <summary>
         /// 
         /// <para>Returns the total amount received by addresses with account in transactions with at least [minconf] confirmations.</para>
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         /// 
         /// </summary>
         /// <param name="account">The selected account, may be the default account using ""</param>
@@ -950,7 +950,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <summary>
         /// 
         /// <para>Returns the total amount received by the given address in transactions with at least minconf confirmations.</para>
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         /// 
         /// </summary>
         /// <param name="address">The address for transactions</param>
@@ -978,7 +978,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <summary>
         /// 
         /// <para>Returns stream item.</para>
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         ///
         /// </summary>
         /// <param name="stream_identifier">One of the following: stream txid, stream reference, stream name</param>
@@ -1016,7 +1016,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <summary>
         /// 
         /// <para>Returns stream json object items summary for specific key.</para>
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         /// 
         /// </summary>
         /// <param name="stream_identifier">One of the following: stream txid, stream reference, stream name</param>
@@ -1065,7 +1065,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <summary>
         /// 
         /// <para>Returns stream json object items summary for specific publisher.</para>
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         /// 
         /// </summary>
         /// <param name="stream_identifier">one of the following: stream txid, stream reference, stream name</param>
@@ -1103,7 +1103,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <summary>
         /// 
         /// <para>Returns a list of all the asset balances in this nodeΓÇÖs wallet, with at least minconf confirmations.</para>
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         /// 
         /// </summary>
         /// <param name="min_conf">Only include transactions confirmed at least this many times</param>
@@ -1131,7 +1131,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <summary>
         /// 
         /// <para>Get detailed information about in-wallet transaction txid</para>
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         /// 
         /// </summary>
         /// <param name="txid">The transaction id</param>
@@ -1165,7 +1165,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <summary>
         /// 
         /// <para>Returns metadata of transaction output.</para>
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         /// 
         /// </summary>
         /// <param name="txid">The transaction id</param>
@@ -1192,7 +1192,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <summary>
         /// 
         /// <para>Returns the server's total unconfirmed balance</para>
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         /// 
         /// </summary>
         /// <returns></returns>
@@ -1215,7 +1215,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <summary>
         /// 
         /// <para>Returns an object containing various wallet state info.</para>
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         /// 
         /// </summary>
         /// <returns></returns>
@@ -1241,7 +1241,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <summary>
         /// 
         /// <para>Get detailed information about in-wallet transaction txid</para>
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         ///
         /// </summary>
         /// <param name="txid">The transaction id</param>
@@ -1294,7 +1294,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <summary>
         /// 
         /// <para>Requires wallet passphrase to be set with walletpassphrase call.</para>
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         ///
         /// </summary>
         /// <param name="addresses">The multichain addresses to send to (comma delimited)</param>
@@ -1365,7 +1365,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// Grant permission using specific address.
         ///
         /// Requires wallet passphrase to be set with walletpassphrase call.
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         ///
         /// </summary>
         /// <param name="from_address">Address used for grant</param>
@@ -1424,7 +1424,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <summary>
         /// 
         /// <para>Grant permission(s) with metadata to a given address.</para>
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         /// 
         /// </summary>
         /// <param name="addresses">The multichain addresses to send to (comma delimited)</param>
@@ -1484,7 +1484,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// 
         /// <para>Grant permission with metadata using specific address.</para>
         /// <para>Requires wallet passphrase to be set with walletpassphrase call.</para>
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         ///
         /// </summary>
         /// <param name="from_address">Address used for grant</param>
@@ -1530,7 +1530,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// 
         /// <para>Adds an address or script (in hex) that can be watched as if it were in your wallet but cannot be used to spend.</para>
         /// <para>Note: This call can take minutes to complete if rescan is true.</para>
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         /// 
         /// </summary>
         /// <param name="addresses">The addresses, comma delimited or a json array of addresses</param>
@@ -1559,7 +1559,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <summary>
         /// 
         /// <para>Adds a private key (as returned by dumpprivkey) to your wallet.</para>
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         /// 
         /// </summary>
         /// <param name="priv_keys">(string, required) The private key (see dumpprivkey), comma delimited or (array, optional) A json array of private keys</param>
@@ -1587,7 +1587,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <summary>
         /// 
         /// <para>Imports keys from a wallet dump file (see dumpwallet).</para>
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         /// 
         /// </summary>
         /// <param name="filename">The wallet file</param>
@@ -1618,7 +1618,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <summary>
         /// 
         /// <para>Issue a new Asset to an address on the blockchain network.</para>
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         /// 
         /// </summary>
         /// <param name="to_address">The address to send newly created asset to</param>
@@ -1654,7 +1654,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <summary>
         /// 
         /// <para>Issue asset using specific address</para>
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         ///
         /// </summary>
         /// <param name="from_address">Address used for issuing</param>
@@ -1689,7 +1689,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <summary>
         /// 
         /// <para>Create more units for asset</para>
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         ///
         /// </summary>
         /// <param name="to_address">The address to send newly created asset to</param>
@@ -1723,7 +1723,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <summary>
         /// 
         /// <para>Create more units for asset from specific address</para>
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         ///
         /// </summary>
         /// <param name="from_address">Address used for issuing</param>
@@ -1755,7 +1755,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// 
         /// <para>Fills the keypool.</para>
         /// <para>Requires wallet passphrase to be set with walletpassphrase call.</para>
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         /// 
         /// </summary>
         /// <param name="new_size">The new keypool size</param>
@@ -1781,7 +1781,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <summary>
         /// 
         /// <para>Returns Object that has account names as keys, account balances as values.</para>
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         /// 
         /// </summary>
         /// <param name="min_conf"> Only include transactions with at least this many confirmations</param>
@@ -1810,7 +1810,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <summary>
         /// 
         /// Returns asset balances for specified address
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         ///
         /// </summary>
         /// <param name="addresses">(string, optional, default *) Address(es) to return information for, comma delimited. Default - all or (array, optional) A json array of addresses to return information for</param>
@@ -1837,7 +1837,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <summary>
         ///
         /// <para>Lists groups of addresses which have had their common ownership made public by common use as inputs or as the resulting change in past transactions</para>
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         /// 
         /// </summary>
         /// <returns></returns>
@@ -1864,7 +1864,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <summary>
         /// 
         /// Lists information about the count most recent transactions related to address in this nodeΓÇÖs wallet.
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         ///
         /// </summary>
         /// <param name="address">Address to list transactions for</param>
@@ -1896,7 +1896,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <summary>
         /// 
         /// Lists transactions involving asset.
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         /// 
         /// </summary>
         /// <param name="asset_identifier">One of the following: asset txid, asset reference, asset name</param>
@@ -1926,7 +1926,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// 
         /// Returns list of temporarily unspendable outputs.
         /// <para>See the lockunspent call to lock and unlock transactions for spending.</para>
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         ///
         /// </summary>
         /// <returns></returns>
@@ -1952,7 +1952,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <summary>
         /// 
         /// List balances by account.
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         ///
         /// </summary>
         /// <param name="min_conf">The minimum number of confirmations before payments are included</param>
@@ -1981,7 +1981,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <summary>
         /// 
         /// List balances by receiving address.
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         ///
         /// </summary>
         /// <param name="min_conf">The minimum number of confirmations before payments are included</param>
@@ -2010,7 +2010,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <summary>
         /// 
         /// Get all transactions in blocks since block [blockhash], or all transactions if omitted
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         /// 
         /// </summary>
         /// <param name="block_hash">The block hash to list transactions since</param>
@@ -2041,7 +2041,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <summary>
         /// 
         /// Returns stream items in certain block range.
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         ///
         /// </summary>
         /// <param name="stream_identifier">(string, required) Stream identifier - one of the following: stream txid, stream reference, stream name</param>
@@ -2074,7 +2074,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <summary>
         /// 
         /// Returns stream items.
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         /// 
         /// </summary>
         /// <param name="stream_identifier">One of the following: stream txid, stream reference, stream name</param>
@@ -2108,7 +2108,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <summary>
         /// 
         /// Returns stream items for specific key.
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         /// 
         /// </summary>
         /// <param name="stream_identifier">One of the following: stream txid, stream reference, stream name</param>
@@ -2143,7 +2143,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <summary>
         /// 
         /// Returns stream keys.
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         /// 
         /// </summary>
         /// <param name="stream_identifier">One of the following: stream txid, stream reference, stream name</param>
@@ -2178,7 +2178,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <summary>
         /// 
         /// Returns stream items for specific publisher.
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         /// 
         /// </summary>
         /// <param name="stream_identifiers">One of the following: stream txid, stream reference, stream name</param>
@@ -2213,7 +2213,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <summary>
         /// 
         /// Returns stream publishers.
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         /// 
         /// </summary>
         /// <param name="stream_identifier">One of the following: stream txid, stream reference, stream name</param>
@@ -2245,7 +2245,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <summary>
         /// 
         /// Returns stream items for specific query.
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         ///
         /// </summary>
         /// <param name="stream_identifier">One of the following: stream txid, stream reference, stream name</param>
@@ -2274,7 +2274,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <summary>
         /// 
         /// Returns stream items.
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         /// 
         /// </summary>
         /// <param name="stream_identifiers">One of the following: stream txid, stream reference, stream name</param>
@@ -2304,7 +2304,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <summary>
         /// 
         /// Returns up to 'count' most recent transactions skipping the first 'from' transactions for account 'account'.
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         ///
         /// </summary>
         /// <param name="account">The account name. If not included, it will list all transactions for all accounts. If "" is set, it will list transactions for the default account.</param>
@@ -2340,7 +2340,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// 
         /// <para>Optionally filter to only include txouts paid to specified addresses.</para>
         /// <para>Results are an array of Objects, each of which has: {txid, vout, scriptPubKey, amount, confirmations}</para>
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         /// 
         /// </summary>
         /// <param name="min_conf">The minimum confirmations to filter</param>
@@ -2370,7 +2370,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <summary>
         /// 
         /// Lists information about the count most recent transactions in this nodeΓÇÖs wallet.
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         ///
         /// </summary>
         /// <param name="count">The number of transactions to return</param>
@@ -2407,7 +2407,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <para>A locked transaction output will not be chosen by automatic coin selection, when spending assetss.</para>
         /// Locks are stored in memory only. Nodes start with zero locked outputs, and the locked output list is always cleared (by virtue of process exit) when a node stops or fails.
         /// <para>Also see the listunspent call</para>
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         /// 
         /// </summary>
         /// <param name="unlock">Whether to unlock (true) or lock (false) the specified transactions</param>
@@ -2437,7 +2437,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <summary>
         /// 
         /// Move a specified amount from one account in your wallet to another.
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         /// 
         /// </summary>
         /// <param name="from_account">The name of the account to move funds from. May be the default account using ""</param>
@@ -2469,7 +2469,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// 
         /// Prepares exchange transaction output for createrawexchange, appendrawexchange
         /// <para>Requires wallet passphrase to be set with walletpassphrase call.</para>
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         ///  
         /// </summary>
         /// <param name="asset_quantities">A json object of assets to send</param>
@@ -2499,7 +2499,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// 
         /// Prepares exchange transaction output for createrawexchange, appendrawexchange using specific address
         /// <para>Requires wallet passphrase to be set with walletpassphrase call.</para>
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         ///
         /// </summary>
         /// <param name="from_address">Address to send from</param>
@@ -2534,7 +2534,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <summary>
         /// 
         /// Publishes stream item. Requires wallet passphrase to be set with walletpassphrase call.
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         ///
         /// </summary>
         /// <param name="stream_identifier">One of the following: stream txid, stream reference, stream name</param>
@@ -2571,7 +2571,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <summary>
         /// 
         /// Publishes stream item from specific address. Requires wallet passphrase to be set with walletpassphrase call.
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         ///
         /// </summary>
         /// <param name="from_address">Address used for issuing</param>
@@ -2607,7 +2607,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <summary>
         /// 
         /// Publishes several stream items.
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         /// 
         /// </summary>
         /// <param name="stream_identifier">One of: create txid, stream reference, stream name. Default for items if "for" field is omitted</param>
@@ -2642,7 +2642,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <summary>
         /// 
         /// Publishes several stream items
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         /// 
         /// </summary>
         /// <param name="from_address"> Address used for publishing</param>
@@ -2669,7 +2669,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <summary>
         /// 
         /// Resends wallet transactions
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         /// 
         /// </summary>
         /// <returns></returns>
@@ -2701,7 +2701,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <summary>
         /// 
         /// Revoke permission from a given address. The amount is a real. Requires wallet passphrase to be set with walletpassphrase call.
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         /// 
         /// </summary>
         /// <param name="addresses">The addresses(es) to revoke permissions from</param>
@@ -2743,7 +2743,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <summary>
         /// 
         /// Revoke permissions using specific address. Requires wallet passphrase to be set with walletpassphrase call.
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         /// 
         /// </summary>
         /// <param name="from_address">Addresses used for revoke.</param>
@@ -2780,7 +2780,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <summary>
         /// 
         /// Send an amount (or several asset amounts) to a given address. The amount is a real and is rounded to the nearest 0.00000001. Requires wallet passphrase to be set with walletpassphrase call.
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         /// 
         /// </summary>
         /// <param name="to_address">The address to send to</param>
@@ -2813,7 +2813,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <summary>
         /// 
         /// Send asset amount to a given address. The amounts are real. Requires wallet passphrase to be set with walletpassphrase call.
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         /// 
         /// </summary>
         /// <param name="to_address">The address to send to</param>
@@ -2849,7 +2849,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <summary>
         /// 
         /// Send an asset amount using specific address. Requires wallet passphrase to be set with walletpassphrase call.
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         /// 
         /// </summary>
         /// <param name="from_address">Address to send from</param>
@@ -2884,7 +2884,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <summary>
         /// 
         /// Send an amount (or several asset amounts) using specific address. Requires wallet passphrase to be set with walletpassphrase call.
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         /// 
         /// </summary>
         /// <param name="from_address">Address to send from</param>
@@ -2918,7 +2918,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <summary>
         /// 
         /// Sent an amount from an account to a address. The amount is a real and is rounded to the nearest 0.00000001. Requires wallet passphrase to be set with walletpassphrase call.
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         ///
         /// </summary>
         /// <param name="from_account">The name of the account to send funds from. May be the default account using "".</param>
@@ -2951,7 +2951,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <summary>
         /// 
         /// Send multiple times. Amounts are double-precision floating point numbers. Requires wallet passphrase to be set with walletpassphrase call.
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         ///
         /// </summary>
         /// <param name="from_account">The account to send the funds from, can be "" for the default account</param>
@@ -2981,7 +2981,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <summary>
         /// 
         /// Send an amount (or several asset amounts) to a given address with appended metadata. Requires wallet passphrase to be set with walletpassphrase call.
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         /// 
         /// </summary>
         /// <param name="to_address">The address to send to</param>
@@ -3011,7 +3011,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <summary>
         /// 
         /// Send an amount (or several asset amounts) using specific address. Requires wallet passphrase to be set with walletpassphrase call.
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         /// 
         /// </summary>
         /// <param name="from_address">Address to send from.</param>
@@ -3040,7 +3040,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <summary>
         /// 
         /// Sets the account associated with the given address.
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         /// 
         /// </summary>
         /// <param name="address">The address to be associated with an account</param>
@@ -3066,7 +3066,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <summary>
         /// 
         /// Set the transaction fee per kB.
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         /// 
         /// </summary>
         /// <param name="amount">The transaction fee in native currency/kB rounded to the nearest 0.00000001</param>
@@ -3092,7 +3092,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <summary>
         /// 
         /// Sign a message with the private key of an address. Requires wallet passphrase to be set with walletpassphrase call.
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         ///
         /// </summary>
         /// <param name="address_privkey">The address to use for the private key or the private key (see dumpprivkey and createkeypairs)</param>
@@ -3125,7 +3125,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <summary>
         /// 
         /// <para>Subscribes to a stream or asset.</para>
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         /// 
         /// </summary>
         /// <param name="entity_identifiers">One of: create txid, stream reference, stream name or one of: issue txid, asset reference, asset name or A json array of stream or asset identifiers</param>
@@ -3153,7 +3153,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <summary>
         /// 
         /// Available only in Enterprise Edition. Removes indexes from subscriptions to the stream.
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         /// 
         /// </summary>
         /// <param name="streams">One of: create txid, stream reference, stream name or a json array of stream identifiers</param>
@@ -3183,7 +3183,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <summary>
         /// 
         /// Stores metadata of transaction output in binary cache.
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         /// 
         /// </summary>
         /// <param name="identifier">Binary cache item identifier</param>
@@ -3213,7 +3213,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <summary>
         /// 
         /// Unsubscribes from the stream.
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         /// 
         /// </summary>
         /// <param name="entity_identifiers">Stream identifier - one of the following: stream txid, stream reference, stream name or Asset identifier - one of the following: asset txid, asset reference, asset name or a json array of stream or asset identifiers </param>
@@ -3240,7 +3240,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// 
         /// Removes the wallet encryption key from memory, locking the wallet.
         /// <para>After calling this method, you will need to call walletpassphrase again before being able to call any methods which require the wallet to be unlocked.</para>
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         ///
         /// </summary>
         /// <returns></returns>
@@ -3267,7 +3267,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// 
         /// Stores the wallet decryption key in memory for 'timeout' seconds.
         /// <para>This is needed prior to performing transactions related to private keys such as sending assets</para>
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         /// 
         /// </summary>
         /// <param name="passphrase">The wallet passphrase</param>
@@ -3294,7 +3294,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Wallet
         /// <summary>
         /// 
         /// Changes the wallet passphrase from 'oldpassphrase' to 'newpassphrase'.
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         /// 
         /// </summary>
         /// <param name="old_passphrase">The current passphrase</param>

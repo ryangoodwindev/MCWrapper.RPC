@@ -50,7 +50,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Mining
         /// <para>Deprecated for the current version of Multichain; Do Not Use;</para>
         /// <para>If the request parameters include a 'mode' key, that is used to explicitly select between the default 'template' request or a 'proposal'.</para>
         /// <para>It returns data needed to construct a block to work on.</para>
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         ///
         /// </summary>
         /// <param name="json_request_object">
@@ -61,7 +61,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Mining
         ///     <para> ,...]}</para>
         /// </param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> GetBlockTemplateAsync(string json_request_object) => 
+        public Task<RpcResponse<object>> GetBlockTemplateAsync(string json_request_object) =>
             GetBlockTemplateAsync(BlockchainOptions.ChainName, UUID.NoHyphens, json_request_object);
 
 
@@ -80,7 +80,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Mining
         /// <summary>
         /// 
         /// <para>Returns a json object containing mining-related information.</para>
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         /// 
         /// </summary>
         /// <returns></returns>
@@ -116,7 +116,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Mining
         /// <para>Returns the estimated network hashes per second based on the last n blocks.</para>
         /// <para>Pass in [blocks] to override # of blocks, -1 specifies since last difficulty change.</para>
         /// <para>Pass in [height] to estimate the network speed at the time when a certain block was found.</para>
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         ///
         /// </summary>
         /// <param name="blocks">(numeric, optional, default=120) The number of blocks, or -1 for blocks since last difficulty change</param>
@@ -151,7 +151,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Mining
         /// <summary>
         /// 
         /// <para>Accepts the transaction into mined blocks at a higher (or lower) priority</para>
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         ///
         /// </summary>
         /// <param name="txid">The transaction id</param>
@@ -165,7 +165,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Mining
         ///     <para>he fee is not actually paid, only the algorithm for selecting transactions into a block considers the transaction as it would have paid a higher (or lower) fee</para>
         /// </param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> PrioritiseTransactionAsync(string txid, double priority_delta, double fee_delta) => 
+        public Task<RpcResponse<object>> PrioritiseTransactionAsync(string txid, double priority_delta, double fee_delta) =>
             PrioritiseTransactionAsync(BlockchainOptions.ChainName, UUID.NoHyphens, txid, priority_delta, fee_delta);
 
 
@@ -191,7 +191,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Mining
         /// 
         /// <para>Attempts to submit new block to network.</para>
         /// <para>The 'jsonparametersobject' parameter is currently ignored.</para>
-        /// <para>Blockchain name is inferred from BlockchainProfileOptions properties.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         /// 
         /// </summary>
         /// <param name="hex_data">the hex-encoded block data to submit</param>
@@ -200,7 +200,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Mining
         ///     <para>{ "workid" : "id"               (string, optional) if the server provided a workid, it MUST be included with submissions }</para>
         /// </param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> SubmitBlockAsync(object hex_data, string json_parameters_object = "") => 
+        public Task<RpcResponse<object>> SubmitBlockAsync(object hex_data, string json_parameters_object = "") =>
             SubmitBlockAsync(BlockchainOptions.ChainName, UUID.NoHyphens, hex_data, json_parameters_object);
     }
 }
