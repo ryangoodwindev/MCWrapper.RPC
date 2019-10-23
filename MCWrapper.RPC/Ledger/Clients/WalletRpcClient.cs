@@ -1,8 +1,8 @@
-﻿using MCWrapper.RPC.Connection;
+﻿using MCWrapper.Data.Models.Wallet;
+using MCWrapper.Data.Models.Wallet.CustomModels;
+using MCWrapper.RPC.Connection;
 using MCWrapper.RPC.Extensions;
 using MCWrapper.RPC.Ledger.Actions;
-using MCWrapper.RPC.Ledger.Models.Wallet;
-using MCWrapper.RPC.Ledger.Models.Wallet.CustomModels;
 using MCWrapper.RPC.Options;
 using Microsoft.Extensions.Options;
 using System.Net.Http;

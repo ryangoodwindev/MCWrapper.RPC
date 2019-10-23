@@ -67,4 +67,8 @@ Additional changes to Code Comments.</PackageReleaseNotes>
     <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="2.1.0" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
   </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MCWrapper.Data.Models" Version="1.0.0" />
+  </ItemGroup>
 </Project>

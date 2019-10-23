@@ -1,7 +1,7 @@
-﻿using MCWrapper.RPC.Connection;
+﻿using MCWrapper.Data.Models.Network;
+using MCWrapper.RPC.Connection;
 using MCWrapper.RPC.Extensions;
 using MCWrapper.RPC.Ledger.Actions;
-using MCWrapper.RPC.Ledger.Models.Network;
 using MCWrapper.RPC.Options;
 using Microsoft.Extensions.Options;
 using System.Net.Http;
