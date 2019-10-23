@@ -10,7 +10,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Generate
 {
     /// <summary>
     /// MutliChain methods implemented:
-    /// 
+    ///
     /// getgenerate, gethashespersec, setgenerate
     /// </summary>
     public class GenerateRpcClient : RpcConnection
@@ -22,7 +22,6 @@ namespace MCWrapper.RPC.Ledger.Clients.Generate
         /// <param name="options"></param>
         public GenerateRpcClient(HttpClient client, IOptions<BlockchainRpcOptions> options)
             : base(client, options) { }
-
 
         /// <summary>
         /// <para>Return if the server is set to generate coins or not. The default is false.</para>
@@ -48,7 +47,6 @@ namespace MCWrapper.RPC.Ledger.Clients.Generate
         public Task<RpcResponse<bool>> GetGenerateAsync() =>
             GetGenerateAsync(BlockchainOptions.ChainName, UUID.NoHyphens);
 
-
         /// <summary>
         /// <para>Returns a recent hashes per second performance measurement while generating.</para>
         /// <para>See the getgenerate and setgenerate calls to turn generation on and off.</para>
@@ -71,9 +69,8 @@ namespace MCWrapper.RPC.Ledger.Clients.Generate
         public Task<RpcResponse<int>> GetHashesPerSecAsync() =>
             GetHashesPerSecAsync(BlockchainOptions.ChainName, UUID.NoHyphens);
 
-
         /// <summary>
-        /// 
+        ///
         /// <para>Set 'generate' true or false to turn generation on or off.</para>
         /// <para>Generation is limited to 'genproclimit' processors, -1 is unlimited.</para>
         /// <para>See the getgenerate call for the current setting.</para>
@@ -89,7 +86,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Generate
             TransactAsync<RpcResponse<object>>(blockchainName, GenerateAction.SetGenerateMethod, id, generate, gen_proc_limit);
 
         /// <summary>
-        /// 
+        ///
         /// <para>Set 'generate' true or false to turn generation on or off.</para>
         /// <para>Generation is limited to 'genproclimit' processors, -1 is unlimited.</para>
         /// <para>See the getgenerate call for the current setting.</para>

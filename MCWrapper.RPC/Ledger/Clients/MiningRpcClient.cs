@@ -10,8 +10,8 @@ namespace MCWrapper.RPC.Ledger.Clients.Mining
 {
     /// <summary>
     /// MutliChain methods implemented:
-    /// 
-    /// getblocktemplate, getmininginfo, getnetworkhashps, 
+    ///
+    /// getblocktemplate, getmininginfo, getnetworkhashps,
     /// prioritisetransaction, submitblock
     /// </summary>
     public class MiningRpcClient : RpcConnection
@@ -24,9 +24,8 @@ namespace MCWrapper.RPC.Ledger.Clients.Mining
         public MiningRpcClient(HttpClient client, IOptions<BlockchainRpcOptions> options)
             : base(client, options) { }
 
-
         /// <summary>
-        /// 
+        ///
         /// <para>Deprecated for the current version of Multichain; Do Not Use;</para>
         /// <para>If the request parameters include a 'mode' key, that is used to explicitly select between the default 'template' request or a 'proposal'.</para>
         /// <para>It returns data needed to construct a block to work on.</para>
@@ -64,12 +63,11 @@ namespace MCWrapper.RPC.Ledger.Clients.Mining
         public Task<RpcResponse<object>> GetBlockTemplateAsync(string json_request_object) =>
             GetBlockTemplateAsync(BlockchainOptions.ChainName, UUID.NoHyphens, json_request_object);
 
-
         /// <summary>
-        /// 
+        ///
         /// <para>Returns a json object containing mining-related information.</para>
         /// <para>Blockchain name is explicitly passed as parameter.</para>
-        /// 
+        ///
         /// </summary>
         /// <param name="blockchainName">Name of target blockchain</param>
         /// <param name="id">String value to identify this transaction</param>
@@ -78,18 +76,17 @@ namespace MCWrapper.RPC.Ledger.Clients.Mining
             TransactAsync<RpcResponse<object>>(blockchainName, MiningAction.GetMiningInfoMethod, id);
 
         /// <summary>
-        /// 
+        ///
         /// <para>Returns a json object containing mining-related information.</para>
         /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public Task<RpcResponse<object>> GetMiningInfoAsync() =>
             GetMiningInfoAsync(BlockchainOptions.ChainName, UUID.NoHyphens);
 
-
         /// <summary>
-        /// 
+        ///
         /// <para>Returns the estimated network hashes per second based on the last n blocks.</para>
         /// <para>Pass in [blocks] to override # of blocks, -1 specifies since last difficulty change.</para>
         /// <para>Pass in [height] to estimate the network speed at the time when a certain block was found.</para>
@@ -112,7 +109,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Mining
         }
 
         /// <summary>
-        /// 
+        ///
         /// <para>Returns the estimated network hashes per second based on the last n blocks.</para>
         /// <para>Pass in [blocks] to override # of blocks, -1 specifies since last difficulty change.</para>
         /// <para>Pass in [height] to estimate the network speed at the time when a certain block was found.</para>
@@ -125,9 +122,8 @@ namespace MCWrapper.RPC.Ledger.Clients.Mining
         public Task<RpcResponse<object>> GetNetworkHashPsAsync(int blocks = 120, int height = -1) =>
             GetNetworkHashPsAsync(BlockchainOptions.ChainName, UUID.NoHyphens, blocks, height);
 
-
         /// <summary>
-        /// 
+        ///
         /// <para>Accepts the transaction into mined blocks at a higher (or lower) priority</para>
         /// <para>Blockchain name is explicitly passed as parameter.</para>
         ///
@@ -149,7 +145,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Mining
             TransactAsync<RpcResponse<object>>(blockchainName, MiningAction.PrioritiseTransactionMethod, id, txid, priority_delta, fee_delta);
 
         /// <summary>
-        /// 
+        ///
         /// <para>Accepts the transaction into mined blocks at a higher (or lower) priority</para>
         /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         ///
@@ -168,13 +164,12 @@ namespace MCWrapper.RPC.Ledger.Clients.Mining
         public Task<RpcResponse<object>> PrioritiseTransactionAsync(string txid, double priority_delta, double fee_delta) =>
             PrioritiseTransactionAsync(BlockchainOptions.ChainName, UUID.NoHyphens, txid, priority_delta, fee_delta);
 
-
         /// <summary>
-        /// 
+        ///
         /// <para>Attempts to submit new block to network.</para>
         /// <para>The 'jsonparametersobject' parameter is currently ignored.</para>
         /// <para>Blockchain name is explicitly passed as parameter.</para>
-        /// 
+        ///
         /// </summary>
         /// <param name="blockchainName">Name of target blockchain</param>
         /// <param name="id">String value to identify this transaction</param>
@@ -188,11 +183,11 @@ namespace MCWrapper.RPC.Ledger.Clients.Mining
             TransactAsync<RpcResponse<object>>(blockchainName, MiningAction.SubmitBlockMethod, id, hex_data, json_parameters_object);
 
         /// <summary>
-        /// 
+        ///
         /// <para>Attempts to submit new block to network.</para>
         /// <para>The 'jsonparametersobject' parameter is currently ignored.</para>
         /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
-        /// 
+        ///
         /// </summary>
         /// <param name="hex_data">the hex-encoded block data to submit</param>
         /// <param name="json_parameters_object">

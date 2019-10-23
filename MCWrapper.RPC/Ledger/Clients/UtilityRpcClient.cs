@@ -11,8 +11,8 @@ namespace MCWrapper.RPC.Ledger.Clients.Utility
 {
     /// <summary>
     /// MutliChain methods implemented:
-    /// 
-    /// appendbinarycache, createbinarycache, createkeypairs, 
+    ///
+    /// appendbinarycache, createbinarycache, createkeypairs,
     /// createmultisig, deletebinarycache, estimatefee, estimatepriority,
     /// validateaddress, verifymessage
     /// </summary>
@@ -26,12 +26,11 @@ namespace MCWrapper.RPC.Ledger.Clients.Utility
         public UtilityRpcClient(HttpClient client, IOptions<BlockchainRpcOptions> options)
             : base(client, options) { }
 
-
         /// <summary>
-        /// 
+        ///
         /// <para>Appends data to binary cache.</para>
         /// <para>Blockchain name is explicitly passed as parameter.</para>
-        /// 
+        ///
         /// </summary>
         /// <param name="blockchainName">Name of target blockchain</param>
         /// <param name="id">String value to identify this transaction</param>
@@ -42,67 +41,64 @@ namespace MCWrapper.RPC.Ledger.Clients.Utility
             TransactAsync<RpcResponse<int>>(blockchainName, UtilityAction.AppendBinaryCacheMethod, id, identifier, data_hex);
 
         /// <summary>
-        /// 
+        ///
         /// <para>Appends data to binary cache.</para>
         /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
-        /// 
+        ///
         /// </summary>
         /// <param name="identifier">Binary cache item identifier</param>
         /// <param name="data_hex">The hex string to be added to binary cache item</param>
-        public Task<RpcResponse<int>> AppendBinaryCacheAsync(string identifier, string data_hex) => 
+        public Task<RpcResponse<int>> AppendBinaryCacheAsync(string identifier, string data_hex) =>
             AppendBinaryCacheAsync(BlockchainOptions.ChainName, UUID.NoHyphens, identifier, data_hex);
 
-
         /// <summary>
-        /// 
+        ///
         /// <para>Returns random string, which can be used as binary cache item identifier</para>
         /// <para>Blockchain name is explicitly passed as parameter.</para>
-        /// 
+        ///
         /// </summary>
         /// <param name="blockchainName">Name of target blockchain</param>
         /// <param name="id">String value to identify this transaction</param>
         /// <returns></returns>
-        public Task<RpcResponse<string>> CreateBinaryCacheAsync(string blockchainName, string id) => 
+        public Task<RpcResponse<string>> CreateBinaryCacheAsync(string blockchainName, string id) =>
             TransactAsync<RpcResponse<string>>(blockchainName, UtilityAction.CreateBinaryCacheMethod, id);
 
         /// <summary>
-        /// 
+        ///
         /// <para>Returns random string, which can be used as binary cache item identifier</para>
         /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
-        public Task<RpcResponse<string>> CreateBinaryCacheAsync() => 
+        public Task<RpcResponse<string>> CreateBinaryCacheAsync() =>
             CreateBinaryCacheAsync(BlockchainOptions.ChainName, UUID.NoHyphens);
 
-
         /// <summary>
-        /// 
+        ///
         /// <para>Creates public/private key pairs. These key pairs are not stored in the wallet.</para>
         /// <para>Blockchain name is explicitly passed as parameter.</para>
-        /// 
+        ///
         /// </summary>
         /// <param name="blockchainName">Name of target blockchain</param>
         /// <param name="id">String value to identify this transaction</param>
         /// <param name="count">Number of key pairs to generate</param>
         /// <returns></returns>
-        public Task<RpcResponse<CreateKeyPairsResult[]>> CreateKeyPairsAsync(string blockchainName, string id, int count = 1) => 
+        public Task<RpcResponse<CreateKeyPairsResult[]>> CreateKeyPairsAsync(string blockchainName, string id, int count = 1) =>
             TransactAsync<RpcResponse<CreateKeyPairsResult[]>>(blockchainName, UtilityAction.CreateKeyPairsMethod, id, count);
 
         /// <summary>
-        /// 
+        ///
         /// <para>Creates public/private key pairs. These key pairs are not stored in the wallet.</para>
         /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
-        /// 
+        ///
         /// </summary>
         /// <param name="count">Number of key pairs to generate</param>
         /// <returns></returns>
         public Task<RpcResponse<CreateKeyPairsResult[]>> CreateKeyPairsAsync(int count = 1) =>
             CreateKeyPairsAsync(BlockchainOptions.ChainName, UUID.NoHyphens, count);
 
-
         /// <summary>
-        /// 
+        ///
         /// <para>Creates a multi-signature address with n signature of m keys required.</para>
         /// <para>It returns a json object with the address and redeemScript.</para>
         /// <para>Blockchain name is explicitly passed as parameter.</para>
@@ -113,11 +109,11 @@ namespace MCWrapper.RPC.Ledger.Clients.Utility
         /// <param name="n_required">The number of required signatures out of the n keys or addresses</param>
         /// <param name="keys">A json array of keys which are addresses or hex-encoded public keys</param>
         /// <returns></returns>
-        public Task<RpcResponse<CreateMultiSigResult>> CreateMultiSigAsync(string blockchainName, string id, int n_required, string[] keys) => 
+        public Task<RpcResponse<CreateMultiSigResult>> CreateMultiSigAsync(string blockchainName, string id, int n_required, string[] keys) =>
             TransactAsync<RpcResponse<CreateMultiSigResult>>(blockchainName, UtilityAction.CreateMultiSigMethod, id, n_required, keys);
 
         /// <summary>
-        /// 
+        ///
         /// <para>Creates a multi-signature address with n signature of m keys required.</para>
         /// <para>It returns a json object with the address and redeemScript.</para>
         /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
@@ -126,12 +122,11 @@ namespace MCWrapper.RPC.Ledger.Clients.Utility
         /// <param name="n_required">The number of required signatures out of the n keys or addresses</param>
         /// <param name="keys">A json array of keys which are addresses or hex-encoded public keys</param>
         /// <returns></returns>
-        public Task<RpcResponse<CreateMultiSigResult>> CreateMultiSigAsync(int n_required, string[] keys) => 
+        public Task<RpcResponse<CreateMultiSigResult>> CreateMultiSigAsync(int n_required, string[] keys) =>
             CreateMultiSigAsync(BlockchainOptions.ChainName, UUID.NoHyphens, n_required, keys);
 
-
         /// <summary>
-        /// 
+        ///
         /// <para>Clear binary cache item</para>
         /// <para>Blockchain name is explicitly passed as parameter.</para>
         ///
@@ -144,71 +139,68 @@ namespace MCWrapper.RPC.Ledger.Clients.Utility
             TransactAsync<RpcResponse<object>>(blockchainName, UtilityAction.DeleteBinaryCacheMethod, id, identifier);
 
         /// <summary>
-        /// 
+        ///
         /// <para>Clear binary cache item</para>
         /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         ///
         /// </summary>
         /// <param name="identifier">Binary cache item identifier, "*" - to clear all items</param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> DeleteBinaryCacheAsync(string identifier) => 
+        public Task<RpcResponse<object>> DeleteBinaryCacheAsync(string identifier) =>
             DeleteBinaryCacheAsync(BlockchainOptions.ChainName, UUID.NoHyphens, identifier);
 
-
         /// <summary>
-        /// 
+        ///
         /// <para>Estimates the approximate fee per kilobyte needed for a transaction to begin confirmation within nblocks blocks.</para>
         /// <para>Blockchain name is explicitly passed as parameter.</para>
-        /// 
+        ///
         /// </summary>
         /// <param name="blockchainName">Name of target blockchain</param>
         /// <param name="id">String value to identify this transaction</param>
         /// <param name="n_blocks">Number of blocks to estimate fee for</param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> EstimateFeeAsync(string blockchainName, string id, int n_blocks) => 
+        public Task<RpcResponse<object>> EstimateFeeAsync(string blockchainName, string id, int n_blocks) =>
             TransactAsync<RpcResponse<object>>(blockchainName, UtilityAction.EstimateFeeMethod, id, n_blocks);
 
         /// <summary>
-        /// 
+        ///
         /// <para>Estimates the approximate fee per kilobyte needed for a transaction to begin confirmation within nblocks blocks.</para>
         /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
-        /// 
+        ///
         /// </summary>
         /// <param name="n_blocks">Number of blocks to estimate fee for</param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> EstimateFeeAsync(int n_blocks) => 
+        public Task<RpcResponse<object>> EstimateFeeAsync(int n_blocks) =>
             EstimateFeeAsync(BlockchainOptions.ChainName, UUID.NoHyphens, n_blocks);
 
-
         /// <summary>
-        /// 
+        ///
         /// <para>Estimates the approximate priority  a zero-fee transaction needs to begin confirmation within nblocks blocks.</para>
         /// <para>-1.0 is returned if not enough transactions and blocks have been observed to make an estimate.</para>
         /// <para>Blockchain name is explicitly passed as parameter.</para>
-        /// 
+        ///
         /// </summary>
         /// <param name="blockchainName">Name of target blockchain</param>
         /// <param name="id">String value to identify this transaction</param>
         /// <param name="n_blocks">Number of blocks to estimate priority for</param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> EstimatePriorityAsync(string blockchainName, string id, int n_blocks) => 
+        public Task<RpcResponse<object>> EstimatePriorityAsync(string blockchainName, string id, int n_blocks) =>
             TransactAsync<RpcResponse<object>>(blockchainName, UtilityAction.EstimatePriorityMethod, id, n_blocks);
 
         /// <summary>
-        /// 
+        ///
         /// <para>Estimates the approximate priority  a zero-fee transaction needs to begin confirmation within nblocks blocks.</para>
         /// <para>-1.0 is returned if not enough transactions and blocks have been observed to make an estimate.</para>
         /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
-        /// 
+        ///
         /// </summary>
         /// <param name="n_blocks">Number of blocks to estimate priority for</param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> EstimatePriorityAsync(int n_blocks) => 
+        public Task<RpcResponse<object>> EstimatePriorityAsync(int n_blocks) =>
             EstimatePriorityAsync(BlockchainOptions.ChainName, UUID.NoHyphens, n_blocks);
 
-
         /// <summary>
-        /// 
+        ///
         /// <para>Return information about the given address or public key or private key.</para>
         /// <para>Blockchain name is explicitly passed as parameter.</para>
         ///
@@ -223,15 +215,15 @@ namespace MCWrapper.RPC.Ledger.Clients.Utility
         ///     <para>1. "privkey" (string, required) The private key (see dumpprivkey) to validate</para>
         /// </param>
         /// <returns></returns>
-        public Task<RpcResponse<ValidateAddressResult>> ValidateAddressAsync(string blockchainName, string id, string address_or_pubkey_or_privkey) => 
+        public Task<RpcResponse<ValidateAddressResult>> ValidateAddressAsync(string blockchainName, string id, string address_or_pubkey_or_privkey) =>
             TransactAsync<RpcResponse<ValidateAddressResult>>(blockchainName, UtilityAction.ValidateAddressMethod, id, address_or_pubkey_or_privkey);
 
         /// <summary>
-        /// 
+        ///
         /// <para>Return information about the given address or public key or private key.</para>
         /// <para>Blockchain name is explicitly passed as parameter.</para>
         /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
-        /// 
+        ///
         /// </summary>
         /// <param name="address_pubkey_privkey">
         ///     <para>1. "address" (string, required) The address to validate</para>
@@ -241,15 +233,14 @@ namespace MCWrapper.RPC.Ledger.Clients.Utility
         ///     <para>1. "privkey" (string, required) The private key (see dumpprivkey) to validate</para>
         /// </param>
         /// <returns></returns>
-        public Task<RpcResponse<ValidateAddressResult>> ValidateAddressAsync(string address_pubkey_privkey) => 
+        public Task<RpcResponse<ValidateAddressResult>> ValidateAddressAsync(string address_pubkey_privkey) =>
             ValidateAddressAsync(BlockchainOptions.ChainName, UUID.NoHyphens, address_pubkey_privkey);
 
-
         /// <summary>
-        /// 
+        ///
         /// <para>Verify a signed message</para>
         /// <para>Blockchain name is explicitly passed as parameter.</para>
-        /// 
+        ///
         /// </summary>
         /// <param name="blockchainName">Name of target blockchain</param>
         /// <param name="id">String value to identify this transaction</param>
@@ -261,10 +252,10 @@ namespace MCWrapper.RPC.Ledger.Clients.Utility
             TransactAsync<RpcResponse<bool>>(blockchainName, UtilityAction.VerifyMessageMethod, id, address, signature, message);
 
         /// <summary>
-        /// 
+        ///
         /// <para>Verify a signed message</para>
         /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
-        /// 
+        ///
         /// </summary>
         /// <param name="address">The address to use for the signature</param>
         /// <param name="signature">The signature provided by the signer in base 64 encoding (see signmessage)</param>

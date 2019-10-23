@@ -12,7 +12,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Control
 {
     /// <summary>
     /// MutliChain methods implemented:
-    /// 
+    ///
     /// clearmempool, getblockchainparams, getinfo, getruntimeparams,
     /// help, pause, resume, setlastblock, setruntimeparam, stop
     /// </summary>
@@ -26,9 +26,8 @@ namespace MCWrapper.RPC.Ledger.Clients.Control
         public ControlRpcClient(HttpClient client, IOptions<BlockchainRpcOptions> options)
             : base(client, options) { }
 
-
         /// <summary>
-        /// 
+        ///
         /// <para>Removes all transactions from the TX memory pool.</para>
         /// <para>Local mining and the processing of incoming transactions and blocks should be paused.</para>
         /// <para>Blockchain name is explicitly passed as parameter.</para>
@@ -41,7 +40,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Control
             TransactAsync<RpcResponse<string>>(blockchainName, ControlAction.ClearMemPoolMethod, id);
 
         /// <summary>
-        /// 
+        ///
         /// <para>Removes all transactions from the TX memory pool.</para>
         /// <para>Local mining and the processing of incoming transactions and blocks should be paused.</para>
         /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
@@ -51,12 +50,11 @@ namespace MCWrapper.RPC.Ledger.Clients.Control
         public Task<RpcResponse<string>> ClearMemPoolAsync() =>
             ClearMemPoolAsync(BlockchainOptions.ChainName, UUID.NoHyphens);
 
-
         /// <summary>
-        /// 
+        ///
         /// <para>Returns a list of values of this blockchain's parameters.</para>
         /// <para>Blockchain name is explicitly passed as parameter.</para>
-        /// 
+        ///
         /// </summary>
         /// <param name="blockchainName">Name of target blockchain</param>
         /// <param name="id">String value to identify this transaction</param>
@@ -67,10 +65,10 @@ namespace MCWrapper.RPC.Ledger.Clients.Control
             TransactAsync<RpcResponse<GetBlockchainParamsResult>>(blockchainName, ControlAction.GetBlockchainParamsMethod, id, display_names, with_upgrades);
 
         /// <summary>
-        /// 
+        ///
         /// <para>Returns a list of values of this blockchain's parameters.</para>
         /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
-        /// 
+        ///
         /// </summary>
         /// <param name="display_names">Use display names instead of internal</param>
         /// <param name="with_upgrades">Take upgrades into account</param>
@@ -78,12 +76,11 @@ namespace MCWrapper.RPC.Ledger.Clients.Control
         public Task<RpcResponse<GetBlockchainParamsResult>> GetBlockchainParamsAsync(bool display_names = false, bool with_upgrades = false) =>
             GetBlockchainParamsAsync(BlockchainOptions.ChainName, UUID.NoHyphens, display_names, with_upgrades);
 
-
         /// <summary>
-        /// 
+        ///
         /// <para>Returns general information about this node and blockchain.</para>
         /// <para>Blockchain name is explicitly passed as parameter.</para>
-        /// 
+        ///
         /// </summary>
         /// <param name="blockchainName">Name of target blockchain</param>
         /// <param name="id">String value to identify this transaction</param>
@@ -92,21 +89,20 @@ namespace MCWrapper.RPC.Ledger.Clients.Control
             TransactAsync<RpcResponse<GetInfoResult>>(blockchainName, ControlAction.GetInfoMethod, id);
 
         /// <summary>
-        /// 
+        ///
         /// <para>Returns general information about this node and blockchain.</para>
         /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public Task<RpcResponse<GetInfoResult>> GetInfoAsync() =>
             GetInfoAsync(BlockchainOptions.ChainName, UUID.NoHyphens);
 
-
         /// <summary>
-        /// 
+        ///
         /// <para>Returns a selection of this node's runtime parameters.</para>
         /// <para>Blockchain name is explicitly passed as parameter.</para>
-        /// 
+        ///
         /// </summary>
         /// <param name="blockchainName">Name of target blockchain</param>
         /// <param name="id">String value to identify this transaction</param>
@@ -115,18 +111,17 @@ namespace MCWrapper.RPC.Ledger.Clients.Control
             TransactAsync<RpcResponse<GetRuntimeParamsResult>>(blockchainName, ControlAction.GetRuntimeParamsMethod, id);
 
         /// <summary>
-        /// 
+        ///
         /// <para>Returns a selection of this node's runtime parameters.</para>
         /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public Task<RpcResponse<GetRuntimeParamsResult>> GetRuntimeParamsAsync() =>
             GetRuntimeParamsAsync(BlockchainOptions.ChainName, UUID.NoHyphens);
 
-
         /// <summary>
-        /// 
+        ///
         /// <para>List all commands, or get help for a specified command.</para>
         /// <para>Blockchain name is explicitly passed as parameter.</para>
         ///
@@ -135,48 +130,46 @@ namespace MCWrapper.RPC.Ledger.Clients.Control
         /// <param name="id">String value to identify this transaction</param>
         /// <param name="command">The command to get help with</param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> HelpAsync(string blockchainName, string id, string command = "") =>
+        public Task<RpcResponse<object>> HelpAsync(string blockchainName, string id, string command = "getinfo") =>
             TransactAsync<RpcResponse<object>>(blockchainName, ControlAction.HelpMethod, id, command);
 
         /// <summary>
-        /// 
+        ///
         /// <para>List all commands, or get help for a specified command.</para>
         /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         ///
         /// </summary>
         /// <param name="command">The command to get help with</param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> HelpAsync(string command = "") =>
+        public Task<RpcResponse<object>> HelpAsync(string command = "getinfo") =>
             HelpAsync(BlockchainOptions.ChainName, UUID.NoHyphens, command);
 
-
         /// <summary>
-        /// 
+        ///
         /// <para>Pauses local mining or the processing of incoming transactions and blocks.</para>
         /// <para>Blockchain name is explicitly passed as parameter.</para>
-        /// 
+        ///
         /// </summary>
         /// <param name="blockchainName">Name of target blockchain</param>
         /// <param name="id">String value to identify this transaction</param>
         /// <param name="tasks">Task(s) to be paused. Possible values: incoming,mining,offchain</param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> PauseAsync(string blockchainName, string id, string tasks) =>
+        public Task<RpcResponse<object>> PauseAsync(string blockchainName, string id, string tasks = "incoming,mining") =>
             TransactAsync<RpcResponse<object>>(blockchainName, ControlAction.PauseMethod, id, tasks);
 
         /// <summary>
-        /// 
+        ///
         /// <para>Pauses local mining or the processing of incoming transactions and blocks.</para>
         /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
-        /// 
+        ///
         /// </summary>
         /// <param name="tasks">Task(s) to be paused. Possible values: incoming,mining,offchain</param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> PauseAsync(string tasks) =>
+        public Task<RpcResponse<object>> PauseAsync(string tasks = "incoming,mining") =>
             PauseAsync(BlockchainOptions.ChainName, UUID.NoHyphens, tasks);
 
-
         /// <summary>
-        /// 
+        ///
         /// <para>Resumes local mining or the processing of incoming transactions and blocks</para>
         /// <para>Blockchain name is explicitly passed as parameter.</para>
         ///
@@ -185,22 +178,21 @@ namespace MCWrapper.RPC.Ledger.Clients.Control
         /// <param name="id">String value to identify this transaction</param>
         /// <param name="tasks">Task(s) to be resumed. Possible values: incoming,mining,offchain</param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> ResumeAsync(string blockchainName, string id, string tasks) =>
+        public Task<RpcResponse<object>> ResumeAsync(string blockchainName, string id, string tasks = "incoming,mining") =>
             TransactAsync<RpcResponse<object>>(blockchainName, ControlAction.ResumeMethod, id, tasks);
 
         /// <summary>
-        /// 
+        ///
         /// <para>Resumes local mining or the processing of incoming transactions and blocks</para>
         /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         ///
         /// </summary>
         /// <param name="tasks">Task(s) to be resumed. Possible values: incoming,mining,offchain</param>
-        public Task<RpcResponse<object>> ResumeAsync(string tasks) =>
+        public Task<RpcResponse<object>> ResumeAsync(string tasks = "incoming,mining") =>
             ResumeAsync(BlockchainOptions.ChainName, UUID.NoHyphens, tasks);
 
-
         /// <summary>
-        /// 
+        ///
         /// <para>Sets last block in the chain.</para>
         /// <para>Local mining and the processing of incoming transactions and blocks should be paused.</para>
         /// <para>Blockchain name is explicitly passed as parameter.</para>
@@ -218,7 +210,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Control
             TransactAsync<RpcResponse<object>>(blockchainName, ControlAction.SetLastBlockMethod, id, hash_or_height);
 
         /// <summary>
-        /// 
+        ///
         /// <para>Sets last block in the chain.</para>
         /// <para>Local mining and the processing of incoming transactions and blocks should be paused.</para>
         /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
@@ -233,9 +225,8 @@ namespace MCWrapper.RPC.Ledger.Clients.Control
         public Task<RpcResponse<object>> SetLastBlockAsync([Optional] object hash_or_height) =>
             SetLastBlockAsync(BlockchainOptions.ChainName, UUID.NoHyphens, hash_or_height);
 
-
         /// <summary>
-        /// 
+        ///
         /// <para>Sets value for runtime parameter</para>
         /// <para>Blockchain name is explicitly passed as parameter.</para>
         ///
@@ -249,7 +240,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Control
             TransactAsync<RpcResponse<object>>(blockchainName, ControlAction.SetRuntimeParamMethod, id, runtimeParam, parameter_value);
 
         /// <summary>
-        /// 
+        ///
         /// <para>Sets value for runtime parameter</para>
         /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         ///
@@ -260,12 +251,11 @@ namespace MCWrapper.RPC.Ledger.Clients.Control
         public Task<RpcResponse<object>> SetRuntimeParamAsync(string runtimeParam, object parameter_value) =>
             SetRuntimeParamAsync(BlockchainOptions.ChainName, UUID.NoHyphens, runtimeParam, parameter_value);
 
-
         /// <summary>
-        /// 
+        ///
         /// <para>Shuts down the this blockchain node. Sends stop signal to MultiChain server.</para>
         /// <para>Blockchain name is explicitly passed as parameter.</para>
-        /// 
+        ///
         /// </summary>
         /// <param name="blockchainName">Name of target blockchain</param>
         /// <param name="id">String value to identify this transaction</param>
@@ -274,10 +264,10 @@ namespace MCWrapper.RPC.Ledger.Clients.Control
             TransactAsync<RpcResponse<string>>(blockchainName, ControlAction.StopMethod, id);
 
         /// <summary>
-        /// 
+        ///
         /// <para>Shuts down the this blockchain node. Sends stop signal to MultiChain server.</para>
         /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public Task<RpcResponse<string>> StopAsync() =>
