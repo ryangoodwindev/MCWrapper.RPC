@@ -1,7 +1,8 @@
 ﻿using MCWrapper.Data.Models.Raw;
+using MCWrapper.Ledger.Actions;
+using MCWrapper.Ledger.Entities.Extensions;
 using MCWrapper.RPC.Connection;
 using MCWrapper.RPC.Extensions;
-using MCWrapper.RPC.Ledger.Actions;
 using MCWrapper.RPC.Options;
 using Microsoft.Extensions.Options;
 using System.Net.Http;
@@ -24,7 +25,7 @@ namespace MCWrapper.RPC.Ledger.Clients.Raw
         /// </summary>
         /// <param name="client"></param>
         /// <param name="options"></param>
-        public RawRpcClient(HttpClient client, IOptions<BlockchainRpcOptions> options)
+        public RawRpcClient(HttpClient client, IOptions<RpcOptions> options)
             : base(client, options) { }
 
         /// <summary>

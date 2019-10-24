@@ -1,5 +1,5 @@
-﻿using MCWrapper.RPC.Connection;
-using MCWrapper.RPC.Ledger.Entities;
+﻿using MCWrapper.Ledger.Entities;
+using MCWrapper.RPC.Connection;
 using System.Threading.Tasks;
 
 namespace MCWrapper.RPC.Ledger.Clients.Wallet

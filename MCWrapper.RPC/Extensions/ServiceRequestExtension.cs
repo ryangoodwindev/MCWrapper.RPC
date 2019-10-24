@@ -23,7 +23,7 @@ namespace MCWrapper.RPC.Extensions
             return new StringContent(
                 content: JsonConvert.SerializeObject(request.GetNamedValues),
                 encoding: Encoding.UTF8,
-                mediaType: ClientUrlComponent.JsonRPCMediaType);
+                mediaType: RpcUrlComponent.JsonRPCMediaType);
         }
     }
 }

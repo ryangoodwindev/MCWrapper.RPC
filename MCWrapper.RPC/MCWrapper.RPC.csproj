@@ -2,9 +2,9 @@
 
   <PropertyGroup>
     <TargetFrameworks>netcoreapp3.0;netcoreapp2.2;netcoreapp2.1</TargetFrameworks>
-    <AssemblyVersion>2.0.0.0</AssemblyVersion>
-    <FileVersion>2.0.0.0</FileVersion>
-    <Version>2.0.0</Version>
+    <AssemblyVersion>3.0.0.0</AssemblyVersion>
+    <FileVersion>3.0.0.0</FileVersion>
+    <Version>3.0.0</Version>
     <Authors>Myndblock LLC, Ryan Goodwin</Authors>
     <Company>Myndblock LLC</Company>
     <Copyright>2019</Copyright>
@@ -32,7 +32,12 @@ Rpc clients return all Tasks versus awaiting them, changed to improve performanc
 Rpc clients have optional parameters present for some methods, they are marked as such now.
 OSDetection removed as it is not necessary for RPC clients.
 Unused String extensions removed.
-Additional changes to Code Comments.</PackageReleaseNotes>
+Additional changes to Code Comments.
+
+Version 3.0.0:
+Many syntax breaking changes;
+Logic remains unchanged;
+MCWrapper.Data.Models, MCWrapper.Ledger.Actions, MCWrapper.Ledger.Entities are now separate projects that represent shared libraries between MCWrapper.RPC and MCWrapper.CLI</PackageReleaseNotes>
     <PackageTags>MultiChain,CSharp,DotNetCore,Blockchain,API</PackageTags>
   </PropertyGroup>
 
@@ -70,5 +75,7 @@ Additional changes to Code Comments.</PackageReleaseNotes>
 
   <ItemGroup>
     <PackageReference Include="MCWrapper.Data.Models" Version="1.0.0" />
+    <PackageReference Include="MCWrapper.Ledger.Actions" Version="1.0.0" />
+    <PackageReference Include="MCWrapper.Ledger.Entities" Version="2.0.0" />
   </ItemGroup>
 </Project>

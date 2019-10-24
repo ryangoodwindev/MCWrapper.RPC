@@ -1,5 +1,5 @@
-﻿using MCWrapper.RPC.Connection.Request;
-using MCWrapper.RPC.ErrorHandling;
+﻿using MCWrapper.Ledger.Entities.ErrorHandling;
+using MCWrapper.RPC.Connection.Request;
 using MCWrapper.RPC.Extensions;
 using MCWrapper.RPC.Options;
 using Microsoft.Extensions.Options;
@@ -17,7 +17,7 @@ namespace MCWrapper.RPC.Connection
     /// </summary>
     public class RpcConnection
     {
-        public BlockchainRpcOptions BlockchainOptions { get; set; }
+        public RpcOptions BlockchainOptions { get; set; }
 
         /// <summary>
         /// Property for Http Web Client
@@ -38,7 +38,7 @@ namespace MCWrapper.RPC.Connection
             // assign web client from factory
             _httpClient = client;
 
-            BlockchainOptions = new BlockchainRpcOptions();
+            BlockchainOptions = new RpcOptions();
         }
 
         /// <summary>
@@ -46,7 +46,7 @@ namespace MCWrapper.RPC.Connection
         /// </summary>
         /// <param name="client"></param>
         /// <param name="options"></param>
-        public RpcConnection(HttpClient client, IOptions<BlockchainRpcOptions> options)
+        public RpcConnection(HttpClient client, IOptions<RpcOptions> options)
         {
             // set base address for blockchain
             client.BaseAddress = new Uri(RpcMessageHandler.GetServiceUrl(options.Value));

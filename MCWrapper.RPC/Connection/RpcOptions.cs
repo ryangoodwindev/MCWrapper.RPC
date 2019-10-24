@@ -1,4 +1,5 @@
-﻿using MCWrapper.RPC.Extensions;
+﻿using MCWrapper.Ledger.Entities.Extensions;
+using MCWrapper.RPC.Extensions;
 
 namespace MCWrapper.RPC.Options
 {
@@ -19,13 +20,13 @@ namespace MCWrapper.RPC.Options
     ///         ChainHostname;
     /// </para>
     /// </summary>
-    public class BlockchainRpcOptions
+    public class RpcOptions
     {
         /// <summary>
         /// Create a new BlockchainRpcOptions object
         /// No arguments
         /// </summary>
-        public BlockchainRpcOptions() { }
+        public RpcOptions() { }
 
         /// <summary>
         /// Multichain blockchain name as declared in the params.dat file;

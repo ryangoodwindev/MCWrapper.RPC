@@ -3,7 +3,7 @@
     /// <summary>
     /// Helper object that stores some constant values we can use while configuring the base RpcClient
     /// </summary>
-    public struct ClientUrlComponent
+    public struct RpcUrlComponent
     {
         /// <summary>
         /// Represents non-secured HTTP prefix

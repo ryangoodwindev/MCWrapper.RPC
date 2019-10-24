@@ -1,4 +1,5 @@
-﻿using MCWrapper.RPC.Connection;
+﻿using MCWrapper.Ledger.Entities.Options;
+using MCWrapper.RPC.Connection;
 using MCWrapper.RPC.Ledger.Clients.Blockchain;
 using MCWrapper.RPC.Ledger.Clients.Control;
 using MCWrapper.RPC.Ledger.Clients.Generate;
@@ -38,7 +39,7 @@ namespace MCWrapper.RPC.Extensions
         {
             // load Options from the local environment variable store
             services.Configure<RuntimeParamOptions>(config => new RuntimeParamOptions());
-            services.Configure<BlockchainRpcOptions>(config => new BlockchainRpcOptions());
+            services.Configure<RpcOptions>(config => new RpcOptions());
 
             // typed HttpClient configuration
             services.AddHttpClient<BlockchainRpcClient>()
@@ -97,7 +98,7 @@ namespace MCWrapper.RPC.Extensions
         {
             // load Options from the IConfiguration interface (appsettings.json file usually)
             services.Configure<RuntimeParamOptions>(configuration);
-            services.Configure<BlockchainRpcOptions>(configuration);
+            services.Configure<RpcOptions>(configuration);
 
             // typed HttpClient configuration
             services.AddHttpClient<BlockchainRpcClient>()
@@ -155,17 +156,17 @@ namespace MCWrapper.RPC.Extensions
         /// <param name="profileConfig">Blockchain profile configuration (Information the app will use to connect to a MultiChain ledger)</param>
         /// <param name="runtimeConfig">Runtime parameter configuration (How a MultiChain ledger should behave)</param>
         /// <returns></returns>
-        public static IServiceCollection AddMultiChainCoreRPCServices(this IServiceCollection services, Action<BlockchainRpcOptions> profileConfig, [Optional] Action<RuntimeParamOptions> runtimeConfig)
+        public static IServiceCollection AddMultiChainCoreRPCServices(this IServiceCollection services, Action<RpcOptions> profileConfig, [Optional] Action<RuntimeParamOptions> runtimeConfig)
         {
             // invoke Actions
-            var profile = new BlockchainRpcOptions();
+            var profile = new RpcOptions();
             profileConfig?.Invoke(profile);
 
             var runtime = new RuntimeParamOptions();
             runtimeConfig?.Invoke(runtime);
 
             // configure BlockchainProfileOptions
-            services.Configure<BlockchainRpcOptions>(config =>
+            services.Configure<RpcOptions>(config =>
             {
                 config.ChainName = profile.ChainName;
                 config.ChainUseSsl = profile.ChainUseSsl;
