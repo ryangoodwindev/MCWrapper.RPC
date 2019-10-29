@@ -8,7 +8,7 @@ using System.Net.Http;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 
-namespace MCWrapper.RPC.Ledger.Clients.Control
+namespace MCWrapper.RPC.Ledger.Clients
 {
     /// <summary>
     /// MutliChain methods implemented:

@@ -2,14 +2,13 @@
 using MCWrapper.Ledger.Actions;
 using MCWrapper.Ledger.Entities.Extensions;
 using MCWrapper.RPC.Connection;
-using MCWrapper.RPC.Extensions;
 using MCWrapper.RPC.Options;
 using Microsoft.Extensions.Options;
 using System.Net.Http;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 
-namespace MCWrapper.RPC.Ledger.Clients.Raw
+namespace MCWrapper.RPC.Ledger.Clients
 {
     /// <summary>
     /// MutliChain methods implemented:

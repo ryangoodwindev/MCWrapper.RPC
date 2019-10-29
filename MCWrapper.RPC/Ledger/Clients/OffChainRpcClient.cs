@@ -6,7 +6,7 @@ using Microsoft.Extensions.Options;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace MCWrapper.RPC.Ledger.Clients.OffChain
+namespace MCWrapper.RPC.Ledger.Clients
 {
     /// <summary>
     /// MutliChain methods implemented:

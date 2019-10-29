@@ -1,18 +1,10 @@
 ﻿using MCWrapper.Ledger.Entities.Options;
 using MCWrapper.RPC.Connection;
-using MCWrapper.RPC.Ledger.Clients.Blockchain;
-using MCWrapper.RPC.Ledger.Clients.Control;
-using MCWrapper.RPC.Ledger.Clients.Generate;
-using MCWrapper.RPC.Ledger.Clients.Mining;
-using MCWrapper.RPC.Ledger.Clients.Network;
-using MCWrapper.RPC.Ledger.Clients.OffChain;
-using MCWrapper.RPC.Ledger.Clients.Raw;
-using MCWrapper.RPC.Ledger.Clients.Utility;
-using MCWrapper.RPC.Ledger.Clients.Wallet;
-using MCWrapper.RPC.Ledger.Factory;
+using MCWrapper.RPC.Ledger.Clients;
 using MCWrapper.RPC.Options;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using System;
 using System.Runtime.InteropServices;
 
@@ -35,7 +27,7 @@ namespace MCWrapper.RPC.Extensions
         /// </summary>
         /// <param name="services">Service container</param>
         /// <returns></returns>
-        public static IServiceCollection AddMultiChainCoreRPCServices(this IServiceCollection services)
+        public static IServiceCollection AddMultiChainCoreRpcServices(this IServiceCollection services)
         {
             // load Options from the local environment variable store
             services.Configure<RuntimeParamOptions>(config => new RuntimeParamOptions());
@@ -94,11 +86,11 @@ namespace MCWrapper.RPC.Extensions
         /// <param name="services">Service container</param>
         /// <param name="configuration">Configuration pipeline</param>
         /// <returns></returns>
-        public static IServiceCollection AddMultiChainCoreRPCServices(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddMultiChainCoreRpcServices(this IServiceCollection services, IConfiguration configuration)
         {
             // load Options from the IConfiguration interface (appsettings.json file usually)
-            services.Configure<RuntimeParamOptions>(configuration);
-            services.Configure<RpcOptions>(configuration);
+            services.Configure<RuntimeParamOptions>(configuration)
+                .Configure<RpcOptions>(configuration);
 
             // typed HttpClient configuration
             services.AddHttpClient<BlockchainRpcClient>()
@@ -148,52 +140,22 @@ namespace MCWrapper.RPC.Extensions
         /// 
         /// <para>
         ///     This method requires the BlockchainProfileOptions and RuntimeParamOptions property values to be
-        ///     explicitly passed via the <paramref name="runtimeConfig"/> and <paramref name="profileConfig"/> 
+        ///     explicitly passed via the <paramref name="runtimeParamOptions"/> and <paramref name="rpcOptions"/> 
         ///     Action parameters when added to the DI pipeline.
         /// </para>
         /// </summary>
         /// <param name="services">Service container</param>
-        /// <param name="profileConfig">Blockchain profile configuration (Information the app will use to connect to a MultiChain ledger)</param>
-        /// <param name="runtimeConfig">Runtime parameter configuration (How a MultiChain ledger should behave)</param>
+        /// <param name="rpcOptions">Blockchain profile configuration (Information the app will use to connect to a MultiChain ledger)</param>
+        /// <param name="runtimeParamOptions">Runtime parameter configuration (How a MultiChain ledger should behave)</param>
         /// <returns></returns>
-        public static IServiceCollection AddMultiChainCoreRPCServices(this IServiceCollection services, Action<RpcOptions> profileConfig, [Optional] Action<RuntimeParamOptions> runtimeConfig)
+        public static IServiceCollection AddMultiChainCoreRpcServices(this IServiceCollection services, Action<RpcOptions> rpcOptions, [Optional] Action<RuntimeParamOptions> runtimeParamOptions)
         {
-            // invoke Actions
-            var profile = new RpcOptions();
-            profileConfig?.Invoke(profile);
+            // configure Options
+            services.Configure((Action<RuntimeParamOptions>)(config => runtimeParamOptions?.Invoke(new RuntimeParamOptions())))
+                .Configure((Action<RpcOptions>)(config => rpcOptions?.Invoke(new RpcOptions())));
 
-            var runtime = new RuntimeParamOptions();
-            runtimeConfig?.Invoke(runtime);
-
-            // configure BlockchainProfileOptions
-            services.Configure<RpcOptions>(config =>
-            {
-                config.ChainName = profile.ChainName;
-                config.ChainUseSsl = profile.ChainUseSsl;
-                config.ChainRpcPort = profile.ChainRpcPort;
-                config.ChainSslPath = profile.ChainSslPath;
-                config.ChainHostname = profile.ChainHostname;
-                config.ChainPassword = profile.ChainPassword;
-                config.ChainUsername = profile.ChainUsername;
-                config.ChainBurnAddress = profile.ChainBurnAddress;
-                config.ChainAdminAddress = profile.ChainAdminAddress;
-            });
-
-            // configure RuntimeParamOptions
-            services.Configure<RuntimeParamOptions>(config =>
-            {
-                config.BanTx = runtime.BanTx;
-                config.LockBlock = runtime.LockBlock;
-                config.MaxShownData = runtime.MaxShownData;
-                config.AutoSubscribe = runtime.AutoSubscribe;
-                config.MiningTurnOver = runtime.MiningTurnOver;
-                config.HandshakeLocal = runtime.HandshakeLocal;
-                config.MineEmptyRounds = runtime.MineEmptyRounds;
-                config.HideKnownOpDrops = runtime.HideKnownOpDrops;
-                config.MaxQueryScanItems = runtime.MaxQueryScanItems;
-                config.MiningRequiresPeers = runtime.MiningRequiresPeers;
-                config.LockAdminMineRounds = runtime.LockAdminMineRounds;
-            });
+            var profile = services.BuildServiceProvider()
+                .GetService<IOptions<RpcOptions>>().Value;
 
             // typed HttpClient configuration
             services.AddHttpClient<BlockchainRpcClient>()

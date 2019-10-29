@@ -1,58 +1,47 @@
-﻿using MCWrapper.RPC.Ledger.Clients.Blockchain;
-using MCWrapper.RPC.Ledger.Clients.Control;
-using MCWrapper.RPC.Ledger.Clients.Generate;
-using MCWrapper.RPC.Ledger.Clients.Mining;
-using MCWrapper.RPC.Ledger.Clients.Network;
-using MCWrapper.RPC.Ledger.Clients.OffChain;
-using MCWrapper.RPC.Ledger.Clients.Raw;
-using MCWrapper.RPC.Ledger.Clients.Utility;
-using MCWrapper.RPC.Ledger.Clients.Wallet;
-
-namespace MCWrapper.RPC.Ledger.Factory
+﻿namespace MCWrapper.RPC.Ledger.Clients
 {
     public class RpcClientFactory
     {
-        private readonly BlockchainRpcClient Blockchain;
-        private readonly GenerateRpcClient Generate;
-        private readonly OffChainRpcClient OffChain;
-        private readonly ControlRpcClient Control;
-        private readonly NetworkRpcClient Network;
-        private readonly UtilityRpcClient Utility;
-        private readonly MiningRpcClient Mining;
-        private readonly WalletRpcClient Wallet;
-        private readonly RawRpcClient Raw;
-
-        public RpcClientFactory(BlockchainRpcClient blockchain, GenerateRpcClient generate, OffChainRpcClient offChain,
-            ControlRpcClient control, NetworkRpcClient network, UtilityRpcClient utility, MiningRpcClient mining,
-            WalletRpcClient wallet, RawRpcClient raw)
+        public RpcClientFactory(BlockchainRpcClient blockchainClient, GenerateRpcClient generateClient, OffChainRpcClient offChainClient,
+            ControlRpcClient controlClient, NetworkRpcClient networkClient, UtilityRpcClient utilityClient, MiningRpcClient miningClient,
+            WalletRpcClient walletClient, RawRpcClient rawClient)
         {
-            Blockchain = blockchain;
-            Generate = generate;
-            OffChain = offChain;
-            Control = control;
-            Network = network;
-            Utility = utility;
-            Mining = mining;
-            Wallet = wallet;
-            Raw = raw;
+            BlockchainClient = blockchainClient;
+            GenerateClient = generateClient;
+            OffChainClient = offChainClient;
+            ControlClient = controlClient;
+            NetworkClient = networkClient;
+            UtilityClient = utilityClient;
+            MiningClient = miningClient;
+            WalletClient = walletClient;
+            RawClient = rawClient;
         }
 
-        public BlockchainRpcClient GetBlockchainRpcClient() => Blockchain;
+        public BlockchainRpcClient BlockchainRpcClient => BlockchainClient;
+        private readonly BlockchainRpcClient BlockchainClient;
 
-        public GenerateRpcClient GetGenerateRpcClient() => Generate;
+        public GenerateRpcClient GenerateRpcClient => GenerateClient;
+        private readonly GenerateRpcClient GenerateClient;
 
-        public OffChainRpcClient GetOffChainRpcClient() => OffChain;
+        public OffChainRpcClient OffChainRpcClient => OffChainClient;
+        private readonly OffChainRpcClient OffChainClient;
 
-        public ControlRpcClient GetControlRpcClient() => Control;
+        public ControlRpcClient ControlRpcClient => ControlClient;
+        private readonly ControlRpcClient ControlClient;
 
-        public NetworkRpcClient GetNetworkRpcClient() => Network;
+        public NetworkRpcClient NetworkRpcClient => NetworkClient;
+        private readonly NetworkRpcClient NetworkClient;
 
-        public UtilityRpcClient GetUtilityRpcClient() => Utility;
+        public UtilityRpcClient UtilityRpcClient => UtilityClient;
+        private readonly UtilityRpcClient UtilityClient;
 
-        public MiningRpcClient GetMiningRpcClient() => Mining;
+        public MiningRpcClient MiningRpcClient => MiningClient;
+        private readonly MiningRpcClient MiningClient;
 
-        public WalletRpcClient GetWalletRpcClient() => Wallet;
+        public WalletRpcClient WalletRpcClient => WalletClient;
+        private readonly WalletRpcClient WalletClient;
 
-        public RawRpcClient GetRawRpcClient() => Raw;
+        public RawRpcClient RawRpcClient => RawClient;
+        private readonly RawRpcClient RawClient;
     }
 }
