@@ -18,7 +18,7 @@
     <Nullable>enable</Nullable>
     <PackageReleaseNotes>Previously, the RPC logic contained in this project was packaged with the full MCWrapper package which became to unwieldy to maintain and has been broken into two seperate projects. 
 
-MCWrapper.RPC and MCWrapper.CLI are the two projects with MCWrapper.CLI still in testing and unreleased at the moment.
+MCWrapper.RPC and MCWrapper.CLI are the two projects.
 
 Version 1.0.1:
 Code comments added to RPC clients
