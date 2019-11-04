@@ -48,6 +48,7 @@ Updated RpcClientFactory to use properties instead of methods; Renamed propertie
 Version 4.0.1:
 Update to MCWrapper.Ledger.Entities 2.1.0 to fix CliOptions and RuntimeParamOptions value loading failure</PackageReleaseNotes>
     <PackageTags>MultiChain,CSharp,DotNetCore,Blockchain,API</PackageTags>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
