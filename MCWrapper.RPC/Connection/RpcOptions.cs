@@ -29,6 +29,28 @@ namespace MCWrapper.RPC.Options
         public RpcOptions() { }
 
         /// <summary>
+        /// Create a new BlockchainRpcOptions object
+        /// No arguments
+        /// </summary>
+        public RpcOptions(bool loadFromEnvironment)
+        {
+            if (loadFromEnvironment)
+            {
+                ChainName = nameof(ChainName).GetEnvironmentVariable();
+                int.TryParse(nameof(ChainRpcPort).GetEnvironmentVariable(), out int outChainRpcPort);
+                ChainRpcPort = outChainRpcPort;
+                ChainAdminAddress = nameof(ChainAdminAddress).GetEnvironmentVariable();
+                ChainHostname = nameof(ChainHostname).GetEnvironmentVariable();
+                ChainBurnAddress = nameof(ChainBurnAddress).GetEnvironmentVariable();
+                ChainUsername = nameof(ChainUsername).GetEnvironmentVariable();
+                ChainPassword = nameof(ChainPassword).GetEnvironmentVariable();
+                bool.TryParse(nameof(ChainUseSsl).GetEnvironmentVariable(), out bool outChainUseSsl);
+                ChainUseSsl = outChainUseSsl;
+                ChainSslPath = nameof(ChainSslPath).GetEnvironmentVariable();
+            }
+        }
+
+        /// <summary>
         /// Multichain blockchain name as declared in the params.dat file;
         /// 
         /// <para>
@@ -44,14 +66,7 @@ namespace MCWrapper.RPC.Options
         /// </para>
         /// 
         /// </summary>
-        public string ChainName
-        {
-            get => !string.IsNullOrEmpty(_chainName) ? _chainName
-                : nameof(ChainName).GetEnvironmentVariable() ?? string.Empty;
-
-            set => _chainName = value;
-        }
-        private string _chainName = string.Empty;
+        public string ChainName { get; set; } = string.Empty;
 
         /// <summary>
         /// RPC port number as declared in the params.dat file or as override value in multichain.conf
@@ -59,15 +74,7 @@ namespace MCWrapper.RPC.Options
         ///     ChainRpcPort number is required for the RPC client to function as expected;
         /// </para>
         /// </summary>
-        public int? ChainRpcPort
-        {
-            get => _chainRpcPort != null ? _chainRpcPort
-                : int.Parse(string.IsNullOrEmpty(nameof(ChainRpcPort).GetEnvironmentVariable()) ? "0"
-                    : nameof(ChainRpcPort).GetEnvironmentVariable());
-
-            set => _chainRpcPort = value;
-        }
-        private int? _chainRpcPort = null;
+        public int? ChainRpcPort { get; set; } = null;
 
         /// <summary>
         /// Your blockchain node administror's public key. In v2 we are only supporting a 
@@ -76,14 +83,7 @@ namespace MCWrapper.RPC.Options
         ///     ChainAdminAddress is required for the RPC client to function as expected;
         /// </para>
         /// </summary>
-        public string ChainAdminAddress
-        {
-            get => !string.IsNullOrEmpty(_chainAdminAddress) ? _chainAdminAddress
-                : nameof(ChainAdminAddress).GetEnvironmentVariable() ?? string.Empty;
-
-            set => _chainAdminAddress = value;
-        }
-        private string _chainAdminAddress = string.Empty;
+        public string ChainAdminAddress { get; set; } = string.Empty;
 
         /// <summary>
         /// IPv4 or FQDN of where the MultiChain network is hosted and/or accessible
@@ -91,14 +91,7 @@ namespace MCWrapper.RPC.Options
         ///     ChainHostname is required for the RPC client to function as expected;
         /// </para>
         /// </summary>
-        public string ChainHostname
-        {
-            get => !string.IsNullOrEmpty(_chainHostname) ? _chainHostname
-                : nameof(ChainHostname).GetEnvironmentVariable() ?? string.Empty;
-
-            set => _chainHostname = value;
-        }
-        private string _chainHostname = string.Empty;
+        public string ChainHostname { get; set; } = string.Empty;
 
         /// <summary>
         /// Blockchain address used for 'burning' Assets/Streams. 
@@ -108,14 +101,7 @@ namespace MCWrapper.RPC.Options
         ///     ChainBurnAddress is not required for the RPC client to function as expected;
         /// </para>
         /// </summary>
-        public string ChainBurnAddress
-        {
-            get => !string.IsNullOrEmpty(_chainBurnAddress) ? _chainBurnAddress
-                : nameof(ChainBurnAddress).GetEnvironmentVariable() ?? string.Empty;
-
-            set => _chainBurnAddress = value;
-        }
-        private string _chainBurnAddress = string.Empty;
+        public string ChainBurnAddress { get; set; } = string.Empty;
 
         /// <summary>
         /// RPCJSON username for target blockchain
@@ -123,14 +109,7 @@ namespace MCWrapper.RPC.Options
         ///     ChainUsername is required for the RPC client to function as expected;
         /// </para>
         /// </summary>
-        public string ChainUsername
-        {
-            get => !string.IsNullOrEmpty(_chainUsername) ? _chainUsername
-                : nameof(ChainUsername).GetEnvironmentVariable() ?? string.Empty;
-
-            set => _chainUsername = value;
-        }
-        private string _chainUsername = string.Empty;
+        public string ChainUsername { get; set; } = string.Empty;
 
         /// <summary>
         /// RPCJSON password for target blockchain
@@ -138,14 +117,7 @@ namespace MCWrapper.RPC.Options
         ///     ChainPassword is required for the RPC client to function as expected;
         /// </para>
         /// </summary>
-        public string ChainPassword
-        {
-            get => !string.IsNullOrEmpty(_chainPassword) ? _chainPassword
-                : nameof(ChainPassword).GetEnvironmentVariable() ?? string.Empty;
-
-            set => _chainPassword = value;
-        }
-        private string _chainPassword = string.Empty;
+        public string ChainPassword { get; set; } = string.Empty;
 
         /// <summary>
         /// SSL Flag
@@ -161,15 +133,7 @@ namespace MCWrapper.RPC.Options
         ///     properly to support HTTPS connection.
         /// </para>
         /// </summary>
-        public bool? ChainUseSsl
-        {
-            get => _chainUseSsl != null ? _chainUseSsl
-                : bool.Parse(string.IsNullOrEmpty(nameof(ChainUseSsl).GetEnvironmentVariable()) ? "false"
-                    : nameof(ChainUseSsl).GetEnvironmentVariable());
-
-            set => _chainUseSsl = value;
-        }
-        private bool? _chainUseSsl = null;
+        public bool? ChainUseSsl { get; set; } = null;
 
         /// <summary>
         /// Local or remote file path to a copy of the same SSL certificate that is securing
@@ -184,13 +148,6 @@ namespace MCWrapper.RPC.Options
         ///     properly to support HTTPS connections.
         /// </para>
         /// </summary>
-        public string ChainSslPath
-        {
-            get => !string.IsNullOrEmpty(_chainSslPath) ? _chainSslPath
-                : nameof(ChainSslPath).GetEnvironmentVariable() ?? string.Empty;
-
-            set => _chainSslPath = value;
-        }
-        private string _chainSslPath = string.Empty;
+        public string ChainSslPath { get; set; } = string.Empty;
     }
 }

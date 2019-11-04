@@ -29,9 +29,36 @@ namespace MCWrapper.RPC.Extensions
         /// <returns></returns>
         public static IServiceCollection AddMultiChainCoreRpcServices(this IServiceCollection services)
         {
+            var rpcOptions = new RpcOptions(true);
+            var runtimeOptions = new RuntimeParamOptions(true);
+
             // load Options from the local environment variable store
-            services.Configure<RuntimeParamOptions>(config => new RuntimeParamOptions());
-            services.Configure<RpcOptions>(config => new RpcOptions());
+            services.Configure<RuntimeParamOptions>(config => 
+            {
+                config.BanTx = runtimeOptions.BanTx;
+                config.LockBlock = runtimeOptions.LockBlock;
+                config.MaxShownData = runtimeOptions.MaxShownData;
+                config.AutoSubscribe = runtimeOptions.AutoSubscribe;
+                config.HandshakeLocal = runtimeOptions.HandshakeLocal;
+                config.MiningTurnOver = runtimeOptions.MiningTurnOver;
+                config.MineEmptyRounds = runtimeOptions.MineEmptyRounds;
+                config.HideKnownOpDrops = runtimeOptions.HideKnownOpDrops;
+                config.MaxQueryScanItems = runtimeOptions.MaxQueryScanItems;
+                config.LockAdminMineRounds = runtimeOptions.LockAdminMineRounds;
+                config.MiningRequiresPeers = runtimeOptions.MiningRequiresPeers;
+            })
+            .Configure<RpcOptions>(config => 
+            {
+                config.ChainName = rpcOptions.ChainName;
+                config.ChainUseSsl = rpcOptions.ChainUseSsl;
+                config.ChainRpcPort = rpcOptions.ChainRpcPort;
+                config.ChainSslPath = rpcOptions.ChainSslPath;
+                config.ChainHostname = rpcOptions.ChainHostname;
+                config.ChainPassword = rpcOptions.ChainPassword;
+                config.ChainUsername = rpcOptions.ChainUsername;
+                config.ChainBurnAddress = rpcOptions.ChainBurnAddress;
+                config.ChainAdminAddress = rpcOptions.ChainAdminAddress;
+            });
 
             // typed HttpClient configuration
             services.AddHttpClient<BlockchainRpcClient>()
