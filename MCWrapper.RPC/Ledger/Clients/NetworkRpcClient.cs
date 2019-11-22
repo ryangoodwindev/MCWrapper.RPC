@@ -11,10 +11,12 @@ using System.Threading.Tasks;
 namespace MCWrapper.RPC.Ledger.Clients
 {
     /// <summary>
+    /// 
     /// MutliChain methods implemented:
     /// 
     /// addnode, getaddednodeinfo, getchunkqueueinfo, getchunkqueuetotals, 
     /// getconnectioncount, getnettotals, getnetworkinfo, getpeerinfo, ping
+    /// 
     /// </summary>
     public class NetworkRpcClient : RpcClient, IBlockchainRpcNetwork
     {

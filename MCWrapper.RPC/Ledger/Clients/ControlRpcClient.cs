@@ -11,10 +11,12 @@ using System.Threading.Tasks;
 namespace MCWrapper.RPC.Ledger.Clients
 {
     /// <summary>
+    /// 
     /// MutliChain methods implemented:
     ///
     /// clearmempool, getblockchainparams, getinfo, getruntimeparams,
     /// help, pause, resume, setlastblock, setruntimeparam, stop
+    /// 
     /// </summary>
     public class ControlRpcClient : RpcClient, IBlockchainRpcControl
     {

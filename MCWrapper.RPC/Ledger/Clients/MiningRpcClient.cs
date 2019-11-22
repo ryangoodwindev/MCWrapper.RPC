@@ -9,10 +9,12 @@ using System.Threading.Tasks;
 namespace MCWrapper.RPC.Ledger.Clients
 {
     /// <summary>
+    /// 
     /// MutliChain methods implemented:
     ///
     /// getblocktemplate, getmininginfo, getnetworkhashps,
     /// prioritisetransaction, submitblock
+    /// 
     /// </summary>
     public class MiningRpcClient : RpcClient, IBlockchainRpcMining
     {

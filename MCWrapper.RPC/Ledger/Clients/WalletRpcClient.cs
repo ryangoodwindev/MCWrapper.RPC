@@ -45,7 +45,7 @@ namespace MCWrapper.RPC.Ledger.Clients
     /// <para>Inherits from an RPCClient and implements the IWalletRPC contract</para>
     ///
     /// </summary>
-    public class WalletRpcClient : RpcClient, IBlockchainRpcWallet
+    public class WalletRpcClient : RpcClient, IMultiChainRpcWallet
     {
         /// <summary>
         /// Create a new Wallet RPC client

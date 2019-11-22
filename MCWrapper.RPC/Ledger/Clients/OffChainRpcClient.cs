@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 namespace MCWrapper.RPC.Ledger.Clients
 {
     /// <summary>
+    /// 
     /// MutliChain methods implemented:
     /// 
     /// purgepublisheditems, purgestreamitems, retrievestreamitems
@@ -16,6 +17,7 @@ namespace MCWrapper.RPC.Ledger.Clients
     /// OffChain services to support MultiChain Enterprise users
     /// I do not have access to an Enterprise version of MultiChain 
     /// so no unit testing can be performed against these methods
+    /// 
     /// </summary>
     public class OffChainRpcClient : RpcClient, IBlockchainRpcOffChain
     {

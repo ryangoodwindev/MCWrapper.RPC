@@ -14,8 +14,8 @@ namespace MCWrapper.RPC.Ledger.Clients
             IBlockchainRpcNetwork blockchainRpcNetwork,
             IBlockchainRpcOffChain blockchainRpcOffChain,
             IBlockchainRpcRaw blockchainRpcRaw,
-            IBlockchainRpcUtility blockchainRpcUtility,
-            IBlockchainRpcWallet blockchainRpcWallet)
+            IMultiChainRpcUtility blockchainRpcUtility,
+            IMultiChainRpcWallet blockchainRpcWallet)
         {
             _services.Add(typeof(IBlockchainRpc), blockchainRpc);
             _services.Add(typeof(IBlockchainRpcControl), blockchainRpcControl);
@@ -24,8 +24,8 @@ namespace MCWrapper.RPC.Ledger.Clients
             _services.Add(typeof(IBlockchainRpcNetwork), blockchainRpcNetwork);
             _services.Add(typeof(IBlockchainRpcOffChain), blockchainRpcOffChain);
             _services.Add(typeof(IBlockchainRpcRaw), blockchainRpcRaw);
-            _services.Add(typeof(IBlockchainRpcUtility), blockchainRpcUtility);
-            _services.Add(typeof(IBlockchainRpcWallet), blockchainRpcWallet);
+            _services.Add(typeof(IMultiChainRpcUtility), blockchainRpcUtility);
+            _services.Add(typeof(IMultiChainRpcWallet), blockchainRpcWallet);
         }
 
         public T GetRpcClient<T>()

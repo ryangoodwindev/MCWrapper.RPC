@@ -118,7 +118,7 @@ namespace MCWrapper.RPC.Extensions
                    httpClient.DefaultRequestHeaders.Authorization = ConnectionHelper.GetAuthenticationHeaderValue(rpcOptions);
                });
 
-            services.AddHttpClient<IBlockchainRpcUtility, UtilityRpcClient>()
+            services.AddHttpClient<IMultiChainRpcUtility, UtilityRpcClient>()
                .ConfigureHttpClient((sp, httpClient) =>
                {
                    var rpcOptions = sp.GetRequiredService<IOptions<RpcOptions>>().Value;
@@ -126,7 +126,7 @@ namespace MCWrapper.RPC.Extensions
                    httpClient.DefaultRequestHeaders.Authorization = ConnectionHelper.GetAuthenticationHeaderValue(rpcOptions);
                });
 
-            services.AddHttpClient<IBlockchainRpcWallet, WalletRpcClient>()
+            services.AddHttpClient<IMultiChainRpcWallet, WalletRpcClient>()
                .ConfigureHttpClient((sp, httpClient) =>
                {
                    var rpcOptions = sp.GetRequiredService<IOptions<RpcOptions>>().Value;
@@ -222,7 +222,7 @@ namespace MCWrapper.RPC.Extensions
                    httpClient.DefaultRequestHeaders.Authorization = ConnectionHelper.GetAuthenticationHeaderValue(rpcOptions);
                });
 
-            services.AddHttpClient<IBlockchainRpcUtility, UtilityRpcClient>()
+            services.AddHttpClient<IMultiChainRpcUtility, UtilityRpcClient>()
                .ConfigureHttpClient((sp, httpClient) =>
                {
                    var rpcOptions = sp.GetRequiredService<IOptions<RpcOptions>>().Value;
@@ -230,7 +230,7 @@ namespace MCWrapper.RPC.Extensions
                    httpClient.DefaultRequestHeaders.Authorization = ConnectionHelper.GetAuthenticationHeaderValue(rpcOptions);
                });
 
-            services.AddHttpClient<IBlockchainRpcWallet, WalletRpcClient>()
+            services.AddHttpClient<IMultiChainRpcWallet, WalletRpcClient>()
                .ConfigureHttpClient((sp, httpClient) =>
                {
                    var rpcOptions = sp.GetRequiredService<IOptions<RpcOptions>>().Value;
@@ -328,7 +328,7 @@ namespace MCWrapper.RPC.Extensions
                    httpClient.DefaultRequestHeaders.Authorization = ConnectionHelper.GetAuthenticationHeaderValue(rpcOptions);
                });
 
-            services.AddHttpClient<IBlockchainRpcUtility, UtilityRpcClient>()
+            services.AddHttpClient<IMultiChainRpcUtility, UtilityRpcClient>()
                .ConfigureHttpClient((sp, httpClient) =>
                {
                    var rpcOptions = sp.GetRequiredService<IOptions<RpcOptions>>().Value;
@@ -336,7 +336,7 @@ namespace MCWrapper.RPC.Extensions
                    httpClient.DefaultRequestHeaders.Authorization = ConnectionHelper.GetAuthenticationHeaderValue(rpcOptions);
                });
 
-            services.AddHttpClient<IBlockchainRpcWallet, WalletRpcClient>()
+            services.AddHttpClient<IMultiChainRpcWallet, WalletRpcClient>()
                .ConfigureHttpClient((sp, httpClient) =>
                {
                    var rpcOptions = sp.GetRequiredService<IOptions<RpcOptions>>().Value;

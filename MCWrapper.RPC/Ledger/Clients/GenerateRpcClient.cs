@@ -9,9 +9,11 @@ using System.Threading.Tasks;
 namespace MCWrapper.RPC.Ledger.Clients
 {
     /// <summary>
+    /// 
     /// MutliChain methods implemented:
     ///
     /// getgenerate, gethashespersec, setgenerate
+    /// 
     /// </summary>
     public class GenerateRpcClient : RpcClient, IBlockchainRpcGenerate
     {

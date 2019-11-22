@@ -11,11 +11,13 @@ using System.Threading.Tasks;
 namespace MCWrapper.RPC.Ledger.Clients
 {
     /// <summary>
+    /// 
     /// MutliChain methods implemented:
     ///
     /// appendrawchange, appendrawdata, appendrawtransaction,
     /// createrawtransaction, decoderawtransaction, decodescript,
     /// getrawtransaction, sendrawtransaction, signrawtransaction
+    /// 
     /// </summary>
     public class RawRpcClient : RpcClient, IBlockchainRpcRaw
     {
