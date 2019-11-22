@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using System;
+using System.Net.Http;
 using System.Runtime.InteropServices;
 
 namespace MCWrapper.RPC.Extensions
@@ -61,35 +62,80 @@ namespace MCWrapper.RPC.Extensions
             });
 
             // typed HttpClient configuration
-            services.AddHttpClient<BlockchainRpcClient>()
-                .ConfigurePrimaryHttpMessageHandler(() => RpcMessageHandler.Create());
+            services.AddHttpClient<IBlockchainRpc, BlockchainRpcClient>()
+               .ConfigureHttpClient((sp, httpClient) =>
+               {
+                   var rpcOptions = sp.GetRequiredService<IOptions<RpcOptions>>().Value;
+                   httpClient.BaseAddress = new Uri(ConnectionHelper.GetServiceUrl(rpcOptions));
+                   httpClient.DefaultRequestHeaders.Authorization = ConnectionHelper.GetAuthenticationHeaderValue(rpcOptions);
+               });
 
-            services.AddHttpClient<ControlRpcClient>()
-                .ConfigurePrimaryHttpMessageHandler(() => RpcMessageHandler.Create());
+            services.AddHttpClient<IBlockchainRpcControl, ControlRpcClient>()
+               .ConfigureHttpClient((sp, httpClient) =>
+               {
+                   var rpcOptions = sp.GetRequiredService<IOptions<RpcOptions>>().Value;
+                   httpClient.BaseAddress = new Uri(ConnectionHelper.GetServiceUrl(rpcOptions));
+                   httpClient.DefaultRequestHeaders.Authorization = ConnectionHelper.GetAuthenticationHeaderValue(rpcOptions);
+               });
 
-            services.AddHttpClient<GenerateRpcClient>()
-               .ConfigurePrimaryHttpMessageHandler(() => RpcMessageHandler.Create());
+            services.AddHttpClient<IBlockchainRpcGenerate, GenerateRpcClient>()
+               .ConfigureHttpClient((sp, httpClient) =>
+               {
+                   var rpcOptions = sp.GetRequiredService<IOptions<RpcOptions>>().Value;
+                   httpClient.BaseAddress = new Uri(ConnectionHelper.GetServiceUrl(rpcOptions));
+                   httpClient.DefaultRequestHeaders.Authorization = ConnectionHelper.GetAuthenticationHeaderValue(rpcOptions);
+               });
 
-            services.AddHttpClient<MiningRpcClient>()
-               .ConfigurePrimaryHttpMessageHandler(() => RpcMessageHandler.Create());
+            services.AddHttpClient<IBlockchainRpcMining, MiningRpcClient>()
+               .ConfigureHttpClient((sp, httpClient) =>
+               {
+                   var rpcOptions = sp.GetRequiredService<IOptions<RpcOptions>>().Value;
+                   httpClient.BaseAddress = new Uri(ConnectionHelper.GetServiceUrl(rpcOptions));
+                   httpClient.DefaultRequestHeaders.Authorization = ConnectionHelper.GetAuthenticationHeaderValue(rpcOptions);
+               });
 
-            services.AddHttpClient<NetworkRpcClient>()
-               .ConfigurePrimaryHttpMessageHandler(() => RpcMessageHandler.Create());
+            services.AddHttpClient<IBlockchainRpcNetwork, NetworkRpcClient>()
+               .ConfigureHttpClient((sp, httpClient) =>
+               {
+                   var rpcOptions = sp.GetRequiredService<IOptions<RpcOptions>>().Value;
+                   httpClient.BaseAddress = new Uri(ConnectionHelper.GetServiceUrl(rpcOptions));
+                   httpClient.DefaultRequestHeaders.Authorization = ConnectionHelper.GetAuthenticationHeaderValue(rpcOptions);
+               });
 
-            services.AddHttpClient<OffChainRpcClient>()
-               .ConfigurePrimaryHttpMessageHandler(() => RpcMessageHandler.Create());
+            services.AddHttpClient<IBlockchainRpcOffChain, OffChainRpcClient>()
+               .ConfigureHttpClient((sp, httpClient) =>
+               {
+                   var rpcOptions = sp.GetRequiredService<IOptions<RpcOptions>>().Value;
+                   httpClient.BaseAddress = new Uri(ConnectionHelper.GetServiceUrl(rpcOptions));
+                   httpClient.DefaultRequestHeaders.Authorization = ConnectionHelper.GetAuthenticationHeaderValue(rpcOptions);
+               });
 
-            services.AddHttpClient<RawRpcClient>()
-               .ConfigurePrimaryHttpMessageHandler(() => RpcMessageHandler.Create());
+            services.AddHttpClient<IBlockchainRpcRaw, RawRpcClient>()
+               .ConfigureHttpClient((sp, httpClient) =>
+               {
+                   var rpcOptions = sp.GetRequiredService<IOptions<RpcOptions>>().Value;
+                   httpClient.BaseAddress = new Uri(ConnectionHelper.GetServiceUrl(rpcOptions));
+                   httpClient.DefaultRequestHeaders.Authorization = ConnectionHelper.GetAuthenticationHeaderValue(rpcOptions);
+               });
 
-            services.AddHttpClient<UtilityRpcClient>()
-               .ConfigurePrimaryHttpMessageHandler(() => RpcMessageHandler.Create());
+            services.AddHttpClient<IBlockchainRpcUtility, UtilityRpcClient>()
+               .ConfigureHttpClient((sp, httpClient) =>
+               {
+                   var rpcOptions = sp.GetRequiredService<IOptions<RpcOptions>>().Value;
+                   httpClient.BaseAddress = new Uri(ConnectionHelper.GetServiceUrl(rpcOptions));
+                   httpClient.DefaultRequestHeaders.Authorization = ConnectionHelper.GetAuthenticationHeaderValue(rpcOptions);
+               });
 
-            services.AddHttpClient<WalletRpcClient>()
-               .ConfigurePrimaryHttpMessageHandler(() => RpcMessageHandler.Create());
+            services.AddHttpClient<IBlockchainRpcWallet, WalletRpcClient>()
+               .ConfigureHttpClient((sp, httpClient) =>
+               {
+                   var rpcOptions = sp.GetRequiredService<IOptions<RpcOptions>>().Value;
+                   httpClient.BaseAddress = new Uri(ConnectionHelper.GetServiceUrl(rpcOptions));
+                   httpClient.DefaultRequestHeaders.Authorization = ConnectionHelper.GetAuthenticationHeaderValue(rpcOptions);
+               });
 
-            // typed HttpClient factory
-            services.AddTransient<RpcClientFactory>();
+            // RpcClients and RpcClientFactory
+            services.AddTransient<IRpcClientFactory, RpcClientFactory>();
 
             return services;
         }
@@ -120,39 +166,83 @@ namespace MCWrapper.RPC.Extensions
                 .Configure<RpcOptions>(configuration);
 
             // typed HttpClient configuration
-            services.AddHttpClient<BlockchainRpcClient>()
-                .ConfigurePrimaryHttpMessageHandler(() => RpcMessageHandler.Create(configuration));
-            
-            services.AddHttpClient<ControlRpcClient>()
-                .ConfigurePrimaryHttpMessageHandler(() => RpcMessageHandler.Create(configuration));
-            
-            services.AddHttpClient<GenerateRpcClient>()
-               .ConfigurePrimaryHttpMessageHandler(() => RpcMessageHandler.Create(configuration));
-            
-            services.AddHttpClient<MiningRpcClient>()
-               .ConfigurePrimaryHttpMessageHandler(() => RpcMessageHandler.Create(configuration));
-            
-            services.AddHttpClient<NetworkRpcClient>()
-               .ConfigurePrimaryHttpMessageHandler(() => RpcMessageHandler.Create(configuration));
-           
-            services.AddHttpClient<OffChainRpcClient>()
-               .ConfigurePrimaryHttpMessageHandler(() => RpcMessageHandler.Create(configuration));
-            
-            services.AddHttpClient<RawRpcClient>()
-               .ConfigurePrimaryHttpMessageHandler(() => RpcMessageHandler.Create(configuration));
-           
-            services.AddHttpClient<UtilityRpcClient>()
-               .ConfigurePrimaryHttpMessageHandler(() => RpcMessageHandler.Create(configuration));
-            
-            services.AddHttpClient<WalletRpcClient>()
-               .ConfigurePrimaryHttpMessageHandler(() => RpcMessageHandler.Create(configuration));
+            services.AddHttpClient<IBlockchainRpc, BlockchainRpcClient>()
+               .ConfigureHttpClient((sp, httpClient) =>
+               {
+                   var rpcOptions = sp.GetRequiredService<IOptions<RpcOptions>>().Value;
+                   httpClient.BaseAddress = new Uri(ConnectionHelper.GetServiceUrl(rpcOptions));
+                   httpClient.DefaultRequestHeaders.Authorization = ConnectionHelper.GetAuthenticationHeaderValue(rpcOptions);
+               });
 
-            // typed HttpClient factory
-            services.AddTransient<RpcClientFactory>();
+            services.AddHttpClient<IBlockchainRpcControl, ControlRpcClient>()
+               .ConfigureHttpClient((sp, httpClient) =>
+               {
+                   var rpcOptions = sp.GetRequiredService<IOptions<RpcOptions>>().Value;
+                   httpClient.BaseAddress = new Uri(ConnectionHelper.GetServiceUrl(rpcOptions));
+                   httpClient.DefaultRequestHeaders.Authorization = ConnectionHelper.GetAuthenticationHeaderValue(rpcOptions);
+               });
+
+            services.AddHttpClient<IBlockchainRpcGenerate, GenerateRpcClient>()
+               .ConfigureHttpClient((sp, httpClient) =>
+               {
+                   var rpcOptions = sp.GetRequiredService<IOptions<RpcOptions>>().Value;
+                   httpClient.BaseAddress = new Uri(ConnectionHelper.GetServiceUrl(rpcOptions));
+                   httpClient.DefaultRequestHeaders.Authorization = ConnectionHelper.GetAuthenticationHeaderValue(rpcOptions);
+               });
+
+            services.AddHttpClient<IBlockchainRpcMining, MiningRpcClient>()
+               .ConfigureHttpClient((sp, httpClient) =>
+               {
+                   var rpcOptions = sp.GetRequiredService<IOptions<RpcOptions>>().Value;
+                   httpClient.BaseAddress = new Uri(ConnectionHelper.GetServiceUrl(rpcOptions));
+                   httpClient.DefaultRequestHeaders.Authorization = ConnectionHelper.GetAuthenticationHeaderValue(rpcOptions);
+               });
+
+            services.AddHttpClient<IBlockchainRpcNetwork, NetworkRpcClient>()
+               .ConfigureHttpClient((sp, httpClient) =>
+               {
+                   var rpcOptions = sp.GetRequiredService<IOptions<RpcOptions>>().Value;
+                   httpClient.BaseAddress = new Uri(ConnectionHelper.GetServiceUrl(rpcOptions));
+                   httpClient.DefaultRequestHeaders.Authorization = ConnectionHelper.GetAuthenticationHeaderValue(rpcOptions);
+               });
+
+            services.AddHttpClient<IBlockchainRpcOffChain, OffChainRpcClient>()
+               .ConfigureHttpClient((sp, httpClient) =>
+               {
+                   var rpcOptions = sp.GetRequiredService<IOptions<RpcOptions>>().Value;
+                   httpClient.BaseAddress = new Uri(ConnectionHelper.GetServiceUrl(rpcOptions));
+                   httpClient.DefaultRequestHeaders.Authorization = ConnectionHelper.GetAuthenticationHeaderValue(rpcOptions);
+               });
+
+            services.AddHttpClient<IBlockchainRpcRaw, RawRpcClient>()
+               .ConfigureHttpClient((sp, httpClient) =>
+               {
+                   var rpcOptions = sp.GetRequiredService<IOptions<RpcOptions>>().Value;
+                   httpClient.BaseAddress = new Uri(ConnectionHelper.GetServiceUrl(rpcOptions));
+                   httpClient.DefaultRequestHeaders.Authorization = ConnectionHelper.GetAuthenticationHeaderValue(rpcOptions);
+               });
+
+            services.AddHttpClient<IBlockchainRpcUtility, UtilityRpcClient>()
+               .ConfigureHttpClient((sp, httpClient) =>
+               {
+                   var rpcOptions = sp.GetRequiredService<IOptions<RpcOptions>>().Value;
+                   httpClient.BaseAddress = new Uri(ConnectionHelper.GetServiceUrl(rpcOptions));
+                   httpClient.DefaultRequestHeaders.Authorization = ConnectionHelper.GetAuthenticationHeaderValue(rpcOptions);
+               });
+
+            services.AddHttpClient<IBlockchainRpcWallet, WalletRpcClient>()
+               .ConfigureHttpClient((sp, httpClient) =>
+               {
+                   var rpcOptions = sp.GetRequiredService<IOptions<RpcOptions>>().Value;
+                   httpClient.BaseAddress = new Uri(ConnectionHelper.GetServiceUrl(rpcOptions));
+                   httpClient.DefaultRequestHeaders.Authorization = ConnectionHelper.GetAuthenticationHeaderValue(rpcOptions);
+               });
+
+            // RpcClients and RpcClientFactory
+            services.AddTransient<IRpcClientFactory, RpcClientFactory>();
 
             return services;
         }
-
 
         /// <summary>
         /// Add MultiChain Remote Procedure Call (RPC) services to an application's service container.
@@ -181,39 +271,81 @@ namespace MCWrapper.RPC.Extensions
             services.Configure((Action<RuntimeParamOptions>)(config => runtimeParamOptions?.Invoke(new RuntimeParamOptions())))
                 .Configure((Action<RpcOptions>)(config => rpcOptions?.Invoke(new RpcOptions())));
 
-            var profile = services.BuildServiceProvider()
-                .GetService<IOptions<RpcOptions>>().Value;
-
             // typed HttpClient configuration
-            services.AddHttpClient<BlockchainRpcClient>()
-                .ConfigurePrimaryHttpMessageHandler(() => RpcMessageHandler.Create(profile));
-            
-            services.AddHttpClient<ControlRpcClient>()
-                .ConfigurePrimaryHttpMessageHandler(() => RpcMessageHandler.Create(profile));
-            
-            services.AddHttpClient<GenerateRpcClient>()
-               .ConfigurePrimaryHttpMessageHandler(() => RpcMessageHandler.Create(profile));
-            
-            services.AddHttpClient<MiningRpcClient>()
-               .ConfigurePrimaryHttpMessageHandler(() => RpcMessageHandler.Create(profile));
-            
-            services.AddHttpClient<NetworkRpcClient>()
-               .ConfigurePrimaryHttpMessageHandler(() => RpcMessageHandler.Create(profile));
-            
-            services.AddHttpClient<OffChainRpcClient>()
-               .ConfigurePrimaryHttpMessageHandler(() => RpcMessageHandler.Create(profile));
-            
-            services.AddHttpClient<RawRpcClient>()
-               .ConfigurePrimaryHttpMessageHandler(() => RpcMessageHandler.Create(profile));
-           
-            services.AddHttpClient<UtilityRpcClient>()
-               .ConfigurePrimaryHttpMessageHandler(() => RpcMessageHandler.Create(profile));
-            
-            services.AddHttpClient<WalletRpcClient>()
-               .ConfigurePrimaryHttpMessageHandler(() => RpcMessageHandler.Create(profile));
+            services.AddHttpClient<IBlockchainRpc, BlockchainRpcClient>()
+               .ConfigureHttpClient((sp, httpClient) =>
+               {
+                   var rpcOptions = sp.GetRequiredService<IOptions<RpcOptions>>().Value;
+                   httpClient.BaseAddress = new Uri(ConnectionHelper.GetServiceUrl(rpcOptions));
+                   httpClient.DefaultRequestHeaders.Authorization = ConnectionHelper.GetAuthenticationHeaderValue(rpcOptions);
+               });
 
-            // typed HttpClient factory
-            services.AddTransient<RpcClientFactory>();
+            services.AddHttpClient<IBlockchainRpcControl, ControlRpcClient>()
+               .ConfigureHttpClient((sp, httpClient) =>
+               {
+                   var rpcOptions = sp.GetRequiredService<IOptions<RpcOptions>>().Value;
+                   httpClient.BaseAddress = new Uri(ConnectionHelper.GetServiceUrl(rpcOptions));
+                   httpClient.DefaultRequestHeaders.Authorization = ConnectionHelper.GetAuthenticationHeaderValue(rpcOptions);
+               });
+
+            services.AddHttpClient<IBlockchainRpcGenerate, GenerateRpcClient>()
+               .ConfigureHttpClient((sp, httpClient) =>
+               {
+                   var rpcOptions = sp.GetRequiredService<IOptions<RpcOptions>>().Value;
+                   httpClient.BaseAddress = new Uri(ConnectionHelper.GetServiceUrl(rpcOptions));
+                   httpClient.DefaultRequestHeaders.Authorization = ConnectionHelper.GetAuthenticationHeaderValue(rpcOptions);
+               });
+
+            services.AddHttpClient<IBlockchainRpcMining, MiningRpcClient>()
+               .ConfigureHttpClient((sp, httpClient) =>
+               {
+                   var rpcOptions = sp.GetRequiredService<IOptions<RpcOptions>>().Value;
+                   httpClient.BaseAddress = new Uri(ConnectionHelper.GetServiceUrl(rpcOptions));
+                   httpClient.DefaultRequestHeaders.Authorization = ConnectionHelper.GetAuthenticationHeaderValue(rpcOptions);
+               });
+
+            services.AddHttpClient<IBlockchainRpcNetwork, NetworkRpcClient>()
+               .ConfigureHttpClient((sp, httpClient) =>
+               {
+                   var rpcOptions = sp.GetRequiredService<IOptions<RpcOptions>>().Value;
+                   httpClient.BaseAddress = new Uri(ConnectionHelper.GetServiceUrl(rpcOptions));
+                   httpClient.DefaultRequestHeaders.Authorization = ConnectionHelper.GetAuthenticationHeaderValue(rpcOptions);
+               });
+
+            services.AddHttpClient<IBlockchainRpcOffChain, OffChainRpcClient>()
+               .ConfigureHttpClient((sp, httpClient) =>
+               {
+                   var rpcOptions = sp.GetRequiredService<IOptions<RpcOptions>>().Value;
+                   httpClient.BaseAddress = new Uri(ConnectionHelper.GetServiceUrl(rpcOptions));
+                   httpClient.DefaultRequestHeaders.Authorization = ConnectionHelper.GetAuthenticationHeaderValue(rpcOptions);
+               });
+
+            services.AddHttpClient<IBlockchainRpcRaw, RawRpcClient>()
+               .ConfigureHttpClient((sp, httpClient) =>
+               {
+                   var rpcOptions = sp.GetRequiredService<IOptions<RpcOptions>>().Value;
+                   httpClient.BaseAddress = new Uri(ConnectionHelper.GetServiceUrl(rpcOptions));
+                   httpClient.DefaultRequestHeaders.Authorization = ConnectionHelper.GetAuthenticationHeaderValue(rpcOptions);
+               });
+
+            services.AddHttpClient<IBlockchainRpcUtility, UtilityRpcClient>()
+               .ConfigureHttpClient((sp, httpClient) =>
+               {
+                   var rpcOptions = sp.GetRequiredService<IOptions<RpcOptions>>().Value;
+                   httpClient.BaseAddress = new Uri(ConnectionHelper.GetServiceUrl(rpcOptions));
+                   httpClient.DefaultRequestHeaders.Authorization = ConnectionHelper.GetAuthenticationHeaderValue(rpcOptions);
+               });
+
+            services.AddHttpClient<IBlockchainRpcWallet, WalletRpcClient>()
+               .ConfigureHttpClient((sp, httpClient) =>
+               {
+                   var rpcOptions = sp.GetRequiredService<IOptions<RpcOptions>>().Value;
+                   httpClient.BaseAddress = new Uri(ConnectionHelper.GetServiceUrl(rpcOptions));
+                   httpClient.DefaultRequestHeaders.Authorization = ConnectionHelper.GetAuthenticationHeaderValue(rpcOptions);
+               });
+
+            // RpcClients and RpcClientFactory
+            services.AddTransient<IRpcClientFactory, RpcClientFactory>();
 
             return services;
         }

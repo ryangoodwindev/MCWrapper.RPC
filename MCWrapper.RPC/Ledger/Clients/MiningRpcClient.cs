@@ -14,15 +14,15 @@ namespace MCWrapper.RPC.Ledger.Clients
     /// getblocktemplate, getmininginfo, getnetworkhashps,
     /// prioritisetransaction, submitblock
     /// </summary>
-    public class MiningRpcClient : RpcConnection
+    public class MiningRpcClient : RpcClient, IBlockchainRpcMining
     {
         /// <summary>
         /// Create a new Mining RPC client
         /// </summary>
-        /// <param name="client"></param>
+        /// <param name="httpClient"></param>
         /// <param name="options"></param>
-        public MiningRpcClient(HttpClient client, IOptions<RpcOptions> options)
-            : base(client, options) { }
+        public MiningRpcClient(HttpClient httpClient, IOptions<RpcOptions> options)
+            : base(httpClient, options) { }
 
         /// <summary>
         ///
@@ -61,7 +61,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// </param>
         /// <returns></returns>
         public Task<RpcResponse<object>> GetBlockTemplateAsync(string json_request_object) =>
-            GetBlockTemplateAsync(BlockchainOptions.ChainName, UUID.NoHyphens, json_request_object);
+            GetBlockTemplateAsync(RpcOptions.ChainName, UUID.NoHyphens, json_request_object);
 
         /// <summary>
         ///
@@ -83,7 +83,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// </summary>
         /// <returns></returns>
         public Task<RpcResponse<object>> GetMiningInfoAsync() =>
-            GetMiningInfoAsync(BlockchainOptions.ChainName, UUID.NoHyphens);
+            GetMiningInfoAsync(RpcOptions.ChainName, UUID.NoHyphens);
 
         /// <summary>
         ///
@@ -120,7 +120,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="height">(numeric, optional, default=-1) To estimate at the time of the given height</param>
         /// <returns></returns>
         public Task<RpcResponse<object>> GetNetworkHashPsAsync(int blocks = 120, int height = -1) =>
-            GetNetworkHashPsAsync(BlockchainOptions.ChainName, UUID.NoHyphens, blocks, height);
+            GetNetworkHashPsAsync(RpcOptions.ChainName, UUID.NoHyphens, blocks, height);
 
         /// <summary>
         ///
@@ -162,7 +162,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// </param>
         /// <returns></returns>
         public Task<RpcResponse<object>> PrioritiseTransactionAsync(string txid, double priority_delta, double fee_delta) =>
-            PrioritiseTransactionAsync(BlockchainOptions.ChainName, UUID.NoHyphens, txid, priority_delta, fee_delta);
+            PrioritiseTransactionAsync(RpcOptions.ChainName, UUID.NoHyphens, txid, priority_delta, fee_delta);
 
         /// <summary>
         ///
@@ -196,6 +196,6 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// </param>
         /// <returns></returns>
         public Task<RpcResponse<object>> SubmitBlockAsync(object hex_data, string json_parameters_object = "") =>
-            SubmitBlockAsync(BlockchainOptions.ChainName, UUID.NoHyphens, hex_data, json_parameters_object);
+            SubmitBlockAsync(RpcOptions.ChainName, UUID.NoHyphens, hex_data, json_parameters_object);
     }
 }

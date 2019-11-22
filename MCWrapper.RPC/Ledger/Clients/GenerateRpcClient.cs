@@ -13,15 +13,15 @@ namespace MCWrapper.RPC.Ledger.Clients
     ///
     /// getgenerate, gethashespersec, setgenerate
     /// </summary>
-    public class GenerateRpcClient : RpcConnection
+    public class GenerateRpcClient : RpcClient, IBlockchainRpcGenerate
     {
         /// <summary>
         /// Create a new Generate RPC client
         /// </summary>
-        /// <param name="client"></param>
+        /// <param name="httpClient"></param>
         /// <param name="options"></param>
-        public GenerateRpcClient(HttpClient client, IOptions<RpcOptions> options)
-            : base(client, options) { }
+        public GenerateRpcClient(HttpClient httpClient, IOptions<RpcOptions> options)
+            : base(httpClient, options) { }
 
         /// <summary>
         /// <para>Return if the server is set to generate coins or not. The default is false.</para>
@@ -45,7 +45,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// </summary>
         /// <returns>If the server is set to generate coins or not</returns>
         public Task<RpcResponse<bool>> GetGenerateAsync() =>
-            GetGenerateAsync(BlockchainOptions.ChainName, UUID.NoHyphens);
+            GetGenerateAsync(RpcOptions.ChainName, UUID.NoHyphens);
 
         /// <summary>
         /// <para>Returns a recent hashes per second performance measurement while generating.</para>
@@ -67,7 +67,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// </summary>
         /// <returns>(numeric) The recent hashes per second when generation is on (will return 0 if generation is off)</returns>
         public Task<RpcResponse<int>> GetHashesPerSecAsync() =>
-            GetHashesPerSecAsync(BlockchainOptions.ChainName, UUID.NoHyphens);
+            GetHashesPerSecAsync(RpcOptions.ChainName, UUID.NoHyphens);
 
         /// <summary>
         ///
@@ -97,6 +97,6 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="gen_proc_limit">Set the processor limit for when generation is on. Can be -1 for unlimited.</param>
         /// <returns>String value identifying this transaction</returns>
         public Task<RpcResponse<object>> SetGenerateAsync(bool generate, int gen_proc_limit) =>
-            SetGenerateAsync(BlockchainOptions.ChainName, UUID.NoHyphens, generate, gen_proc_limit);
+            SetGenerateAsync(RpcOptions.ChainName, UUID.NoHyphens, generate, gen_proc_limit);
     }
 }

@@ -16,16 +16,15 @@ namespace MCWrapper.RPC.Ledger.Clients
     /// addnode, getaddednodeinfo, getchunkqueueinfo, getchunkqueuetotals, 
     /// getconnectioncount, getnettotals, getnetworkinfo, getpeerinfo, ping
     /// </summary>
-    public class NetworkRpcClient : RpcConnection
+    public class NetworkRpcClient : RpcClient, IBlockchainRpcNetwork
     {
         /// <summary>
         /// Create a new Network RPC client
         /// </summary>
-        /// <param name="client"></param>
+        /// <param name="httpClient"></param>
         /// <param name="options"></param>
-        public NetworkRpcClient(HttpClient client, IOptions<RpcOptions> options)
-            : base(client, options) { }
-
+        public NetworkRpcClient(HttpClient httpClient, IOptions<RpcOptions> options)
+            : base(httpClient, options) { }
 
         /// <summary>
         /// 
@@ -53,8 +52,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="action">'add' to add a node to the list, 'remove' to remove a node from the list, 'onetry' to try a connection to the node once</param>
         /// <returns></returns>
         public Task<RpcResponse<object>> AddNodeAsync(string node, string action) =>
-            AddNodeAsync(BlockchainOptions.ChainName, UUID.NoHyphens, node, action);
-
+            AddNodeAsync(RpcOptions.ChainName, UUID.NoHyphens, node, action);
 
         /// <summary>
         /// 
@@ -83,9 +81,8 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="dns">If false, only a list of added nodes will be provided, otherwise connected information will also be available</param>
         /// <param name="node">If provided, return information about this specific node,otherwise all nodes are returned</param>
         /// <returns></returns>
-        public Task<RpcResponse<GetAddNodeInfoResult[]>> GetAddedNodeInfoAsync(bool dns, [Optional] string node) => 
-            GetAddedNodeInfoAsync(BlockchainOptions.ChainName, UUID.NoHyphens, dns, node);
-
+        public Task<RpcResponse<GetAddNodeInfoResult[]>> GetAddedNodeInfoAsync(bool dns, [Optional] string node) =>
+            GetAddedNodeInfoAsync(RpcOptions.ChainName, UUID.NoHyphens, dns, node);
 
         /// <summary>
         ///
@@ -96,7 +93,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="blockchainName">Name of target blockchain</param>
         /// <param name="id">String value to identify this transaction</param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> GetChunkQueueInfoAsync(string blockchainName, string id) => 
+        public Task<RpcResponse<object>> GetChunkQueueInfoAsync(string blockchainName, string id) =>
             TransactAsync<RpcResponse<object>>(blockchainName, NetworkAction.GetChunkQueueInfoMethod, id);
 
         /// <summary>
@@ -107,8 +104,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// </summary>
         /// <returns></returns>
         public Task<RpcResponse<object>> GetChunkQueueInfoAsync() =>
-            GetChunkQueueInfoAsync(BlockchainOptions.ChainName, UUID.NoHyphens);
-
+            GetChunkQueueInfoAsync(RpcOptions.ChainName, UUID.NoHyphens);
 
         /// <summary>
         /// 
@@ -119,7 +115,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="blockchainName">Name of target blockchain</param>
         /// <param name="id">String value to identify this transaction</param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> GetChunkQueueTotalsAsync(string blockchainName, string id) => 
+        public Task<RpcResponse<object>> GetChunkQueueTotalsAsync(string blockchainName, string id) =>
             TransactAsync<RpcResponse<object>>(blockchainName, NetworkAction.GetChunkQueueTotalsMethod, id);
 
         /// <summary>
@@ -129,9 +125,8 @@ namespace MCWrapper.RPC.Ledger.Clients
         ///
         /// </summary>
         /// <returns></returns>
-        public Task<RpcResponse<object>> GetChunkQueueTotalsAsync() => 
-            GetChunkQueueTotalsAsync(BlockchainOptions.ChainName, UUID.NoHyphens);
-
+        public Task<RpcResponse<object>> GetChunkQueueTotalsAsync() =>
+            GetChunkQueueTotalsAsync(RpcOptions.ChainName, UUID.NoHyphens);
 
         /// <summary>
         /// 
@@ -142,7 +137,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="blockchainName">Name of target blockchain</param>
         /// <param name="id">String value to identify this transaction</param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> GetConnectionCountAsync(string blockchainName, string id) => 
+        public Task<RpcResponse<object>> GetConnectionCountAsync(string blockchainName, string id) =>
             TransactAsync<RpcResponse<object>>(blockchainName, NetworkAction.GetConnectionCountMethod, id);
 
         /// <summary>
@@ -152,9 +147,8 @@ namespace MCWrapper.RPC.Ledger.Clients
         ///
         /// </summary>
         /// <returns></returns>
-        public Task<RpcResponse<object>> GetConnectionCountAsync() => 
-            GetConnectionCountAsync(BlockchainOptions.ChainName, UUID.NoHyphens);
-
+        public Task<RpcResponse<object>> GetConnectionCountAsync() =>
+            GetConnectionCountAsync(RpcOptions.ChainName, UUID.NoHyphens);
 
         /// <summary>
         /// 
@@ -175,9 +169,8 @@ namespace MCWrapper.RPC.Ledger.Clients
         ///
         /// </summary>
         /// <returns></returns>
-        public Task<RpcResponse<object>> GetNetTotalsAsync() => 
-            GetNetTotalsAsync(BlockchainOptions.ChainName, UUID.NoHyphens);
-
+        public Task<RpcResponse<object>> GetNetTotalsAsync() =>
+            GetNetTotalsAsync(RpcOptions.ChainName, UUID.NoHyphens);
 
         /// <summary>
         /// 
@@ -198,9 +191,8 @@ namespace MCWrapper.RPC.Ledger.Clients
         ///
         /// </summary>
         /// <returns></returns>
-        public Task<RpcResponse<GetNetworkInfoResult>> GetNetworkInfoAsync() => 
-            GetNetworkInfoAsync(BlockchainOptions.ChainName, UUID.NoHyphens);
-
+        public Task<RpcResponse<GetNetworkInfoResult>> GetNetworkInfoAsync() =>
+            GetNetworkInfoAsync(RpcOptions.ChainName, UUID.NoHyphens);
 
         /// <summary>
         /// 
@@ -211,7 +203,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="blockchainName">Name of target blockchain</param>
         /// <param name="id">String value to identify this transaction</param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> GetPeerInfoAsync(string blockchainName, string id) => 
+        public Task<RpcResponse<object>> GetPeerInfoAsync(string blockchainName, string id) =>
             TransactAsync<RpcResponse<object>>(blockchainName, NetworkAction.GetPeerInfoMethod, id);
 
         /// <summary>
@@ -221,9 +213,8 @@ namespace MCWrapper.RPC.Ledger.Clients
         ///
         /// </summary>
         /// <returns></returns>
-        public Task<RpcResponse<object>> GetPeerInfoAsync() => 
-            GetPeerInfoAsync(BlockchainOptions.ChainName, UUID.NoHyphens);
-
+        public Task<RpcResponse<object>> GetPeerInfoAsync() =>
+            GetPeerInfoAsync(RpcOptions.ChainName, UUID.NoHyphens);
 
         /// <summary>
         /// 
@@ -236,7 +227,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="blockchainName">Name of target blockchain</param>
         /// <param name="id">String value to identify this transaction</param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> PingAsync(string blockchainName, string id) => 
+        public Task<RpcResponse<object>> PingAsync(string blockchainName, string id) =>
             TransactAsync<RpcResponse<object>>(blockchainName, NetworkAction.PingMethod, id);
 
         /// <summary>
@@ -248,7 +239,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// 
         /// </summary>
         /// <returns></returns>
-        public Task<RpcResponse<object>> PingAsync() => 
-            PingAsync(BlockchainOptions.ChainName, UUID.NoHyphens);
+        public Task<RpcResponse<object>> PingAsync() =>
+            PingAsync(RpcOptions.ChainName, UUID.NoHyphens);
     }
 }

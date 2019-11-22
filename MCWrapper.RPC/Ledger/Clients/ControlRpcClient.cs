@@ -16,15 +16,15 @@ namespace MCWrapper.RPC.Ledger.Clients
     /// clearmempool, getblockchainparams, getinfo, getruntimeparams,
     /// help, pause, resume, setlastblock, setruntimeparam, stop
     /// </summary>
-    public class ControlRpcClient : RpcConnection
+    public class ControlRpcClient : RpcClient, IBlockchainRpcControl
     {
         /// <summary>
         /// Create a new Control RPC client
         /// </summary>
-        /// <param name="client"></param>
+        /// <param name="httpClient"></param>
         /// <param name="options"></param>
-        public ControlRpcClient(HttpClient client, IOptions<RpcOptions> options)
-            : base(client, options) { }
+        public ControlRpcClient(HttpClient httpClient, IOptions<RpcOptions> options)
+            : base(httpClient, options) { }
 
         /// <summary>
         ///
@@ -48,7 +48,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// </summary>
         /// <returns></returns>
         public Task<RpcResponse<string>> ClearMemPoolAsync() =>
-            ClearMemPoolAsync(BlockchainOptions.ChainName, UUID.NoHyphens);
+            ClearMemPoolAsync(RpcOptions.ChainName, UUID.NoHyphens);
 
         /// <summary>
         ///
@@ -74,7 +74,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="with_upgrades">Take upgrades into account</param>
         /// <returns></returns>
         public Task<RpcResponse<GetBlockchainParamsResult>> GetBlockchainParamsAsync(bool display_names = false, bool with_upgrades = false) =>
-            GetBlockchainParamsAsync(BlockchainOptions.ChainName, UUID.NoHyphens, display_names, with_upgrades);
+            GetBlockchainParamsAsync(RpcOptions.ChainName, UUID.NoHyphens, display_names, with_upgrades);
 
         /// <summary>
         ///
@@ -96,7 +96,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// </summary>
         /// <returns></returns>
         public Task<RpcResponse<GetInfoResult>> GetInfoAsync() =>
-            GetInfoAsync(BlockchainOptions.ChainName, UUID.NoHyphens);
+            GetInfoAsync(RpcOptions.ChainName, UUID.NoHyphens);
 
         /// <summary>
         ///
@@ -118,7 +118,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// </summary>
         /// <returns></returns>
         public Task<RpcResponse<GetRuntimeParamsResult>> GetRuntimeParamsAsync() =>
-            GetRuntimeParamsAsync(BlockchainOptions.ChainName, UUID.NoHyphens);
+            GetRuntimeParamsAsync(RpcOptions.ChainName, UUID.NoHyphens);
 
         /// <summary>
         ///
@@ -142,7 +142,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="command">The command to get help with</param>
         /// <returns></returns>
         public Task<RpcResponse<object>> HelpAsync(string command = "getinfo") =>
-            HelpAsync(BlockchainOptions.ChainName, UUID.NoHyphens, command);
+            HelpAsync(RpcOptions.ChainName, UUID.NoHyphens, command);
 
         /// <summary>
         ///
@@ -166,7 +166,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="tasks">Task(s) to be paused. Possible values: incoming,mining,offchain</param>
         /// <returns></returns>
         public Task<RpcResponse<object>> PauseAsync(string tasks = "incoming,mining") =>
-            PauseAsync(BlockchainOptions.ChainName, UUID.NoHyphens, tasks);
+            PauseAsync(RpcOptions.ChainName, UUID.NoHyphens, tasks);
 
         /// <summary>
         ///
@@ -189,7 +189,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// </summary>
         /// <param name="tasks">Task(s) to be resumed. Possible values: incoming,mining,offchain</param>
         public Task<RpcResponse<object>> ResumeAsync(string tasks = "incoming,mining") =>
-            ResumeAsync(BlockchainOptions.ChainName, UUID.NoHyphens, tasks);
+            ResumeAsync(RpcOptions.ChainName, UUID.NoHyphens, tasks);
 
         /// <summary>
         ///
@@ -223,7 +223,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// </param>
         /// <returns></returns>
         public Task<RpcResponse<object>> SetLastBlockAsync([Optional] object hash_or_height) =>
-            SetLastBlockAsync(BlockchainOptions.ChainName, UUID.NoHyphens, hash_or_height);
+            SetLastBlockAsync(RpcOptions.ChainName, UUID.NoHyphens, hash_or_height);
 
         /// <summary>
         ///
@@ -249,7 +249,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="parameter_value">parameter value</param>
         /// <returns></returns>
         public Task<RpcResponse<object>> SetRuntimeParamAsync(string runtimeParam, object parameter_value) =>
-            SetRuntimeParamAsync(BlockchainOptions.ChainName, UUID.NoHyphens, runtimeParam, parameter_value);
+            SetRuntimeParamAsync(RpcOptions.ChainName, UUID.NoHyphens, runtimeParam, parameter_value);
 
         /// <summary>
         ///
@@ -271,6 +271,6 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// </summary>
         /// <returns></returns>
         public Task<RpcResponse<string>> StopAsync() =>
-            StopAsync(BlockchainOptions.ChainName, UUID.NoHyphens);
+            StopAsync(RpcOptions.ChainName, UUID.NoHyphens);
     }
 }

@@ -46,7 +46,7 @@ Consolidated RpcClients under a single namespace MCWrapper.RPC.Ledger.Clients, p
 Updated RpcClientFactory to use properties instead of methods; Renamed properties slightly; Made property names more consistent with the CliClientFactory present in MCWrapper.CLI
 
 Version 4.0.1:
-Update to MCWrapper.Ledger.Entities 2.1.0 to fix CliOptions and RuntimeParamOptions value loading failure</PackageReleaseNotes>
+Update to MCWrapper.Ledger.Entities 2.1.0 to fix RpcOptions and RuntimeParamOptions value loading failure</PackageReleaseNotes>
     <PackageTags>MultiChain,CSharp,DotNetCore,Blockchain,API</PackageTags>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
   </PropertyGroup>
@@ -57,11 +57,11 @@ Update to MCWrapper.Ledger.Entities 2.1.0 to fix CliOptions and RuntimeParamOpti
   </PropertyGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp3.0'">
-    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="3.0.0" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Http.Polly" Version="3.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Options" Version="3.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="3.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="3.0.1" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Http.Polly" Version="3.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Options" Version="3.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="3.0.1" />
   </ItemGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp2.2'">
@@ -81,7 +81,7 @@ Update to MCWrapper.Ledger.Entities 2.1.0 to fix CliOptions and RuntimeParamOpti
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="MCWrapper.Data.Models" Version="1.0.0" />
     <PackageReference Include="MCWrapper.Ledger.Actions" Version="1.0.0" />
     <PackageReference Include="MCWrapper.Ledger.Entities" Version="2.1.0" />

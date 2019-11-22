@@ -1,47 +1,36 @@
-﻿namespace MCWrapper.RPC.Ledger.Clients
+﻿using System;
+using System.Collections.Generic;
+
+namespace MCWrapper.RPC.Ledger.Clients
 {
-    public class RpcClientFactory
+    public class RpcClientFactory : IRpcClientFactory
     {
-        public RpcClientFactory(BlockchainRpcClient blockchainClient, GenerateRpcClient generateClient, OffChainRpcClient offChainClient,
-            ControlRpcClient controlClient, NetworkRpcClient networkClient, UtilityRpcClient utilityClient, MiningRpcClient miningClient,
-            WalletRpcClient walletClient, RawRpcClient rawClient)
+        private readonly Dictionary<Type, IRpcContract> _services = new Dictionary<Type, IRpcContract>();
+
+        public RpcClientFactory(IBlockchainRpc blockchainRpc,
+            IBlockchainRpcControl blockchainRpcControl,
+            IBlockchainRpcGenerate blockchainRpcGenerate,
+            IBlockchainRpcMining blockchainRpcMining,
+            IBlockchainRpcNetwork blockchainRpcNetwork,
+            IBlockchainRpcOffChain blockchainRpcOffChain,
+            IBlockchainRpcRaw blockchainRpcRaw,
+            IBlockchainRpcUtility blockchainRpcUtility,
+            IBlockchainRpcWallet blockchainRpcWallet)
         {
-            BlockchainClient = blockchainClient;
-            GenerateClient = generateClient;
-            OffChainClient = offChainClient;
-            ControlClient = controlClient;
-            NetworkClient = networkClient;
-            UtilityClient = utilityClient;
-            MiningClient = miningClient;
-            WalletClient = walletClient;
-            RawClient = rawClient;
+            _services.Add(typeof(IBlockchainRpc), blockchainRpc);
+            _services.Add(typeof(IBlockchainRpcControl), blockchainRpcControl);
+            _services.Add(typeof(IBlockchainRpcGenerate), blockchainRpcGenerate);
+            _services.Add(typeof(IBlockchainRpcMining), blockchainRpcMining);
+            _services.Add(typeof(IBlockchainRpcNetwork), blockchainRpcNetwork);
+            _services.Add(typeof(IBlockchainRpcOffChain), blockchainRpcOffChain);
+            _services.Add(typeof(IBlockchainRpcRaw), blockchainRpcRaw);
+            _services.Add(typeof(IBlockchainRpcUtility), blockchainRpcUtility);
+            _services.Add(typeof(IBlockchainRpcWallet), blockchainRpcWallet);
         }
 
-        public BlockchainRpcClient BlockchainRpcClient => BlockchainClient;
-        private readonly BlockchainRpcClient BlockchainClient;
-
-        public GenerateRpcClient GenerateRpcClient => GenerateClient;
-        private readonly GenerateRpcClient GenerateClient;
-
-        public OffChainRpcClient OffChainRpcClient => OffChainClient;
-        private readonly OffChainRpcClient OffChainClient;
-
-        public ControlRpcClient ControlRpcClient => ControlClient;
-        private readonly ControlRpcClient ControlClient;
-
-        public NetworkRpcClient NetworkRpcClient => NetworkClient;
-        private readonly NetworkRpcClient NetworkClient;
-
-        public UtilityRpcClient UtilityRpcClient => UtilityClient;
-        private readonly UtilityRpcClient UtilityClient;
-
-        public MiningRpcClient MiningRpcClient => MiningClient;
-        private readonly MiningRpcClient MiningClient;
-
-        public WalletRpcClient WalletRpcClient => WalletClient;
-        private readonly WalletRpcClient WalletClient;
-
-        public RawRpcClient RawRpcClient => RawClient;
-        private readonly RawRpcClient RawClient;
+        public T GetRpcClient<T>()
+        {
+            return (T)_services[typeof(T)];
+        }
     }
 }

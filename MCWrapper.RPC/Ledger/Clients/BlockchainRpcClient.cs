@@ -1,11 +1,18 @@
 ﻿using MCWrapper.Data.Models.Blockchain;
 using MCWrapper.Ledger.Actions;
+using MCWrapper.Ledger.Entities.ErrorHandling;
 using MCWrapper.Ledger.Entities.Extensions;
 using MCWrapper.RPC.Connection;
+using MCWrapper.RPC.Connection.Request;
+using MCWrapper.RPC.Extensions;
 using MCWrapper.RPC.Options;
 using Microsoft.Extensions.Options;
+using Newtonsoft.Json;
+using System;
+using System.IO;
 using System.Net.Http;
 using System.Runtime.InteropServices;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace MCWrapper.RPC.Ledger.Clients
@@ -25,15 +32,15 @@ namespace MCWrapper.RPC.Ledger.Clients
     /// <para>Inherits from an RPCClient and implements the IBlockchainRPC contract</para>
     ///
     /// </summary>
-    public class BlockchainRpcClient : RpcConnection
+    public class BlockchainRpcClient : RpcClient, IBlockchainRpc
     {
         /// <summary>
         /// Create a new Blockchain RPC client
         /// </summary>
-        /// <param name="client"></param>
+        /// <param name="httpClient"></param>
         /// <param name="options"></param>
-        public BlockchainRpcClient(HttpClient client, IOptions<RpcOptions> options)
-            : base(client, options) { }
+        public BlockchainRpcClient(HttpClient httpClient, IOptions<RpcOptions> options)
+            : base(httpClient, options) { }
 
         /// <summary>
         ///
@@ -59,7 +66,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="verbose">If true, returns list of all issue transactions, including follow-ons</param>
         /// <returns></returns>
         public Task<RpcResponse<GetAssetInfoResult>> GetAssetInfoAsync(string asset_identifier, bool verbose = false) =>
-            GetAssetInfoAsync(BlockchainOptions.ChainName, UUID.NoHyphens, asset_identifier, verbose);
+            GetAssetInfoAsync(RpcOptions.ChainName, UUID.NoHyphens, asset_identifier, verbose);
 
         /// <summary>
         ///
@@ -81,7 +88,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// </summary>
         /// <returns></returns>
         public Task<RpcResponse<string>> GetBestBlockHashAsync() =>
-            GetBestBlockHashAsync(BlockchainOptions.ChainName, UUID.NoHyphens);
+            GetBestBlockHashAsync(RpcOptions.ChainName, UUID.NoHyphens);
 
         /// <summary>
         ///
@@ -107,7 +114,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="verbose">(numeric or boolean, optional, default=1) 0(or false) - encoded data, 1(or true) - json object, 2 - with tx encoded data, 4 - with tx json object</param>
         /// <returns></returns>
         public Task<T> GetBlockAsync<T>(object hash_or_height, [Optional] object verbose) =>
-            GetBlockAsync<T>(BlockchainOptions.ChainName, UUID.NoHyphens, hash_or_height, verbose);
+            GetBlockAsync<T>(RpcOptions.ChainName, UUID.NoHyphens, hash_or_height, verbose);
 
         /// <summary>
         ///
@@ -129,7 +136,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// </summary>
         /// <returns></returns>
         public Task<RpcResponse<GetBlockchainInfoResult>> GetBlockchainInfoAsync() =>
-            GetBlockchainInfoAsync(BlockchainOptions.ChainName, UUID.NoHyphens);
+            GetBlockchainInfoAsync(RpcOptions.ChainName, UUID.NoHyphens);
 
         /// <summary>
         ///
@@ -151,7 +158,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// </summary>
         /// <returns></returns>
         public Task<RpcResponse<long>> GetBlockCountAsync() =>
-            GetBlockCountAsync(BlockchainOptions.ChainName, UUID.NoHyphens);
+            GetBlockCountAsync(RpcOptions.ChainName, UUID.NoHyphens);
 
         /// <summary>
         ///
@@ -175,7 +182,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="index">The integer block index</param>
         /// <returns></returns>
         public Task<RpcResponse<string>> GetBlockHashAsync(int index) =>
-            GetBlockHashAsync(BlockchainOptions.ChainName, UUID.NoHyphens, index);
+            GetBlockHashAsync(RpcOptions.ChainName, UUID.NoHyphens, index);
 
         /// <summary>
         ///
@@ -197,7 +204,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// </summary>
         /// <returns></returns>
         public Task<RpcResponse<GetChainTipsResult[]>> GetChainTipsAsync() =>
-            GetChainTipsAsync(BlockchainOptions.ChainName, UUID.NoHyphens);
+            GetChainTipsAsync(RpcOptions.ChainName, UUID.NoHyphens);
 
         /// <summary>
         ///
@@ -219,7 +226,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// </summary>
         /// <returns></returns>
         public Task<RpcResponse<double>> GetDifficultyAsync() =>
-            GetDifficultyAsync(BlockchainOptions.ChainName, UUID.NoHyphens);
+            GetDifficultyAsync(RpcOptions.ChainName, UUID.NoHyphens);
 
         /// <summary>
         ///
@@ -243,7 +250,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="filter_identifier">One of: create txid, filter reference, filter name</param>
         /// <returns></returns>
         public Task<RpcResponse<string>> GetFilterCodeAsync(string filter_identifier) =>
-            GetFilterCodeAsync(BlockchainOptions.ChainName, UUID.NoHyphens, filter_identifier);
+            GetFilterCodeAsync(RpcOptions.ChainName, UUID.NoHyphens, filter_identifier);
 
         /// <summary>
         ///
@@ -267,7 +274,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="skip">The number of blocks back to skip. Default 0</param>
         /// <returns></returns>
         public Task<RpcResponse<GetLastBlockInfoResult>> GetLastBlockInfoAsync(int skip = 0) =>
-            GetLastBlockInfoAsync(BlockchainOptions.ChainName, UUID.NoHyphens, skip);
+            GetLastBlockInfoAsync(RpcOptions.ChainName, UUID.NoHyphens, skip);
 
         /// <summary>
         ///
@@ -289,7 +296,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// </summary>
         /// <returns></returns>
         public Task<RpcResponse<GetMemPoolInfoResult>> GetMemPoolInfoAsync() =>
-            GetMemPoolInfoAsync(BlockchainOptions.ChainName, UUID.NoHyphens);
+            GetMemPoolInfoAsync(RpcOptions.ChainName, UUID.NoHyphens);
 
         /// <summary>
         ///
@@ -313,7 +320,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="verbose">true for a json object, false for array of transaction ids</param>
         /// <returns></returns>
         public Task<RpcResponse<GetRawMemPoolResult>> GetRawMemPoolAsync(bool verbose = false) =>
-            GetRawMemPoolAsync(BlockchainOptions.ChainName, UUID.NoHyphens, verbose);
+            GetRawMemPoolAsync(RpcOptions.ChainName, UUID.NoHyphens, verbose);
 
         /// <summary>
         ///
@@ -339,7 +346,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="verbose">If true, returns list of creators</param>
         /// <returns></returns>
         public Task<RpcResponse<GetStreamInfoResult>> GetStreamInfoAsync(string stream_identifier, bool verbose = false) =>
-            GetStreamInfoAsync(BlockchainOptions.ChainName, UUID.NoHyphens, stream_identifier, verbose);
+            GetStreamInfoAsync(RpcOptions.ChainName, UUID.NoHyphens, stream_identifier, verbose);
 
         /// <summary>
         ///
@@ -367,7 +374,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="include_mem_pool">Whether to included the mem pool</param>
         /// <returns></returns>
         public Task<RpcResponse<GetTxOutResult>> GetTxOutAsync(string txid, int n, bool include_mem_pool = true) =>
-            GetTxOutAsync(BlockchainOptions.ChainName, UUID.NoHyphens, txid, n, include_mem_pool);
+            GetTxOutAsync(RpcOptions.ChainName, UUID.NoHyphens, txid, n, include_mem_pool);
 
         /// <summary>
         ///
@@ -389,7 +396,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// </summary>
         /// <returns></returns>
         public Task<RpcResponse<GetTxOutSetInfoResult>> GetTxOutSetInfoAsync() =>
-            GetTxOutSetInfoAsync(BlockchainOptions.ChainName, UUID.NoHyphens);
+            GetTxOutSetInfoAsync(RpcOptions.ChainName, UUID.NoHyphens);
 
         /// <summary>
         ///
@@ -419,7 +426,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="start">Start from specific asset, 0 based, if negative - from the end</param>
         /// <returns></returns>
         public Task<RpcResponse<ListAssetsResult[]>> ListAssetsAsync([Optional] object asset_identifiers, [Optional] bool verbose, [Optional] int count, [Optional] int start) =>
-            ListAssetsAsync(BlockchainOptions.ChainName, UUID.NoHyphens, asset_identifiers, verbose, count, start);
+            ListAssetsAsync(RpcOptions.ChainName, UUID.NoHyphens, asset_identifiers, verbose, count, start);
 
         /// <summary>
         ///
@@ -469,7 +476,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="verbose">If true, returns more information</param>
         /// <returns></returns>
         public Task<RpcResponse<ListBlocksResult[]>> ListBlocksAsync(object block_set_identifier, bool verbose = false) =>
-            ListBlocksAsync(BlockchainOptions.ChainName, UUID.NoHyphens, block_set_identifier, verbose);
+            ListBlocksAsync(RpcOptions.ChainName, UUID.NoHyphens, block_set_identifier, verbose);
 
         /// <summary>
         ///
@@ -505,7 +512,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="verbose">If true, returns list of pending grants</param>
         /// <returns></returns>
         public Task<RpcResponse<ListPermissionsResult[]>> ListPermissionsAsync([Optional] string permissions, [Optional] object addresses, [Optional] bool verbose) =>
-            ListPermissionsAsync(BlockchainOptions.ChainName, UUID.NoHyphens, permissions, addresses, verbose);
+            ListPermissionsAsync(RpcOptions.ChainName, UUID.NoHyphens, permissions, addresses, verbose);
 
         /// <summary>
         ///
@@ -539,7 +546,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="verbose">If true, returns list of creators and approval details</param>
         /// <returns></returns>
         public Task<RpcResponse<ListStreamFiltersResult[]>> ListStreamFiltersAsync([Optional] object filter_identifers, [Optional] bool verbose) =>
-            ListStreamFiltersAsync(BlockchainOptions.ChainName, UUID.NoHyphens, filter_identifers, verbose);
+            ListStreamFiltersAsync(RpcOptions.ChainName, UUID.NoHyphens, filter_identifers, verbose);
 
         /// <summary>
         ///
@@ -577,7 +584,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="start">Start from specific stream, 0 based, if negative - from the end</param>
         /// <returns></returns>
         public Task<RpcResponse<ListStreamsResult[]>> ListStreamsAsync([Optional] object stream_identifiers, [Optional] bool verbose, [Optional] int count, [Optional] int start) =>
-            ListStreamsAsync(BlockchainOptions.ChainName, UUID.NoHyphens, stream_identifiers, verbose, count, start);
+            ListStreamsAsync(RpcOptions.ChainName, UUID.NoHyphens, stream_identifiers, verbose, count, start);
 
         /// <summary>
         ///
@@ -611,7 +618,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="verbose">If true, returns list of creators and approval details</param>
         /// <returns></returns>
         public Task<RpcResponse<ListTxFiltersResult[]>> ListTxFiltersAsync([Optional] object filter_identifiers, [Optional] bool verbose) =>
-            ListTxFiltersAsync(BlockchainOptions.ChainName, UUID.NoHyphens, filter_identifiers, verbose);
+            ListTxFiltersAsync(RpcOptions.ChainName, UUID.NoHyphens, filter_identifiers, verbose);
 
         /// <summary>
         ///
@@ -643,7 +650,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// </param>
         /// <returns></returns>
         public Task<RpcResponse<object>> ListUpgradesAsync([Optional] object upgrade_identifiers) =>
-            ListUpgradesAsync(BlockchainOptions.ChainName, UUID.NoHyphens, upgrade_identifiers);
+            ListUpgradesAsync(RpcOptions.ChainName, UUID.NoHyphens, upgrade_identifiers);
 
         /// <summary>
         ///
@@ -679,7 +686,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="vout">The output number, if omitted and txid/tx-hex is specified, found automatically</param>
         /// <returns></returns>
         public Task<RpcResponse<RunStreamFilterResult>> RunStreamFilterAsync(string filter_identifier, [Optional] string tx_hex, [Optional] int vout) =>
-            RunStreamFilterAsync(BlockchainOptions.ChainName, UUID.NoHyphens, filter_identifier, tx_hex, vout);
+            RunStreamFilterAsync(RpcOptions.ChainName, UUID.NoHyphens, filter_identifier, tx_hex, vout);
 
         /// <summary>
         ///
@@ -713,7 +720,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// </param>
         /// <returns></returns>
         public Task<RpcResponse<RunTxFilterResult>> RunTxFilterAsync([Optional] string filter_identifier, [Optional] string tx_hex) =>
-            RunTxFilterAsync(BlockchainOptions.ChainName, UUID.NoHyphens, filter_identifier, tx_hex);
+            RunTxFilterAsync(RpcOptions.ChainName, UUID.NoHyphens, filter_identifier, tx_hex);
 
         /// <summary>
         ///
@@ -751,7 +758,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="vout">The output number, if omitted and txid/tx-hex is specified, found automatically</param>
         /// <returns></returns>
         public Task<RpcResponse<TestStreamFilterResult>> TestStreamFilterAsync(object restrictions, string javascript_code, [Optional] string tx_hex, [Optional] int vout) =>
-            TestStreamFilterAsync(BlockchainOptions.ChainName, UUID.NoHyphens, restrictions, javascript_code, tx_hex, vout);
+            TestStreamFilterAsync(RpcOptions.ChainName, UUID.NoHyphens, restrictions, javascript_code, tx_hex, vout);
 
         /// <summary>
         ///
@@ -799,7 +806,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         ///     <para>(string, optional) The transaction id</para></param>
         /// <returns></returns>
         public Task<RpcResponse<TestTxFilterResult>> TestTxFilterAsync(object restrictions, string javascript_code, [Optional] string tx_hex) =>
-            TestTxFilterAsync(BlockchainOptions.ChainName, UUID.NoHyphens, restrictions, javascript_code, tx_hex);
+            TestTxFilterAsync(RpcOptions.ChainName, UUID.NoHyphens, restrictions, javascript_code, tx_hex);
 
         /// <summary>
         ///
@@ -825,7 +832,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="num_blocks">(numeric, optional, default=288, 0=all) The number of blocks to check</param>
         /// <returns></returns>
         public Task<RpcResponse<bool>> VerifyChainAsync([Optional] int check_level, [Optional] int num_blocks) =>
-            VerifyChainAsync(BlockchainOptions.ChainName, UUID.NoHyphens, check_level, num_blocks);
+            VerifyChainAsync(RpcOptions.ChainName, UUID.NoHyphens, check_level, num_blocks);
 
         /// <summary>
         ///
@@ -851,6 +858,6 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="permission">Permission string. Possible values: connect,send,receive,issue,mine,admin,activate,create</param>
         /// <returns></returns>
         public Task<RpcResponse<bool>> VerifyPermissionAsync(string address, string permission) =>
-            VerifyPermissionAsync(BlockchainOptions.ChainName, UUID.NoHyphens, address, permission);
+            VerifyPermissionAsync(RpcOptions.ChainName, UUID.NoHyphens, address, permission);
     }
 }

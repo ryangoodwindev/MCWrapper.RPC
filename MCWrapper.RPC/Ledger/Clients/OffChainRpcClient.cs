@@ -17,16 +17,15 @@ namespace MCWrapper.RPC.Ledger.Clients
     /// I do not have access to an Enterprise version of MultiChain 
     /// so no unit testing can be performed against these methods
     /// </summary>
-    public class OffChainRpcClient : RpcConnection
+    public class OffChainRpcClient : RpcClient, IBlockchainRpcOffChain
     {
         /// <summary>
         /// Create a OffChain RPC client
         /// </summary>
-        /// <param name="client"></param>
+        /// <param name="httpClient"></param>
         /// <param name="options"></param>
-        public OffChainRpcClient(HttpClient client, IOptions<RpcOptions> options) 
-            : base(client, options) { }
-
+        public OffChainRpcClient(HttpClient httpClient, IOptions<RpcOptions> options)
+            : base(httpClient, options) { }
 
         /// <summary>
         /// 
@@ -47,7 +46,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         ///     <para>1. blocks                           (object, required) List of transactions in block range</para>
         /// </param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> PurgePublishedItemsAsync(string blockchainName, string id, object items) => 
+        public Task<RpcResponse<object>> PurgePublishedItemsAsync(string blockchainName, string id, object items) =>
             TransactAsync<RpcResponse<object>>(blockchainName, OffChainAction.PurgePublishedItems, id, items);
 
         /// <summary>
@@ -67,9 +66,8 @@ namespace MCWrapper.RPC.Ledger.Clients
         ///     <para>1. blocks                           (object, required) List of transactions in block range</para>
         /// </param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> PurgePublishedItemsAsync(object items) => 
-            PurgePublishedItemsAsync(BlockchainOptions.ChainName, UUID.NoHyphens, items);
-
+        public Task<RpcResponse<object>> PurgePublishedItemsAsync(object items) =>
+            PurgePublishedItemsAsync(RpcOptions.ChainName, UUID.NoHyphens, items);
 
         /// <summary>
         /// 
@@ -93,7 +91,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         ///     <para>query (object, required) Query (AND logic)</para>
         /// </param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> PurgeStreamItemsAsync(string blockchainName, string id, string stream, object items) => 
+        public Task<RpcResponse<object>> PurgeStreamItemsAsync(string blockchainName, string id, string stream, object items) =>
             TransactAsync<RpcResponse<object>>(blockchainName, OffChainAction.PurgeStreamItems, id, stream, items);
 
         /// <summary>
@@ -117,8 +115,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// </param>
         /// <returns></returns>
         public Task<RpcResponse<object>> PurgeStreamItemsAsync(string stream, object items) =>
-            PurgeStreamItemsAsync(BlockchainOptions.ChainName, UUID.NoHyphens, stream, items);
-
+            PurgeStreamItemsAsync(RpcOptions.ChainName, UUID.NoHyphens, stream, items);
 
         /// <summary>
         ///
@@ -142,7 +139,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         ///     <para>query (object, required) Query (AND logic)</para>
         /// </param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> RetrieveStreamItemsAsync(string blockchainName, string id, string stream, object items) => 
+        public Task<RpcResponse<object>> RetrieveStreamItemsAsync(string blockchainName, string id, string stream, object items) =>
             TransactAsync<RpcResponse<object>>(blockchainName, OffChainAction.RetrieveStreamItems, id, stream, items);
 
         /// <summary>
@@ -165,7 +162,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         ///     <para>query (object, required) Query (AND logic)</para>
         /// </param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> RetrieveStreamItemsAsync(string stream, object items) => 
-            RetrieveStreamItemsAsync(BlockchainOptions.ChainName, UUID.NoHyphens, stream, items);
+        public Task<RpcResponse<object>> RetrieveStreamItemsAsync(string stream, object items) =>
+            RetrieveStreamItemsAsync(RpcOptions.ChainName, UUID.NoHyphens, stream, items);
     }
 }

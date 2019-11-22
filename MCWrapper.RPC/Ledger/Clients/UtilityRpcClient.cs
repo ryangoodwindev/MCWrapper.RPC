@@ -16,15 +16,15 @@ namespace MCWrapper.RPC.Ledger.Clients
     /// createmultisig, deletebinarycache, estimatefee, estimatepriority,
     /// validateaddress, verifymessage
     /// </summary>
-    public class UtilityRpcClient : RpcConnection
+    public class UtilityRpcClient : RpcClient, IBlockchainRpcUtility
     {
         /// <summary>
         /// Create a new Utility RPC client
         /// </summary>
-        /// <param name="client"></param>
+        /// <param name="httpClient"></param>
         /// <param name="options"></param>
-        public UtilityRpcClient(HttpClient client, IOptions<RpcOptions> options)
-            : base(client, options) { }
+        public UtilityRpcClient(HttpClient httpClient, IOptions<RpcOptions> options)
+            : base(httpClient, options) { }
 
         /// <summary>
         ///
@@ -49,7 +49,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="identifier">Binary cache item identifier</param>
         /// <param name="data_hex">The hex string to be added to binary cache item</param>
         public Task<RpcResponse<int>> AppendBinaryCacheAsync(string identifier, string data_hex) =>
-            AppendBinaryCacheAsync(BlockchainOptions.ChainName, UUID.NoHyphens, identifier, data_hex);
+            AppendBinaryCacheAsync(RpcOptions.ChainName, UUID.NoHyphens, identifier, data_hex);
 
         /// <summary>
         ///
@@ -71,7 +71,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// </summary>
         /// <returns></returns>
         public Task<RpcResponse<string>> CreateBinaryCacheAsync() =>
-            CreateBinaryCacheAsync(BlockchainOptions.ChainName, UUID.NoHyphens);
+            CreateBinaryCacheAsync(RpcOptions.ChainName, UUID.NoHyphens);
 
         /// <summary>
         ///
@@ -95,7 +95,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="count">Number of key pairs to generate</param>
         /// <returns></returns>
         public Task<RpcResponse<CreateKeyPairsResult[]>> CreateKeyPairsAsync(int count = 1) =>
-            CreateKeyPairsAsync(BlockchainOptions.ChainName, UUID.NoHyphens, count);
+            CreateKeyPairsAsync(RpcOptions.ChainName, UUID.NoHyphens, count);
 
         /// <summary>
         ///
@@ -123,7 +123,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="keys">A json array of keys which are addresses or hex-encoded public keys</param>
         /// <returns></returns>
         public Task<RpcResponse<CreateMultiSigResult>> CreateMultiSigAsync(int n_required, string[] keys) =>
-            CreateMultiSigAsync(BlockchainOptions.ChainName, UUID.NoHyphens, n_required, keys);
+            CreateMultiSigAsync(RpcOptions.ChainName, UUID.NoHyphens, n_required, keys);
 
         /// <summary>
         ///
@@ -147,7 +147,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="identifier">Binary cache item identifier, "*" - to clear all items</param>
         /// <returns></returns>
         public Task<RpcResponse<object>> DeleteBinaryCacheAsync(string identifier) =>
-            DeleteBinaryCacheAsync(BlockchainOptions.ChainName, UUID.NoHyphens, identifier);
+            DeleteBinaryCacheAsync(RpcOptions.ChainName, UUID.NoHyphens, identifier);
 
         /// <summary>
         ///
@@ -171,7 +171,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="n_blocks">Number of blocks to estimate fee for</param>
         /// <returns></returns>
         public Task<RpcResponse<object>> EstimateFeeAsync(int n_blocks) =>
-            EstimateFeeAsync(BlockchainOptions.ChainName, UUID.NoHyphens, n_blocks);
+            EstimateFeeAsync(RpcOptions.ChainName, UUID.NoHyphens, n_blocks);
 
         /// <summary>
         ///
@@ -197,7 +197,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="n_blocks">Number of blocks to estimate priority for</param>
         /// <returns></returns>
         public Task<RpcResponse<object>> EstimatePriorityAsync(int n_blocks) =>
-            EstimatePriorityAsync(BlockchainOptions.ChainName, UUID.NoHyphens, n_blocks);
+            EstimatePriorityAsync(RpcOptions.ChainName, UUID.NoHyphens, n_blocks);
 
         /// <summary>
         ///
@@ -234,7 +234,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// </param>
         /// <returns></returns>
         public Task<RpcResponse<ValidateAddressResult>> ValidateAddressAsync(string address_pubkey_privkey) =>
-            ValidateAddressAsync(BlockchainOptions.ChainName, UUID.NoHyphens, address_pubkey_privkey);
+            ValidateAddressAsync(RpcOptions.ChainName, UUID.NoHyphens, address_pubkey_privkey);
 
         /// <summary>
         ///
@@ -262,6 +262,6 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="message">The message that was signed</param>
         /// <returns></returns>
         public Task<RpcResponse<bool>> VerifyMessageAsync(string address, string signature, string message) =>
-            VerifyMessageAsync(BlockchainOptions.ChainName, UUID.NoHyphens, address, signature, message);
+            VerifyMessageAsync(RpcOptions.ChainName, UUID.NoHyphens, address, signature, message);
     }
 }

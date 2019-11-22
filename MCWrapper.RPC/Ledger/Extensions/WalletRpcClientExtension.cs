@@ -5,10 +5,9 @@ using System.Threading.Tasks;
 namespace MCWrapper.RPC.Ledger.Clients
 {
     /// <summary>
-    /// Extension methods derived from the WalletRpcClient contract and WalletRPCClient implementation
+    /// Extension methods derived from the IBlockchainRpcWallet contract and IBlockchainRpcWallet implementation
     /// </summary>
-    public static class WalletRpcClientExtension
-
+    public static class IBlockchainRpcWalletExtension
     {
         // *** Create Stream extension methods
 
@@ -18,7 +17,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="client"></param>
         /// <param name="streamEntity"></param>
         /// <returns></returns>
-        public static Task<RpcResponse<string>> CreateStream(this WalletRpcClient client, StreamEntity streamEntity) =>
+        public static Task<RpcResponse<string>> CreateStream(this IBlockchainRpcWallet client, StreamEntity streamEntity) =>
             client.CreateAsync(streamEntity.EntityType, streamEntity.Name, streamEntity.Restrictions, streamEntity.CustomFields);
 
         /// <summary>
@@ -29,7 +28,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="id"></param>
         /// <param name="streamEntity"></param>
         /// <returns></returns>
-        public static Task<RpcResponse<string>> CreateStream(this WalletRpcClient client, string blockchainName, string id, StreamEntity streamEntity) =>
+        public static Task<RpcResponse<string>> CreateStream(this IBlockchainRpcWallet client, string blockchainName, string id, StreamEntity streamEntity) =>
             client.CreateAsync(blockchainName, id, streamEntity.EntityType, streamEntity.Name, streamEntity.Restrictions, streamEntity.CustomFields);
 
         /// <summary>
@@ -39,7 +38,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="fromAddress"></param>
         /// <param name="streamEntity"></param>
         /// <returns></returns>
-        public static Task<RpcResponse<string>> CreateStreamFrom(this WalletRpcClient client, string fromAddress, StreamEntity streamEntity) =>
+        public static Task<RpcResponse<string>> CreateStreamFrom(this IBlockchainRpcWallet client, string fromAddress, StreamEntity streamEntity) =>
             client.CreateFromAsync(fromAddress, streamEntity.EntityType, streamEntity.Name, streamEntity.Restrictions, streamEntity.CustomFields);
 
         /// <summary>
@@ -51,7 +50,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="fromAddress"></param>
         /// <param name="streamEntity"></param>
         /// <returns></returns>
-        public static Task<RpcResponse<string>> CreateStreamFrom(this WalletRpcClient client, string blockchainName, string id, string fromAddress, StreamEntity streamEntity) =>
+        public static Task<RpcResponse<string>> CreateStreamFrom(this IBlockchainRpcWallet client, string blockchainName, string id, string fromAddress, StreamEntity streamEntity) =>
             client.CreateFromAsync(blockchainName, id, fromAddress, streamEntity.EntityType, streamEntity.Name, streamEntity.Restrictions, streamEntity.CustomFields);
 
 
@@ -63,7 +62,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="client"></param>
         /// <param name="upgradeEntity"></param>
         /// <returns></returns>
-        public static Task<RpcResponse<string>> CreateUpgrade(this WalletRpcClient client, UpgradeEntity upgradeEntity) =>
+        public static Task<RpcResponse<string>> CreateUpgrade(this IBlockchainRpcWallet client, UpgradeEntity upgradeEntity) =>
             client.CreateAsync(upgradeEntity.EntityType, upgradeEntity.Name, upgradeEntity.Open, upgradeEntity.CustomFields);
 
         /// <summary>
@@ -74,7 +73,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="id"></param>
         /// <param name="upgradeEntity"></param>
         /// <returns></returns>
-        public static Task<RpcResponse<string>> CreateUpgrade(this WalletRpcClient client, string blockchainName, string id, UpgradeEntity upgradeEntity) =>
+        public static Task<RpcResponse<string>> CreateUpgrade(this IBlockchainRpcWallet client, string blockchainName, string id, UpgradeEntity upgradeEntity) =>
             client.CreateAsync(blockchainName, id, upgradeEntity.EntityType, upgradeEntity.Name, upgradeEntity.Open, upgradeEntity.CustomFields);
 
         /// <summary>
@@ -84,7 +83,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="fromAddress"></param>
         /// <param name="upgradeEntity"></param>
         /// <returns></returns>
-        public static Task<RpcResponse<string>> CreateUpgradeFrom(this WalletRpcClient client, string fromAddress, UpgradeEntity upgradeEntity) =>
+        public static Task<RpcResponse<string>> CreateUpgradeFrom(this IBlockchainRpcWallet client, string fromAddress, UpgradeEntity upgradeEntity) =>
             client.CreateFromAsync(fromAddress, upgradeEntity.EntityType, upgradeEntity.Name, upgradeEntity.Open, upgradeEntity.CustomFields);
 
         /// <summary>
@@ -96,7 +95,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="fromAddress"></param>
         /// <param name="upgradeEntity"></param>
         /// <returns></returns>
-        public static Task<RpcResponse<string>> CreateUpgradeFrom(this WalletRpcClient client, string blockchainName, string id, string fromAddress, UpgradeEntity upgradeEntity) =>
+        public static Task<RpcResponse<string>> CreateUpgradeFrom(this IBlockchainRpcWallet client, string blockchainName, string id, string fromAddress, UpgradeEntity upgradeEntity) =>
             client.CreateFromAsync(blockchainName, id, fromAddress, upgradeEntity.EntityType, upgradeEntity.Name, upgradeEntity.Open, upgradeEntity.CustomFields);
 
 
@@ -108,7 +107,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="client"></param>
         /// <param name="streamFilterEntity"></param>
         /// <returns></returns>
-        public static Task<RpcResponse<string>> CreateStreamFilter(this WalletRpcClient client, StreamFilterEntity streamFilterEntity) =>
+        public static Task<RpcResponse<string>> CreateStreamFilter(this IBlockchainRpcWallet client, StreamFilterEntity streamFilterEntity) =>
             client.CreateAsync(streamFilterEntity.EntityType, streamFilterEntity.Name, streamFilterEntity.Restrictions, streamFilterEntity.JavaScriptCode);
 
         /// <summary>
@@ -119,7 +118,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="id"></param>
         /// <param name="streamFilterEntity"></param>
         /// <returns></returns>
-        public static Task<RpcResponse<string>> CreateStreamFilter(this WalletRpcClient client, string blockchainName, string id, StreamFilterEntity streamFilterEntity) =>
+        public static Task<RpcResponse<string>> CreateStreamFilter(this IBlockchainRpcWallet client, string blockchainName, string id, StreamFilterEntity streamFilterEntity) =>
             client.CreateAsync(blockchainName, id, streamFilterEntity.EntityType, streamFilterEntity.Name, streamFilterEntity.Restrictions, streamFilterEntity.JavaScriptCode);
 
         /// <summary>
@@ -129,7 +128,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="fromAddress"></param>
         /// <param name="streamFilterEntity"></param>
         /// <returns></returns>
-        public static Task<RpcResponse<string>> CreateStreamFilterFrom(this WalletRpcClient client, string fromAddress, StreamFilterEntity streamFilterEntity) =>
+        public static Task<RpcResponse<string>> CreateStreamFilterFrom(this IBlockchainRpcWallet client, string fromAddress, StreamFilterEntity streamFilterEntity) =>
             client.CreateFromAsync(fromAddress, streamFilterEntity.EntityType, streamFilterEntity.Name, streamFilterEntity.Restrictions, streamFilterEntity.JavaScriptCode);
 
         /// <summary>
@@ -141,7 +140,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="fromAddress"></param>
         /// <param name="streamFilterEntity"></param>
         /// <returns></returns>
-        public static Task<RpcResponse<string>> CreateStreamFilterFrom(this WalletRpcClient client, string blockchainName, string id, string fromAddress, StreamFilterEntity streamFilterEntity) =>
+        public static Task<RpcResponse<string>> CreateStreamFilterFrom(this IBlockchainRpcWallet client, string blockchainName, string id, string fromAddress, StreamFilterEntity streamFilterEntity) =>
             client.CreateFromAsync(blockchainName, id, fromAddress, streamFilterEntity.EntityType, streamFilterEntity.Name, streamFilterEntity.Restrictions, streamFilterEntity.JavaScriptCode);
 
 
@@ -153,7 +152,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="client"></param>
         /// <param name="txFilterEntity"></param>
         /// <returns></returns>
-        public static Task<RpcResponse<string>> CreateTxFilter(this WalletRpcClient client, TxFilterEntity txFilterEntity) =>
+        public static Task<RpcResponse<string>> CreateTxFilter(this IBlockchainRpcWallet client, TxFilterEntity txFilterEntity) =>
             client.CreateAsync(txFilterEntity.EntityType, txFilterEntity.Name, txFilterEntity.Restrictions, txFilterEntity.JavaScriptCode);
 
         /// <summary>
@@ -164,7 +163,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="id"></param>
         /// <param name="txFilterEntity"></param>
         /// <returns></returns>
-        public static Task<RpcResponse<string>> CreateTxFilter(this WalletRpcClient client, string blockchainName, string id, TxFilterEntity txFilterEntity) =>
+        public static Task<RpcResponse<string>> CreateTxFilter(this IBlockchainRpcWallet client, string blockchainName, string id, TxFilterEntity txFilterEntity) =>
             client.CreateAsync(blockchainName, id, txFilterEntity.EntityType, txFilterEntity.Name, txFilterEntity.Restrictions, txFilterEntity.JavaScriptCode);
 
         /// <summary>
@@ -174,7 +173,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="fromAddress"></param>
         /// <param name="txFilterEntity"></param>
         /// <returns></returns>
-        public static Task<RpcResponse<string>> CreateTxFilterFrom(this WalletRpcClient client, string fromAddress, TxFilterEntity txFilterEntity) =>
+        public static Task<RpcResponse<string>> CreateTxFilterFrom(this IBlockchainRpcWallet client, string fromAddress, TxFilterEntity txFilterEntity) =>
             client.CreateFromAsync(fromAddress, txFilterEntity.EntityType, txFilterEntity.Name, txFilterEntity.Restrictions, txFilterEntity.JavaScriptCode);
 
         /// <summary>
@@ -186,7 +185,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="fromAddress"></param>
         /// <param name="txFilterEntity"></param>
         /// <returns></returns>
-        public static Task<RpcResponse<string>> CreateTxFilterFrom(this WalletRpcClient client, string blockchainName, string id, string fromAddress, TxFilterEntity txFilterEntity) =>
+        public static Task<RpcResponse<string>> CreateTxFilterFrom(this IBlockchainRpcWallet client, string blockchainName, string id, string fromAddress, TxFilterEntity txFilterEntity) =>
             client.CreateFromAsync(blockchainName, id, fromAddress, txFilterEntity.EntityType, txFilterEntity.Name, txFilterEntity.Restrictions, txFilterEntity.JavaScriptCode);
 
 
@@ -198,7 +197,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="client"></param>
         /// <param name="streamItemEntity"></param>
         /// <returns></returns>
-        public static Task<RpcResponse<string>> PublishStreamItemKey(this WalletRpcClient client, PublishEntity streamItemEntity) =>
+        public static Task<RpcResponse<string>> PublishStreamItemKey(this IBlockchainRpcWallet client, PublishEntity streamItemEntity) =>
             client.PublishAsync(streamItemEntity.StreamIdentifer, streamItemEntity.Key, streamItemEntity.Data, streamItemEntity.Options);
 
         /// <summary>
@@ -207,7 +206,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="client"></param>
         /// <param name="streamItemEntity"></param>
         /// <returns></returns>
-        public static Task<RpcResponse<string>> PublishStreamItemKey(this WalletRpcClient client, PublishEntity<DataCached> streamItemEntity) =>
+        public static Task<RpcResponse<string>> PublishStreamItemKey(this IBlockchainRpcWallet client, PublishEntity<DataCached> streamItemEntity) =>
             client.PublishAsync(streamItemEntity.StreamIdentifer, streamItemEntity.Key, streamItemEntity.Data, streamItemEntity.Options);
 
         /// <summary>
@@ -216,7 +215,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="client"></param>
         /// <param name="streamItemEntity"></param>
         /// <returns></returns>
-        public static Task<RpcResponse<string>> PublishStreamItemKey(this WalletRpcClient client, PublishEntity<DataJson> streamItemEntity) =>
+        public static Task<RpcResponse<string>> PublishStreamItemKey(this IBlockchainRpcWallet client, PublishEntity<DataJson> streamItemEntity) =>
             client.PublishAsync(streamItemEntity.StreamIdentifer, streamItemEntity.Key, streamItemEntity.Data, streamItemEntity.Options);
 
         /// <summary>
@@ -225,7 +224,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="client"></param>
         /// <param name="streamItemEntity"></param>
         /// <returns></returns>
-        public static Task<RpcResponse<string>> PublishStreamItemKey(this WalletRpcClient client, PublishEntity<DataText> streamItemEntity) =>
+        public static Task<RpcResponse<string>> PublishStreamItemKey(this IBlockchainRpcWallet client, PublishEntity<DataText> streamItemEntity) =>
             client.PublishAsync(streamItemEntity.StreamIdentifer, streamItemEntity.Key, streamItemEntity.Data, streamItemEntity.Options);
 
 
@@ -237,7 +236,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="client"></param>
         /// <param name="streamItemEntity"></param>
         /// <returns></returns>
-        public static Task<RpcResponse<string>> PublishStreamItemKeys(this WalletRpcClient client, PublishEntity streamItemEntity) =>
+        public static Task<RpcResponse<string>> PublishStreamItemKeys(this IBlockchainRpcWallet client, PublishEntity streamItemEntity) =>
             client.PublishAsync(streamItemEntity.StreamIdentifer, streamItemEntity.Keys, streamItemEntity.Data, streamItemEntity.Options);
 
         /// <summary>
@@ -246,7 +245,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="client"></param>
         /// <param name="streamItemEntity"></param>
         /// <returns></returns>
-        public static Task<RpcResponse<string>> PublishStreamItemKeys(this WalletRpcClient client, PublishEntity<DataCached> streamItemEntity) =>
+        public static Task<RpcResponse<string>> PublishStreamItemKeys(this IBlockchainRpcWallet client, PublishEntity<DataCached> streamItemEntity) =>
             client.PublishAsync(streamItemEntity.StreamIdentifer, streamItemEntity.Keys, streamItemEntity.Data, streamItemEntity.Options);
 
         /// <summary>
@@ -255,7 +254,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="client"></param>
         /// <param name="streamItemEntity"></param>
         /// <returns></returns>
-        public static Task<RpcResponse<string>> PublishStreamItemKeys(this WalletRpcClient client, PublishEntity<DataJson> streamItemEntity) =>
+        public static Task<RpcResponse<string>> PublishStreamItemKeys(this IBlockchainRpcWallet client, PublishEntity<DataJson> streamItemEntity) =>
             client.PublishAsync(streamItemEntity.StreamIdentifer, streamItemEntity.Keys, streamItemEntity.Data, streamItemEntity.Options);
 
         /// <summary>
@@ -264,7 +263,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="client"></param>
         /// <param name="streamItemEntity"></param>
         /// <returns></returns>
-        public static Task<RpcResponse<string>> PublishStreamItemKeys(this WalletRpcClient client, PublishEntity<DataText> streamItemEntity) =>
+        public static Task<RpcResponse<string>> PublishStreamItemKeys(this IBlockchainRpcWallet client, PublishEntity<DataText> streamItemEntity) =>
             client.PublishAsync(streamItemEntity.StreamIdentifer, streamItemEntity.Keys, streamItemEntity.Data, streamItemEntity.Options);
 
 
@@ -278,7 +277,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="id"></param>
         /// <param name="streamItemEntity"></param>
         /// <returns></returns>
-        public static Task<RpcResponse<string>> PublishStreamItemKey(this WalletRpcClient client, string blockchainName, string id, PublishEntity streamItemEntity) =>
+        public static Task<RpcResponse<string>> PublishStreamItemKey(this IBlockchainRpcWallet client, string blockchainName, string id, PublishEntity streamItemEntity) =>
             client.PublishAsync(blockchainName, id, streamItemEntity.StreamIdentifer, streamItemEntity.Key, streamItemEntity.Data, streamItemEntity.Options);
 
         /// <summary>
@@ -289,7 +288,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="id"></param>
         /// <param name="streamItemEntity"></param>
         /// <returns></returns>
-        public static Task<RpcResponse<string>> PublishStreamItemKey(this WalletRpcClient client, string blockchainName, string id, PublishEntity<DataCached> streamItemEntity) =>
+        public static Task<RpcResponse<string>> PublishStreamItemKey(this IBlockchainRpcWallet client, string blockchainName, string id, PublishEntity<DataCached> streamItemEntity) =>
             client.PublishAsync(blockchainName, id, streamItemEntity.StreamIdentifer, streamItemEntity.Key, streamItemEntity.Data, streamItemEntity.Options);
 
         /// <summary>
@@ -300,7 +299,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="id"></param>
         /// <param name="streamItemEntity"></param>
         /// <returns></returns>
-        public static Task<RpcResponse<string>> PublishStreamItemKey(this WalletRpcClient client, string blockchainName, string id, PublishEntity<DataJson> streamItemEntity) =>
+        public static Task<RpcResponse<string>> PublishStreamItemKey(this IBlockchainRpcWallet client, string blockchainName, string id, PublishEntity<DataJson> streamItemEntity) =>
             client.PublishAsync(blockchainName, id, streamItemEntity.StreamIdentifer, streamItemEntity.Key, streamItemEntity.Data, streamItemEntity.Options);
 
         /// <summary>
@@ -311,7 +310,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="id"></param>
         /// <param name="streamItemEntity"></param>
         /// <returns></returns>
-        public static Task<RpcResponse<string>> PublishStreamItemKey(this WalletRpcClient client, string blockchainName, string id, PublishEntity<DataText> streamItemEntity) =>
+        public static Task<RpcResponse<string>> PublishStreamItemKey(this IBlockchainRpcWallet client, string blockchainName, string id, PublishEntity<DataText> streamItemEntity) =>
             client.PublishAsync(blockchainName, id, streamItemEntity.StreamIdentifer, streamItemEntity.Key, streamItemEntity.Data, streamItemEntity.Options);
 
 
@@ -325,7 +324,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="id"></param>
         /// <param name="streamItemEntity"></param>
         /// <returns></returns>
-        public static Task<RpcResponse<string>> PublishStreamItemKeys(this WalletRpcClient client, string blockchainName, string id, PublishEntity streamItemEntity) =>
+        public static Task<RpcResponse<string>> PublishStreamItemKeys(this IBlockchainRpcWallet client, string blockchainName, string id, PublishEntity streamItemEntity) =>
             client.PublishAsync(blockchainName, id, streamItemEntity.StreamIdentifer, streamItemEntity.Keys, streamItemEntity.Data, streamItemEntity.Options);
 
         /// <summary>
@@ -336,7 +335,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="id"></param>
         /// <param name="streamItemEntity"></param>
         /// <returns></returns>
-        public static Task<RpcResponse<string>> PublishStreamItemKeys(this WalletRpcClient client, string blockchainName, string id, PublishEntity<DataCached> streamItemEntity) =>
+        public static Task<RpcResponse<string>> PublishStreamItemKeys(this IBlockchainRpcWallet client, string blockchainName, string id, PublishEntity<DataCached> streamItemEntity) =>
             client.PublishAsync(blockchainName, id, streamItemEntity.StreamIdentifer, streamItemEntity.Keys, streamItemEntity.Data, streamItemEntity.Options);
 
         /// <summary>
@@ -347,7 +346,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="id"></param>
         /// <param name="streamItemEntity"></param>
         /// <returns></returns>
-        public static Task<RpcResponse<string>> PublishStreamItemKeys(this WalletRpcClient client, string blockchainName, string id, PublishEntity<DataJson> streamItemEntity) =>
+        public static Task<RpcResponse<string>> PublishStreamItemKeys(this IBlockchainRpcWallet client, string blockchainName, string id, PublishEntity<DataJson> streamItemEntity) =>
             client.PublishAsync(blockchainName, id, streamItemEntity.StreamIdentifer, streamItemEntity.Keys, streamItemEntity.Data, streamItemEntity.Options);
 
         /// <summary>
@@ -358,7 +357,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="id"></param>
         /// <param name="streamItemEntity"></param>
         /// <returns></returns>
-        public static Task<RpcResponse<string>> PublishStreamItemKeys(this WalletRpcClient client, string blockchainName, string id, PublishEntity<DataText> streamItemEntity) =>
+        public static Task<RpcResponse<string>> PublishStreamItemKeys(this IBlockchainRpcWallet client, string blockchainName, string id, PublishEntity<DataText> streamItemEntity) =>
             client.PublishAsync(blockchainName, id, streamItemEntity.StreamIdentifer, streamItemEntity.Keys, streamItemEntity.Data, streamItemEntity.Options);
 
 
@@ -371,7 +370,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="fromAddress"></param>
         /// <param name="streamItemEntity"></param>
         /// <returns></returns>
-        public static Task<RpcResponse<string>> PublishStreamItemKeyFrom(this WalletRpcClient client, string fromAddress, PublishEntity streamItemEntity) =>
+        public static Task<RpcResponse<string>> PublishStreamItemKeyFrom(this IBlockchainRpcWallet client, string fromAddress, PublishEntity streamItemEntity) =>
             client.PublishFromAsync(fromAddress, streamItemEntity.StreamIdentifer, streamItemEntity.Key, streamItemEntity.Data, streamItemEntity.Options);
 
         /// <summary>
@@ -381,7 +380,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="fromAddress"></param>
         /// <param name="streamItemEntity"></param>
         /// <returns></returns>
-        public static Task<RpcResponse<string>> PublishStreamItemKeyFrom(this WalletRpcClient client, string fromAddress, PublishEntity<DataCached> streamItemEntity) =>
+        public static Task<RpcResponse<string>> PublishStreamItemKeyFrom(this IBlockchainRpcWallet client, string fromAddress, PublishEntity<DataCached> streamItemEntity) =>
             client.PublishFromAsync(fromAddress, streamItemEntity.StreamIdentifer, streamItemEntity.Key, streamItemEntity.Data, streamItemEntity.Options);
 
         /// <summary>
@@ -391,7 +390,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="fromAddress"></param>
         /// <param name="streamItemEntity"></param>
         /// <returns></returns>
-        public static Task<RpcResponse<string>> PublishStreamItemKeyFrom(this WalletRpcClient client, string fromAddress, PublishEntity<DataJson> streamItemEntity) =>
+        public static Task<RpcResponse<string>> PublishStreamItemKeyFrom(this IBlockchainRpcWallet client, string fromAddress, PublishEntity<DataJson> streamItemEntity) =>
             client.PublishFromAsync(fromAddress, streamItemEntity.StreamIdentifer, streamItemEntity.Key, streamItemEntity.Data, streamItemEntity.Options);
 
         /// <summary>
@@ -401,7 +400,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="fromAddress"></param>
         /// <param name="streamItemEntity"></param>
         /// <returns></returns>
-        public static Task<RpcResponse<string>> PublishStreamItemKeyFrom(this WalletRpcClient client, string fromAddress, PublishEntity<DataText> streamItemEntity) =>
+        public static Task<RpcResponse<string>> PublishStreamItemKeyFrom(this IBlockchainRpcWallet client, string fromAddress, PublishEntity<DataText> streamItemEntity) =>
             client.PublishFromAsync(fromAddress, streamItemEntity.StreamIdentifer, streamItemEntity.Key, streamItemEntity.Data, streamItemEntity.Options);
 
 
@@ -414,7 +413,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="fromAddress"></param>
         /// <param name="streamItemEntity"></param>
         /// <returns></returns>
-        public static Task<RpcResponse<string>> PublishStreamItemKeysFrom(this WalletRpcClient client, string fromAddress, PublishEntity streamItemEntity) =>
+        public static Task<RpcResponse<string>> PublishStreamItemKeysFrom(this IBlockchainRpcWallet client, string fromAddress, PublishEntity streamItemEntity) =>
             client.PublishFromAsync(fromAddress, streamItemEntity.StreamIdentifer, streamItemEntity.Keys, streamItemEntity.Data, streamItemEntity.Options);
 
         /// <summary>
@@ -424,7 +423,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="fromAddress"></param>
         /// <param name="streamItemEntity"></param>
         /// <returns></returns>
-        public static Task<RpcResponse<string>> PublishStreamItemKeysFrom(this WalletRpcClient client, string fromAddress, PublishEntity<DataCached> streamItemEntity) =>
+        public static Task<RpcResponse<string>> PublishStreamItemKeysFrom(this IBlockchainRpcWallet client, string fromAddress, PublishEntity<DataCached> streamItemEntity) =>
             client.PublishFromAsync(fromAddress, streamItemEntity.StreamIdentifer, streamItemEntity.Keys, streamItemEntity.Data, streamItemEntity.Options);
 
         /// <summary>
@@ -434,7 +433,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="fromAddress"></param>
         /// <param name="streamItemEntity"></param>
         /// <returns></returns>
-        public static Task<RpcResponse<string>> PublishStreamItemKeysFrom(this WalletRpcClient client, string fromAddress, PublishEntity<DataJson> streamItemEntity) =>
+        public static Task<RpcResponse<string>> PublishStreamItemKeysFrom(this IBlockchainRpcWallet client, string fromAddress, PublishEntity<DataJson> streamItemEntity) =>
             client.PublishFromAsync(fromAddress, streamItemEntity.StreamIdentifer, streamItemEntity.Keys, streamItemEntity.Data, streamItemEntity.Options);
 
         /// <summary>
@@ -444,7 +443,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="fromAddress"></param>
         /// <param name="streamItemEntity"></param>
         /// <returns></returns>
-        public static Task<RpcResponse<string>> PublishStreamItemKeysFrom(this WalletRpcClient client, string fromAddress, PublishEntity<DataText> streamItemEntity) =>
+        public static Task<RpcResponse<string>> PublishStreamItemKeysFrom(this IBlockchainRpcWallet client, string fromAddress, PublishEntity<DataText> streamItemEntity) =>
             client.PublishFromAsync(fromAddress, streamItemEntity.StreamIdentifer, streamItemEntity.Keys, streamItemEntity.Data, streamItemEntity.Options);
 
 
@@ -459,7 +458,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="fromAddress"></param>
         /// <param name="streamItemEntity"></param>
         /// <returns></returns>
-        public static Task<RpcResponse<string>> PublishStreamItemKeyFrom(this WalletRpcClient client, string blockchainName, string id, string fromAddress, PublishEntity streamItemEntity) =>
+        public static Task<RpcResponse<string>> PublishStreamItemKeyFrom(this IBlockchainRpcWallet client, string blockchainName, string id, string fromAddress, PublishEntity streamItemEntity) =>
             client.PublishFromAsync(blockchainName, id, fromAddress, streamItemEntity.StreamIdentifer, streamItemEntity.Key, streamItemEntity.Data, streamItemEntity.Options);
 
         /// <summary>
@@ -471,7 +470,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="fromAddress"></param>
         /// <param name="streamItemEntity"></param>
         /// <returns></returns>
-        public static Task<RpcResponse<string>> PublishStreamItemKeyFrom(this WalletRpcClient client, string blockchainName, string id, string fromAddress, PublishEntity<DataCached> streamItemEntity) =>
+        public static Task<RpcResponse<string>> PublishStreamItemKeyFrom(this IBlockchainRpcWallet client, string blockchainName, string id, string fromAddress, PublishEntity<DataCached> streamItemEntity) =>
             client.PublishFromAsync(blockchainName, id, fromAddress, streamItemEntity.StreamIdentifer, streamItemEntity.Key, streamItemEntity.Data, streamItemEntity.Options);
 
         /// <summary>
@@ -483,7 +482,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="fromAddress"></param>
         /// <param name="streamItemEntity"></param>
         /// <returns></returns>
-        public static Task<RpcResponse<string>> PublishStreamItemKeyFrom(this WalletRpcClient client, string blockchainName, string id, string fromAddress, PublishEntity<DataJson> streamItemEntity) =>
+        public static Task<RpcResponse<string>> PublishStreamItemKeyFrom(this IBlockchainRpcWallet client, string blockchainName, string id, string fromAddress, PublishEntity<DataJson> streamItemEntity) =>
             client.PublishFromAsync(blockchainName, id, fromAddress, streamItemEntity.StreamIdentifer, streamItemEntity.Key, streamItemEntity.Data, streamItemEntity.Options);
 
         /// <summary>
@@ -495,7 +494,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="fromAddress"></param>
         /// <param name="streamItemEntity"></param>
         /// <returns></returns>
-        public static Task<RpcResponse<string>> PublishStreamItemKeyFrom(this WalletRpcClient client, string blockchainName, string id, string fromAddress, PublishEntity<DataText> streamItemEntity) =>
+        public static Task<RpcResponse<string>> PublishStreamItemKeyFrom(this IBlockchainRpcWallet client, string blockchainName, string id, string fromAddress, PublishEntity<DataText> streamItemEntity) =>
             client.PublishFromAsync(blockchainName, id, fromAddress, streamItemEntity.StreamIdentifer, streamItemEntity.Key, streamItemEntity.Data, streamItemEntity.Options);
 
 
@@ -510,7 +509,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="fromAddress"></param>
         /// <param name="streamItemEntity"></param>
         /// <returns></returns>
-        public static Task<RpcResponse<string>> PublishStreamItemKeysFrom(this WalletRpcClient client, string blockchainName, string id, string fromAddress, PublishEntity streamItemEntity) =>
+        public static Task<RpcResponse<string>> PublishStreamItemKeysFrom(this IBlockchainRpcWallet client, string blockchainName, string id, string fromAddress, PublishEntity streamItemEntity) =>
             client.PublishFromAsync(blockchainName, id, fromAddress, streamItemEntity.StreamIdentifer, streamItemEntity.Keys, streamItemEntity.Data, streamItemEntity.Options);
 
         /// <summary>
@@ -522,7 +521,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="fromAddress"></param>
         /// <param name="streamItemEntity"></param>
         /// <returns></returns>
-        public static Task<RpcResponse<string>> PublishStreamItemKeysFrom(this WalletRpcClient client, string blockchainName, string id, string fromAddress, PublishEntity<DataCached> streamItemEntity) =>
+        public static Task<RpcResponse<string>> PublishStreamItemKeysFrom(this IBlockchainRpcWallet client, string blockchainName, string id, string fromAddress, PublishEntity<DataCached> streamItemEntity) =>
             client.PublishFromAsync(blockchainName, id, fromAddress, streamItemEntity.StreamIdentifer, streamItemEntity.Keys, streamItemEntity.Data, streamItemEntity.Options);
 
         /// <summary>
@@ -534,7 +533,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="fromAddress"></param>
         /// <param name="streamItemEntity"></param>
         /// <returns></returns>
-        public static Task<RpcResponse<string>> PublishStreamItemKeysFrom(this WalletRpcClient client, string blockchainName, string id, string fromAddress, PublishEntity<DataJson> streamItemEntity) =>
+        public static Task<RpcResponse<string>> PublishStreamItemKeysFrom(this IBlockchainRpcWallet client, string blockchainName, string id, string fromAddress, PublishEntity<DataJson> streamItemEntity) =>
             client.PublishFromAsync(blockchainName, id, fromAddress, streamItemEntity.StreamIdentifer, streamItemEntity.Keys, streamItemEntity.Data, streamItemEntity.Options);
 
         /// <summary>
@@ -546,7 +545,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="fromAddress"></param>
         /// <param name="streamItemEntity"></param>
         /// <returns></returns>
-        public static Task<RpcResponse<string>> PublishStreamItemKeysFrom(this WalletRpcClient client, string blockchainName, string id, string fromAddress, PublishEntity<DataText> streamItemEntity) =>
+        public static Task<RpcResponse<string>> PublishStreamItemKeysFrom(this IBlockchainRpcWallet client, string blockchainName, string id, string fromAddress, PublishEntity<DataText> streamItemEntity) =>
             client.PublishFromAsync(blockchainName, id, fromAddress, streamItemEntity.StreamIdentifer, streamItemEntity.Keys, streamItemEntity.Data, streamItemEntity.Options);
 
 
@@ -558,7 +557,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="client"></param>
         /// <param name="publishMultiEntity"></param>
         /// <returns></returns>
-        public static Task<RpcResponse<string>> PublishMultiStreamItems(this WalletRpcClient client, PublishMultiEntity publishMultiEntity) =>
+        public static Task<RpcResponse<string>> PublishMultiStreamItems(this IBlockchainRpcWallet client, PublishMultiEntity publishMultiEntity) =>
             client.PublishMultiAsync(publishMultiEntity.StreamIdentifier, publishMultiEntity.Items, publishMultiEntity.Options);
 
         // *** PublishMultiStreamItems using an explicit blockchain name
@@ -571,7 +570,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="id"></param>
         /// <param name="publishMultiEntity"></param>
         /// <returns></returns>
-        public static Task<RpcResponse<string>> PublishMultiStreamItems(this WalletRpcClient client, string blockchainName, string id, PublishMultiEntity publishMultiEntity) =>
+        public static Task<RpcResponse<string>> PublishMultiStreamItems(this IBlockchainRpcWallet client, string blockchainName, string id, PublishMultiEntity publishMultiEntity) =>
             client.PublishMultiAsync(blockchainName, id, publishMultiEntity.StreamIdentifier, publishMultiEntity.Items, publishMultiEntity.Options);
 
         // *** PublishMultiStreamItemsFrom using an inferred blockchain name
@@ -583,7 +582,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="fromAddress"></param>
         /// <param name="publishMultiEntity"></param>
         /// <returns></returns>
-        public static Task<RpcResponse<string>> PublishMultiStreamItemsFrom(this WalletRpcClient client, string fromAddress, PublishMultiEntity publishMultiEntity) =>
+        public static Task<RpcResponse<string>> PublishMultiStreamItemsFrom(this IBlockchainRpcWallet client, string fromAddress, PublishMultiEntity publishMultiEntity) =>
             client.PublishMultiFromAsync(fromAddress, publishMultiEntity.StreamIdentifier, publishMultiEntity.Items, publishMultiEntity.Options);
 
         // *** PublishMultiStreamItemsFrom using an explicit blockchain name
@@ -597,7 +596,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="fromAddress"></param>
         /// <param name="publishMultiEntity"></param>
         /// <returns></returns>
-        public static Task<RpcResponse<string>> PublishMultiStreamItemsFrom(this WalletRpcClient client, string blockchainName, string id, string fromAddress, PublishMultiEntity publishMultiEntity) =>
+        public static Task<RpcResponse<string>> PublishMultiStreamItemsFrom(this IBlockchainRpcWallet client, string blockchainName, string id, string fromAddress, PublishMultiEntity publishMultiEntity) =>
             client.PublishMultiFromAsync(blockchainName, id, fromAddress, publishMultiEntity.StreamIdentifier, publishMultiEntity.Items, publishMultiEntity.Options);
     }
 }

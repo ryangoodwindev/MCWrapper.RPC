@@ -17,15 +17,15 @@ namespace MCWrapper.RPC.Ledger.Clients
     /// createrawtransaction, decoderawtransaction, decodescript,
     /// getrawtransaction, sendrawtransaction, signrawtransaction
     /// </summary>
-    public class RawRpcClient : RpcConnection
+    public class RawRpcClient : RpcClient, IBlockchainRpcRaw
     {
         /// <summary>
         /// Create a new Raw RPC client
         /// </summary>
-        /// <param name="client"></param>
+        /// <param name="httpClient"></param>
         /// <param name="options"></param>
-        public RawRpcClient(HttpClient client, IOptions<RpcOptions> options)
-            : base(client, options) { }
+        public RawRpcClient(HttpClient httpClient, IOptions<RpcOptions> options)
+            : base(httpClient, options) { }
 
         /// <summary>
         ///
@@ -54,7 +54,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="native_fee">Native currency value deducted from that amount so it becomes a transaction fee. Default - calculated automatically</param>
         /// <returns></returns>
         public Task<RpcResponse<object>> AppendRawChangeAsync(string tx_hex, string address, [Optional] double native_fee) =>
-            AppendRawChangeAsync(BlockchainOptions.ChainName, UUID.NoHyphens, tx_hex, address, native_fee);
+            AppendRawChangeAsync(RpcOptions.ChainName, UUID.NoHyphens, tx_hex, address, native_fee);
 
         /// <summary>
         ///
@@ -82,7 +82,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="data">(string or object, required) Data, see help data-all for details</param>
         /// <returns></returns>
         public Task<RpcResponse<object>> AppendRawDataAsync(string tx_hex, object data) =>
-            AppendRawDataAsync(BlockchainOptions.ChainName, UUID.NoHyphens, tx_hex, data);
+            AppendRawDataAsync(RpcOptions.ChainName, UUID.NoHyphens, tx_hex, data);
 
         /// <summary>
         ///
@@ -113,7 +113,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="data">Array of hexadecimal strings or data objects, see help data-all for details</param>
         /// <param name="action">Additional actions: "lock", "sign", "lock,sign", "sign,lock", "send"</param>
         public Task<RpcResponse<object>> AppendRawTransactionAsync(string tx_hex, object[] transactions, object addresses, [Optional] object[] data, string action = "") =>
-            AppendRawTransactionAsync(BlockchainOptions.ChainName, UUID.NoHyphens, tx_hex, transactions, addresses, data, action);
+            AppendRawTransactionAsync(RpcOptions.ChainName, UUID.NoHyphens, tx_hex, transactions, addresses, data, action);
 
         /// <summary>
         ///
@@ -142,7 +142,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="data">Array of hexadecimal strings or data objects, see help data-all for details</param>
         /// <param name="action">Additional actions: "lock", "sign", "lock,sign", "sign,lock", "send"</param>
         public Task<RpcResponse<object>> CreateRawTransactionAsync(object[] transactions, object assets, [Optional] object[] data, string action = "") =>
-            CreateRawTransactionAsync(BlockchainOptions.ChainName, UUID.NoHyphens, transactions, assets, data, action);
+            CreateRawTransactionAsync(RpcOptions.ChainName, UUID.NoHyphens, transactions, assets, data, action);
 
         /// <summary>
         /// Return a JSON object representing the serialized, hex-encoded transaction.
@@ -163,7 +163,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="tx_hex">The transaction hex string</param>
         /// <returns></returns>
         public Task<RpcResponse<DecodeRawTransactionResult>> DecodeRawTransactionAsync(string tx_hex) =>
-            DecodeRawTransactionAsync(BlockchainOptions.ChainName, UUID.NoHyphens, tx_hex);
+            DecodeRawTransactionAsync(RpcOptions.ChainName, UUID.NoHyphens, tx_hex);
 
         /// <summary>
         ///
@@ -187,7 +187,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="script_hex">The hex encoded script</param>
         /// <returns></returns>
         public Task<RpcResponse<object>> DecodeScriptAsync(string script_hex) =>
-            DecodeScriptAsync(BlockchainOptions.ChainName, UUID.NoHyphens, script_hex);
+            DecodeScriptAsync(RpcOptions.ChainName, UUID.NoHyphens, script_hex);
 
         /// <summary>
         ///
@@ -219,7 +219,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="verbose">(numeric or boolean, optional, default=0(false)) If 0, return a string, other return a json object</param>
         /// <returns></returns>
         public Task<RpcResponse<object>> GetRawTransactionAsync(string txid, [Optional] object verbose) =>
-            GetRawTransactionAsync(BlockchainOptions.ChainName, UUID.NoHyphens, txid, verbose);
+            GetRawTransactionAsync(RpcOptions.ChainName, UUID.NoHyphens, txid, verbose);
 
         /// <summary>
         ///
@@ -246,7 +246,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="tx_hex">The hex string of the raw transaction)</param>
         /// <param name="allow_high_fees">Allow high fees</param>
         public Task<RpcResponse<object>> SendRawTransactionAsync(string tx_hex, bool allow_high_fees = false) =>
-            SendRawTransactionAsync(BlockchainOptions.ChainName, UUID.NoHyphens, tx_hex, allow_high_fees);
+            SendRawTransactionAsync(RpcOptions.ChainName, UUID.NoHyphens, tx_hex, allow_high_fees);
 
         /// <summary>
         ///
@@ -298,6 +298,6 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="sighashtype">The signature hash type. Must be one of: "All", "NONE", "SINGLE", "ALL|ANYONECANPAY", "NONE|ANYONECANPAY", "SINGLE|ANYONECANPAY"</param>
         /// <returns></returns>
         public Task<RpcResponse<SignRawTransactionResult>> SignRawTransactionAsync(string tx_hex, [Optional] object[] prevtxs, [Optional] object[] privatekeys, [Optional] string sighashtype) =>
-            SignRawTransactionAsync(BlockchainOptions.ChainName, UUID.NoHyphens, tx_hex, prevtxs, privatekeys, sighashtype);
+            SignRawTransactionAsync(RpcOptions.ChainName, UUID.NoHyphens, tx_hex, prevtxs, privatekeys, sighashtype);
     }
 }
