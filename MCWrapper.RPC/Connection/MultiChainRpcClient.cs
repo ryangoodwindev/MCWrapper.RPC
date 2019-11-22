@@ -14,14 +14,14 @@ namespace MCWrapper.RPC.Connection
     /// <summary>
     /// Defines JSON-RPC HTTP client
     /// </summary>
-    public abstract class RpcClient
+    public abstract class MultiChainRpcClient
     {
         /// <summary>
         /// Instances are not permitted
         /// </summary>
         /// <param name="httpClient"></param>
         /// <param name="options"></param>
-        protected RpcClient(HttpClient httpClient, IOptions<RpcOptions> options)
+        protected MultiChainRpcClient(HttpClient httpClient, IOptions<RpcOptions> options)
         {
             RpcOptions = options.Value;
             HttpClient = httpClient;

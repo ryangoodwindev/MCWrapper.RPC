@@ -13,7 +13,7 @@ namespace MCWrapper.RPC.Ledger.Clients
     /// getconnectioncount, getnettotals, getnetworkinfo, getpeerinfo, ping
     /// 
     /// </summary>
-    public interface IBlockchainRpcNetwork : IRpcContract
+    public interface IMultiChainRpcNetwork : IMultiChainRpc
     {
         /// <summary>
         /// 

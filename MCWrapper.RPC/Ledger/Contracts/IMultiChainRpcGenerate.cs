@@ -10,7 +10,7 @@ namespace MCWrapper.RPC.Ledger.Clients
     /// getgenerate, gethashespersec, setgenerate
     /// 
     /// </summary>
-    public interface IBlockchainRpcGenerate : IRpcContract
+    public interface IMultiChainRpcGenerate : IMultiChainRpc
     {
         /// <summary>
         /// <para>Return if the server is set to generate coins or not. The default is false.</para>

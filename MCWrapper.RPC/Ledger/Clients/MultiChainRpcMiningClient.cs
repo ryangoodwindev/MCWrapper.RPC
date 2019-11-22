@@ -16,14 +16,14 @@ namespace MCWrapper.RPC.Ledger.Clients
     /// prioritisetransaction, submitblock
     /// 
     /// </summary>
-    public class MiningRpcClient : RpcClient, IBlockchainRpcMining
+    public class MultiChainRpcMiningClient : MultiChainRpcClient, IMultiChainRpcMining
     {
         /// <summary>
         /// Create a new Mining RPC client
         /// </summary>
         /// <param name="httpClient"></param>
         /// <param name="options"></param>
-        public MiningRpcClient(HttpClient httpClient, IOptions<RpcOptions> options)
+        public MultiChainRpcMiningClient(HttpClient httpClient, IOptions<RpcOptions> options)
             : base(httpClient, options) { }
 
         /// <summary>

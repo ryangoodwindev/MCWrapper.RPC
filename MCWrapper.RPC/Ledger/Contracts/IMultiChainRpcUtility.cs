@@ -13,7 +13,7 @@ namespace MCWrapper.RPC.Ledger.Clients
     /// validateaddress, verifymessage
     /// 
     /// </summary>
-    public interface IMultiChainRpcUtility : IRpcContract
+    public interface IMultiChainRpcUtility : IMultiChainRpc
     {
         /// <summary>
         ///

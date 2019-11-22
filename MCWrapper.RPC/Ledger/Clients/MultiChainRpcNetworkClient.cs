@@ -18,14 +18,14 @@ namespace MCWrapper.RPC.Ledger.Clients
     /// getconnectioncount, getnettotals, getnetworkinfo, getpeerinfo, ping
     /// 
     /// </summary>
-    public class NetworkRpcClient : RpcClient, IBlockchainRpcNetwork
+    public class MultiChainRpcNetworkClient : MultiChainRpcClient, IMultiChainRpcNetwork
     {
         /// <summary>
         /// Create a new Network RPC client
         /// </summary>
         /// <param name="httpClient"></param>
         /// <param name="options"></param>
-        public NetworkRpcClient(HttpClient httpClient, IOptions<RpcOptions> options)
+        public MultiChainRpcNetworkClient(HttpClient httpClient, IOptions<RpcOptions> options)
             : base(httpClient, options) { }
 
         /// <summary>

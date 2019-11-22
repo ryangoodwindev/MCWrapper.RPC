@@ -1,18 +1,11 @@
 ﻿using MCWrapper.Data.Models.Blockchain;
 using MCWrapper.Ledger.Actions;
-using MCWrapper.Ledger.Entities.ErrorHandling;
 using MCWrapper.Ledger.Entities.Extensions;
 using MCWrapper.RPC.Connection;
-using MCWrapper.RPC.Connection.Request;
-using MCWrapper.RPC.Extensions;
 using MCWrapper.RPC.Options;
 using Microsoft.Extensions.Options;
-using Newtonsoft.Json;
-using System;
-using System.IO;
 using System.Net.Http;
 using System.Runtime.InteropServices;
-using System.Threading;
 using System.Threading.Tasks;
 
 namespace MCWrapper.RPC.Ledger.Clients
@@ -32,14 +25,14 @@ namespace MCWrapper.RPC.Ledger.Clients
     /// <para>Inherits from an RPCClient and implements the IBlockchainRPC contract</para>
     ///
     /// </summary>
-    public class BlockchainRpcClient : RpcClient, IBlockchainRpc
+    public class MultiChainRpcGeneralClient : MultiChainRpcClient, IMultiChainRpcGeneral
     {
         /// <summary>
         /// Create a new Blockchain RPC client
         /// </summary>
         /// <param name="httpClient"></param>
         /// <param name="options"></param>
-        public BlockchainRpcClient(HttpClient httpClient, IOptions<RpcOptions> options)
+        public MultiChainRpcGeneralClient(HttpClient httpClient, IOptions<RpcOptions> options)
             : base(httpClient, options) { }
 
         /// <summary>

@@ -40,7 +40,7 @@ namespace MCWrapper.RPC.Ledger.Clients
     /// <para>Inherits from an RPCClient and implements the IWalletRPC contract</para>
     ///
     /// </summary>
-    public interface IMultiChainRpcWallet : IRpcContract
+    public interface IMultiChainRpcWallet : IMultiChainRpc
     {
         /// <summary>
         ///
@@ -1079,6 +1079,15 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <returns></returns>
         Task<RpcResponse<GetWalletInfoResult>> GetWalletInfoAsync(string blockchainName, string id);
 
+        /// <summary>
+        ///
+        /// <para>Get detailed information about in-wallet transaction txid</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
+        ///
+        /// </summary>
+        /// <param name="txid">The transaction id</param>
+        /// <param name="include_watch_only">Whether to include watchonly addresses in balance calculation and details[]</param>
+        /// <param name="verbose">If true, returns detailed array of inputs and outputs and raw hex of transactions</param>
         /// <returns></returns>
 
         Task<RpcResponse<GetWalletTransactionResult>> GetWalletTransactionAsync(string txid, bool include_watch_only = false, bool verbose = false);
@@ -1555,48 +1564,594 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <returns></returns>
         Task<RpcResponse<object>> KeyPoolRefillAsync(string blockchainName, string id, int new_size = 100);
 
-
+        /// <summary>
+        ///
+        /// <para>Returns Object that has account names as keys, account balances as values.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
+        ///
+        /// </summary>
+        /// <param name="min_conf"> Only include transactions with at least this many confirmations</param>
+        /// <param name="include_watch_only">Include balances in watchonly addresses (see 'importaddress')</param>
+        /// <returns></returns>
         Task<RpcResponse<object>> ListAccountsAsync(int min_conf = 1, bool include_watch_only = false);
+
+        /// <summary>
+        ///
+        /// <para>Returns Object that has account names as keys, account balances as values.</para>
+        /// <para>Blockchain name is explicitly passed as parameter.</para>
+        ///
+        /// </summary>
+        /// <param name="blockchainName">Name of target blockchain</param>
+        /// <param name="id">String value to identify this transaction</param>
+        /// <param name="min_conf"> Only include transactions with at least this many confirmations</param>
+        /// <param name="include_watch_only">Include balances in watchonly addresses (see 'importaddress')</param>
+        /// <returns></returns>
         Task<RpcResponse<object>> ListAccountsAsync(string blockchainName, string id, int min_conf = 1, bool include_watch_only = false);
+
+        /// <summary>
+        ///
+        /// Returns asset balances for specified address
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
+        ///
+        /// </summary>
+        /// <param name="addresses">(string, optional, default *) Address(es) to return information for, comma delimited. Default - all or (array, optional) A json array of addresses to return information for</param>
+        /// <param name="verbose">If true return more information about address.</param>
+        /// <param name="count">The number of addresses to display</param>
+        /// <param name="start">Start from specific address, 0 based, if negative - from the end</param>
+        /// <returns></returns>
         Task<RpcResponse<ListAddressesResult[]>> ListAddressesAsync([Optional] object addresses, [Optional] bool verbose, [Optional] int count, [Optional] int start);
+
+        /// <summary>
+        ///
+        /// Returns asset balances for specified address
+        /// <para>Blockchain name is explicitly passed as parameter.</para>
+        ///
+        /// </summary>
+        /// <param name="blockchainName">Name of target blockchain</param>
+        /// <param name="id">String value to identify this transaction</param>
+        /// <param name="addresses">(string, optional, default *) Address(es) to return information for, comma delimited. Default - all or (array, optional) A json array of addresses to return information for</param>
+        /// <param name="verbose">If true return more information about address.</param>
+        /// <param name="count">The number of addresses to display</param>
+        /// <param name="start">Start from specific address, 0 based, if negative - from the end</param>
+        /// <returns></returns>
         Task<RpcResponse<ListAddressesResult[]>> ListAddressesAsync(string blockchainName, string id, [Optional] object addresses, [Optional] bool verbose, [Optional] int count, [Optional] int start);
+
+        /// <summary>
+        ///
+        /// <para>Lists groups of addresses which have had their common ownership made public by common use as inputs or as the resulting change in past transactions</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
+        ///
+        /// </summary>
+        /// <returns></returns>
         Task<RpcResponse<object>> ListAddressGroupingsAsync();
+
+        /// <summary>
+        ///
+        /// <para>Lists groups of addresses which have had their common ownership made public by common use as inputs or as the resulting change in past transactions</para>
+        /// <para>Blockchain name is explicitly passed as parameter.</para>
+        ///
+        /// </summary>
+        /// <param name="blockchainName">Name of target blockchain</param>
+        /// <param name="id">String value to identify this transaction</param>
+        /// <returns></returns>
         Task<RpcResponse<object>> ListAddressGroupingsAsync(string blockchainName, string id);
+
+        /// <summary>
+        ///
+        /// Lists information about the count most recent transactions related to address in this nodeΓÇÖs wallet.
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
+        ///
+        /// </summary>
+        /// <param name="address">Address to list transactions for</param>
+        /// <param name="count">The number of transactions to return</param>
+        /// <param name="skip">The number of transactions to skip</param>
+        /// <param name="verbose">If true, returns detailed array of inputs and outputs and raw hex of transactions</param>
+        /// <returns></returns>
         Task<RpcResponse<ListAddressTransactionsResult[]>> ListAddressTransactionsAsync(string address, int count = 10, int skip = 0, bool verbose = false);
+
+        /// <summary>
+        ///
+        /// Lists information about the count most recent transactions related to address in this nodeΓÇÖs wallet.
+        /// <para>Blockchain name is explicitly passed as parameter.</para>
+        ///
+        /// </summary>
+        /// <param name="blockchainName">Name of target blockchain</param>
+        /// <param name="id">String value to identify this transaction</param>
+        /// <param name="address">Address to list transactions for</param>
+        /// <param name="count">The number of transactions to return</param>
+        /// <param name="skip">The number of transactions to skip</param>
+        /// <param name="verbose">If true, returns detailed array of inputs and outputs and raw hex of transactions</param>
+        /// <returns></returns>
         Task<RpcResponse<ListAddressTransactionsResult[]>> ListAddressTransactionsAsync(string blockchainName, string id, string address, int count = 10, int skip = 0, bool verbose = false);
+
+        /// <summary>
+        ///
+        /// Lists transactions involving asset.
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
+        ///
+        /// </summary>
+        /// <param name="asset_identifier">One of the following: asset txid, asset reference, asset name</param>
+        /// <param name="verbose">If true, returns information about transaction</param>
+        /// <param name="count">The number of transactions to display</param>
+        /// <param name="start">Start from specific transaction, 0 based, if negative - from the end</param>
+        /// <param name="local_ordering">If true, transactions appear in the order they were processed by the wallet, if false - in the order they appear in blockchain</param>
+        /// <returns></returns>
         Task<RpcResponse<ListAssetTransactionsResult[]>> ListAssetTransactionsAsync(string asset_identifier, bool verbose = false, int count = 10, int start = 0, bool local_ordering = false);
+
+        /// <summary>
+        ///
+        /// Lists transactions involving asset.
+        /// <para>Blockchain name is explicitly passed as parameter.</para>
+        ///
+        /// </summary>
+        /// <param name="blockchainName">Name of target blockchain</param>
+        /// <param name="id">String value to identify this transaction</param>
+        /// <param name="asset_identifier">One of the following: asset txid, asset reference, asset name</param>
+        /// <param name="verbose">If true, returns information about transaction</param>
+        /// <param name="count">The number of transactions to display</param>
+        /// <param name="start">Start from specific transaction, 0 based, if negative - from the end</param>
+        /// <param name="local_ordering">If true, transactions appear in the order they were processed by the wallet, if false - in the order they appear in blockchain</param>
+        /// <returns></returns>
         Task<RpcResponse<ListAssetTransactionsResult[]>> ListAssetTransactionsAsync(string blockchainName, string id, string asset_identifier, bool verbose = false, int count = 10, int start = 0, bool local_ordering = false);
+
+        /// <summary>
+        ///
+        /// Returns list of temporarily unspendable outputs.
+        /// <para>See the lockunspent call to lock and unlock transactions for spending.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
+        ///
+        /// </summary>
+        /// <returns></returns>
         Task<RpcResponse<object>> ListLockUnspentAsync();
+
+        /// <summary>
+        ///
+        /// Returns list of temporarily unspendable outputs.
+        /// <para>See the lockunspent call to lock and unlock transactions for spending.</para>
+        /// <para>Blockchain name is explicitly passed as parameter.</para>
+        ///
+        /// </summary>
+        /// <param name="blockchainName">Name of target blockchain</param>
+        /// <param name="id">String value to identify this transaction</param>
+        /// <returns></returns>
         Task<RpcResponse<object>> ListLockUnspentAsync(string blockchainName, string id);
+
+        /// <summary>
+        ///
+        /// List balances by account.
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
+        ///
+        /// </summary>
+        /// <param name="min_conf">The minimum number of confirmations before payments are included</param>
+        /// <param name="include_empty">Whether to include accounts that haven't received any payments</param>
+        /// <param name="include_watch_only">Whether to include watchonly addresses (see 'importaddress')</param>
+        /// <returns></returns>
         Task<RpcResponse<object>> ListReceivedByAccountAsync(int min_conf = 1, bool include_empty = false, bool include_watch_only = false);
+
+        /// <summary>
+        ///
+        /// List balances by account.
+        /// <para>Blockchain name is explicitly passed as parameter.</para>
+        ///
+        /// </summary>
+        /// <param name="blockchainName">Name of target blockchain</param>
+        /// <param name="id">String value to identify this transaction</param>
+        /// <param name="min_conf">The minimum number of confirmations before payments are included</param>
+        /// <param name="include_empty">Whether to include accounts that haven't received any payments</param>
+        /// <param name="include_watch_only">Whether to include watchonly addresses (see 'importaddress')</param>
+        /// <returns></returns>
         Task<RpcResponse<object>> ListReceivedByAccountAsync(string blockchainName, string id, int min_conf = 1, bool include_empty = false, bool include_watch_only = false);
+
+        /// <summary>
+        ///
+        /// List balances by receiving address.
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
+        ///
+        /// </summary>
+        /// <param name="min_conf">The minimum number of confirmations before payments are included</param>
+        /// <param name="include_empty">Whether to include accounts that haven't received any payments</param>
+        /// <param name="include_watch_only">Whether to include watchonly addresses (see 'importaddress')</param>
+        /// <returns></returns>
         Task<RpcResponse<object>> ListReceivedByAddressAsync(int min_conf = 1, bool include_empty = false, bool include_watch_only = false);
+
+        /// <summary>
+        ///
+        /// List balances by receiving address.
+        /// <para>Blockchain name is explicitly passed as parameter.</para>
+        ///
+        /// </summary>
+        /// <param name="blockchainName">Name of target blockchain</param>
+        /// <param name="id">String value to identify this transaction</param>
+        /// <param name="min_conf">The minimum number of confirmations before payments are included</param>
+        /// <param name="include_empty">Whether to include accounts that haven't received any payments</param>
+        /// <param name="include_watch_only">Whether to include watchonly addresses (see 'importaddress')</param>
+        /// <returns></returns>
         Task<RpcResponse<object>> ListReceivedByAddressAsync(string blockchainName, string id, int min_conf = 1, bool include_empty = false, bool include_watch_only = false);
+
+        /// <summary>
+        ///
+        /// Get all transactions in blocks since block [blockhash], or all transactions if omitted
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
+        ///
+        /// </summary>
+        /// <param name="block_hash">The block hash to list transactions since</param>
+        /// <param name="target_confirmations">The confirmations required, must be 1 or more</param>
+        /// <param name="include_watch_only">Include transactions to watchonly addresses (see 'importaddress')</param>
+        /// <returns></returns>
         Task<RpcResponse<object>> ListSinceBlockAsync([Optional] string block_hash, [Optional] int target_confirmations, [Optional] bool include_watch_only);
+
+        /// <summary>
+        ///
+        /// Get all transactions in blocks since block [blockhash], or all transactions if omitted
+        /// <para>Blockchain name is explicitly passed as parameter.</para>
+        ///
+        /// </summary>
+        /// <param name="blockchainName">Name of target blockchain</param>
+        /// <param name="id">String value to identify this transaction</param>
+        /// <param name="block_hash">The block hash to list transactions since</param>
+        /// <param name="target_confirmations">The confirmations required, must be 1 or more</param>
+        /// <param name="include_watch_only">Include transactions to watchonly addresses (see 'importaddress')</param>
+        /// <returns></returns>
         Task<RpcResponse<object>> ListSinceBlockAsync(string blockchainName, string id, [Optional] string block_hash, [Optional] int target_confirmations, [Optional] bool include_watch_only);
+
+        /// <summary>
+        ///
+        /// Returns stream items in certain block range.
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
+        ///
+        /// </summary>
+        /// <param name="stream_identifier">(string, required) Stream identifier - one of the following: stream txid, stream reference, stream name</param>
+        /// <param name="block_set_identifier">(string, required) Comma delimited list of block identifiers or A json array of block identifiers or A json object with time range</param>
+        /// <param name="verbose">If true, returns information about item transaction</param>
+        /// <param name="count">The number of items to display</param>
+        /// <param name="start">Start from specific item, 0 based, if negative - from the end</param>
+        /// <returns></returns>
         Task<RpcResponse<object>> ListStreamBlockItemsAsync(string stream_identifier, object block_set_identifier, [Optional] bool verbose, [Optional] int count, [Optional] int start);
+
+        /// <summary>
+        ///
+        /// Returns stream items in certain block range.
+        /// <para>Blockchain name is explicitly passed as parameter.</para>
+        ///
+        /// </summary>
+        /// <param name="blockchainName">Name of target blockchain</param>
+        /// <param name="id">String value to identify this transaction</param>
+        /// <param name="stream_identifier">(string, required) Stream identifier - one of the following: stream txid, stream reference, stream name</param>
+        /// <param name="block_set_identifier">(string, required) Comma delimited list of block identifiers or A json array of block identifiers or A json object with time range</param>
+        /// <param name="verbose">If true, returns information about item transaction</param>
+        /// <param name="count">The number of items to display</param>
+        /// <param name="start">Start from specific item, 0 based, if negative - from the end</param>
+        /// <returns></returns>
         Task<RpcResponse<object>> ListStreamBlockItemsAsync(string blockchainName, string id, string stream_identifier, object block_set_identifier, [Optional] bool verbose, [Optional] int count, [Optional] int start);
+
+        /// <summary>
+        ///
+        /// Returns stream items.
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
+        ///
+        /// </summary>
+        /// <param name="stream_identifier">One of the following: stream txid, stream reference, stream name</param>
+        /// <param name="verbose">If true, returns information about item transaction</param>
+        /// <param name="count">The number of items to display</param>
+        /// <param name="start">Start from specific item, 0 based, if negative - from the end</param>
+        /// <param name="local_ordering">If true, items appear in the order they were processed by the wallet, if false - in the order they appear in blockchain</param>
+        /// <returns></returns>
         Task<RpcResponse<ListStreamItemsResult[]>> ListStreamItemsAsync(string stream_identifier, [Optional] bool verbose, [Optional] int count, [Optional] int start, [Optional] bool local_ordering);
+
+        /// <summary>
+        ///
+        /// Returns stream items.
+        /// <para>Blockchain name is explicitly passed as parameter.</para>
+        ///
+        /// </summary>
+        /// <param name="blockchainName">Name of target blockchain</param>
+        /// <param name="id">String value to identify this transaction</param>
+        /// <param name="stream_identifier">One of the following: stream txid, stream reference, stream name</param>
+        /// <param name="verbose">If true, returns information about item transaction</param>
+        /// <param name="count">The number of items to display</param>
+        /// <param name="start">Start from specific item, 0 based, if negative - from the end</param>
+        /// <param name="local_ordering">If true, items appear in the order they were processed by the wallet, if false - in the order they appear in blockchain</param>
+        /// <returns></returns>
         Task<RpcResponse<ListStreamItemsResult[]>> ListStreamItemsAsync(string blockchainName, string id, string stream_identifier, [Optional] bool verbose, [Optional] int count, [Optional] int start, [Optional] bool local_ordering);
+
+        /// <summary>
+        ///
+        /// Returns stream items for specific key.
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
+        ///
+        /// </summary>
+        /// <param name="stream_identifier">One of the following: stream txid, stream reference, stream name</param>
+        /// <param name="key">Stream key</param>
+        /// <param name="verbose">If true, returns information about item transaction</param>
+        /// <param name="count">The number of items to display</param>
+        /// <param name="start">Start from specific item, 0 based, if negative - from the end</param>
+        /// <param name="local_ordering">If true, items appear in the order they were processed by the wallet, if false - in the order they appear in blockchain</param>
+        /// <returns></returns>
         Task<RpcResponse<ListStreamKeyItemsResult[]>> ListStreamKeyItemsAsync(string stream_identifier, string key, [Optional] bool verbose, [Optional] int count, [Optional] int start, [Optional] bool local_ordering);
+
+        /// <summary>
+        ///
+        /// Returns stream items for specific key.
+        /// <para>Blockchain name is explicitly passed as parameter.</para>
+        ///
+        /// </summary>
+        /// <param name="blockchainName">Name of target blockchain</param>
+        /// <param name="id">String value to identify this transaction</param>
+        /// <param name="stream_identifier">One of the following: stream txid, stream reference, stream name</param>
+        /// <param name="key">Stream key</param>
+        /// <param name="verbose">If true, returns information about item transaction</param>
+        /// <param name="count">The number of items to display</param>
+        /// <param name="start">Start from specific item, 0 based, if negative - from the end</param>
+        /// <param name="local_ordering">If true, items appear in the order they were processed by the wallet, if false - in the order they appear in blockchain</param>
+        /// <returns></returns>
         Task<RpcResponse<ListStreamKeyItemsResult[]>> ListStreamKeyItemsAsync(string blockchainName, string id, string stream_identifier, string key, [Optional] bool verbose, [Optional] int count, [Optional] int start, [Optional] bool local_ordering);
+
+        /// <summary>
+        ///
+        /// Returns stream keys.
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
+        ///
+        /// </summary>
+        /// <param name="stream_identifier">One of the following: stream txid, stream reference, stream name</param>
+        /// <param name="keys">Stream key or a json array of stream keys</param>
+        /// <param name="verbose">If true, returns information about item transaction</param>
+        /// <param name="count">The number of items to display</param>
+        /// <param name="start">Start from specific item, 0 based, if negative - from the end</param>
+        /// <param name="local_ordering">If true, items appear in the order they were processed by the wallet, if false - in the order they appear in blockchain</param>
+        /// <returns></returns>
         Task<RpcResponse<ListStreamKeysResult[]>> ListStreamKeysAsync(string stream_identifier, object keys, [Optional] bool verbose, [Optional] int count, [Optional] int start, [Optional] bool local_ordering);
+
+        /// <summary>
+        ///
+        /// Returns stream keys.
+        /// <para>Blockchain name is explicitly passed as parameter.</para>
+        ///
+        /// </summary>
+        /// <param name="blockchainName">Name of target blockchain</param>
+        /// <param name="id">String value to identify this transaction</param>
+        /// <param name="stream_identifier">One of the following: stream txid, stream reference, stream name</param>
+        /// <param name="keys">Stream key or a json array of stream keys</param>
+        /// <param name="verbose">If true, returns information about item transaction</param>
+        /// <param name="count">The number of items to display</param>
+        /// <param name="start">Start from specific item, 0 based, if negative - from the end</param>
+        /// <param name="local_ordering">If true, items appear in the order they were processed by the wallet, if false - in the order they appear in blockchain</param>
+        /// <returns></returns>
         Task<RpcResponse<ListStreamKeysResult[]>> ListStreamKeysAsync(string blockchainName, string id, string stream_identifier, object keys, [Optional] bool verbose, [Optional] int count, [Optional] int start, [Optional] bool local_ordering);
+
+        /// <summary>
+        ///
+        /// Returns stream items for specific publisher.
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
+        ///
+        /// </summary>
+        /// <param name="stream_identifiers">One of the following: stream txid, stream reference, stream name</param>
+        /// <param name="address">Publisher address</param>
+        /// <param name="verbose">If true, returns information about item transaction</param>
+        /// <param name="count">The number of items to display</param>
+        /// <param name="start">Start from specific item, 0 based, if negative - from the end</param>
+        /// <param name="local_ordering">If true, items appear in the order they were processed by the wallet, if false - in the order they appear in blockchain</param>
+        /// <returns></returns>
         Task<RpcResponse<ListStreamPublisherItemsResult[]>> ListStreamPublisherItemsAsync(string stream_identifiers, string address, [Optional] bool verbose, [Optional] int count, [Optional] int start, [Optional] bool local_ordering);
+
+        /// <summary>
+        ///
+        /// Returns stream items for specific publisher.
+        /// <para>Blockchain name is explicitly passed as parameter.</para>
+        ///
+        /// </summary>
+        /// <param name="blockchainName">Name of target blockchain</param>
+        /// <param name="id">String value to identify this transaction</param>
+        /// <param name="stream_identifiers">One of the following: stream txid, stream reference, stream name</param>
+        /// <param name="address">Publisher address</param>
+        /// <param name="verbose">If true, returns information about item transaction</param>
+        /// <param name="count">The number of items to display</param>
+        /// <param name="start">Start from specific item, 0 based, if negative - from the end</param>
+        /// <param name="local_ordering">If true, items appear in the order they were processed by the wallet, if false - in the order they appear in blockchain</param>
+        /// <returns></returns>
         Task<RpcResponse<ListStreamPublisherItemsResult[]>> ListStreamPublisherItemsAsync(string blockchainName, string id, string stream_identifiers, string address, [Optional] bool verbose, [Optional] int count, [Optional] int start, [Optional] bool local_ordering);
+
+        /// <summary>
+        ///
+        /// Returns stream publishers.
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
+        ///
+        /// </summary>
+        /// <param name="stream_identifier">One of the following: stream txid, stream reference, stream name</param>
+        /// <param name="addresses">Publisher addresses, comma delimited or a json array of publisher addresses</param>
+        /// <param name="verbose">If true, returns information about item transaction</param>
+        /// <param name="count">The number of items to display</param>
+        /// <param name="start">Start from specific item, 0 based, if negative - from the end</param>
+        /// <param name="local_ordering">If true, items appear in the order they were processed by the wallet, if false - in the order they appear in blockchain</param>
+        /// <returns></returns>
         Task<RpcResponse<ListStreamPublishersResult[]>> ListStreamPublishersAsync(string stream_identifier, object addresses, [Optional] bool verbose, [Optional] int count, [Optional] int start, [Optional] bool local_ordering);
+
+        /// <summary>
+        ///
+        /// Returns stream publishers.
+        /// <para>Blockchain name is explicitly passed as parameter.</para>
+        ///
+        /// </summary>
+        /// <param name="blockchainName">Name of target blockchain</param>
+        /// <param name="id">String value to identify this transaction</param>
+        /// <param name="stream_identifier">One of the following: stream txid, stream reference, stream name</param>
+        /// <param name="addresses">Publisher addresses, comma delimited or a json array of publisher addresses</param>
+        /// <param name="verbose">If true, returns information about item transaction</param>
+        /// <param name="count">The number of items to display</param>
+        /// <param name="start">Start from specific item, 0 based, if negative - from the end</param>
+        /// <param name="local_ordering">If true, items appear in the order they were processed by the wallet, if false - in the order they appear in blockchain</param>
+        /// <returns></returns>
         Task<RpcResponse<ListStreamPublishersResult[]>> ListStreamPublishersAsync(string blockchainName, string id, string stream_identifier, object addresses, [Optional] bool verbose, [Optional] int count, [Optional] int start, [Optional] bool local_ordering);
+
+        /// <summary>
+        ///
+        /// Returns stream items for specific query.
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
+        ///
+        /// </summary>
+        /// <param name="stream_identifier">One of the following: stream txid, stream reference, stream name</param>
+        /// <param name="query">Query { "key" : "key" (string, optional, default: "") Item key, or "keys" : keys (array, optional) Item keys, array of strings, and or  "publisher" : "publisher" (string, optional, default: "") Publisher or "publishers" : publishers (array, optional) Publishers, array of strings }</param>
+        /// <param name="verbose">If true, returns information about item transaction</param>
+        /// <returns></returns>
         Task<RpcResponse<object>> ListStreamQueryItemsAsync(string stream_identifier, object query, bool verbose = false);
+
+        /// <summary>
+        ///
+        /// Returns stream items for specific query.
+        /// <para>Blockchain name is explicitly passed as parameter.</para>
+        ///
+        /// </summary>
+        /// <param name="blockchainName">Name of target blockchain</param>
+        /// <param name="id">String value to identify this transaction</param>
+        /// <param name="stream_identifier">One of the following: stream txid, stream reference, stream name</param>
+        /// <param name="query">Query { "key" : "key" (string, optional, default: "") Item key, or "keys" : keys (array, optional) Item keys, array of strings, and or  "publisher" : "publisher" (string, optional, default: "") Publisher or "publishers" : publishers (array, optional) Publishers, array of strings }</param>
+        /// <param name="verbose">If true, returns information about item transaction</param>
+        /// <returns></returns>
         Task<RpcResponse<object>> ListStreamQueryItemsAsync(string blockchainName, string id, string stream_identifier, object query, bool verbose = false);
+
+        /// <summary>
+        ///
+        /// Returns stream items.
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
+        ///
+        /// </summary>
+        /// <param name="stream_identifiers">One of the following: stream txid, stream reference, stream name</param>
+        /// <param name="txids"> Transaction IDs, comma delimited or Array of transaction IDs</param>
+        /// <param name="verbose">If true, returns information about item transaction</param>
+        /// <returns></returns>
         Task<RpcResponse<object>> ListStreamTxItemsAsync(string stream_identifiers, object txids, bool verbose = false);
+
+        /// <summary>
+        ///
+        /// Returns stream items.
+        /// <para>Blockchain name is explicitly passed as parameter.</para>
+        ///
+        /// </summary>
+        /// <param name="blockchainName">Name of target blockchain</param>
+        /// <param name="id">String value to identify this transaction</param>
+        /// <param name="stream_identifiers">One of the following: stream txid, stream reference, stream name</param>
+        /// <param name="txids"> Transaction IDs, comma delimited or Array of transaction IDs</param>
+        /// <param name="verbose">If true, returns information about item transaction</param>
+        /// <returns></returns>
         Task<RpcResponse<object>> ListStreamTxItemsAsync(string blockchainName, string id, string stream_identifiers, object txids, bool verbose = false);
+
+        /// <summary>
+        ///
+        /// Returns up to 'count' most recent transactions skipping the first 'from' transactions for account 'account'.
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
+        ///
+        /// </summary>
+        /// <param name="account">The account name. If not included, it will list all transactions for all accounts. If "" is set, it will list transactions for the default account.</param>
+        /// <param name="count">The number of transactions to return</param>
+        /// <param name="from">The number of transactions to skip</param>
+        /// <param name="include_watch_only">Include transactions to watchonly addresses (see 'importaddress')</param>
+        /// <returns></returns>
         Task<RpcResponse<ListTransactionsResult[]>> ListTransactionsAsync([Optional] string account, [Optional] int count, [Optional] int from, [Optional] bool include_watch_only);
+
+        /// <summary>
+        ///
+        /// Returns up to 'count' most recent transactions skipping the first 'from' transactions for account 'account'.
+        /// <para>Blockchain name is explicitly passed as parameter.</para>
+        ///
+        /// </summary>
+        /// <param name="blockchainName">Name of target blockchain</param>
+        /// <param name="id">String value to identify this transaction</param>
+        /// <param name="account">The account name. If not included, it will list all transactions for all accounts. If "" is set, it will list transactions for the default account.</param>
+        /// <param name="count">The number of transactions to return</param>
+        /// <param name="from">The number of transactions to skip</param>
+        /// <param name="include_watch_only">Include transactions to watchonly addresses (see 'importaddress')</param>
+        /// <returns></returns>
         Task<RpcResponse<ListTransactionsResult[]>> ListTransactionsAsync(string blockchainName, string id, [Optional] string account, [Optional] int count, [Optional] int from, [Optional] bool include_watch_only);
+
+        /// <summary>
+        ///
+        /// Returns array of unspent transaction outputs with between minconf and maxconf (inclusive) confirmations.
+        ///
+        /// <para>Optionally filter to only include txouts paid to specified addresses.</para>
+        /// <para>Results are an array of Objects, each of which has: {txid, vout, scriptPubKey, amount, confirmations}</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
+        ///
+        /// </summary>
+        /// <param name="min_conf">The minimum confirmations to filter</param>
+        /// <param name="max_conf">The maximum confirmations to filter</param>
+        /// <param name="addresses">A json array of addresses to filter</param>
+        /// <returns></returns>
         Task<RpcResponse<ListUnspentResult[]>> ListUnspentAsync([Optional] int min_conf, [Optional] int max_conf, [Optional] object addresses);
+
+        /// <summary>
+        ///
+        /// Returns array of unspent transaction outputs with between minconf and maxconf (inclusive) confirmations.
+        ///
+        /// <para>Optionally filter to only include txouts paid to specified addresses.</para>
+        /// <para>Results are an array of Objects, each of which has: {txid, vout, scriptPubKey, amount, confirmations}</para>
+        /// <para>Blockchain name is explicitly passed as parameter.</para>
+        ///
+        /// </summary>
+        /// <param name="blockchainName">Name of target blockchain</param>
+        /// <param name="id">String value to identify this transaction</param>
+        /// <param name="min_conf">The minimum confirmations to filter</param>
+        /// <param name="max_conf">The maximum confirmations to filter</param>
+        /// <param name="addresses">A json array of addresses to filter</param>
+        /// <returns></returns>
         Task<RpcResponse<ListUnspentResult[]>> ListUnspentAsync(string blockchainName, string id, [Optional] int min_conf, [Optional] int max_conf, [Optional] object addresses);
+
+        /// <summary>
+        ///
+        /// Lists information about the count most recent transactions in this nodeΓÇÖs wallet.
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
+        ///
+        /// </summary>
+        /// <param name="count">The number of transactions to return</param>
+        /// <param name="skip">The number of transactions to skip</param>
+        /// <param name="include_watch_only">Include transactions to watchonly addresses (see 'importaddress')</param>
+        /// <param name="verbose">If true, returns detailed array of inputs and outputs and raw hex of transactions</param>
+        /// <returns></returns>
         Task<RpcResponse<ListWalletTransactionsResult[]>> ListWalletTransactionsAsync(int count = 10, int skip = 0, bool include_watch_only = false, bool verbose = false);
+
+        /// <summary>
+        ///
+        /// Lists information about the count most recent transactions in this nodeΓÇÖs wallet.
+        /// <para>Blockchain name is explicitly passed as parameter.</para>
+        ///
+        /// </summary>
+        /// <param name="blockchainName">Name of target blockchain</param>
+        /// <param name="id">String value to identify this transaction</param>
+        /// <param name="count">The number of transactions to return</param>
+        /// <param name="skip">The number of transactions to skip</param>
+        /// <param name="include_watch_only">Include transactions to watchonly addresses (see 'importaddress')</param>
+        /// <param name="verbose">If true, returns detailed array of inputs and outputs and raw hex of transactions</param>
+        /// <returns></returns>
         Task<RpcResponse<ListWalletTransactionsResult[]>> ListWalletTransactionsAsync(string blockchainName, string id, int count = 10, int skip = 0, bool include_watch_only = false, bool verbose = false);
+
+        /// <summary>
+        ///
+        /// Updates list of temporarily unspendable outputs.
+        /// <para>Temporarily lock (unlock=false) or unlock (unlock=true) specified transaction outputs.</para>
+        /// <para>A locked transaction output will not be chosen by automatic coin selection, when spending assetss.</para>
+        /// Locks are stored in memory only. Nodes start with zero locked outputs, and the locked output list is always cleared (by virtue of process exit) when a node stops or fails.
+        /// <para>Also see the listunspent call</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
+        ///
+        /// </summary>
+        /// <param name="unlock">Whether to unlock (true) or lock (false) the specified transactions</param>
+        /// <param name="transactions">A json array of objects. Each object should have the the txid (string) vout (numeric)</param>
+        /// <returns></returns>
         Task<RpcResponse<object>> LockUnspentAsync(bool unlock, Transaction[] transactions);
+
+        /// <summary>
+        ///
+        /// Updates list of temporarily unspendable outputs.
+        /// <para>Temporarily lock (unlock=false) or unlock (unlock=true) specified transaction outputs.</para>
+        /// <para>A locked transaction output will not be chosen by automatic coin selection, when spending assetss.</para>
+        /// Locks are stored in memory only. Nodes start with zero locked outputs, and the locked output list is always cleared (by virtue of process exit) when a node stops or fails.
+        /// <para>Also see the listunspent call</para>
+        /// <para>Blockchain name is explicitly passed as parameter.</para>
+        ///
+        /// </summary>
+        /// <param name="blockchainName">Name of target blockchain</param>
+        /// <param name="id">String value to identify this transaction</param>
+        /// <param name="unlock">Whether to unlock (true) or lock (false) the specified transactions</param>
+        /// <param name="transactions">A json array of objects. Each object should have the the txid (string) vout (numeric)</param>
+        /// <returns></returns>
         Task<RpcResponse<object>> LockUnspentAsync(string blockchainName, string id, bool unlock, Transaction[] transactions);
 
         /// <summary>

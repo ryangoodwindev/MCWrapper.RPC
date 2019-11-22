@@ -6,7 +6,7 @@ namespace MCWrapper.RPC.Ledger.Clients
     /// <summary>
     /// JSON-RPC Basic Contract
     /// </summary>
-    public interface IRpcContract
+    public interface IMultiChainRpc
     {
         /// <summary>
         /// Every JSON-RPC client should include a HttpClient which will support the HTTP/HTTPS connections required to interact with MultiChain Core

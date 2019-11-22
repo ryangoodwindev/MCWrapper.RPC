@@ -18,14 +18,14 @@ namespace MCWrapper.RPC.Ledger.Clients
     /// validateaddress, verifymessage
     /// 
     /// </summary>
-    public class UtilityRpcClient : RpcClient, IMultiChainRpcUtility
+    public class MultiChainRpcUtilityClient : MultiChainRpcClient, IMultiChainRpcUtility
     {
         /// <summary>
         /// Create a new Utility RPC client
         /// </summary>
         /// <param name="httpClient"></param>
         /// <param name="options"></param>
-        public UtilityRpcClient(HttpClient httpClient, IOptions<RpcOptions> options)
+        public MultiChainRpcUtilityClient(HttpClient httpClient, IOptions<RpcOptions> options)
             : base(httpClient, options) { }
 
         /// <summary>

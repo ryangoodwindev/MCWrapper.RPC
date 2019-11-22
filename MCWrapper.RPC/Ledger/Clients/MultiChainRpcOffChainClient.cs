@@ -19,14 +19,14 @@ namespace MCWrapper.RPC.Ledger.Clients
     /// so no unit testing can be performed against these methods
     /// 
     /// </summary>
-    public class OffChainRpcClient : RpcClient, IBlockchainRpcOffChain
+    public class MultiChainRpcOffChainClient : MultiChainRpcClient, IMultiChainRpcOffChain
     {
         /// <summary>
         /// Create a OffChain RPC client
         /// </summary>
         /// <param name="httpClient"></param>
         /// <param name="options"></param>
-        public OffChainRpcClient(HttpClient httpClient, IOptions<RpcOptions> options)
+        public MultiChainRpcOffChainClient(HttpClient httpClient, IOptions<RpcOptions> options)
             : base(httpClient, options) { }
 
         /// <summary>

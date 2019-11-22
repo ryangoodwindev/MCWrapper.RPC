@@ -15,14 +15,14 @@ namespace MCWrapper.RPC.Ledger.Clients
     /// getgenerate, gethashespersec, setgenerate
     /// 
     /// </summary>
-    public class GenerateRpcClient : RpcClient, IBlockchainRpcGenerate
+    public class MultiChainRpcGenerateClient : MultiChainRpcClient, IMultiChainRpcGenerate
     {
         /// <summary>
         /// Create a new Generate RPC client
         /// </summary>
         /// <param name="httpClient"></param>
         /// <param name="options"></param>
-        public GenerateRpcClient(HttpClient httpClient, IOptions<RpcOptions> options)
+        public MultiChainRpcGenerateClient(HttpClient httpClient, IOptions<RpcOptions> options)
             : base(httpClient, options) { }
 
         /// <summary>

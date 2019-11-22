@@ -14,7 +14,7 @@ namespace MCWrapper.RPC.Ledger.Clients
     /// so no unit testing can be performed against these methods
     /// 
     /// </summary>
-    public interface IBlockchainRpcOffChain : IRpcContract
+    public interface IMultiChainRpcOffChain : IMultiChainRpc
     {
         /// <summary>
         /// 

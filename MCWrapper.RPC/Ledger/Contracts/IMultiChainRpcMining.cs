@@ -11,7 +11,7 @@ namespace MCWrapper.RPC.Ledger.Clients
     /// prioritisetransaction, submitblock
     /// 
     /// </summary>
-    public interface IBlockchainRpcMining : IRpcContract
+    public interface IMultiChainRpcMining : IMultiChainRpc
     {
         /// <summary>
         /// <para>Deprecated for the current version of Multichain; Do Not Use;</para>

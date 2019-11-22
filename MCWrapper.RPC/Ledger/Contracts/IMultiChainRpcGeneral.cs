@@ -18,7 +18,7 @@ namespace MCWrapper.RPC.Ledger.Clients
     /// testtxfilter, verifychain, verifypermission
     ///
     /// </summary>
-    public interface IBlockchainRpc : IRpcContract
+    public interface IMultiChainRpcGeneral : IMultiChainRpc
     {
         /// <summary>
         ///
