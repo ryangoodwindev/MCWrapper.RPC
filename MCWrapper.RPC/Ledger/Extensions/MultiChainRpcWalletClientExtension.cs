@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 namespace MCWrapper.RPC.Ledger.Clients
 {
     /// <summary>
-    /// Extension methods derived from the IBlockchainRpcWallet contract and IBlockchainRpcWallet implementation
+    /// IMultiChainRpcWallet Extension methods
     /// </summary>
     public static class IBlockchainRpcWalletExtension
     {
