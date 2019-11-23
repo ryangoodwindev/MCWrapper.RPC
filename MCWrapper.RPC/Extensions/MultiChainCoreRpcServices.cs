@@ -32,6 +32,11 @@ namespace MCWrapper.RPC.Extensions
             var rpcOptions = new RpcOptions(true);
             var runtimeOptions = new RuntimeParamOptions(true);
 
+            // todo maybe we need to also check the Secret Manager for variable values?
+            // todo perhap we can analyze cliOptions and/or runtimeOptions and if null'ish then we can verify Secret Manager
+
+            // todo maybe we need some error handling here to detect lack of configuration early in the pipleline, as well. TBD
+
             // load Options from the local environment variable store
             services.Configure<RuntimeParamOptions>(config =>
             {
@@ -155,12 +160,16 @@ namespace MCWrapper.RPC.Extensions
             services.Configure<RuntimeParamOptions>(configuration)
                 .Configure<RpcOptions>(configuration);
 
+            // todo change this, I don't like it. create your own service provider and pull from that
             RpcOptions _rpcOptions = new RpcOptions();
+
+            // todo maybe we need some error handling here to detect lack of configuration early in the pipleline, as well. TBD
 
             // typed HttpClient configuration
             services.AddHttpClient<IMultiChainRpcGeneral, MultiChainRpcGeneralClient>()
                .ConfigureHttpClient((sp, httpClient) =>
                {
+                   // todo see line #163
                    _rpcOptions = sp.GetRequiredService<IOptions<RpcOptions>>().Value;
                    httpClient.BaseAddress = new Uri(ConnectionHelper.GetServiceUrl(_rpcOptions));
                    httpClient.DefaultRequestHeaders.Authorization = ConnectionHelper.GetAuthenticationHeaderValue(_rpcOptions);
@@ -255,12 +264,17 @@ namespace MCWrapper.RPC.Extensions
             services.Configure((Action<RuntimeParamOptions>)(config => runtimeParamOptions?.Invoke(new RuntimeParamOptions())))
                 .Configure((Action<RpcOptions>)(config => rpcOptions?.Invoke(new RpcOptions())));
 
+            // todo change this, I don't like it. 
+            // todo create your own service provider and pull from that
             RpcOptions _rpcOptions = new RpcOptions();
+
+            // todo maybe we need some error handling here to detect lack of configuration early in the pipleline, as well. TBD
 
             // typed HttpClient configuration
             services.AddHttpClient<IMultiChainRpcGeneral, MultiChainRpcGeneralClient>()
                .ConfigureHttpClient((sp, httpClient) =>
                {
+                   // todo see line #267
                    _rpcOptions = sp.GetRequiredService<IOptions<RpcOptions>>().Value;
                    httpClient.BaseAddress = new Uri(ConnectionHelper.GetServiceUrl(_rpcOptions));
                    httpClient.DefaultRequestHeaders.Authorization = ConnectionHelper.GetAuthenticationHeaderValue(_rpcOptions);
