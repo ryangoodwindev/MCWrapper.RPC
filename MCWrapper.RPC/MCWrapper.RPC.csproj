@@ -16,7 +16,76 @@
     <Description>A simple .NET Core wrapper for the MultiChain Core blockchain library that utilitzes Remote Procedure Calls (RPC) to communicate with distributed ledgers. Written with C# 8.0 and supports .NET Core 2.1, 2.2, and 3.0.</Description>
     <LangVersion>8.0</LangVersion>
     <Nullable>enable</Nullable>
-    <PackageReleaseNotes>All Unit Tests Passed | 358 total tests | 80 skipped | Completed in 15 seconds on brand new MultiChain Core blockchain node. As a blockchain matures the unit test durations seem to increase as well.</PackageReleaseNotes>
+    <PackageReleaseNotes>All Unit Tests Passed | 358 total tests | 80 skipped | Completed in 15 seconds on brand new MultiChain Core blockchain node. As a blockchain matures the unit test durations seem to increase as well.
+
+Please, for more information, visit our GitHub repository or Project URL to learn more about implementing MCWrapper and/or MultiChain Core in your .NET Core project(s).
+
+MultiChain JSON-RPC client interfaces should be injected into Controllers or Razor Pages as follows.
+
+IMultiChainRpcGenerate :.....: Provide access to Generate MultChain Core methods.
+getgenerate, gethashespersec, setgenerate
+
+IMultiChainRpcOffChain :....: Provides access to OffChain MultChain Core methods.
+purgepublisheditems, purgestreamitems, retrievestreamitems
+
+IMultiChainRpcControl :.....: Provides access to Control MultChain Core methods.
+clearmempool, getblockchainparams, getinfo, getruntimeparams, 
+help, pause, resume, setlastblock, setruntimeparam, stop
+
+IMultiChainRpcGeneral :.....: Provides access to General MultChain Core methods
+getassetinfo, getbestblockhash, getblock, getblockchaininfo,
+getblockcount, getblockhash, getchaintips, getdifficulty,
+getfiltercode, getlastblockinfo, getmempoolinfo, getrawmempool,
+getstreaminfo, gettxout, gettxoutsetinfo, listassets, listblocks,
+listpermissions, liststreamfilters, liststreams, listtxfilters,
+listupgrades, runstreamfilter, runtxfilter, teststreamfilter,
+testtxfilter, verifychain, verifypermission
+
+IMultiChainRpcNetwork :.....: Provides access to Network MultChain Core methods 
+addnode, getaddednodeinfo, getchunkqueueinfo, getchunkqueuetotals, 
+getconnectioncount, getnettotals, getnetworkinfo, getpeerinfo, ping
+
+IMultiChainRpcUtility :.........: Provides access to Utility MultChain Core methods 
+appendbinarycache, createbinarycache, createkeypairs,
+createmultisig, deletebinarycache, estimatefee, estimatepriority,
+validateaddress, verifymessage
+
+IMultiChainRpcMining :.........: Provides access to Mining MultChain Core methods 
+getblocktemplate, getmininginfo, getnetworkhashps,
+prioritisetransaction, submitblock
+
+IMultiChainRpcWallet :.........: Provides access to Wallet MultChain Core methods 
+addmultisigaddress, appendrawexchange, approvefrom, backupwallet,
+combineunspent, completerawexchange, create, createfrom,
+createrawexchange, createrawsendfrom, decoderawexchange,
+disablerawtransaction, dumpprivkey, dumpwallet, encryptwallet,
+getaccount, getaccountaddress, getaddressbalances, getaddresses,
+getaddressesbyaccount, getaddresstransaction, getassetbalances,
+getassettransaction, getbalance, getmultibalances, getnewaddress,
+getrawchangeaddress, getreceivedbyaccount, getreceivedbyaddress,
+getstreamitem, getstreamkeysummary, getstreampublishersummary,
+gettotalbalances, gettransaction, gettxoutdata, getunconfirmedbalance,
+getwalletinfo, getwallettransaction, grant, grantfrom, grantwithdata,
+grantwithdatafrom, importaddress, importprivkey, importwallet, issue,
+issuefrom, issuemore, issuemorefrom, keypoolrefill, listaccounts,
+listaddresses, listaddressgroupings, listaddresstransactions,
+listassettransactions, listlockunspent, listreceivedbyaccount,
+listreceivedbyaddress, listsinceblock, liststreamblockitems,
+liststreamitems, liststreamkeyitems, liststreamkeys, liststreampublisheritems,
+liststreampublishers, liststreamqueryitems, liststreamtxitems,
+listtransactions, listunspent, listwallettransactions, lockunspent,
+move, preparelockunspent, preparelockunspentfrom, publish, publishfrom,
+publishmulti, publishmultifrom, purgepublisheditems, purgestreamitems,
+resendwallettransactions, retrievestreamitems, revoke, revokefrom, send,
+sendasset, sendassetfrom, sendfrom, sendfromaccount, sendmany, sendwithdata,
+sendwithdatafrom, setaccount, settxfee, signmessage, subscribe, trimsubscribe,
+txouttobinarycache, unsubscribe, walletlock, walletpassphrase,
+walletpassphrasechange,
+
+IMultiChainRpcRaw :.........: Provides access to Raw MultChain Core methods 
+appendrawchange, appendrawdata, appendrawtransaction,
+createrawtransaction, decoderawtransaction, decodescript,
+getrawtransaction, sendrawtransaction, signrawtransaction</PackageReleaseNotes>
     <PackageTags>MultiChain,CSharp,DotNetCore,Blockchain,API</PackageTags>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
   </PropertyGroup>

@@ -7,7 +7,7 @@ namespace MCWrapper.RPC.Ledger.Clients
 {
     /// <summary>
     /// 
-    /// MutliChain methods required by the IBlockchainRpcControl contract:
+    /// MutliChain Core methods established by the IMultiChainRpcControl contract
     ///
     /// clearmempool, getblockchainparams, getinfo, getruntimeparams,
     /// help, pause, resume, setlastblock, setruntimeparam, stop

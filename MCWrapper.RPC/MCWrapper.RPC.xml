@@ -5528,7 +5528,7 @@
         <member name="T:MCWrapper.RPC.Ledger.Clients.IMultiChainRpcControl">
              <summary>
              
-             MutliChain methods required by the IBlockchainRpcControl contract:
+             MutliChain Core methods established by the IMultiChainRpcControl contract
             
              clearmempool, getblockchainparams, getinfo, getruntimeparams,
              help, pause, resume, setlastblock, setruntimeparam, stop
@@ -5765,7 +5765,7 @@
         <member name="T:MCWrapper.RPC.Ledger.Clients.IMultiChainRpcGeneral">
              <summary>
             
-             MutliChain methods required by the IBlockchainRpc contract:
+             MutliChain Core methods established by the IMultiChainRpcGeneral contract
             
              getassetinfo, getbestblockhash, getblock, getblockchaininfo,
              getblockcount, getblockhash, getchaintips, getdifficulty,
@@ -6544,7 +6544,7 @@
         <member name="T:MCWrapper.RPC.Ledger.Clients.IMultiChainRpcGenerate">
              <summary>
              
-             MutliChain methods required by the IBlockchainRpcGenerate contract:
+             MutliChain Core methods established by the IMultiChainRpcGenerate contract
             
              getgenerate, gethashespersec, setgenerate
              
@@ -6623,7 +6623,7 @@
         <member name="T:MCWrapper.RPC.Ledger.Clients.IMultiChainRpcMining">
              <summary>
              
-             MutliChain methods required by the IBlockchainRpcMining contract:
+             MutliChain Core methods established by the IMultiChainRpcMining contract
             
              getblocktemplate, getmininginfo, getnetworkhashps,
              prioritisetransaction, submitblock
@@ -6790,7 +6790,7 @@
         <member name="T:MCWrapper.RPC.Ledger.Clients.IMultiChainRpcNetwork">
             <summary>
             
-            MutliChain methods required by the IBlockchainRpcNetwork contract:
+            MutliChain Core methods established by the IMultiChainRpcNetwork contract
             
             addnode, getaddednodeinfo, getchunkqueueinfo, getchunkqueuetotals, 
             getconnectioncount, getnettotals, getnetworkinfo, getpeerinfo, ping
@@ -6998,7 +6998,7 @@
         <member name="T:MCWrapper.RPC.Ledger.Clients.IMultiChainRpcOffChain">
             <summary>
             
-            MutliChain methods required by the IBlockchainRpcOffChain contract:
+            MutliChain Core methods established by the IMultiChainRpcOffChain contract
             
             purgepublisheditems, purgestreamitems, retrievestreamitems
             
@@ -7143,7 +7143,7 @@
         <member name="T:MCWrapper.RPC.Ledger.Clients.IMultiChainRpcRaw">
              <summary>
              
-             MutliChain methods required by the IBlockchainRpcRaw contract:
+             MutliChain Core methods established by the IMultiChainRpcRaw contract
             
              appendrawchange, appendrawdata, appendrawtransaction,
              createrawtransaction, decoderawtransaction, decodescript,
@@ -7409,7 +7409,7 @@
         <member name="T:MCWrapper.RPC.Ledger.Clients.IMultiChainRpcUtility">
              <summary>
              
-             MutliChain methods required by the IMultiChainRpcUtility contract:
+             MutliChain Core methods established by the IMultiChainRpcUtility contract
             
              appendbinarycache, createbinarycache, createkeypairs,
              createmultisig, deletebinarycache, estimatefee, estimatepriority,
@@ -7640,7 +7640,7 @@
         <member name="T:MCWrapper.RPC.Ledger.Clients.IMultiChainRpcWallet">
              <summary>
             
-             MutliChain methods required by the IMultiChainRpcWallet contract:
+             MutliChain Core methods established by the IMultiChainRpcWallet contract
             
              addmultisigaddress, appendrawexchange, approvefrom, backupwallet,
              combineunspent, completerawexchange, create, createfrom,
@@ -7668,8 +7668,6 @@
              sendwithdatafrom, setaccount, settxfee, signmessage, subscribe, trimsubscribe,
              txouttobinarycache, unsubscribe, walletlock, walletpassphrase,
              walletpassphrasechange,
-            
-             <para>Inherits from an RPCClient and implements the IWalletRPC contract</para>
             
              </summary>
         </member>

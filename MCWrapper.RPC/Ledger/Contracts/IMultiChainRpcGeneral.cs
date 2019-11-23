@@ -7,7 +7,7 @@ namespace MCWrapper.RPC.Ledger.Clients
 {
     /// <summary>
     ///
-    /// MutliChain methods required by the IBlockchainRpc contract:
+    /// MutliChain Core methods established by the IMultiChainRpcGeneral contract
     ///
     /// getassetinfo, getbestblockhash, getblock, getblockchaininfo,
     /// getblockcount, getblockhash, getchaintips, getdifficulty,

@@ -5,7 +5,7 @@ namespace MCWrapper.RPC.Ledger.Clients
 {
     /// <summary>
     /// 
-    /// MutliChain methods required by the IBlockchainRpcOffChain contract:
+    /// MutliChain Core methods established by the IMultiChainRpcOffChain contract
     /// 
     /// purgepublisheditems, purgestreamitems, retrievestreamitems
     /// 

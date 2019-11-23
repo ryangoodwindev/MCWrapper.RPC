@@ -7,7 +7,7 @@ namespace MCWrapper.RPC.Ledger.Clients
 {
     /// <summary>
     /// 
-    /// MutliChain methods required by the IBlockchainRpcRaw contract:
+    /// MutliChain Core methods established by the IMultiChainRpcRaw contract
     ///
     /// appendrawchange, appendrawdata, appendrawtransaction,
     /// createrawtransaction, decoderawtransaction, decodescript,
