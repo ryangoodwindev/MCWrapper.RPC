@@ -70,8 +70,6 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <para>Blockchain name is explicitly passed as parameter.</para>
         ///
         /// </summary>
-        /// <param name="blockchainName">Name of target blockchain</param>
-        /// <param name="id">String value to identify this transaction</param>
         /// <param name="hash_or_height">(string or numeric) The block hash or height in the active chain</param>
         /// <param name="verbose">(numeric or boolean, optional, default=1) 0(or false) - encoded data, 1(or true) - json object, 2 - with tx encoded data, 4 - with tx json object</param>
         /// <returns></returns>

@@ -5824,8 +5824,6 @@
              <para>Blockchain name is explicitly passed as parameter.</para>
             
              </summary>
-             <param name="blockchainName">Name of target blockchain</param>
-             <param name="id">String value to identify this transaction</param>
              <param name="hash_or_height">(string or numeric) The block hash or height in the active chain</param>
              <param name="verbose">(numeric or boolean, optional, default=1) 0(or false) - encoded data, 1(or true) - json object, 2 - with tx encoded data, 4 - with tx json object</param>
              <returns></returns>
@@ -8117,16 +8115,38 @@
         <member name="M:MCWrapper.RPC.Ledger.Clients.IMultiChainRpcWallet.GetAccountAddressAsync(System.String)">
              <summary>
             
-             <para>Returns the account associated with the targeted address.</para>
+             <para>Returns the current address for receiving payments to this account.</para>
              <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
             
              </summary>
-             <param name="address">The address for account lookup</param>
+             <param name="account">The account name for the address. It can also be set to the empty string "" to represent the default account. The account does not need to exist, it will be created and a new address created if there is no account by the given name.</param>
              <returns></returns>
         </member>
         <member name="M:MCWrapper.RPC.Ledger.Clients.IMultiChainRpcWallet.GetAccountAddressAsync(System.String,System.String,System.String)">
              <summary>
             
+             <para>Returns the current address for receiving payments to this account.</para>
+             <para>Blockchain name is explicitly passed as parameter.</para>
+            
+             </summary>
+             <param name="blockchainName">Name of target blockchain</param>
+             <param name="id">String value to identify this transaction</param>
+             <param name="account">The account name for the address. It can also be set to the empty string "" to represent the default account. The account does not need to exist, it will be created and a new address created if there is no account by the given name.</param>
+             <returns></returns>
+        </member>
+        <member name="M:MCWrapper.RPC.Ledger.Clients.IMultiChainRpcWallet.GetAccountAsync(System.String)">
+             <summary>
+            
+             <para>Returns the account associated with the targeted address.</para>
+             <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
+            
+             </summary>
+             <param name="address">The address for account lookup</param>
+             <returns></returns>
+        </member>
+        <member name="M:MCWrapper.RPC.Ledger.Clients.IMultiChainRpcWallet.GetAccountAsync(System.String,System.String,System.String)">
+             <summary>
+            
              <para>Returns the account associated with the targeted address.</para>
              <para>Blockchain name is explicitly passed as parameter.</para>
             
@@ -8134,28 +8154,6 @@
              <param name="blockchainName">Name of target blockchain</param>
              <param name="id">String value to identify this transaction</param>
              <param name="address">The address for account lookup</param>
-             <returns></returns>
-        </member>
-        <member name="M:MCWrapper.RPC.Ledger.Clients.IMultiChainRpcWallet.GetAccountAsync(System.String)">
-             <summary>
-            
-             <para>Returns the current address for receiving payments to this account.</para>
-             <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
-            
-             </summary>
-             <param name="account">The account name for the address. It can also be set to the empty string "" to represent the default account. The account does not need to exist, it will be created and a new address created if there is no account by the given name.</param>
-             <returns></returns>
-        </member>
-        <member name="M:MCWrapper.RPC.Ledger.Clients.IMultiChainRpcWallet.GetAccountAsync(System.String,System.String,System.String)">
-             <summary>
-            
-             <para>Returns the current address for receiving payments to this account.</para>
-             <para>Blockchain name is explicitly passed as parameter.</para>
-            
-             </summary>
-             <param name="blockchainName">Name of target blockchain</param>
-             <param name="id">String value to identify this transaction</param>
-             <param name="account">The account name for the address. It can also be set to the empty string "" to represent the default account. The account does not need to exist, it will be created and a new address created if there is no account by the given name.</param>
              <returns></returns>
         </member>
         <member name="M:MCWrapper.RPC.Ledger.Clients.IMultiChainRpcWallet.GetAddressBalancesAsync(System.String,System.Int32,System.Boolean)">

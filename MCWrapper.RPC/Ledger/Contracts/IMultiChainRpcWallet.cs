@@ -489,16 +489,38 @@ namespace MCWrapper.RPC.Ledger.Clients
 
         /// <summary>
         ///
-        /// <para>Returns the account associated with the targeted address.</para>
+        /// <para>Returns the current address for receiving payments to this account.</para>
         /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         ///
         /// </summary>
-        /// <param name="address">The address for account lookup</param>
+        /// <param name="account">The account name for the address. It can also be set to the empty string "" to represent the default account. The account does not need to exist, it will be created and a new address created if there is no account by the given name.</param>
         /// <returns></returns>
         Task<RpcResponse<object>> GetAccountAddressAsync(string account = "");
 
         /// <summary>
         ///
+        /// <para>Returns the current address for receiving payments to this account.</para>
+        /// <para>Blockchain name is explicitly passed as parameter.</para>
+        ///
+        /// </summary>
+        /// <param name="blockchainName">Name of target blockchain</param>
+        /// <param name="id">String value to identify this transaction</param>
+        /// <param name="account">The account name for the address. It can also be set to the empty string "" to represent the default account. The account does not need to exist, it will be created and a new address created if there is no account by the given name.</param>
+        /// <returns></returns>
+        Task<RpcResponse<object>> GetAccountAddressAsync(string blockchainName, string id, string account = "");
+
+        /// <summary>
+        ///
+        /// <para>Returns the account associated with the targeted address.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
+        ///
+        /// </summary>
+        /// <param name="address">The address for account lookup</param>
+        /// <returns></returns>
+        Task<RpcResponse<object>> GetAccountAsync(string address);
+
+        /// <summary>
+        ///
         /// <para>Returns the account associated with the targeted address.</para>
         /// <para>Blockchain name is explicitly passed as parameter.</para>
         ///
@@ -506,28 +528,6 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="blockchainName">Name of target blockchain</param>
         /// <param name="id">String value to identify this transaction</param>
         /// <param name="address">The address for account lookup</param>
-        /// <returns></returns>
-        Task<RpcResponse<object>> GetAccountAddressAsync(string blockchainName, string id, string account = "");
-
-        /// <summary>
-        ///
-        /// <para>Returns the current address for receiving payments to this account.</para>
-        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
-        ///
-        /// </summary>
-        /// <param name="account">The account name for the address. It can also be set to the empty string "" to represent the default account. The account does not need to exist, it will be created and a new address created if there is no account by the given name.</param>
-        /// <returns></returns>
-        Task<RpcResponse<object>> GetAccountAsync(string address);
-
-        /// <summary>
-        ///
-        /// <para>Returns the current address for receiving payments to this account.</para>
-        /// <para>Blockchain name is explicitly passed as parameter.</para>
-        ///
-        /// </summary>
-        /// <param name="blockchainName">Name of target blockchain</param>
-        /// <param name="id">String value to identify this transaction</param>
-        /// <param name="account">The account name for the address. It can also be set to the empty string "" to represent the default account. The account does not need to exist, it will be created and a new address created if there is no account by the given name.</param>
         /// <returns></returns>
         Task<RpcResponse<object>> GetAccountAsync(string blockchainName, string id, string address);
 
