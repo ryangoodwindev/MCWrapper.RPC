@@ -10462,11 +10462,9 @@
              <summary>
             
              Unsubscribes from the stream.
-             <para>Blockchain name is explicitly passed as parameter.</para>
+             <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
             
              </summary>
-             <param name="blockchainName">Name of target blockchain</param>
-             <param name="id">String value to identify this transaction</param>
              <param name="entity_identifiers">Stream identifier - one of the following: stream txid, stream reference, stream name or Asset identifier - one of the following: asset txid, asset reference, asset name or a json array of stream or asset identifiers </param>
              <param name="purge"> Purge all offchain data for the stream</param>
              <returns></returns>
@@ -10475,9 +10473,11 @@
              <summary>
             
              Unsubscribes from the stream.
-             <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
+             <para>Blockchain name is explicitly passed as parameter.</para>
             
              </summary>
+             <param name="blockchainName">Name of target blockchain</param>
+             <param name="id">String value to identify this transaction</param>
              <param name="entity_identifiers">Stream identifier - one of the following: stream txid, stream reference, stream name or Asset identifier - one of the following: asset txid, asset reference, asset name or a json array of stream or asset identifiers </param>
              <param name="purge"> Purge all offchain data for the stream</param>
              <returns></returns>
