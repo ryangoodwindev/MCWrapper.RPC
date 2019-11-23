@@ -13,7 +13,7 @@ namespace MCWrapper.RPC.Ledger.Clients
 {
     /// <summary>
     ///
-    /// MutliChain methods implemented by the concrete WalletRPCClient class:
+    /// <para>MutliChain Core methods implemented by the MultiChainRpcWalletClient concrete class</para>
     ///
     /// addmultisigaddress, appendrawexchange, approvefrom, backupwallet,
     /// combineunspent, completerawexchange, create, createfrom,
@@ -41,8 +41,6 @@ namespace MCWrapper.RPC.Ledger.Clients
     /// sendwithdatafrom, setaccount, settxfee, signmessage, subscribe, trimsubscribe,
     /// txouttobinarycache, unsubscribe, walletlock, walletpassphrase,
     /// walletpassphrasechange,
-    ///
-    /// <para>Inherits from an RPCClient and implements the IWalletRPC contract</para>
     ///
     /// </summary>
     public class MultiChainRpcWalletClient : MultiChainRpcClient, IMultiChainRpcWallet

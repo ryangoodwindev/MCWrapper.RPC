@@ -10,7 +10,7 @@ namespace MCWrapper.RPC.Ledger.Clients
 {
     /// <summary>
     /// 
-    /// MutliChain methods implemented:
+    /// <para>MutliChain Core methods implemented by the MultiChainRpcOffChainClient concrete class</para>
     /// 
     /// purgepublisheditems, purgestreamitems, retrievestreamitems
     /// 

@@ -5,7 +5,7 @@ namespace MCWrapper.RPC.Ledger.Clients
 {
     /// <summary>
     /// 
-    /// MutliChain Core methods established by the IMultiChainRpcGenerate contract
+    /// <para>MutliChain Core methods established by the IMultiChainRpcGenerate contract</para>
     ///
     /// getgenerate, gethashespersec, setgenerate
     /// 

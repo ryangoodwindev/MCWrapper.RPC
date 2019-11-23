@@ -8,7 +8,7 @@ namespace MCWrapper.RPC.Ledger.Clients
 {
     /// <summary>
     ///
-    /// MutliChain Core methods established by the IMultiChainRpcWallet contract
+    /// <para>MutliChain Core methods established by the IMultiChainRpcWallet contract</para>
     ///
     /// addmultisigaddress, appendrawexchange, approvefrom, backupwallet,
     /// combineunspent, completerawexchange, create, createfrom,

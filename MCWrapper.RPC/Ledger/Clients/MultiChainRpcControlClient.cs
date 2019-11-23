@@ -12,7 +12,7 @@ namespace MCWrapper.RPC.Ledger.Clients
 {
     /// <summary>
     /// 
-    /// MutliChain methods implemented:
+    /// <para>MutliChain Core methods implemented by the MultiChainRpcControlClient concrete class</para>
     ///
     /// clearmempool, getblockchainparams, getinfo, getruntimeparams,
     /// help, pause, resume, setlastblock, setruntimeparam, stop

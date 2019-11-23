@@ -413,7 +413,7 @@
         <member name="T:MCWrapper.RPC.Ledger.Clients.MultiChainRpcControlClient">
              <summary>
              
-             MutliChain methods implemented:
+             <para>MutliChain Core methods implemented by the MultiChainRpcControlClient concrete class</para>
             
              clearmempool, getblockchainparams, getinfo, getruntimeparams,
              help, pause, resume, setlastblock, setruntimeparam, stop
@@ -657,7 +657,7 @@
         <member name="T:MCWrapper.RPC.Ledger.Clients.MultiChainRpcGeneralClient">
              <summary>
             
-             MutliChain methods implemented by the concrete BlockchainRPCClient class:
+             <para>MutliChain Core methods implemented by the MultiChainRpcGeneralClient concrete class</para>
             
              getassetinfo, getbestblockhash, getblock, getblockchaininfo,
              getblockcount, getblockhash, getchaintips, getdifficulty,
@@ -666,8 +666,6 @@
              listpermissions, liststreamfilters, liststreams, listtxfilters,
              listupgrades, runstreamfilter, runtxfilter, teststreamfilter,
              testtxfilter, verifychain, verifypermission
-            
-             <para>Inherits from an RPCClient and implements the IBlockchainRPC contract</para>
             
              </summary>
         </member>
@@ -1443,7 +1441,7 @@
         <member name="T:MCWrapper.RPC.Ledger.Clients.MultiChainRpcGenerateClient">
              <summary>
              
-             MutliChain methods implemented:
+             <para>MutliChain Core methods implemented by the MultiChainRpcGenerateClient concrete class</para>
             
              getgenerate, gethashespersec, setgenerate
              
@@ -1529,7 +1527,7 @@
         <member name="T:MCWrapper.RPC.Ledger.Clients.MultiChainRpcMiningClient">
              <summary>
              
-             MutliChain methods implemented:
+             <para>MutliChain Core methods implemented by the MultiChainRpcMiningClient concrete class</para>
             
              getblocktemplate, getmininginfo, getnetworkhashps,
              prioritisetransaction, submitblock
@@ -1703,7 +1701,7 @@
         <member name="T:MCWrapper.RPC.Ledger.Clients.MultiChainRpcNetworkClient">
             <summary>
             
-            MutliChain methods implemented:
+            <para>MutliChain Core methods implemented by the MultiChainRpcNetworkClient concrete class</para>
             
             addnode, getaddednodeinfo, getchunkqueueinfo, getchunkqueuetotals, 
             getconnectioncount, getnettotals, getnetworkinfo, getpeerinfo, ping
@@ -1918,7 +1916,7 @@
         <member name="T:MCWrapper.RPC.Ledger.Clients.MultiChainRpcOffChainClient">
             <summary>
             
-            MutliChain methods implemented:
+            <para>MutliChain Core methods implemented by the MultiChainRpcOffChainClient concrete class</para>
             
             purgepublisheditems, purgestreamitems, retrievestreamitems
             
@@ -2070,7 +2068,7 @@
         <member name="T:MCWrapper.RPC.Ledger.Clients.MultiChainRpcRawClient">
              <summary>
              
-             MutliChain methods implemented:
+             <para>MutliChain Core methods implemented by the MultiChainRpcRawClient concrete class</para>
             
              appendrawchange, appendrawdata, appendrawtransaction,
              createrawtransaction, decoderawtransaction, decodescript,
@@ -2343,7 +2341,7 @@
         <member name="T:MCWrapper.RPC.Ledger.Clients.MultiChainRpcUtilityClient">
              <summary>
              
-             MutliChain methods implemented:
+             <para>MutliChain Core methods implemented by the MultiChainRpcUtilityClient concrete class</para>
             
              appendbinarycache, createbinarycache, createkeypairs,
              createmultisig, deletebinarycache, estimatefee, estimatepriority,
@@ -2581,7 +2579,7 @@
         <member name="T:MCWrapper.RPC.Ledger.Clients.MultiChainRpcWalletClient">
              <summary>
             
-             MutliChain methods implemented by the concrete WalletRPCClient class:
+             <para>MutliChain Core methods implemented by the MultiChainRpcWalletClient concrete class</para>
             
              addmultisigaddress, appendrawexchange, approvefrom, backupwallet,
              combineunspent, completerawexchange, create, createfrom,
@@ -2609,8 +2607,6 @@
              sendwithdatafrom, setaccount, settxfee, signmessage, subscribe, trimsubscribe,
              txouttobinarycache, unsubscribe, walletlock, walletpassphrase,
              walletpassphrasechange,
-            
-             <para>Inherits from an RPCClient and implements the IWalletRPC contract</para>
             
              </summary>
         </member>
@@ -5528,7 +5524,7 @@
         <member name="T:MCWrapper.RPC.Ledger.Clients.IMultiChainRpcControl">
              <summary>
              
-             MutliChain Core methods established by the IMultiChainRpcControl contract
+             <para>MutliChain Core methods established by the IMultiChainRpcControl contract</para>
             
              clearmempool, getblockchainparams, getinfo, getruntimeparams,
              help, pause, resume, setlastblock, setruntimeparam, stop
@@ -5765,7 +5761,7 @@
         <member name="T:MCWrapper.RPC.Ledger.Clients.IMultiChainRpcGeneral">
              <summary>
             
-             MutliChain Core methods established by the IMultiChainRpcGeneral contract
+             <para>MutliChain Core methods established by the IMultiChainRpcGeneral contract</para>
             
              getassetinfo, getbestblockhash, getblock, getblockchaininfo,
              getblockcount, getblockhash, getchaintips, getdifficulty,
@@ -6544,7 +6540,7 @@
         <member name="T:MCWrapper.RPC.Ledger.Clients.IMultiChainRpcGenerate">
              <summary>
              
-             MutliChain Core methods established by the IMultiChainRpcGenerate contract
+             <para>MutliChain Core methods established by the IMultiChainRpcGenerate contract</para>
             
              getgenerate, gethashespersec, setgenerate
              
@@ -6623,7 +6619,7 @@
         <member name="T:MCWrapper.RPC.Ledger.Clients.IMultiChainRpcMining">
              <summary>
              
-             MutliChain Core methods established by the IMultiChainRpcMining contract
+             <para>MutliChain Core methods established by the IMultiChainRpcMining contract</para>
             
              getblocktemplate, getmininginfo, getnetworkhashps,
              prioritisetransaction, submitblock
@@ -6790,7 +6786,7 @@
         <member name="T:MCWrapper.RPC.Ledger.Clients.IMultiChainRpcNetwork">
             <summary>
             
-            MutliChain Core methods established by the IMultiChainRpcNetwork contract
+            <para>MutliChain Core methods established by the IMultiChainRpcNetwork contract</para>
             
             addnode, getaddednodeinfo, getchunkqueueinfo, getchunkqueuetotals, 
             getconnectioncount, getnettotals, getnetworkinfo, getpeerinfo, ping
@@ -6998,7 +6994,7 @@
         <member name="T:MCWrapper.RPC.Ledger.Clients.IMultiChainRpcOffChain">
             <summary>
             
-            MutliChain Core methods established by the IMultiChainRpcOffChain contract
+            <para>MutliChain Core methods established by the IMultiChainRpcOffChain contract</para>
             
             purgepublisheditems, purgestreamitems, retrievestreamitems
             
@@ -7143,7 +7139,7 @@
         <member name="T:MCWrapper.RPC.Ledger.Clients.IMultiChainRpcRaw">
              <summary>
              
-             MutliChain Core methods established by the IMultiChainRpcRaw contract
+             <para>MutliChain Core methods established by the IMultiChainRpcRaw contract</para>
             
              appendrawchange, appendrawdata, appendrawtransaction,
              createrawtransaction, decoderawtransaction, decodescript,
@@ -7409,7 +7405,7 @@
         <member name="T:MCWrapper.RPC.Ledger.Clients.IMultiChainRpcUtility">
              <summary>
              
-             MutliChain Core methods established by the IMultiChainRpcUtility contract
+             <para>MutliChain Core methods established by the IMultiChainRpcUtility contract</para>
             
              appendbinarycache, createbinarycache, createkeypairs,
              createmultisig, deletebinarycache, estimatefee, estimatepriority,
@@ -7640,7 +7636,7 @@
         <member name="T:MCWrapper.RPC.Ledger.Clients.IMultiChainRpcWallet">
              <summary>
             
-             MutliChain Core methods established by the IMultiChainRpcWallet contract
+             <para>MutliChain Core methods established by the IMultiChainRpcWallet contract</para>
             
              addmultisigaddress, appendrawexchange, approvefrom, backupwallet,
              combineunspent, completerawexchange, create, createfrom,

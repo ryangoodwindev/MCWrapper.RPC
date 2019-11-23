@@ -6,7 +6,7 @@ namespace MCWrapper.RPC.Ledger.Clients
 {
     /// <summary>
     /// 
-    /// MutliChain Core methods established by the IMultiChainRpcUtility contract
+    /// <para>MutliChain Core methods established by the IMultiChainRpcUtility contract</para>
     ///
     /// appendbinarycache, createbinarycache, createkeypairs,
     /// createmultisig, deletebinarycache, estimatefee, estimatepriority,

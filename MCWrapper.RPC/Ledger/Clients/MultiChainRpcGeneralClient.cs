@@ -12,7 +12,7 @@ namespace MCWrapper.RPC.Ledger.Clients
 {
     /// <summary>
     ///
-    /// MutliChain methods implemented by the concrete BlockchainRPCClient class:
+    /// <para>MutliChain Core methods implemented by the MultiChainRpcGeneralClient concrete class</para>
     ///
     /// getassetinfo, getbestblockhash, getblock, getblockchaininfo,
     /// getblockcount, getblockhash, getchaintips, getdifficulty,
@@ -21,8 +21,6 @@ namespace MCWrapper.RPC.Ledger.Clients
     /// listpermissions, liststreamfilters, liststreams, listtxfilters,
     /// listupgrades, runstreamfilter, runtxfilter, teststreamfilter,
     /// testtxfilter, verifychain, verifypermission
-    ///
-    /// <para>Inherits from an RPCClient and implements the IBlockchainRPC contract</para>
     ///
     /// </summary>
     public class MultiChainRpcGeneralClient : MultiChainRpcClient, IMultiChainRpcGeneral
