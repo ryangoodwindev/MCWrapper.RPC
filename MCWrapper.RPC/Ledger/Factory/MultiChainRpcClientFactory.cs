@@ -8,67 +8,68 @@ namespace MCWrapper.RPC.Ledger.Clients
     /// </summary>
     public class MultiChainRpcClientFactory : IMultiChainRpcClientFactory
     {
+        // collection of Rpc clients
         private readonly Dictionary<Type, IMultiChainRpc> _clients;
 
         /// <summary>
         /// MultiChainRpcClientFactory provides access to a collection of MultiChainRpcClients
         /// </summary>
         /// <param name="multiChainRpcGenerate">Provides access to Generate (native currency or coins) MultChain Core methods</param>
-        /// <param name="blockchainRpcOffChain">Provides access to OffChain MultChain Core methods</param>
-        /// <param name="blockchainRpcControl">Provides access to Control MultChain Core methods</param>
-        /// <param name="blockchainRpcGeneral">Provides access to General MultChain Core methods</param>
-        /// <param name="blockchainRpcNetwork">Provides access to Network MultChain Core methods</param>
-        /// <param name="blockchainRpcUtility">Provides access to Utility MultChain Core methods</param>
-        /// <param name="blockchainRpcMining">Provides access to Mining MultChain Core methods</param>
-        /// <param name="blockchainRpcWallet">Provides access to Waller MultChain Core methods</param>
-        /// <param name="blockchainRpcRaw">Provides access to Raw MultChain Core methods</param>
+        /// <param name="multiChainRpcOffChain">Provides access to OffChain MultChain Core methods</param>
+        /// <param name="multiChainRpcControl">Provides access to Control MultChain Core methods</param>
+        /// <param name="multiChainRpcGeneral">Provides access to General MultChain Core methods</param>
+        /// <param name="multiChainRpcNetwork">Provides access to Network MultChain Core methods</param>
+        /// <param name="multiChainRpcUtility">Provides access to Utility MultChain Core methods</param>
+        /// <param name="multiChainRpcMining">Provides access to Mining MultChain Core methods</param>
+        /// <param name="multiChainRpcWallet">Provides access to Waller MultChain Core methods</param>
+        /// <param name="multiChainRpcRaw">Provides access to Raw MultChain Core methods</param>
         public MultiChainRpcClientFactory(IMultiChainRpcGenerate multiChainRpcGenerate,
-            IMultiChainRpcOffChain blockchainRpcOffChain,
-            IMultiChainRpcControl blockchainRpcControl,
-            IMultiChainRpcGeneral blockchainRpcGeneral,
-            IMultiChainRpcNetwork blockchainRpcNetwork,
-            IMultiChainRpcUtility blockchainRpcUtility,
-            IMultiChainRpcMining blockchainRpcMining,
-            IMultiChainRpcWallet blockchainRpcWallet,
-            IMultiChainRpcRaw blockchainRpcRaw)
+            IMultiChainRpcOffChain multiChainRpcOffChain,
+            IMultiChainRpcControl multiChainRpcControl,
+            IMultiChainRpcGeneral multiChainRpcGeneral,
+            IMultiChainRpcNetwork multiChainRpcNetwork,
+            IMultiChainRpcUtility multiChainRpcUtility,
+            IMultiChainRpcMining multiChainRpcMining,
+            IMultiChainRpcWallet multiChainRpcWallet,
+            IMultiChainRpcRaw multiChainRpcRaw)
         {
             _clients = new Dictionary<Type, IMultiChainRpc>();
 
             _blockchainRpcGenerate = multiChainRpcGenerate;
             _clients.TryAdd(typeof(IMultiChainRpcGenerate), multiChainRpcGenerate);
 
-            _blockchainRpcOffChain = blockchainRpcOffChain;
-            _clients.TryAdd(typeof(IMultiChainRpcOffChain), blockchainRpcOffChain);
+            _blockchainRpcOffChain = multiChainRpcOffChain;
+            _clients.TryAdd(typeof(IMultiChainRpcOffChain), multiChainRpcOffChain);
 
-            _blockchainRpcControl = blockchainRpcControl;
-            _clients.TryAdd(typeof(IMultiChainRpcControl), blockchainRpcControl);
+            _blockchainRpcControl = multiChainRpcControl;
+            _clients.TryAdd(typeof(IMultiChainRpcControl), multiChainRpcControl);
 
-            _blockchainRpcGeneral = blockchainRpcGeneral;
-            _clients.TryAdd(typeof(IMultiChainRpcGeneral), blockchainRpcGeneral);
+            _blockchainRpcGeneral = multiChainRpcGeneral;
+            _clients.TryAdd(typeof(IMultiChainRpcGeneral), multiChainRpcGeneral);
 
-            _blockchainRpcNetwork = blockchainRpcNetwork;
-            _clients.TryAdd(typeof(IMultiChainRpcNetwork), blockchainRpcNetwork);
+            _blockchainRpcNetwork = multiChainRpcNetwork;
+            _clients.TryAdd(typeof(IMultiChainRpcNetwork), multiChainRpcNetwork);
 
-            _blockchainRpcUtility = blockchainRpcUtility;
-            _clients.TryAdd(typeof(IMultiChainRpcUtility), blockchainRpcUtility);
+            _blockchainRpcUtility = multiChainRpcUtility;
+            _clients.TryAdd(typeof(IMultiChainRpcUtility), multiChainRpcUtility);
 
-            _blockchainRpcMining = blockchainRpcMining;
-            _clients.TryAdd(typeof(IMultiChainRpcMining), blockchainRpcMining);
+            _blockchainRpcMining = multiChainRpcMining;
+            _clients.TryAdd(typeof(IMultiChainRpcMining), multiChainRpcMining);
 
-            _blockchainRpcWallet = blockchainRpcWallet;
-            _clients.TryAdd(typeof(IMultiChainRpcWallet), blockchainRpcWallet);
+            _blockchainRpcWallet = multiChainRpcWallet;
+            _clients.TryAdd(typeof(IMultiChainRpcWallet), multiChainRpcWallet);
 
-            _blockchainRpcRaw = blockchainRpcRaw;
-            _clients.TryAdd(typeof(IMultiChainRpcRaw), blockchainRpcRaw);
+            _blockchainRpcRaw = multiChainRpcRaw;
+            _clients.TryAdd(typeof(IMultiChainRpcRaw), multiChainRpcRaw);
         }
 
         /// <summary>
         /// Get a required MultiChainRpcClient
         /// </summary>
-        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="IMultiChainRpc"></typeparam>
         /// <returns></returns>
-        public T GetRequiredRpcClient<T>() => 
-            (T)_clients[typeof(T)];
+        public IMultiChainRpc GetRequiredRpcClient<IMultiChainRpc>() => 
+            (IMultiChainRpc)_clients[typeof(IMultiChainRpc)];
 
         /// <summary>
         /// Provides access to Generate (native currency or coins) MultChain Core methods
@@ -79,49 +80,49 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <summary>
         /// Provides access to OffChain MultChain Core methods
         /// </summary>
-        public IMultiChainRpcOffChain BlockchainRpcOffChainClient => _blockchainRpcOffChain;
+        public IMultiChainRpcOffChain MultiChainRpcOffChainClient => _blockchainRpcOffChain;
         private readonly IMultiChainRpcOffChain _blockchainRpcOffChain;
 
         /// <summary>
         /// Provides access to Control MultChain Core methods
         /// </summary>
-        public IMultiChainRpcControl BlockchainRpcControlClient => _blockchainRpcControl;
+        public IMultiChainRpcControl MultiChainRpcControlClient => _blockchainRpcControl;
         private readonly IMultiChainRpcControl _blockchainRpcControl;
 
         /// <summary>
         /// Provides access to General MultChain Core methods
         /// </summary>
-        public IMultiChainRpcGeneral BlockchainRpcGeneralClient => _blockchainRpcGeneral;
+        public IMultiChainRpcGeneral MultiChainRpcGeneralClient => _blockchainRpcGeneral;
         private readonly IMultiChainRpcGeneral _blockchainRpcGeneral;
 
         /// <summary>
         /// Provides access to Network MultChain Core methods
         /// </summary>
-        public IMultiChainRpcNetwork BlockchainRpcNetworkClient => _blockchainRpcNetwork;
+        public IMultiChainRpcNetwork MultiChainRpcNetworkClient => _blockchainRpcNetwork;
         private readonly IMultiChainRpcNetwork _blockchainRpcNetwork;
 
         /// <summary>
         /// Provides access to Utility MultChain Core methods
         /// </summary>
-        public IMultiChainRpcUtility BlockchainRpcUtilityClient => _blockchainRpcUtility;
+        public IMultiChainRpcUtility MultiChainRpcUtilityClient => _blockchainRpcUtility;
         private readonly IMultiChainRpcUtility _blockchainRpcUtility;
 
         /// <summary>
         /// Provides access to Mining MultChain Core methods
         /// </summary>
-        public IMultiChainRpcMining BlockchainRpcMiningClient => _blockchainRpcMining;
+        public IMultiChainRpcMining MultiChainRpcMiningClient => _blockchainRpcMining;
         private readonly IMultiChainRpcMining _blockchainRpcMining;
 
         /// <summary>
         /// Provides access to Wallet MultChain Core methods
         /// </summary>
-        public IMultiChainRpcWallet BlockchainRpcWalletClient => _blockchainRpcWallet;
+        public IMultiChainRpcWallet MultiChainRpcWalletClient => _blockchainRpcWallet;
         private readonly IMultiChainRpcWallet _blockchainRpcWallet;
 
         /// <summary>
         /// Provides access to Raw MultChain Core methods
         /// </summary>
-        public IMultiChainRpcRaw BlockchainRpcRawClient => _blockchainRpcRaw;
+        public IMultiChainRpcRaw MultiChainRpcRawClient => _blockchainRpcRaw;
         private readonly IMultiChainRpcRaw _blockchainRpcRaw;
     }
 }
