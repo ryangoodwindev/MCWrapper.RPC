@@ -6,7 +6,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using System;
-using System.Net.Http;
 using System.Runtime.InteropServices;
 
 namespace MCWrapper.RPC.Extensions
@@ -34,7 +33,7 @@ namespace MCWrapper.RPC.Extensions
             var runtimeOptions = new RuntimeParamOptions(true);
 
             // load Options from the local environment variable store
-            services.Configure<RuntimeParamOptions>(config => 
+            services.Configure<RuntimeParamOptions>(config =>
             {
                 config.BanTx = runtimeOptions.BanTx;
                 config.LockBlock = runtimeOptions.LockBlock;
@@ -48,7 +47,7 @@ namespace MCWrapper.RPC.Extensions
                 config.LockAdminMineRounds = runtimeOptions.LockAdminMineRounds;
                 config.MiningRequiresPeers = runtimeOptions.MiningRequiresPeers;
             })
-            .Configure<RpcOptions>(config => 
+            .Configure<RpcOptions>(config =>
             {
                 config.ChainName = rpcOptions.ChainName;
                 config.ChainUseSsl = rpcOptions.ChainUseSsl;
@@ -65,7 +64,6 @@ namespace MCWrapper.RPC.Extensions
             services.AddHttpClient<IMultiChainRpcGeneral, MultiChainRpcGeneralClient>()
                .ConfigureHttpClient((sp, httpClient) =>
                {
-                   var rpcOptions = sp.GetRequiredService<IOptions<RpcOptions>>().Value;
                    httpClient.BaseAddress = new Uri(ConnectionHelper.GetServiceUrl(rpcOptions));
                    httpClient.DefaultRequestHeaders.Authorization = ConnectionHelper.GetAuthenticationHeaderValue(rpcOptions);
                });
@@ -73,7 +71,6 @@ namespace MCWrapper.RPC.Extensions
             services.AddHttpClient<IMultiChainRpcControl, MultiChainRpcControlClient>()
                .ConfigureHttpClient((sp, httpClient) =>
                {
-                   var rpcOptions = sp.GetRequiredService<IOptions<RpcOptions>>().Value;
                    httpClient.BaseAddress = new Uri(ConnectionHelper.GetServiceUrl(rpcOptions));
                    httpClient.DefaultRequestHeaders.Authorization = ConnectionHelper.GetAuthenticationHeaderValue(rpcOptions);
                });
@@ -81,7 +78,6 @@ namespace MCWrapper.RPC.Extensions
             services.AddHttpClient<IMultiChainRpcGenerate, MultiChainRpcGenerateClient>()
                .ConfigureHttpClient((sp, httpClient) =>
                {
-                   var rpcOptions = sp.GetRequiredService<IOptions<RpcOptions>>().Value;
                    httpClient.BaseAddress = new Uri(ConnectionHelper.GetServiceUrl(rpcOptions));
                    httpClient.DefaultRequestHeaders.Authorization = ConnectionHelper.GetAuthenticationHeaderValue(rpcOptions);
                });
@@ -89,7 +85,6 @@ namespace MCWrapper.RPC.Extensions
             services.AddHttpClient<IMultiChainRpcMining, MultiChainRpcMiningClient>()
                .ConfigureHttpClient((sp, httpClient) =>
                {
-                   var rpcOptions = sp.GetRequiredService<IOptions<RpcOptions>>().Value;
                    httpClient.BaseAddress = new Uri(ConnectionHelper.GetServiceUrl(rpcOptions));
                    httpClient.DefaultRequestHeaders.Authorization = ConnectionHelper.GetAuthenticationHeaderValue(rpcOptions);
                });
@@ -97,7 +92,6 @@ namespace MCWrapper.RPC.Extensions
             services.AddHttpClient<IMultiChainRpcNetwork, MultiChainRpcNetworkClient>()
                .ConfigureHttpClient((sp, httpClient) =>
                {
-                   var rpcOptions = sp.GetRequiredService<IOptions<RpcOptions>>().Value;
                    httpClient.BaseAddress = new Uri(ConnectionHelper.GetServiceUrl(rpcOptions));
                    httpClient.DefaultRequestHeaders.Authorization = ConnectionHelper.GetAuthenticationHeaderValue(rpcOptions);
                });
@@ -105,7 +99,6 @@ namespace MCWrapper.RPC.Extensions
             services.AddHttpClient<IMultiChainRpcOffChain, MultiChainRpcOffChainClient>()
                .ConfigureHttpClient((sp, httpClient) =>
                {
-                   var rpcOptions = sp.GetRequiredService<IOptions<RpcOptions>>().Value;
                    httpClient.BaseAddress = new Uri(ConnectionHelper.GetServiceUrl(rpcOptions));
                    httpClient.DefaultRequestHeaders.Authorization = ConnectionHelper.GetAuthenticationHeaderValue(rpcOptions);
                });
@@ -113,7 +106,6 @@ namespace MCWrapper.RPC.Extensions
             services.AddHttpClient<IMultiChainRpcRaw, MultiChainRpcRawClient>()
                .ConfigureHttpClient((sp, httpClient) =>
                {
-                   var rpcOptions = sp.GetRequiredService<IOptions<RpcOptions>>().Value;
                    httpClient.BaseAddress = new Uri(ConnectionHelper.GetServiceUrl(rpcOptions));
                    httpClient.DefaultRequestHeaders.Authorization = ConnectionHelper.GetAuthenticationHeaderValue(rpcOptions);
                });
@@ -121,7 +113,6 @@ namespace MCWrapper.RPC.Extensions
             services.AddHttpClient<IMultiChainRpcUtility, MultiChainRpcUtilityClient>()
                .ConfigureHttpClient((sp, httpClient) =>
                {
-                   var rpcOptions = sp.GetRequiredService<IOptions<RpcOptions>>().Value;
                    httpClient.BaseAddress = new Uri(ConnectionHelper.GetServiceUrl(rpcOptions));
                    httpClient.DefaultRequestHeaders.Authorization = ConnectionHelper.GetAuthenticationHeaderValue(rpcOptions);
                });
@@ -129,7 +120,6 @@ namespace MCWrapper.RPC.Extensions
             services.AddHttpClient<IMultiChainRpcWallet, MultiChainRpcWalletClient>()
                .ConfigureHttpClient((sp, httpClient) =>
                {
-                   var rpcOptions = sp.GetRequiredService<IOptions<RpcOptions>>().Value;
                    httpClient.BaseAddress = new Uri(ConnectionHelper.GetServiceUrl(rpcOptions));
                    httpClient.DefaultRequestHeaders.Authorization = ConnectionHelper.GetAuthenticationHeaderValue(rpcOptions);
                });
@@ -165,77 +155,71 @@ namespace MCWrapper.RPC.Extensions
             services.Configure<RuntimeParamOptions>(configuration)
                 .Configure<RpcOptions>(configuration);
 
+            RpcOptions _rpcOptions = new RpcOptions();
+
             // typed HttpClient configuration
             services.AddHttpClient<IMultiChainRpcGeneral, MultiChainRpcGeneralClient>()
                .ConfigureHttpClient((sp, httpClient) =>
                {
-                   var rpcOptions = sp.GetRequiredService<IOptions<RpcOptions>>().Value;
-                   httpClient.BaseAddress = new Uri(ConnectionHelper.GetServiceUrl(rpcOptions));
-                   httpClient.DefaultRequestHeaders.Authorization = ConnectionHelper.GetAuthenticationHeaderValue(rpcOptions);
+                   _rpcOptions = sp.GetRequiredService<IOptions<RpcOptions>>().Value;
+                   httpClient.BaseAddress = new Uri(ConnectionHelper.GetServiceUrl(_rpcOptions));
+                   httpClient.DefaultRequestHeaders.Authorization = ConnectionHelper.GetAuthenticationHeaderValue(_rpcOptions);
                });
 
             services.AddHttpClient<IMultiChainRpcControl, MultiChainRpcControlClient>()
                .ConfigureHttpClient((sp, httpClient) =>
                {
-                   var rpcOptions = sp.GetRequiredService<IOptions<RpcOptions>>().Value;
-                   httpClient.BaseAddress = new Uri(ConnectionHelper.GetServiceUrl(rpcOptions));
-                   httpClient.DefaultRequestHeaders.Authorization = ConnectionHelper.GetAuthenticationHeaderValue(rpcOptions);
+                   httpClient.BaseAddress = new Uri(ConnectionHelper.GetServiceUrl(_rpcOptions));
+                   httpClient.DefaultRequestHeaders.Authorization = ConnectionHelper.GetAuthenticationHeaderValue(_rpcOptions);
                });
 
             services.AddHttpClient<IMultiChainRpcGenerate, MultiChainRpcGenerateClient>()
                .ConfigureHttpClient((sp, httpClient) =>
                {
-                   var rpcOptions = sp.GetRequiredService<IOptions<RpcOptions>>().Value;
-                   httpClient.BaseAddress = new Uri(ConnectionHelper.GetServiceUrl(rpcOptions));
-                   httpClient.DefaultRequestHeaders.Authorization = ConnectionHelper.GetAuthenticationHeaderValue(rpcOptions);
+                   httpClient.BaseAddress = new Uri(ConnectionHelper.GetServiceUrl(_rpcOptions));
+                   httpClient.DefaultRequestHeaders.Authorization = ConnectionHelper.GetAuthenticationHeaderValue(_rpcOptions);
                });
 
             services.AddHttpClient<IMultiChainRpcMining, MultiChainRpcMiningClient>()
                .ConfigureHttpClient((sp, httpClient) =>
                {
-                   var rpcOptions = sp.GetRequiredService<IOptions<RpcOptions>>().Value;
-                   httpClient.BaseAddress = new Uri(ConnectionHelper.GetServiceUrl(rpcOptions));
-                   httpClient.DefaultRequestHeaders.Authorization = ConnectionHelper.GetAuthenticationHeaderValue(rpcOptions);
+                   httpClient.BaseAddress = new Uri(ConnectionHelper.GetServiceUrl(_rpcOptions));
+                   httpClient.DefaultRequestHeaders.Authorization = ConnectionHelper.GetAuthenticationHeaderValue(_rpcOptions);
                });
 
             services.AddHttpClient<IMultiChainRpcNetwork, MultiChainRpcNetworkClient>()
                .ConfigureHttpClient((sp, httpClient) =>
                {
-                   var rpcOptions = sp.GetRequiredService<IOptions<RpcOptions>>().Value;
-                   httpClient.BaseAddress = new Uri(ConnectionHelper.GetServiceUrl(rpcOptions));
-                   httpClient.DefaultRequestHeaders.Authorization = ConnectionHelper.GetAuthenticationHeaderValue(rpcOptions);
+                   httpClient.BaseAddress = new Uri(ConnectionHelper.GetServiceUrl(_rpcOptions));
+                   httpClient.DefaultRequestHeaders.Authorization = ConnectionHelper.GetAuthenticationHeaderValue(_rpcOptions);
                });
 
             services.AddHttpClient<IMultiChainRpcOffChain, MultiChainRpcOffChainClient>()
                .ConfigureHttpClient((sp, httpClient) =>
                {
-                   var rpcOptions = sp.GetRequiredService<IOptions<RpcOptions>>().Value;
-                   httpClient.BaseAddress = new Uri(ConnectionHelper.GetServiceUrl(rpcOptions));
-                   httpClient.DefaultRequestHeaders.Authorization = ConnectionHelper.GetAuthenticationHeaderValue(rpcOptions);
+                   httpClient.BaseAddress = new Uri(ConnectionHelper.GetServiceUrl(_rpcOptions));
+                   httpClient.DefaultRequestHeaders.Authorization = ConnectionHelper.GetAuthenticationHeaderValue(_rpcOptions);
                });
 
             services.AddHttpClient<IMultiChainRpcRaw, MultiChainRpcRawClient>()
                .ConfigureHttpClient((sp, httpClient) =>
                {
-                   var rpcOptions = sp.GetRequiredService<IOptions<RpcOptions>>().Value;
-                   httpClient.BaseAddress = new Uri(ConnectionHelper.GetServiceUrl(rpcOptions));
-                   httpClient.DefaultRequestHeaders.Authorization = ConnectionHelper.GetAuthenticationHeaderValue(rpcOptions);
+                   httpClient.BaseAddress = new Uri(ConnectionHelper.GetServiceUrl(_rpcOptions));
+                   httpClient.DefaultRequestHeaders.Authorization = ConnectionHelper.GetAuthenticationHeaderValue(_rpcOptions);
                });
 
             services.AddHttpClient<IMultiChainRpcUtility, MultiChainRpcUtilityClient>()
                .ConfigureHttpClient((sp, httpClient) =>
                {
-                   var rpcOptions = sp.GetRequiredService<IOptions<RpcOptions>>().Value;
-                   httpClient.BaseAddress = new Uri(ConnectionHelper.GetServiceUrl(rpcOptions));
-                   httpClient.DefaultRequestHeaders.Authorization = ConnectionHelper.GetAuthenticationHeaderValue(rpcOptions);
+                   httpClient.BaseAddress = new Uri(ConnectionHelper.GetServiceUrl(_rpcOptions));
+                   httpClient.DefaultRequestHeaders.Authorization = ConnectionHelper.GetAuthenticationHeaderValue(_rpcOptions);
                });
 
             services.AddHttpClient<IMultiChainRpcWallet, MultiChainRpcWalletClient>()
                .ConfigureHttpClient((sp, httpClient) =>
                {
-                   var rpcOptions = sp.GetRequiredService<IOptions<RpcOptions>>().Value;
-                   httpClient.BaseAddress = new Uri(ConnectionHelper.GetServiceUrl(rpcOptions));
-                   httpClient.DefaultRequestHeaders.Authorization = ConnectionHelper.GetAuthenticationHeaderValue(rpcOptions);
+                   httpClient.BaseAddress = new Uri(ConnectionHelper.GetServiceUrl(_rpcOptions));
+                   httpClient.DefaultRequestHeaders.Authorization = ConnectionHelper.GetAuthenticationHeaderValue(_rpcOptions);
                });
 
             // RpcClients and RpcClientFactory
@@ -271,77 +255,71 @@ namespace MCWrapper.RPC.Extensions
             services.Configure((Action<RuntimeParamOptions>)(config => runtimeParamOptions?.Invoke(new RuntimeParamOptions())))
                 .Configure((Action<RpcOptions>)(config => rpcOptions?.Invoke(new RpcOptions())));
 
+            RpcOptions _rpcOptions = new RpcOptions();
+
             // typed HttpClient configuration
             services.AddHttpClient<IMultiChainRpcGeneral, MultiChainRpcGeneralClient>()
                .ConfigureHttpClient((sp, httpClient) =>
                {
-                   var rpcOptions = sp.GetRequiredService<IOptions<RpcOptions>>().Value;
-                   httpClient.BaseAddress = new Uri(ConnectionHelper.GetServiceUrl(rpcOptions));
-                   httpClient.DefaultRequestHeaders.Authorization = ConnectionHelper.GetAuthenticationHeaderValue(rpcOptions);
+                   _rpcOptions = sp.GetRequiredService<IOptions<RpcOptions>>().Value;
+                   httpClient.BaseAddress = new Uri(ConnectionHelper.GetServiceUrl(_rpcOptions));
+                   httpClient.DefaultRequestHeaders.Authorization = ConnectionHelper.GetAuthenticationHeaderValue(_rpcOptions);
                });
 
             services.AddHttpClient<IMultiChainRpcControl, MultiChainRpcControlClient>()
                .ConfigureHttpClient((sp, httpClient) =>
                {
-                   var rpcOptions = sp.GetRequiredService<IOptions<RpcOptions>>().Value;
-                   httpClient.BaseAddress = new Uri(ConnectionHelper.GetServiceUrl(rpcOptions));
-                   httpClient.DefaultRequestHeaders.Authorization = ConnectionHelper.GetAuthenticationHeaderValue(rpcOptions);
+                   httpClient.BaseAddress = new Uri(ConnectionHelper.GetServiceUrl(_rpcOptions));
+                   httpClient.DefaultRequestHeaders.Authorization = ConnectionHelper.GetAuthenticationHeaderValue(_rpcOptions);
                });
 
             services.AddHttpClient<IMultiChainRpcGenerate, MultiChainRpcGenerateClient>()
                .ConfigureHttpClient((sp, httpClient) =>
                {
-                   var rpcOptions = sp.GetRequiredService<IOptions<RpcOptions>>().Value;
-                   httpClient.BaseAddress = new Uri(ConnectionHelper.GetServiceUrl(rpcOptions));
-                   httpClient.DefaultRequestHeaders.Authorization = ConnectionHelper.GetAuthenticationHeaderValue(rpcOptions);
+                   httpClient.BaseAddress = new Uri(ConnectionHelper.GetServiceUrl(_rpcOptions));
+                   httpClient.DefaultRequestHeaders.Authorization = ConnectionHelper.GetAuthenticationHeaderValue(_rpcOptions);
                });
 
             services.AddHttpClient<IMultiChainRpcMining, MultiChainRpcMiningClient>()
                .ConfigureHttpClient((sp, httpClient) =>
                {
-                   var rpcOptions = sp.GetRequiredService<IOptions<RpcOptions>>().Value;
-                   httpClient.BaseAddress = new Uri(ConnectionHelper.GetServiceUrl(rpcOptions));
-                   httpClient.DefaultRequestHeaders.Authorization = ConnectionHelper.GetAuthenticationHeaderValue(rpcOptions);
+                   httpClient.BaseAddress = new Uri(ConnectionHelper.GetServiceUrl(_rpcOptions));
+                   httpClient.DefaultRequestHeaders.Authorization = ConnectionHelper.GetAuthenticationHeaderValue(_rpcOptions);
                });
 
             services.AddHttpClient<IMultiChainRpcNetwork, MultiChainRpcNetworkClient>()
                .ConfigureHttpClient((sp, httpClient) =>
                {
-                   var rpcOptions = sp.GetRequiredService<IOptions<RpcOptions>>().Value;
-                   httpClient.BaseAddress = new Uri(ConnectionHelper.GetServiceUrl(rpcOptions));
-                   httpClient.DefaultRequestHeaders.Authorization = ConnectionHelper.GetAuthenticationHeaderValue(rpcOptions);
+                   httpClient.BaseAddress = new Uri(ConnectionHelper.GetServiceUrl(_rpcOptions));
+                   httpClient.DefaultRequestHeaders.Authorization = ConnectionHelper.GetAuthenticationHeaderValue(_rpcOptions);
                });
 
             services.AddHttpClient<IMultiChainRpcOffChain, MultiChainRpcOffChainClient>()
                .ConfigureHttpClient((sp, httpClient) =>
                {
-                   var rpcOptions = sp.GetRequiredService<IOptions<RpcOptions>>().Value;
-                   httpClient.BaseAddress = new Uri(ConnectionHelper.GetServiceUrl(rpcOptions));
-                   httpClient.DefaultRequestHeaders.Authorization = ConnectionHelper.GetAuthenticationHeaderValue(rpcOptions);
+                   httpClient.BaseAddress = new Uri(ConnectionHelper.GetServiceUrl(_rpcOptions));
+                   httpClient.DefaultRequestHeaders.Authorization = ConnectionHelper.GetAuthenticationHeaderValue(_rpcOptions);
                });
 
             services.AddHttpClient<IMultiChainRpcRaw, MultiChainRpcRawClient>()
                .ConfigureHttpClient((sp, httpClient) =>
                {
-                   var rpcOptions = sp.GetRequiredService<IOptions<RpcOptions>>().Value;
-                   httpClient.BaseAddress = new Uri(ConnectionHelper.GetServiceUrl(rpcOptions));
-                   httpClient.DefaultRequestHeaders.Authorization = ConnectionHelper.GetAuthenticationHeaderValue(rpcOptions);
+                   httpClient.BaseAddress = new Uri(ConnectionHelper.GetServiceUrl(_rpcOptions));
+                   httpClient.DefaultRequestHeaders.Authorization = ConnectionHelper.GetAuthenticationHeaderValue(_rpcOptions);
                });
 
             services.AddHttpClient<IMultiChainRpcUtility, MultiChainRpcUtilityClient>()
                .ConfigureHttpClient((sp, httpClient) =>
                {
-                   var rpcOptions = sp.GetRequiredService<IOptions<RpcOptions>>().Value;
-                   httpClient.BaseAddress = new Uri(ConnectionHelper.GetServiceUrl(rpcOptions));
-                   httpClient.DefaultRequestHeaders.Authorization = ConnectionHelper.GetAuthenticationHeaderValue(rpcOptions);
+                   httpClient.BaseAddress = new Uri(ConnectionHelper.GetServiceUrl(_rpcOptions));
+                   httpClient.DefaultRequestHeaders.Authorization = ConnectionHelper.GetAuthenticationHeaderValue(_rpcOptions);
                });
 
             services.AddHttpClient<IMultiChainRpcWallet, MultiChainRpcWalletClient>()
                .ConfigureHttpClient((sp, httpClient) =>
                {
-                   var rpcOptions = sp.GetRequiredService<IOptions<RpcOptions>>().Value;
-                   httpClient.BaseAddress = new Uri(ConnectionHelper.GetServiceUrl(rpcOptions));
-                   httpClient.DefaultRequestHeaders.Authorization = ConnectionHelper.GetAuthenticationHeaderValue(rpcOptions);
+                   httpClient.BaseAddress = new Uri(ConnectionHelper.GetServiceUrl(_rpcOptions));
+                   httpClient.DefaultRequestHeaders.Authorization = ConnectionHelper.GetAuthenticationHeaderValue(_rpcOptions);
                });
 
             // RpcClients and RpcClientFactory
