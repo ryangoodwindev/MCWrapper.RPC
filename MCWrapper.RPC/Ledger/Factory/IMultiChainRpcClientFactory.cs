@@ -23,7 +23,7 @@
         /// <summary>
         /// Provides access to Generate (native currency or coins) MultChain Core methods
         /// </summary>
-        IMultiChainRpcGenerate BlockchainRpcGenerateClient { get; }
+        IMultiChainRpcGenerate MultiChainRpcGenerateClient { get; }
 
         /// <summary>
         /// Provides access to OffChain MultChain Core methods

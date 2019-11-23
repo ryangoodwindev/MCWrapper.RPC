@@ -13,7 +13,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <summary>
         /// MultiChainRpcClientFactory provides access to a collection of MultiChainRpcClients
         /// </summary>
-        /// <param name="blockchainRpcGenerate">Provides access to Generate (native currency or coins) MultChain Core methods</param>
+        /// <param name="multiChainRpcGenerate">Provides access to Generate (native currency or coins) MultChain Core methods</param>
         /// <param name="blockchainRpcOffChain">Provides access to OffChain MultChain Core methods</param>
         /// <param name="blockchainRpcControl">Provides access to Control MultChain Core methods</param>
         /// <param name="blockchainRpcGeneral">Provides access to General MultChain Core methods</param>
@@ -22,7 +22,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="blockchainRpcMining">Provides access to Mining MultChain Core methods</param>
         /// <param name="blockchainRpcWallet">Provides access to Waller MultChain Core methods</param>
         /// <param name="blockchainRpcRaw">Provides access to Raw MultChain Core methods</param>
-        public MultiChainRpcClientFactory(IMultiChainRpcGenerate blockchainRpcGenerate,
+        public MultiChainRpcClientFactory(IMultiChainRpcGenerate multiChainRpcGenerate,
             IMultiChainRpcOffChain blockchainRpcOffChain,
             IMultiChainRpcControl blockchainRpcControl,
             IMultiChainRpcGeneral blockchainRpcGeneral,
@@ -34,8 +34,8 @@ namespace MCWrapper.RPC.Ledger.Clients
         {
             _clients = new Dictionary<Type, IMultiChainRpc>();
 
-            _blockchainRpcGenerate = blockchainRpcGenerate;
-            _clients.TryAdd(typeof(IMultiChainRpcGenerate), blockchainRpcGenerate);
+            _blockchainRpcGenerate = multiChainRpcGenerate;
+            _clients.TryAdd(typeof(IMultiChainRpcGenerate), multiChainRpcGenerate);
 
             _blockchainRpcOffChain = blockchainRpcOffChain;
             _clients.TryAdd(typeof(IMultiChainRpcOffChain), blockchainRpcOffChain);
@@ -73,7 +73,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <summary>
         /// Provides access to Generate (native currency or coins) MultChain Core methods
         /// </summary>
-        public IMultiChainRpcGenerate BlockchainRpcGenerateClient => _blockchainRpcGenerate;
+        public IMultiChainRpcGenerate MultiChainRpcGenerateClient => _blockchainRpcGenerate;
         private readonly IMultiChainRpcGenerate _blockchainRpcGenerate;
 
         /// <summary>

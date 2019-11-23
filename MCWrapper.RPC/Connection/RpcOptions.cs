@@ -3,10 +3,10 @@
 namespace MCWrapper.RPC.Options
 {
     /// <summary>
-    /// BlockchainRpcOptions values are mostly required for proper blockchain interaction to occur
+    /// RpcOptions values are mostly required for proper blockchain interaction to occur
     /// via the MCWrapper.RPC client.
     /// <para>
-    ///     The MCWrapper RPC client requires the following BlockchainProfileOptions be assigned a valid value
+    ///     The MCWrapper RPC client requires the following RpcOptions be assigned a valid value
     ///         ChainUseSsl;
     ///         ChainSslPath 
     ///             (ChainSslPath only required to be assigned a file path value if ChainUseSsl is true, 
@@ -22,13 +22,13 @@ namespace MCWrapper.RPC.Options
     public class RpcOptions
     {
         /// <summary>
-        /// Create a new BlockchainRpcOptions object
+        /// Create a new RpcOptions object
         /// No arguments
         /// </summary>
         public RpcOptions() { }
 
         /// <summary>
-        /// Create a new BlockchainRpcOptions object
+        /// Create a new RpcOptions object
         /// No arguments
         /// </summary>
         public RpcOptions(bool loadFromEnvironment)
