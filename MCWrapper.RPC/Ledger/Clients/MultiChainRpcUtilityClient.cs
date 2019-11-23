@@ -21,7 +21,7 @@ namespace MCWrapper.RPC.Ledger.Clients
     public class MultiChainRpcUtilityClient : MultiChainRpcClient, IMultiChainRpcUtility
     {
         /// <summary>
-        /// Create a new Utility RPC client
+        /// Create a new MultiChainRpcUtilityClient instance
         /// </summary>
         /// <param name="httpClient"></param>
         /// <param name="options"></param>

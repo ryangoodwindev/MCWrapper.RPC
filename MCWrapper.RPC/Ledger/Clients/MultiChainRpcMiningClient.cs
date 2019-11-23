@@ -19,7 +19,7 @@ namespace MCWrapper.RPC.Ledger.Clients
     public class MultiChainRpcMiningClient : MultiChainRpcClient, IMultiChainRpcMining
     {
         /// <summary>
-        /// Create a new Mining RPC client
+        /// Create a new MultiChainRpcMiningClient instance
         /// </summary>
         /// <param name="httpClient"></param>
         /// <param name="options"></param>

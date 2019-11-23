@@ -26,7 +26,7 @@ namespace MCWrapper.RPC.Ledger.Clients
     public class MultiChainRpcGeneralClient : MultiChainRpcClient, IMultiChainRpcGeneral
     {
         /// <summary>
-        /// Create a new Blockchain RPC client
+        /// Create a new MultiChainRpcGeneralClient instance
         /// </summary>
         /// <param name="httpClient"></param>
         /// <param name="options"></param>

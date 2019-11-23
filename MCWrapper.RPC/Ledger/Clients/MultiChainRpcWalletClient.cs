@@ -46,7 +46,7 @@ namespace MCWrapper.RPC.Ledger.Clients
     public class MultiChainRpcWalletClient : MultiChainRpcClient, IMultiChainRpcWallet
     {
         /// <summary>
-        /// Create a new Wallet RPC client
+        /// Create a new MultiChainRpcWalletClient instance
         /// </summary>
         /// <param name="httpClient"></param>
         /// <param name="options"></param>

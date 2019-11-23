@@ -18,7 +18,7 @@ namespace MCWrapper.RPC.Ledger.Clients
     public class MultiChainRpcGenerateClient : MultiChainRpcClient, IMultiChainRpcGenerate
     {
         /// <summary>
-        /// Create a new Generate RPC client
+        /// Create a new MultiChainRpcGenerateClient instance
         /// </summary>
         /// <param name="httpClient"></param>
         /// <param name="options"></param>

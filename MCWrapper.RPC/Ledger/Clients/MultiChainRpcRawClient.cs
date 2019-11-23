@@ -22,7 +22,7 @@ namespace MCWrapper.RPC.Ledger.Clients
     public class MultiChainRpcRawClient : MultiChainRpcClient, IMultiChainRpcRaw
     {
         /// <summary>
-        /// Create a new Raw RPC client
+        /// Create a new MultiChainRpcRawClient instance
         /// </summary>
         /// <param name="httpClient"></param>
         /// <param name="options"></param>

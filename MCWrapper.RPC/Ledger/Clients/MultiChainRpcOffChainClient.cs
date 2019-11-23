@@ -22,7 +22,7 @@ namespace MCWrapper.RPC.Ledger.Clients
     public class MultiChainRpcOffChainClient : MultiChainRpcClient, IMultiChainRpcOffChain
     {
         /// <summary>
-        /// Create a OffChain RPC client
+        /// Create a new MultiChainRpcOffChainClient instance
         /// </summary>
         /// <param name="httpClient"></param>
         /// <param name="options"></param>
