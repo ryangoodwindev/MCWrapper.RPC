@@ -1,6 +1,4 @@
-﻿using System;
-using MCWrapper.Ledger.Entities.Extensions;
-using MCWrapper.RPC.Extensions;
+﻿using MCWrapper.Ledger.Entities.Extensions;
 
 namespace MCWrapper.RPC.Options
 {
@@ -85,11 +83,6 @@ namespace MCWrapper.RPC.Options
         /// </para>
         /// </summary>
         public string ChainAdminAddress { get; set; } = string.Empty;
-
-        internal bool HasNoConnectionValues()
-        {
-            throw new NotImplementedException();
-        }
 
         /// <summary>
         /// IPv4 or FQDN of where the MultiChain network is hosted and/or accessible
