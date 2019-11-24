@@ -8,7 +8,7 @@ namespace MCWrapper.RPC.Connection
 {
     /// <summary>
     /// Offers methods to construct MultiChain blockchain Service URL and AuthenticationHeaderValue
-    /// </summary>
+    /// </summary> 
     public sealed class ConnectionHelper
     {
         /// <summary>
