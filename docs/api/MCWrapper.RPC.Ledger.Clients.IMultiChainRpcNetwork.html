@@ -1,0 +1,1013 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Interface IMultiChainRpcNetwork
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Interface IMultiChainRpcNetwork
+   ">
+    <meta name="generator" content="docfx 2.47.0.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="MCWrapper.RPC.Ledger.Clients.IMultiChainRpcNetwork">
+  
+  
+  <h1 id="MCWrapper_RPC_Ledger_Clients_IMultiChainRpcNetwork" data-uid="MCWrapper.RPC.Ledger.Clients.IMultiChainRpcNetwork" class="text-break">Interface IMultiChainRpcNetwork
+  </h1>
+  <div class="markdown level0 summary"><p>MutliChain Core methods established by the IMultiChainRpcNetwork contract</p>
+<p>addnode, getaddednodeinfo, getchunkqueueinfo, getchunkqueuetotals,
+getconnectioncount, getnettotals, getnetworkinfo, getpeerinfo, ping</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="MCWrapper.RPC.Ledger.Clients.IMultiChainRpc.html#MCWrapper_RPC_Ledger_Clients_IMultiChainRpc_HttpClient">IMultiChainRpc.HttpClient</a>
+    </div>
+    <div>
+      <a class="xref" href="MCWrapper.RPC.Ledger.Clients.IMultiChainRpc.html#MCWrapper_RPC_Ledger_Clients_IMultiChainRpc_RpcOptions">IMultiChainRpc.RpcOptions</a>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="MCWrapper.RPC.Ledger.Clients.html">MCWrapper.RPC.Ledger.Clients</a></h6>
+  <h6><strong>Assembly</strong>: MCWrapper.RPC.dll</h6>
+  <h5 id="MCWrapper_RPC_Ledger_Clients_IMultiChainRpcNetwork_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public interface IMultiChainRpcNetwork : IMultiChainRpc</code></pre>
+  </div>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ryangoodwindev/MCWrapper.RPC/new/master/apiSpec/new?filename=MCWrapper_RPC_Ledger_Clients_IMultiChainRpcNetwork_AddNodeAsync_System_String_System_String_.md&amp;value=---%0Auid%3A%20MCWrapper.RPC.Ledger.Clients.IMultiChainRpcNetwork.AddNodeAsync(System.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ryangoodwindev/MCWrapper.RPC/blob/master/MCWrapper.RPC/Ledger/Contracts/IMultiChainRpcNetwork.cs/#L28">View Source</a>
+  </span>
+  <a id="MCWrapper_RPC_Ledger_Clients_IMultiChainRpcNetwork_AddNodeAsync_" data-uid="MCWrapper.RPC.Ledger.Clients.IMultiChainRpcNetwork.AddNodeAsync*"></a>
+  <h4 id="MCWrapper_RPC_Ledger_Clients_IMultiChainRpcNetwork_AddNodeAsync_System_String_System_String_" data-uid="MCWrapper.RPC.Ledger.Clients.IMultiChainRpcNetwork.AddNodeAsync(System.String,System.String)">AddNodeAsync(String, String)</h4>
+  <div class="markdown level1 summary"><p>Attempts add or remove a node from the addnode list.</p>
+<p>Or try a connection to a node once.</p>
+<p>Blockchain name is inferred from BlockchainRpcOptions properties.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;RpcResponse&lt;object&gt;&gt; AddNodeAsync(string node, string action)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">node</span></td>
+        <td><p>The node (see getpeerinfo for nodes)</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">action</span></td>
+        <td><p>'add' to add a node to the list, 'remove' to remove a node from the list, 'onetry' to try a connection to the node once</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span>&lt;<a class="xref" href="MCWrapper.RPC.Connection.RpcResponse-1.html">RpcResponse</a>&lt;<span class="xref">System.Object</span>&gt;&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ryangoodwindev/MCWrapper.RPC/new/master/apiSpec/new?filename=MCWrapper_RPC_Ledger_Clients_IMultiChainRpcNetwork_AddNodeAsync_System_String_System_String_System_String_System_String_.md&amp;value=---%0Auid%3A%20MCWrapper.RPC.Ledger.Clients.IMultiChainRpcNetwork.AddNodeAsync(System.String%2CSystem.String%2CSystem.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ryangoodwindev/MCWrapper.RPC/blob/master/MCWrapper.RPC/Ledger/Contracts/IMultiChainRpcNetwork.cs/#L42">View Source</a>
+  </span>
+  <a id="MCWrapper_RPC_Ledger_Clients_IMultiChainRpcNetwork_AddNodeAsync_" data-uid="MCWrapper.RPC.Ledger.Clients.IMultiChainRpcNetwork.AddNodeAsync*"></a>
+  <h4 id="MCWrapper_RPC_Ledger_Clients_IMultiChainRpcNetwork_AddNodeAsync_System_String_System_String_System_String_System_String_" data-uid="MCWrapper.RPC.Ledger.Clients.IMultiChainRpcNetwork.AddNodeAsync(System.String,System.String,System.String,System.String)">AddNodeAsync(String, String, String, String)</h4>
+  <div class="markdown level1 summary"><p>Attempts add or remove a node from the addnode list.</p>
+<p>Or try a connection to a node once.</p>
+<p>Blockchain name is explicitly passed as parameter.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;RpcResponse&lt;object&gt;&gt; AddNodeAsync(string blockchainName, string id, string node, string action)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">blockchainName</span></td>
+        <td><p>Name of target blockchain</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">id</span></td>
+        <td><p>String value to identify this transaction</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">node</span></td>
+        <td><p>The node (see getpeerinfo for nodes)</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">action</span></td>
+        <td><p>'add' to add a node to the list, 'remove' to remove a node from the list, 'onetry' to try a connection to the node once</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span>&lt;<a class="xref" href="MCWrapper.RPC.Connection.RpcResponse-1.html">RpcResponse</a>&lt;<span class="xref">System.Object</span>&gt;&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ryangoodwindev/MCWrapper.RPC/new/master/apiSpec/new?filename=MCWrapper_RPC_Ledger_Clients_IMultiChainRpcNetwork_GetAddedNodeInfoAsync_System_Boolean_System_String_.md&amp;value=---%0Auid%3A%20MCWrapper.RPC.Ledger.Clients.IMultiChainRpcNetwork.GetAddedNodeInfoAsync(System.Boolean%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ryangoodwindev/MCWrapper.RPC/blob/master/MCWrapper.RPC/Ledger/Contracts/IMultiChainRpcNetwork.cs/#L55">View Source</a>
+  </span>
+  <a id="MCWrapper_RPC_Ledger_Clients_IMultiChainRpcNetwork_GetAddedNodeInfoAsync_" data-uid="MCWrapper.RPC.Ledger.Clients.IMultiChainRpcNetwork.GetAddedNodeInfoAsync*"></a>
+  <h4 id="MCWrapper_RPC_Ledger_Clients_IMultiChainRpcNetwork_GetAddedNodeInfoAsync_System_Boolean_System_String_" data-uid="MCWrapper.RPC.Ledger.Clients.IMultiChainRpcNetwork.GetAddedNodeInfoAsync(System.Boolean,System.String)">GetAddedNodeInfoAsync(Boolean, String)</h4>
+  <div class="markdown level1 summary"><p>Returns information about the given added node, or all added nodes</p>
+<p>(note that onetry addnodes are not listed here)</p>
+<p>If dns is false, only a list of added nodes will be provided, otherwise connected information will also be available.</p>
+<p>Blockchain name is inferred from BlockchainRpcOptions properties.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;RpcResponse&lt;GetAddNodeInfoResult[]&gt;&gt; GetAddedNodeInfoAsync(bool dns, string node)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">dns</span></td>
+        <td><p>If false, only a list of added nodes will be provided, otherwise connected information will also be available</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">node</span></td>
+        <td><p>If provided, return information about this specific node,otherwise all nodes are returned</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span>&lt;<a class="xref" href="MCWrapper.RPC.Connection.RpcResponse-1.html">RpcResponse</a>&lt;<span class="xref">MCWrapper.Data.Models.Network.GetAddNodeInfoResult</span>[]&gt;&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ryangoodwindev/MCWrapper.RPC/new/master/apiSpec/new?filename=MCWrapper_RPC_Ledger_Clients_IMultiChainRpcNetwork_GetAddedNodeInfoAsync_System_String_System_String_System_Boolean_System_String_.md&amp;value=---%0Auid%3A%20MCWrapper.RPC.Ledger.Clients.IMultiChainRpcNetwork.GetAddedNodeInfoAsync(System.String%2CSystem.String%2CSystem.Boolean%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ryangoodwindev/MCWrapper.RPC/blob/master/MCWrapper.RPC/Ledger/Contracts/IMultiChainRpcNetwork.cs/#L70">View Source</a>
+  </span>
+  <a id="MCWrapper_RPC_Ledger_Clients_IMultiChainRpcNetwork_GetAddedNodeInfoAsync_" data-uid="MCWrapper.RPC.Ledger.Clients.IMultiChainRpcNetwork.GetAddedNodeInfoAsync*"></a>
+  <h4 id="MCWrapper_RPC_Ledger_Clients_IMultiChainRpcNetwork_GetAddedNodeInfoAsync_System_String_System_String_System_Boolean_System_String_" data-uid="MCWrapper.RPC.Ledger.Clients.IMultiChainRpcNetwork.GetAddedNodeInfoAsync(System.String,System.String,System.Boolean,System.String)">GetAddedNodeInfoAsync(String, String, Boolean, String)</h4>
+  <div class="markdown level1 summary"><p>Returns information about the given added node, or all added nodes</p>
+<p>(note that onetry addnodes are not listed here)</p>
+<p>If dns is false, only a list of added nodes will be provided, otherwise connected information will also be available.</p>
+<p>Blockchain name is explicitly passed as parameter.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;RpcResponse&lt;GetAddNodeInfoResult[]&gt;&gt; GetAddedNodeInfoAsync(string blockchainName, string id, bool dns, string node)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">blockchainName</span></td>
+        <td><p>Name of target blockchain</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">id</span></td>
+        <td><p>String value to identify this transaction</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">dns</span></td>
+        <td><p>If false, only a list of added nodes will be provided, otherwise connected information will also be available</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">node</span></td>
+        <td><p>If provided, return information about this specific node,otherwise all nodes are returned</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span>&lt;<a class="xref" href="MCWrapper.RPC.Connection.RpcResponse-1.html">RpcResponse</a>&lt;<span class="xref">MCWrapper.Data.Models.Network.GetAddNodeInfoResult</span>[]&gt;&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ryangoodwindev/MCWrapper.RPC/new/master/apiSpec/new?filename=MCWrapper_RPC_Ledger_Clients_IMultiChainRpcNetwork_GetChunkQueueInfoAsync.md&amp;value=---%0Auid%3A%20MCWrapper.RPC.Ledger.Clients.IMultiChainRpcNetwork.GetChunkQueueInfoAsync%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ryangoodwindev/MCWrapper.RPC/blob/master/MCWrapper.RPC/Ledger/Contracts/IMultiChainRpcNetwork.cs/#L79">View Source</a>
+  </span>
+  <a id="MCWrapper_RPC_Ledger_Clients_IMultiChainRpcNetwork_GetChunkQueueInfoAsync_" data-uid="MCWrapper.RPC.Ledger.Clients.IMultiChainRpcNetwork.GetChunkQueueInfoAsync*"></a>
+  <h4 id="MCWrapper_RPC_Ledger_Clients_IMultiChainRpcNetwork_GetChunkQueueInfoAsync" data-uid="MCWrapper.RPC.Ledger.Clients.IMultiChainRpcNetwork.GetChunkQueueInfoAsync">GetChunkQueueInfoAsync()</h4>
+  <div class="markdown level1 summary"><p>Returns data about each current chunk queue status.</p>
+<p>Blockchain name is inferred from BlockchainRpcOptions properties.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;RpcResponse&lt;object&gt;&gt; GetChunkQueueInfoAsync()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span>&lt;<a class="xref" href="MCWrapper.RPC.Connection.RpcResponse-1.html">RpcResponse</a>&lt;<span class="xref">System.Object</span>&gt;&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ryangoodwindev/MCWrapper.RPC/new/master/apiSpec/new?filename=MCWrapper_RPC_Ledger_Clients_IMultiChainRpcNetwork_GetChunkQueueInfoAsync_System_String_System_String_.md&amp;value=---%0Auid%3A%20MCWrapper.RPC.Ledger.Clients.IMultiChainRpcNetwork.GetChunkQueueInfoAsync(System.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ryangoodwindev/MCWrapper.RPC/blob/master/MCWrapper.RPC/Ledger/Contracts/IMultiChainRpcNetwork.cs/#L90">View Source</a>
+  </span>
+  <a id="MCWrapper_RPC_Ledger_Clients_IMultiChainRpcNetwork_GetChunkQueueInfoAsync_" data-uid="MCWrapper.RPC.Ledger.Clients.IMultiChainRpcNetwork.GetChunkQueueInfoAsync*"></a>
+  <h4 id="MCWrapper_RPC_Ledger_Clients_IMultiChainRpcNetwork_GetChunkQueueInfoAsync_System_String_System_String_" data-uid="MCWrapper.RPC.Ledger.Clients.IMultiChainRpcNetwork.GetChunkQueueInfoAsync(System.String,System.String)">GetChunkQueueInfoAsync(String, String)</h4>
+  <div class="markdown level1 summary"><p>Returns data about each current chunk queue status.</p>
+<p>Blockchain name is explicitly passed as parameter.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;RpcResponse&lt;object&gt;&gt; GetChunkQueueInfoAsync(string blockchainName, string id)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">blockchainName</span></td>
+        <td><p>Name of target blockchain</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">id</span></td>
+        <td><p>String value to identify this transaction</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span>&lt;<a class="xref" href="MCWrapper.RPC.Connection.RpcResponse-1.html">RpcResponse</a>&lt;<span class="xref">System.Object</span>&gt;&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ryangoodwindev/MCWrapper.RPC/new/master/apiSpec/new?filename=MCWrapper_RPC_Ledger_Clients_IMultiChainRpcNetwork_GetChunkQueueTotalsAsync.md&amp;value=---%0Auid%3A%20MCWrapper.RPC.Ledger.Clients.IMultiChainRpcNetwork.GetChunkQueueTotalsAsync%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ryangoodwindev/MCWrapper.RPC/blob/master/MCWrapper.RPC/Ledger/Contracts/IMultiChainRpcNetwork.cs/#L99">View Source</a>
+  </span>
+  <a id="MCWrapper_RPC_Ledger_Clients_IMultiChainRpcNetwork_GetChunkQueueTotalsAsync_" data-uid="MCWrapper.RPC.Ledger.Clients.IMultiChainRpcNetwork.GetChunkQueueTotalsAsync*"></a>
+  <h4 id="MCWrapper_RPC_Ledger_Clients_IMultiChainRpcNetwork_GetChunkQueueTotalsAsync" data-uid="MCWrapper.RPC.Ledger.Clients.IMultiChainRpcNetwork.GetChunkQueueTotalsAsync">GetChunkQueueTotalsAsync()</h4>
+  <div class="markdown level1 summary"><p>Returns chunks delivery statistics.</p>
+<p>Blockchain name is inferred from BlockchainRpcOptions properties.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;RpcResponse&lt;object&gt;&gt; GetChunkQueueTotalsAsync()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span>&lt;<a class="xref" href="MCWrapper.RPC.Connection.RpcResponse-1.html">RpcResponse</a>&lt;<span class="xref">System.Object</span>&gt;&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ryangoodwindev/MCWrapper.RPC/new/master/apiSpec/new?filename=MCWrapper_RPC_Ledger_Clients_IMultiChainRpcNetwork_GetChunkQueueTotalsAsync_System_String_System_String_.md&amp;value=---%0Auid%3A%20MCWrapper.RPC.Ledger.Clients.IMultiChainRpcNetwork.GetChunkQueueTotalsAsync(System.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ryangoodwindev/MCWrapper.RPC/blob/master/MCWrapper.RPC/Ledger/Contracts/IMultiChainRpcNetwork.cs/#L110">View Source</a>
+  </span>
+  <a id="MCWrapper_RPC_Ledger_Clients_IMultiChainRpcNetwork_GetChunkQueueTotalsAsync_" data-uid="MCWrapper.RPC.Ledger.Clients.IMultiChainRpcNetwork.GetChunkQueueTotalsAsync*"></a>
+  <h4 id="MCWrapper_RPC_Ledger_Clients_IMultiChainRpcNetwork_GetChunkQueueTotalsAsync_System_String_System_String_" data-uid="MCWrapper.RPC.Ledger.Clients.IMultiChainRpcNetwork.GetChunkQueueTotalsAsync(System.String,System.String)">GetChunkQueueTotalsAsync(String, String)</h4>
+  <div class="markdown level1 summary"><p>Returns chunks delivery statistics.</p>
+<p>Blockchain name is explicitly passed as parameter.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;RpcResponse&lt;object&gt;&gt; GetChunkQueueTotalsAsync(string blockchainName, string id)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">blockchainName</span></td>
+        <td><p>Name of target blockchain</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">id</span></td>
+        <td><p>String value to identify this transaction</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span>&lt;<a class="xref" href="MCWrapper.RPC.Connection.RpcResponse-1.html">RpcResponse</a>&lt;<span class="xref">System.Object</span>&gt;&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ryangoodwindev/MCWrapper.RPC/new/master/apiSpec/new?filename=MCWrapper_RPC_Ledger_Clients_IMultiChainRpcNetwork_GetConnectionCountAsync.md&amp;value=---%0Auid%3A%20MCWrapper.RPC.Ledger.Clients.IMultiChainRpcNetwork.GetConnectionCountAsync%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ryangoodwindev/MCWrapper.RPC/blob/master/MCWrapper.RPC/Ledger/Contracts/IMultiChainRpcNetwork.cs/#L119">View Source</a>
+  </span>
+  <a id="MCWrapper_RPC_Ledger_Clients_IMultiChainRpcNetwork_GetConnectionCountAsync_" data-uid="MCWrapper.RPC.Ledger.Clients.IMultiChainRpcNetwork.GetConnectionCountAsync*"></a>
+  <h4 id="MCWrapper_RPC_Ledger_Clients_IMultiChainRpcNetwork_GetConnectionCountAsync" data-uid="MCWrapper.RPC.Ledger.Clients.IMultiChainRpcNetwork.GetConnectionCountAsync">GetConnectionCountAsync()</h4>
+  <div class="markdown level1 summary"><p>Returns the number of connections to other nodes.</p>
+<p>Blockchain name is inferred from BlockchainRpcOptions properties.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;RpcResponse&lt;object&gt;&gt; GetConnectionCountAsync()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span>&lt;<a class="xref" href="MCWrapper.RPC.Connection.RpcResponse-1.html">RpcResponse</a>&lt;<span class="xref">System.Object</span>&gt;&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ryangoodwindev/MCWrapper.RPC/new/master/apiSpec/new?filename=MCWrapper_RPC_Ledger_Clients_IMultiChainRpcNetwork_GetConnectionCountAsync_System_String_System_String_.md&amp;value=---%0Auid%3A%20MCWrapper.RPC.Ledger.Clients.IMultiChainRpcNetwork.GetConnectionCountAsync(System.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ryangoodwindev/MCWrapper.RPC/blob/master/MCWrapper.RPC/Ledger/Contracts/IMultiChainRpcNetwork.cs/#L130">View Source</a>
+  </span>
+  <a id="MCWrapper_RPC_Ledger_Clients_IMultiChainRpcNetwork_GetConnectionCountAsync_" data-uid="MCWrapper.RPC.Ledger.Clients.IMultiChainRpcNetwork.GetConnectionCountAsync*"></a>
+  <h4 id="MCWrapper_RPC_Ledger_Clients_IMultiChainRpcNetwork_GetConnectionCountAsync_System_String_System_String_" data-uid="MCWrapper.RPC.Ledger.Clients.IMultiChainRpcNetwork.GetConnectionCountAsync(System.String,System.String)">GetConnectionCountAsync(String, String)</h4>
+  <div class="markdown level1 summary"><p>Returns the number of connections to other nodes.</p>
+<p>Blockchain name is explicitly passed as parameter.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;RpcResponse&lt;object&gt;&gt; GetConnectionCountAsync(string blockchainName, string id)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">blockchainName</span></td>
+        <td><p>Name of target blockchain</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">id</span></td>
+        <td><p>String value to identify this transaction</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span>&lt;<a class="xref" href="MCWrapper.RPC.Connection.RpcResponse-1.html">RpcResponse</a>&lt;<span class="xref">System.Object</span>&gt;&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ryangoodwindev/MCWrapper.RPC/new/master/apiSpec/new?filename=MCWrapper_RPC_Ledger_Clients_IMultiChainRpcNetwork_GetNetTotalsAsync.md&amp;value=---%0Auid%3A%20MCWrapper.RPC.Ledger.Clients.IMultiChainRpcNetwork.GetNetTotalsAsync%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ryangoodwindev/MCWrapper.RPC/blob/master/MCWrapper.RPC/Ledger/Contracts/IMultiChainRpcNetwork.cs/#L139">View Source</a>
+  </span>
+  <a id="MCWrapper_RPC_Ledger_Clients_IMultiChainRpcNetwork_GetNetTotalsAsync_" data-uid="MCWrapper.RPC.Ledger.Clients.IMultiChainRpcNetwork.GetNetTotalsAsync*"></a>
+  <h4 id="MCWrapper_RPC_Ledger_Clients_IMultiChainRpcNetwork_GetNetTotalsAsync" data-uid="MCWrapper.RPC.Ledger.Clients.IMultiChainRpcNetwork.GetNetTotalsAsync">GetNetTotalsAsync()</h4>
+  <div class="markdown level1 summary"><p>Returns information about network traffic, including bytes in, bytes out, and current time.</p>
+<p>Blockchain name is inferred from BlockchainRpcOptions properties.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;RpcResponse&lt;object&gt;&gt; GetNetTotalsAsync()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span>&lt;<a class="xref" href="MCWrapper.RPC.Connection.RpcResponse-1.html">RpcResponse</a>&lt;<span class="xref">System.Object</span>&gt;&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ryangoodwindev/MCWrapper.RPC/new/master/apiSpec/new?filename=MCWrapper_RPC_Ledger_Clients_IMultiChainRpcNetwork_GetNetTotalsAsync_System_String_System_String_.md&amp;value=---%0Auid%3A%20MCWrapper.RPC.Ledger.Clients.IMultiChainRpcNetwork.GetNetTotalsAsync(System.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ryangoodwindev/MCWrapper.RPC/blob/master/MCWrapper.RPC/Ledger/Contracts/IMultiChainRpcNetwork.cs/#L150">View Source</a>
+  </span>
+  <a id="MCWrapper_RPC_Ledger_Clients_IMultiChainRpcNetwork_GetNetTotalsAsync_" data-uid="MCWrapper.RPC.Ledger.Clients.IMultiChainRpcNetwork.GetNetTotalsAsync*"></a>
+  <h4 id="MCWrapper_RPC_Ledger_Clients_IMultiChainRpcNetwork_GetNetTotalsAsync_System_String_System_String_" data-uid="MCWrapper.RPC.Ledger.Clients.IMultiChainRpcNetwork.GetNetTotalsAsync(System.String,System.String)">GetNetTotalsAsync(String, String)</h4>
+  <div class="markdown level1 summary"><p>Returns information about network traffic, including bytes in, bytes out, and current time.</p>
+<p>Blockchain name is explicitly passed as parameter.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;RpcResponse&lt;object&gt;&gt; GetNetTotalsAsync(string blockchainName, string id)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">blockchainName</span></td>
+        <td><p>Name of target blockchain</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">id</span></td>
+        <td><p>String value to identify this transaction</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span>&lt;<a class="xref" href="MCWrapper.RPC.Connection.RpcResponse-1.html">RpcResponse</a>&lt;<span class="xref">System.Object</span>&gt;&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ryangoodwindev/MCWrapper.RPC/new/master/apiSpec/new?filename=MCWrapper_RPC_Ledger_Clients_IMultiChainRpcNetwork_GetNetworkInfoAsync.md&amp;value=---%0Auid%3A%20MCWrapper.RPC.Ledger.Clients.IMultiChainRpcNetwork.GetNetworkInfoAsync%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ryangoodwindev/MCWrapper.RPC/blob/master/MCWrapper.RPC/Ledger/Contracts/IMultiChainRpcNetwork.cs/#L159">View Source</a>
+  </span>
+  <a id="MCWrapper_RPC_Ledger_Clients_IMultiChainRpcNetwork_GetNetworkInfoAsync_" data-uid="MCWrapper.RPC.Ledger.Clients.IMultiChainRpcNetwork.GetNetworkInfoAsync*"></a>
+  <h4 id="MCWrapper_RPC_Ledger_Clients_IMultiChainRpcNetwork_GetNetworkInfoAsync" data-uid="MCWrapper.RPC.Ledger.Clients.IMultiChainRpcNetwork.GetNetworkInfoAsync">GetNetworkInfoAsync()</h4>
+  <div class="markdown level1 summary"><p>Returns an object containing various state info regarding P2P networking.</p>
+<p>Blockchain name is inferred from BlockchainRpcOptions properties.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;RpcResponse&lt;GetNetworkInfoResult&gt;&gt; GetNetworkInfoAsync()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span>&lt;<a class="xref" href="MCWrapper.RPC.Connection.RpcResponse-1.html">RpcResponse</a>&lt;<span class="xref">MCWrapper.Data.Models.Network.GetNetworkInfoResult</span>&gt;&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ryangoodwindev/MCWrapper.RPC/new/master/apiSpec/new?filename=MCWrapper_RPC_Ledger_Clients_IMultiChainRpcNetwork_GetNetworkInfoAsync_System_String_System_String_.md&amp;value=---%0Auid%3A%20MCWrapper.RPC.Ledger.Clients.IMultiChainRpcNetwork.GetNetworkInfoAsync(System.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ryangoodwindev/MCWrapper.RPC/blob/master/MCWrapper.RPC/Ledger/Contracts/IMultiChainRpcNetwork.cs/#L170">View Source</a>
+  </span>
+  <a id="MCWrapper_RPC_Ledger_Clients_IMultiChainRpcNetwork_GetNetworkInfoAsync_" data-uid="MCWrapper.RPC.Ledger.Clients.IMultiChainRpcNetwork.GetNetworkInfoAsync*"></a>
+  <h4 id="MCWrapper_RPC_Ledger_Clients_IMultiChainRpcNetwork_GetNetworkInfoAsync_System_String_System_String_" data-uid="MCWrapper.RPC.Ledger.Clients.IMultiChainRpcNetwork.GetNetworkInfoAsync(System.String,System.String)">GetNetworkInfoAsync(String, String)</h4>
+  <div class="markdown level1 summary"><p>Returns an object containing various state info regarding P2P networking.</p>
+<p>Blockchain name is explicitly passed as parameter.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;RpcResponse&lt;GetNetworkInfoResult&gt;&gt; GetNetworkInfoAsync(string blockchainName, string id)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">blockchainName</span></td>
+        <td><p>Name of target blockchain</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">id</span></td>
+        <td><p>String value to identify this transaction</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span>&lt;<a class="xref" href="MCWrapper.RPC.Connection.RpcResponse-1.html">RpcResponse</a>&lt;<span class="xref">MCWrapper.Data.Models.Network.GetNetworkInfoResult</span>&gt;&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ryangoodwindev/MCWrapper.RPC/new/master/apiSpec/new?filename=MCWrapper_RPC_Ledger_Clients_IMultiChainRpcNetwork_GetPeerInfoAsync.md&amp;value=---%0Auid%3A%20MCWrapper.RPC.Ledger.Clients.IMultiChainRpcNetwork.GetPeerInfoAsync%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ryangoodwindev/MCWrapper.RPC/blob/master/MCWrapper.RPC/Ledger/Contracts/IMultiChainRpcNetwork.cs/#L179">View Source</a>
+  </span>
+  <a id="MCWrapper_RPC_Ledger_Clients_IMultiChainRpcNetwork_GetPeerInfoAsync_" data-uid="MCWrapper.RPC.Ledger.Clients.IMultiChainRpcNetwork.GetPeerInfoAsync*"></a>
+  <h4 id="MCWrapper_RPC_Ledger_Clients_IMultiChainRpcNetwork_GetPeerInfoAsync" data-uid="MCWrapper.RPC.Ledger.Clients.IMultiChainRpcNetwork.GetPeerInfoAsync">GetPeerInfoAsync()</h4>
+  <div class="markdown level1 summary"><p>Returns data about each connected network node as a json array of objects.</p>
+<p>Blockchain name is inferred from BlockchainRpcOptions properties.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;RpcResponse&lt;object&gt;&gt; GetPeerInfoAsync()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span>&lt;<a class="xref" href="MCWrapper.RPC.Connection.RpcResponse-1.html">RpcResponse</a>&lt;<span class="xref">System.Object</span>&gt;&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ryangoodwindev/MCWrapper.RPC/new/master/apiSpec/new?filename=MCWrapper_RPC_Ledger_Clients_IMultiChainRpcNetwork_GetPeerInfoAsync_System_String_System_String_.md&amp;value=---%0Auid%3A%20MCWrapper.RPC.Ledger.Clients.IMultiChainRpcNetwork.GetPeerInfoAsync(System.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ryangoodwindev/MCWrapper.RPC/blob/master/MCWrapper.RPC/Ledger/Contracts/IMultiChainRpcNetwork.cs/#L190">View Source</a>
+  </span>
+  <a id="MCWrapper_RPC_Ledger_Clients_IMultiChainRpcNetwork_GetPeerInfoAsync_" data-uid="MCWrapper.RPC.Ledger.Clients.IMultiChainRpcNetwork.GetPeerInfoAsync*"></a>
+  <h4 id="MCWrapper_RPC_Ledger_Clients_IMultiChainRpcNetwork_GetPeerInfoAsync_System_String_System_String_" data-uid="MCWrapper.RPC.Ledger.Clients.IMultiChainRpcNetwork.GetPeerInfoAsync(System.String,System.String)">GetPeerInfoAsync(String, String)</h4>
+  <div class="markdown level1 summary"><p>Returns data about each connected network node as a json array of objects.</p>
+<p>Blockchain name is explicitly passed as parameter.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;RpcResponse&lt;object&gt;&gt; GetPeerInfoAsync(string blockchainName, string id)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">blockchainName</span></td>
+        <td><p>Name of target blockchain</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">id</span></td>
+        <td><p>String value to identify this transaction</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span>&lt;<a class="xref" href="MCWrapper.RPC.Connection.RpcResponse-1.html">RpcResponse</a>&lt;<span class="xref">System.Object</span>&gt;&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ryangoodwindev/MCWrapper.RPC/new/master/apiSpec/new?filename=MCWrapper_RPC_Ledger_Clients_IMultiChainRpcNetwork_PingAsync.md&amp;value=---%0Auid%3A%20MCWrapper.RPC.Ledger.Clients.IMultiChainRpcNetwork.PingAsync%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ryangoodwindev/MCWrapper.RPC/blob/master/MCWrapper.RPC/Ledger/Contracts/IMultiChainRpcNetwork.cs/#L201">View Source</a>
+  </span>
+  <a id="MCWrapper_RPC_Ledger_Clients_IMultiChainRpcNetwork_PingAsync_" data-uid="MCWrapper.RPC.Ledger.Clients.IMultiChainRpcNetwork.PingAsync*"></a>
+  <h4 id="MCWrapper_RPC_Ledger_Clients_IMultiChainRpcNetwork_PingAsync" data-uid="MCWrapper.RPC.Ledger.Clients.IMultiChainRpcNetwork.PingAsync">PingAsync()</h4>
+  <div class="markdown level1 summary"><p>Requests that a ping be sent to all other nodes, to measure ping time.</p>
+<p>Results provided in getpeerinfo, pingtime and pingwait fields are decimal seconds.</p>
+<p>Ping command is handled in queue with all other commands, so it measures processing backlog, not just network ping.</p>
+<p>Blockchain name is inferred from BlockchainRpcOptions properties.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;RpcResponse&lt;object&gt;&gt; PingAsync()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span>&lt;<a class="xref" href="MCWrapper.RPC.Connection.RpcResponse-1.html">RpcResponse</a>&lt;<span class="xref">System.Object</span>&gt;&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ryangoodwindev/MCWrapper.RPC/new/master/apiSpec/new?filename=MCWrapper_RPC_Ledger_Clients_IMultiChainRpcNetwork_PingAsync_System_String_System_String_.md&amp;value=---%0Auid%3A%20MCWrapper.RPC.Ledger.Clients.IMultiChainRpcNetwork.PingAsync(System.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ryangoodwindev/MCWrapper.RPC/blob/master/MCWrapper.RPC/Ledger/Contracts/IMultiChainRpcNetwork.cs/#L214">View Source</a>
+  </span>
+  <a id="MCWrapper_RPC_Ledger_Clients_IMultiChainRpcNetwork_PingAsync_" data-uid="MCWrapper.RPC.Ledger.Clients.IMultiChainRpcNetwork.PingAsync*"></a>
+  <h4 id="MCWrapper_RPC_Ledger_Clients_IMultiChainRpcNetwork_PingAsync_System_String_System_String_" data-uid="MCWrapper.RPC.Ledger.Clients.IMultiChainRpcNetwork.PingAsync(System.String,System.String)">PingAsync(String, String)</h4>
+  <div class="markdown level1 summary"><p>Requests that a ping be sent to all other nodes, to measure ping time.</p>
+<p>Results provided in getpeerinfo, pingtime and pingwait fields are decimal seconds.</p>
+<p>Ping command is handled in queue with all other commands, so it measures processing backlog, not just network ping.</p>
+<p>Blockchain name is explicitly passed as parameter.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;RpcResponse&lt;object&gt;&gt; PingAsync(string blockchainName, string id)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">blockchainName</span></td>
+        <td><p>Name of target blockchain</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">id</span></td>
+        <td><p>String value to identify this transaction</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span>&lt;<a class="xref" href="MCWrapper.RPC.Connection.RpcResponse-1.html">RpcResponse</a>&lt;<span class="xref">System.Object</span>&gt;&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/ryangoodwindev/MCWrapper.RPC/new/master/apiSpec/new?filename=MCWrapper_RPC_Ledger_Clients_IMultiChainRpcNetwork.md&amp;value=---%0Auid%3A%20MCWrapper.RPC.Ledger.Clients.IMultiChainRpcNetwork%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/ryangoodwindev/MCWrapper.RPC/blob/master/MCWrapper.RPC/Ledger/Contracts/IMultiChainRpcNetwork.cs/#L16" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

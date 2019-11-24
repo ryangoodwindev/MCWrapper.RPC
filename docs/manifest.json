@@ -1,0 +1,572 @@
+{
+  "homepages": [],
+  "source_base_path": "C:/Users/rgood/source/repos/MCWrapper.RPC/MCWrapper.RPC",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MCWrapper.RPC.Connection.ConnectionHelper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MCWrapper.RPC.Connection.ConnectionHelper.html",
+          "hash": "GC8ln02bhN8cChmbVdpOSg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MCWrapper.RPC.Connection.MultiChainRpcClient.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MCWrapper.RPC.Connection.MultiChainRpcClient.html",
+          "hash": "xGS6UZ02cWYGvcwHLhdX6Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MCWrapper.RPC.Connection.Request.RpcRequest.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MCWrapper.RPC.Connection.Request.RpcRequest.html",
+          "hash": "fwvc5TJusgbINE7t6uSPaA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MCWrapper.RPC.Connection.Request.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MCWrapper.RPC.Connection.Request.html",
+          "hash": "Nxrmt2UnwZqrbRLIo+YnZg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MCWrapper.RPC.Connection.RpcResponse-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MCWrapper.RPC.Connection.RpcResponse-1.html",
+          "hash": "UA3XJkj/Q54E3281ex5zMg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MCWrapper.RPC.Connection.ServiceError.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MCWrapper.RPC.Connection.ServiceError.html",
+          "hash": "SVeLBKTWgYUxFipBXT8p/g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MCWrapper.RPC.Connection.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MCWrapper.RPC.Connection.html",
+          "hash": "lIJVuBq7GgxYXUqfRraQOA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MCWrapper.RPC.Constants.RpcUrlComponent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MCWrapper.RPC.Constants.RpcUrlComponent.html",
+          "hash": "dLdkV4KqUrqtc8cKIDKfdg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MCWrapper.RPC.Constants.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MCWrapper.RPC.Constants.html",
+          "hash": "ECjx6PXZSDIVsA0Tr98g7A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MCWrapper.RPC.Extensions.MultiChainCoreRpcServices.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MCWrapper.RPC.Extensions.MultiChainCoreRpcServices.html",
+          "hash": "1h9OTmo9hDs2MCR9O5mTZw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MCWrapper.RPC.Extensions.ServiceRequestExtension.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MCWrapper.RPC.Extensions.ServiceRequestExtension.html",
+          "hash": "AcJdZ+rTWO8VN12PZ6OlRg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MCWrapper.RPC.Extensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MCWrapper.RPC.Extensions.html",
+          "hash": "rPflOKesfLjvBHxii/Okxg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MCWrapper.RPC.Ledger.Clients.IBlockchainRpcWalletExtension.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MCWrapper.RPC.Ledger.Clients.IBlockchainRpcWalletExtension.html",
+          "hash": "xL61uOZqGj+WsX9s4X+M8A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MCWrapper.RPC.Ledger.Clients.IMultiChainRpc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MCWrapper.RPC.Ledger.Clients.IMultiChainRpc.html",
+          "hash": "mPyOIxnOTwe0FUUrIsszKg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MCWrapper.RPC.Ledger.Clients.IMultiChainRpcClientFactory.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MCWrapper.RPC.Ledger.Clients.IMultiChainRpcClientFactory.html",
+          "hash": "WD0TBBLA0CaA3DImc1vFJg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MCWrapper.RPC.Ledger.Clients.IMultiChainRpcControl.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MCWrapper.RPC.Ledger.Clients.IMultiChainRpcControl.html",
+          "hash": "ugjwmF5p5RAh5RExwZIFDg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MCWrapper.RPC.Ledger.Clients.IMultiChainRpcGeneral.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MCWrapper.RPC.Ledger.Clients.IMultiChainRpcGeneral.html",
+          "hash": "mMNZX93d0U4M2efoITmq3A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MCWrapper.RPC.Ledger.Clients.IMultiChainRpcGenerate.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MCWrapper.RPC.Ledger.Clients.IMultiChainRpcGenerate.html",
+          "hash": "T9z5PFUJJRjHH1i2uptBLA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MCWrapper.RPC.Ledger.Clients.IMultiChainRpcMining.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MCWrapper.RPC.Ledger.Clients.IMultiChainRpcMining.html",
+          "hash": "cUPKkZbTCurWm1DlgP+jqw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MCWrapper.RPC.Ledger.Clients.IMultiChainRpcNetwork.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MCWrapper.RPC.Ledger.Clients.IMultiChainRpcNetwork.html",
+          "hash": "XaLbdIngFj4ySiNgy9B2Zg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MCWrapper.RPC.Ledger.Clients.IMultiChainRpcOffChain.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MCWrapper.RPC.Ledger.Clients.IMultiChainRpcOffChain.html",
+          "hash": "4UL3vmJJg9Z3w7BKxroWrQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MCWrapper.RPC.Ledger.Clients.IMultiChainRpcRaw.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MCWrapper.RPC.Ledger.Clients.IMultiChainRpcRaw.html",
+          "hash": "+1vvysWSjo9dbo6YPUTR/g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MCWrapper.RPC.Ledger.Clients.IMultiChainRpcUtility.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MCWrapper.RPC.Ledger.Clients.IMultiChainRpcUtility.html",
+          "hash": "S24h2fOdH4jxCJyutabccA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MCWrapper.RPC.Ledger.Clients.IMultiChainRpcWallet.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MCWrapper.RPC.Ledger.Clients.IMultiChainRpcWallet.html",
+          "hash": "uxnH1vXphD819GUlGu2ojA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MCWrapper.RPC.Ledger.Clients.MultiChainRpcClientFactory.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MCWrapper.RPC.Ledger.Clients.MultiChainRpcClientFactory.html",
+          "hash": "n2Zi9qXhoJpbxuIv9TnPIw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MCWrapper.RPC.Ledger.Clients.MultiChainRpcControlClient.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MCWrapper.RPC.Ledger.Clients.MultiChainRpcControlClient.html",
+          "hash": "LVnbewgyez2f45DBQ5hIQA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MCWrapper.RPC.Ledger.Clients.MultiChainRpcGeneralClient.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MCWrapper.RPC.Ledger.Clients.MultiChainRpcGeneralClient.html",
+          "hash": "pEStmu8pwDlj8xUhJRjz/w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MCWrapper.RPC.Ledger.Clients.MultiChainRpcGenerateClient.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MCWrapper.RPC.Ledger.Clients.MultiChainRpcGenerateClient.html",
+          "hash": "9GxAj+AhD8C82l7tedMsdg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MCWrapper.RPC.Ledger.Clients.MultiChainRpcMiningClient.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MCWrapper.RPC.Ledger.Clients.MultiChainRpcMiningClient.html",
+          "hash": "+3BOeFfcI3OVb/7CTDMlNw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MCWrapper.RPC.Ledger.Clients.MultiChainRpcNetworkClient.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MCWrapper.RPC.Ledger.Clients.MultiChainRpcNetworkClient.html",
+          "hash": "XDVKl+10pY51WP8VV2NZrQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MCWrapper.RPC.Ledger.Clients.MultiChainRpcOffChainClient.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MCWrapper.RPC.Ledger.Clients.MultiChainRpcOffChainClient.html",
+          "hash": "Vesi3ssFmuycHCviaAYXfQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MCWrapper.RPC.Ledger.Clients.MultiChainRpcRawClient.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MCWrapper.RPC.Ledger.Clients.MultiChainRpcRawClient.html",
+          "hash": "wzcUJNjhTl1Yo+KkOY2KYQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MCWrapper.RPC.Ledger.Clients.MultiChainRpcUtilityClient.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MCWrapper.RPC.Ledger.Clients.MultiChainRpcUtilityClient.html",
+          "hash": "0LhxXypt23vx1+/25ZpUXQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MCWrapper.RPC.Ledger.Clients.MultiChainRpcWalletClient.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MCWrapper.RPC.Ledger.Clients.MultiChainRpcWalletClient.html",
+          "hash": "BTXDBiGCvGxxq059/g3MNA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MCWrapper.RPC.Ledger.Clients.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MCWrapper.RPC.Ledger.Clients.html",
+          "hash": "89D5G8od7GwE8UNIkeU79g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MCWrapper.RPC.Options.RpcOptions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MCWrapper.RPC.Options.RpcOptions.html",
+          "hash": "YIR0p0ZsyEGzHLxy5gWGDQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MCWrapper.RPC.Options.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MCWrapper.RPC.Options.html",
+          "hash": "k9GoKqxMjvacPBfoeCc+Mw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "api/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "api/index.html",
+          "hash": "rLNmnmB6s2/ujbJIkc7w+g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "api/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/toc.html",
+          "hash": "kw/1NJRrjEts5hdcuRtqCg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/intro.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/intro.html",
+          "hash": "gpnZs7IXBiHiJ4139Bwrrw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "articles/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "articles/toc.html",
+          "hash": "gB8AESyvNru97tzIZofEEg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "index.md",
+      "output": {
+        ".html": {
+          "relative_path": "index.html",
+          "hash": "0zDnPitw8ndCnSe8envGJA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "toc.html",
+          "hash": "+rHUkRZHZRi5gd1aTU6lJA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    }
+  ],
+  "incremental_info": [
+    {
+      "status": {
+        "can_incremental": false,
+        "details": "Cannot build incrementally because last build info is missing.",
+        "incrementalPhase": "build",
+        "total_file_count": 0,
+        "skipped_file_count": 0,
+        "full_build_reason_code": "NoAvailableBuildCache"
+      },
+      "processors": {
+        "TocDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build",
+          "total_file_count": 0,
+          "skipped_file_count": 0
+        },
+        "ManagedReferenceDocumentProcessor": {
+          "can_incremental": false,
+          "incrementalPhase": "build",
+          "total_file_count": 37,
+          "skipped_file_count": 0
+        },
+        "ConceptualDocumentProcessor": {
+          "can_incremental": false,
+          "incrementalPhase": "build",
+          "total_file_count": 3,
+          "skipped_file_count": 0
+        }
+      }
+    },
+    {
+      "status": {
+        "can_incremental": false,
+        "details": "Cannot support incremental post processing, the reason is: last post processor info is null.",
+        "incrementalPhase": "postProcessing",
+        "total_file_count": 0,
+        "skipped_file_count": 0
+      },
+      "processors": {}
+    }
+  ],
+  "version_info": {},
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}

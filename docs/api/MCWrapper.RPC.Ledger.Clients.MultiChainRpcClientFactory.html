@@ -1,0 +1,576 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class MultiChainRpcClientFactory
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class MultiChainRpcClientFactory
+   ">
+    <meta name="generator" content="docfx 2.47.0.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="MCWrapper.RPC.Ledger.Clients.MultiChainRpcClientFactory">
+  
+  
+  <h1 id="MCWrapper_RPC_Ledger_Clients_MultiChainRpcClientFactory" data-uid="MCWrapper.RPC.Ledger.Clients.MultiChainRpcClientFactory" class="text-break">Class MultiChainRpcClientFactory
+  </h1>
+  <div class="markdown level0 summary"><p>MultiChainRpcClientFactory provides access to a collection of MultiChainRpcClients</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">MultiChainRpcClientFactory</span></div>
+  </div>
+  <div classs="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="MCWrapper.RPC.Ledger.Clients.IMultiChainRpcClientFactory.html">IMultiChainRpcClientFactory</a></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ToString()</span>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="MCWrapper.RPC.Ledger.Clients.html">MCWrapper.RPC.Ledger.Clients</a></h6>
+  <h6><strong>Assembly</strong>: MCWrapper.RPC.dll</h6>
+  <h5 id="MCWrapper_RPC_Ledger_Clients_MultiChainRpcClientFactory_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class MultiChainRpcClientFactory : IMultiChainRpcClientFactory</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ryangoodwindev/MCWrapper.RPC/new/master/apiSpec/new?filename=MCWrapper_RPC_Ledger_Clients_MultiChainRpcClientFactory__ctor_MCWrapper_RPC_Ledger_Clients_IMultiChainRpcGenerate_MCWrapper_RPC_Ledger_Clients_IMultiChainRpcOffChain_MCWrapper_RPC_Ledger_Clients_IMultiChainRpcControl_MCWrapper_RPC_Ledger_Clients_IMultiChainRpcGeneral_MCWrapper_RPC_Ledger_Clients_IMultiChainRpcNetwork_MCWrapper_RPC_Ledger_Clients_IMultiChainRpcUtility_MCWrapper_RPC_Ledger_Clients_IMultiChainRpcMining_MCWrapper_RPC_Ledger_Clients_IMultiChainRpcWallet_MCWrapper_RPC_Ledger_Clients_IMultiChainRpcRaw_.md&amp;value=---%0Auid%3A%20MCWrapper.RPC.Ledger.Clients.MultiChainRpcClientFactory.%23ctor(MCWrapper.RPC.Ledger.Clients.IMultiChainRpcGenerate%2CMCWrapper.RPC.Ledger.Clients.IMultiChainRpcOffChain%2CMCWrapper.RPC.Ledger.Clients.IMultiChainRpcControl%2CMCWrapper.RPC.Ledger.Clients.IMultiChainRpcGeneral%2CMCWrapper.RPC.Ledger.Clients.IMultiChainRpcNetwork%2CMCWrapper.RPC.Ledger.Clients.IMultiChainRpcUtility%2CMCWrapper.RPC.Ledger.Clients.IMultiChainRpcMining%2CMCWrapper.RPC.Ledger.Clients.IMultiChainRpcWallet%2CMCWrapper.RPC.Ledger.Clients.IMultiChainRpcRaw)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ryangoodwindev/MCWrapper.RPC/blob/master/MCWrapper.RPC/Ledger/Factory/MultiChainRpcClientFactory.cs/#L25">View Source</a>
+  </span>
+  <a id="MCWrapper_RPC_Ledger_Clients_MultiChainRpcClientFactory__ctor_" data-uid="MCWrapper.RPC.Ledger.Clients.MultiChainRpcClientFactory.#ctor*"></a>
+  <h4 id="MCWrapper_RPC_Ledger_Clients_MultiChainRpcClientFactory__ctor_MCWrapper_RPC_Ledger_Clients_IMultiChainRpcGenerate_MCWrapper_RPC_Ledger_Clients_IMultiChainRpcOffChain_MCWrapper_RPC_Ledger_Clients_IMultiChainRpcControl_MCWrapper_RPC_Ledger_Clients_IMultiChainRpcGeneral_MCWrapper_RPC_Ledger_Clients_IMultiChainRpcNetwork_MCWrapper_RPC_Ledger_Clients_IMultiChainRpcUtility_MCWrapper_RPC_Ledger_Clients_IMultiChainRpcMining_MCWrapper_RPC_Ledger_Clients_IMultiChainRpcWallet_MCWrapper_RPC_Ledger_Clients_IMultiChainRpcRaw_" data-uid="MCWrapper.RPC.Ledger.Clients.MultiChainRpcClientFactory.#ctor(MCWrapper.RPC.Ledger.Clients.IMultiChainRpcGenerate,MCWrapper.RPC.Ledger.Clients.IMultiChainRpcOffChain,MCWrapper.RPC.Ledger.Clients.IMultiChainRpcControl,MCWrapper.RPC.Ledger.Clients.IMultiChainRpcGeneral,MCWrapper.RPC.Ledger.Clients.IMultiChainRpcNetwork,MCWrapper.RPC.Ledger.Clients.IMultiChainRpcUtility,MCWrapper.RPC.Ledger.Clients.IMultiChainRpcMining,MCWrapper.RPC.Ledger.Clients.IMultiChainRpcWallet,MCWrapper.RPC.Ledger.Clients.IMultiChainRpcRaw)">MultiChainRpcClientFactory(IMultiChainRpcGenerate, IMultiChainRpcOffChain, IMultiChainRpcControl, IMultiChainRpcGeneral, IMultiChainRpcNetwork, IMultiChainRpcUtility, IMultiChainRpcMining, IMultiChainRpcWallet, IMultiChainRpcRaw)</h4>
+  <div class="markdown level1 summary"><p>MultiChainRpcClientFactory provides access to a collection of MultiChainRpcClients</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public MultiChainRpcClientFactory(IMultiChainRpcGenerate blockchainRpcGenerate, IMultiChainRpcOffChain blockchainRpcOffChain, IMultiChainRpcControl blockchainRpcControl, IMultiChainRpcGeneral blockchainRpcGeneral, IMultiChainRpcNetwork blockchainRpcNetwork, IMultiChainRpcUtility blockchainRpcUtility, IMultiChainRpcMining blockchainRpcMining, IMultiChainRpcWallet blockchainRpcWallet, IMultiChainRpcRaw blockchainRpcRaw)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="MCWrapper.RPC.Ledger.Clients.IMultiChainRpcGenerate.html">IMultiChainRpcGenerate</a></td>
+        <td><span class="parametername">blockchainRpcGenerate</span></td>
+        <td><p>Provides access to Generate (native currency or coins) MultChain Core methods</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="MCWrapper.RPC.Ledger.Clients.IMultiChainRpcOffChain.html">IMultiChainRpcOffChain</a></td>
+        <td><span class="parametername">blockchainRpcOffChain</span></td>
+        <td><p>Provides access to OffChain MultChain Core methods</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="MCWrapper.RPC.Ledger.Clients.IMultiChainRpcControl.html">IMultiChainRpcControl</a></td>
+        <td><span class="parametername">blockchainRpcControl</span></td>
+        <td><p>Provides access to Control MultChain Core methods</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="MCWrapper.RPC.Ledger.Clients.IMultiChainRpcGeneral.html">IMultiChainRpcGeneral</a></td>
+        <td><span class="parametername">blockchainRpcGeneral</span></td>
+        <td><p>Provides access to General MultChain Core methods</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="MCWrapper.RPC.Ledger.Clients.IMultiChainRpcNetwork.html">IMultiChainRpcNetwork</a></td>
+        <td><span class="parametername">blockchainRpcNetwork</span></td>
+        <td><p>Provides access to Network MultChain Core methods</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="MCWrapper.RPC.Ledger.Clients.IMultiChainRpcUtility.html">IMultiChainRpcUtility</a></td>
+        <td><span class="parametername">blockchainRpcUtility</span></td>
+        <td><p>Provides access to Utility MultChain Core methods</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="MCWrapper.RPC.Ledger.Clients.IMultiChainRpcMining.html">IMultiChainRpcMining</a></td>
+        <td><span class="parametername">blockchainRpcMining</span></td>
+        <td><p>Provides access to Mining MultChain Core methods</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="MCWrapper.RPC.Ledger.Clients.IMultiChainRpcWallet.html">IMultiChainRpcWallet</a></td>
+        <td><span class="parametername">blockchainRpcWallet</span></td>
+        <td><p>Provides access to Waller MultChain Core methods</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="MCWrapper.RPC.Ledger.Clients.IMultiChainRpcRaw.html">IMultiChainRpcRaw</a></td>
+        <td><span class="parametername">blockchainRpcRaw</span></td>
+        <td><p>Provides access to Raw MultChain Core methods</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ryangoodwindev/MCWrapper.RPC/new/master/apiSpec/new?filename=MCWrapper_RPC_Ledger_Clients_MultiChainRpcClientFactory_BlockchainRpcControlClient.md&amp;value=---%0Auid%3A%20MCWrapper.RPC.Ledger.Clients.MultiChainRpcClientFactory.BlockchainRpcControlClient%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ryangoodwindev/MCWrapper.RPC/blob/master/MCWrapper.RPC/Ledger/Factory/MultiChainRpcClientFactory.cs/#L88">View Source</a>
+  </span>
+  <a id="MCWrapper_RPC_Ledger_Clients_MultiChainRpcClientFactory_BlockchainRpcControlClient_" data-uid="MCWrapper.RPC.Ledger.Clients.MultiChainRpcClientFactory.BlockchainRpcControlClient*"></a>
+  <h4 id="MCWrapper_RPC_Ledger_Clients_MultiChainRpcClientFactory_BlockchainRpcControlClient" data-uid="MCWrapper.RPC.Ledger.Clients.MultiChainRpcClientFactory.BlockchainRpcControlClient">BlockchainRpcControlClient</h4>
+  <div class="markdown level1 summary"><p>Provides access to Control MultChain Core methods</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IMultiChainRpcControl BlockchainRpcControlClient { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="MCWrapper.RPC.Ledger.Clients.IMultiChainRpcControl.html">IMultiChainRpcControl</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ryangoodwindev/MCWrapper.RPC/new/master/apiSpec/new?filename=MCWrapper_RPC_Ledger_Clients_MultiChainRpcClientFactory_BlockchainRpcGeneralClient.md&amp;value=---%0Auid%3A%20MCWrapper.RPC.Ledger.Clients.MultiChainRpcClientFactory.BlockchainRpcGeneralClient%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ryangoodwindev/MCWrapper.RPC/blob/master/MCWrapper.RPC/Ledger/Factory/MultiChainRpcClientFactory.cs/#L94">View Source</a>
+  </span>
+  <a id="MCWrapper_RPC_Ledger_Clients_MultiChainRpcClientFactory_BlockchainRpcGeneralClient_" data-uid="MCWrapper.RPC.Ledger.Clients.MultiChainRpcClientFactory.BlockchainRpcGeneralClient*"></a>
+  <h4 id="MCWrapper_RPC_Ledger_Clients_MultiChainRpcClientFactory_BlockchainRpcGeneralClient" data-uid="MCWrapper.RPC.Ledger.Clients.MultiChainRpcClientFactory.BlockchainRpcGeneralClient">BlockchainRpcGeneralClient</h4>
+  <div class="markdown level1 summary"><p>Provides access to General MultChain Core methods</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IMultiChainRpcGeneral BlockchainRpcGeneralClient { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="MCWrapper.RPC.Ledger.Clients.IMultiChainRpcGeneral.html">IMultiChainRpcGeneral</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ryangoodwindev/MCWrapper.RPC/new/master/apiSpec/new?filename=MCWrapper_RPC_Ledger_Clients_MultiChainRpcClientFactory_BlockchainRpcGenerateClient.md&amp;value=---%0Auid%3A%20MCWrapper.RPC.Ledger.Clients.MultiChainRpcClientFactory.BlockchainRpcGenerateClient%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ryangoodwindev/MCWrapper.RPC/blob/master/MCWrapper.RPC/Ledger/Factory/MultiChainRpcClientFactory.cs/#L76">View Source</a>
+  </span>
+  <a id="MCWrapper_RPC_Ledger_Clients_MultiChainRpcClientFactory_BlockchainRpcGenerateClient_" data-uid="MCWrapper.RPC.Ledger.Clients.MultiChainRpcClientFactory.BlockchainRpcGenerateClient*"></a>
+  <h4 id="MCWrapper_RPC_Ledger_Clients_MultiChainRpcClientFactory_BlockchainRpcGenerateClient" data-uid="MCWrapper.RPC.Ledger.Clients.MultiChainRpcClientFactory.BlockchainRpcGenerateClient">BlockchainRpcGenerateClient</h4>
+  <div class="markdown level1 summary"><p>Provides access to Generate (native currency or coins) MultChain Core methods</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IMultiChainRpcGenerate BlockchainRpcGenerateClient { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="MCWrapper.RPC.Ledger.Clients.IMultiChainRpcGenerate.html">IMultiChainRpcGenerate</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ryangoodwindev/MCWrapper.RPC/new/master/apiSpec/new?filename=MCWrapper_RPC_Ledger_Clients_MultiChainRpcClientFactory_BlockchainRpcMiningClient.md&amp;value=---%0Auid%3A%20MCWrapper.RPC.Ledger.Clients.MultiChainRpcClientFactory.BlockchainRpcMiningClient%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ryangoodwindev/MCWrapper.RPC/blob/master/MCWrapper.RPC/Ledger/Factory/MultiChainRpcClientFactory.cs/#L112">View Source</a>
+  </span>
+  <a id="MCWrapper_RPC_Ledger_Clients_MultiChainRpcClientFactory_BlockchainRpcMiningClient_" data-uid="MCWrapper.RPC.Ledger.Clients.MultiChainRpcClientFactory.BlockchainRpcMiningClient*"></a>
+  <h4 id="MCWrapper_RPC_Ledger_Clients_MultiChainRpcClientFactory_BlockchainRpcMiningClient" data-uid="MCWrapper.RPC.Ledger.Clients.MultiChainRpcClientFactory.BlockchainRpcMiningClient">BlockchainRpcMiningClient</h4>
+  <div class="markdown level1 summary"><p>Provides access to Mining MultChain Core methods</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IMultiChainRpcMining BlockchainRpcMiningClient { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="MCWrapper.RPC.Ledger.Clients.IMultiChainRpcMining.html">IMultiChainRpcMining</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ryangoodwindev/MCWrapper.RPC/new/master/apiSpec/new?filename=MCWrapper_RPC_Ledger_Clients_MultiChainRpcClientFactory_BlockchainRpcNetworkClient.md&amp;value=---%0Auid%3A%20MCWrapper.RPC.Ledger.Clients.MultiChainRpcClientFactory.BlockchainRpcNetworkClient%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ryangoodwindev/MCWrapper.RPC/blob/master/MCWrapper.RPC/Ledger/Factory/MultiChainRpcClientFactory.cs/#L100">View Source</a>
+  </span>
+  <a id="MCWrapper_RPC_Ledger_Clients_MultiChainRpcClientFactory_BlockchainRpcNetworkClient_" data-uid="MCWrapper.RPC.Ledger.Clients.MultiChainRpcClientFactory.BlockchainRpcNetworkClient*"></a>
+  <h4 id="MCWrapper_RPC_Ledger_Clients_MultiChainRpcClientFactory_BlockchainRpcNetworkClient" data-uid="MCWrapper.RPC.Ledger.Clients.MultiChainRpcClientFactory.BlockchainRpcNetworkClient">BlockchainRpcNetworkClient</h4>
+  <div class="markdown level1 summary"><p>Provides access to Network MultChain Core methods</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IMultiChainRpcNetwork BlockchainRpcNetworkClient { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="MCWrapper.RPC.Ledger.Clients.IMultiChainRpcNetwork.html">IMultiChainRpcNetwork</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ryangoodwindev/MCWrapper.RPC/new/master/apiSpec/new?filename=MCWrapper_RPC_Ledger_Clients_MultiChainRpcClientFactory_BlockchainRpcOffChainClient.md&amp;value=---%0Auid%3A%20MCWrapper.RPC.Ledger.Clients.MultiChainRpcClientFactory.BlockchainRpcOffChainClient%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ryangoodwindev/MCWrapper.RPC/blob/master/MCWrapper.RPC/Ledger/Factory/MultiChainRpcClientFactory.cs/#L82">View Source</a>
+  </span>
+  <a id="MCWrapper_RPC_Ledger_Clients_MultiChainRpcClientFactory_BlockchainRpcOffChainClient_" data-uid="MCWrapper.RPC.Ledger.Clients.MultiChainRpcClientFactory.BlockchainRpcOffChainClient*"></a>
+  <h4 id="MCWrapper_RPC_Ledger_Clients_MultiChainRpcClientFactory_BlockchainRpcOffChainClient" data-uid="MCWrapper.RPC.Ledger.Clients.MultiChainRpcClientFactory.BlockchainRpcOffChainClient">BlockchainRpcOffChainClient</h4>
+  <div class="markdown level1 summary"><p>Provides access to OffChain MultChain Core methods</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IMultiChainRpcOffChain BlockchainRpcOffChainClient { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="MCWrapper.RPC.Ledger.Clients.IMultiChainRpcOffChain.html">IMultiChainRpcOffChain</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ryangoodwindev/MCWrapper.RPC/new/master/apiSpec/new?filename=MCWrapper_RPC_Ledger_Clients_MultiChainRpcClientFactory_BlockchainRpcRawClient.md&amp;value=---%0Auid%3A%20MCWrapper.RPC.Ledger.Clients.MultiChainRpcClientFactory.BlockchainRpcRawClient%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ryangoodwindev/MCWrapper.RPC/blob/master/MCWrapper.RPC/Ledger/Factory/MultiChainRpcClientFactory.cs/#L124">View Source</a>
+  </span>
+  <a id="MCWrapper_RPC_Ledger_Clients_MultiChainRpcClientFactory_BlockchainRpcRawClient_" data-uid="MCWrapper.RPC.Ledger.Clients.MultiChainRpcClientFactory.BlockchainRpcRawClient*"></a>
+  <h4 id="MCWrapper_RPC_Ledger_Clients_MultiChainRpcClientFactory_BlockchainRpcRawClient" data-uid="MCWrapper.RPC.Ledger.Clients.MultiChainRpcClientFactory.BlockchainRpcRawClient">BlockchainRpcRawClient</h4>
+  <div class="markdown level1 summary"><p>Provides access to Raw MultChain Core methods</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IMultiChainRpcRaw BlockchainRpcRawClient { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="MCWrapper.RPC.Ledger.Clients.IMultiChainRpcRaw.html">IMultiChainRpcRaw</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ryangoodwindev/MCWrapper.RPC/new/master/apiSpec/new?filename=MCWrapper_RPC_Ledger_Clients_MultiChainRpcClientFactory_BlockchainRpcUtilityClient.md&amp;value=---%0Auid%3A%20MCWrapper.RPC.Ledger.Clients.MultiChainRpcClientFactory.BlockchainRpcUtilityClient%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ryangoodwindev/MCWrapper.RPC/blob/master/MCWrapper.RPC/Ledger/Factory/MultiChainRpcClientFactory.cs/#L106">View Source</a>
+  </span>
+  <a id="MCWrapper_RPC_Ledger_Clients_MultiChainRpcClientFactory_BlockchainRpcUtilityClient_" data-uid="MCWrapper.RPC.Ledger.Clients.MultiChainRpcClientFactory.BlockchainRpcUtilityClient*"></a>
+  <h4 id="MCWrapper_RPC_Ledger_Clients_MultiChainRpcClientFactory_BlockchainRpcUtilityClient" data-uid="MCWrapper.RPC.Ledger.Clients.MultiChainRpcClientFactory.BlockchainRpcUtilityClient">BlockchainRpcUtilityClient</h4>
+  <div class="markdown level1 summary"><p>Provides access to Utility MultChain Core methods</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IMultiChainRpcUtility BlockchainRpcUtilityClient { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="MCWrapper.RPC.Ledger.Clients.IMultiChainRpcUtility.html">IMultiChainRpcUtility</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ryangoodwindev/MCWrapper.RPC/new/master/apiSpec/new?filename=MCWrapper_RPC_Ledger_Clients_MultiChainRpcClientFactory_BlockchainRpcWalletClient.md&amp;value=---%0Auid%3A%20MCWrapper.RPC.Ledger.Clients.MultiChainRpcClientFactory.BlockchainRpcWalletClient%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ryangoodwindev/MCWrapper.RPC/blob/master/MCWrapper.RPC/Ledger/Factory/MultiChainRpcClientFactory.cs/#L118">View Source</a>
+  </span>
+  <a id="MCWrapper_RPC_Ledger_Clients_MultiChainRpcClientFactory_BlockchainRpcWalletClient_" data-uid="MCWrapper.RPC.Ledger.Clients.MultiChainRpcClientFactory.BlockchainRpcWalletClient*"></a>
+  <h4 id="MCWrapper_RPC_Ledger_Clients_MultiChainRpcClientFactory_BlockchainRpcWalletClient" data-uid="MCWrapper.RPC.Ledger.Clients.MultiChainRpcClientFactory.BlockchainRpcWalletClient">BlockchainRpcWalletClient</h4>
+  <div class="markdown level1 summary"><p>Provides access to Wallet MultChain Core methods</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IMultiChainRpcWallet BlockchainRpcWalletClient { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="MCWrapper.RPC.Ledger.Clients.IMultiChainRpcWallet.html">IMultiChainRpcWallet</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ryangoodwindev/MCWrapper.RPC/new/master/apiSpec/new?filename=MCWrapper_RPC_Ledger_Clients_MultiChainRpcClientFactory_GetRequiredRpcClient__1.md&amp;value=---%0Auid%3A%20MCWrapper.RPC.Ledger.Clients.MultiChainRpcClientFactory.GetRequiredRpcClient%60%601%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ryangoodwindev/MCWrapper.RPC/blob/master/MCWrapper.RPC/Ledger/Factory/MultiChainRpcClientFactory.cs/#L70">View Source</a>
+  </span>
+  <a id="MCWrapper_RPC_Ledger_Clients_MultiChainRpcClientFactory_GetRequiredRpcClient_" data-uid="MCWrapper.RPC.Ledger.Clients.MultiChainRpcClientFactory.GetRequiredRpcClient*"></a>
+  <h4 id="MCWrapper_RPC_Ledger_Clients_MultiChainRpcClientFactory_GetRequiredRpcClient__1" data-uid="MCWrapper.RPC.Ledger.Clients.MultiChainRpcClientFactory.GetRequiredRpcClient``1">GetRequiredRpcClient&lt;T&gt;()</h4>
+  <div class="markdown level1 summary"><p>Get a required MultiChainRpcClient</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public T GetRequiredRpcClient&lt;T&gt;()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="MCWrapper.RPC.Ledger.Clients.IMultiChainRpcClientFactory.html">IMultiChainRpcClientFactory</a>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/ryangoodwindev/MCWrapper.RPC/new/master/apiSpec/new?filename=MCWrapper_RPC_Ledger_Clients_MultiChainRpcClientFactory.md&amp;value=---%0Auid%3A%20MCWrapper.RPC.Ledger.Clients.MultiChainRpcClientFactory%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/ryangoodwindev/MCWrapper.RPC/blob/master/MCWrapper.RPC/Ledger/Factory/MultiChainRpcClientFactory.cs/#L9" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>
