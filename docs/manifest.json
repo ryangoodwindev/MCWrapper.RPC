@@ -12,7 +12,7 @@
           "hash": "GC8ln02bhN8cChmbVdpOSg=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -36,7 +36,7 @@
           "hash": "fwvc5TJusgbINE7t6uSPaA=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -48,7 +48,7 @@
           "hash": "Nxrmt2UnwZqrbRLIo+YnZg=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -60,7 +60,7 @@
           "hash": "UA3XJkj/Q54E3281ex5zMg=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -72,7 +72,7 @@
           "hash": "SVeLBKTWgYUxFipBXT8p/g=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -96,7 +96,7 @@
           "hash": "dLdkV4KqUrqtc8cKIDKfdg=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -108,7 +108,7 @@
           "hash": "ECjx6PXZSDIVsA0Tr98g7A=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -117,10 +117,10 @@
       "output": {
         ".html": {
           "relative_path": "api/MCWrapper.RPC.Extensions.MultiChainCoreRpcServices.html",
-          "hash": "1h9OTmo9hDs2MCR9O5mTZw=="
+          "hash": "tXatGbceuIBrck0PHnNcsw=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -132,7 +132,7 @@
           "hash": "AcJdZ+rTWO8VN12PZ6OlRg=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -144,7 +144,7 @@
           "hash": "rPflOKesfLjvBHxii/Okxg=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -168,7 +168,7 @@
           "hash": "mPyOIxnOTwe0FUUrIsszKg=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -177,7 +177,7 @@
       "output": {
         ".html": {
           "relative_path": "api/MCWrapper.RPC.Ledger.Clients.IMultiChainRpcClientFactory.html",
-          "hash": "WD0TBBLA0CaA3DImc1vFJg=="
+          "hash": "mAdndGNldu3zPECpDKabdA=="
         }
       },
       "is_incremental": false,
@@ -285,7 +285,7 @@
       "output": {
         ".html": {
           "relative_path": "api/MCWrapper.RPC.Ledger.Clients.IMultiChainRpcWallet.html",
-          "hash": "uxnH1vXphD819GUlGu2ojA=="
+          "hash": "0jtnP/OCogzWXfGFIWKCDg=="
         }
       },
       "is_incremental": false,
@@ -297,7 +297,7 @@
       "output": {
         ".html": {
           "relative_path": "api/MCWrapper.RPC.Ledger.Clients.MultiChainRpcClientFactory.html",
-          "hash": "n2Zi9qXhoJpbxuIv9TnPIw=="
+          "hash": "ERbnSTDb8IMwIdUy5NsfhQ=="
         }
       },
       "is_incremental": false,
@@ -309,7 +309,7 @@
       "output": {
         ".html": {
           "relative_path": "api/MCWrapper.RPC.Ledger.Clients.MultiChainRpcControlClient.html",
-          "hash": "LVnbewgyez2f45DBQ5hIQA=="
+          "hash": "VcUueM5rUUpg4JSmX2nIzg=="
         }
       },
       "is_incremental": false,
@@ -321,7 +321,7 @@
       "output": {
         ".html": {
           "relative_path": "api/MCWrapper.RPC.Ledger.Clients.MultiChainRpcGeneralClient.html",
-          "hash": "pEStmu8pwDlj8xUhJRjz/w=="
+          "hash": "Uci5gyYlnzNw4Mep0q4uWA=="
         }
       },
       "is_incremental": false,
@@ -333,7 +333,7 @@
       "output": {
         ".html": {
           "relative_path": "api/MCWrapper.RPC.Ledger.Clients.MultiChainRpcGenerateClient.html",
-          "hash": "9GxAj+AhD8C82l7tedMsdg=="
+          "hash": "887m/Vy1QzJupAANwRMB4g=="
         }
       },
       "is_incremental": false,
@@ -345,7 +345,7 @@
       "output": {
         ".html": {
           "relative_path": "api/MCWrapper.RPC.Ledger.Clients.MultiChainRpcMiningClient.html",
-          "hash": "+3BOeFfcI3OVb/7CTDMlNw=="
+          "hash": "8aqMo7mh32PGKPB6E5a/9w=="
         }
       },
       "is_incremental": false,
@@ -357,7 +357,7 @@
       "output": {
         ".html": {
           "relative_path": "api/MCWrapper.RPC.Ledger.Clients.MultiChainRpcNetworkClient.html",
-          "hash": "XDVKl+10pY51WP8VV2NZrQ=="
+          "hash": "xg1btRYmMnZqnnr+iv/dMw=="
         }
       },
       "is_incremental": false,
@@ -369,7 +369,7 @@
       "output": {
         ".html": {
           "relative_path": "api/MCWrapper.RPC.Ledger.Clients.MultiChainRpcOffChainClient.html",
-          "hash": "Vesi3ssFmuycHCviaAYXfQ=="
+          "hash": "04EEibK39RszBOPphPO1Aw=="
         }
       },
       "is_incremental": false,
@@ -381,7 +381,7 @@
       "output": {
         ".html": {
           "relative_path": "api/MCWrapper.RPC.Ledger.Clients.MultiChainRpcRawClient.html",
-          "hash": "wzcUJNjhTl1Yo+KkOY2KYQ=="
+          "hash": "ddpAGgdVq+1dUIfazoBS7Q=="
         }
       },
       "is_incremental": false,
@@ -393,7 +393,7 @@
       "output": {
         ".html": {
           "relative_path": "api/MCWrapper.RPC.Ledger.Clients.MultiChainRpcUtilityClient.html",
-          "hash": "0LhxXypt23vx1+/25ZpUXQ=="
+          "hash": "1Fi8SbH++9OU02WAKuoGDg=="
         }
       },
       "is_incremental": false,
@@ -405,7 +405,7 @@
       "output": {
         ".html": {
           "relative_path": "api/MCWrapper.RPC.Ledger.Clients.MultiChainRpcWalletClient.html",
-          "hash": "BTXDBiGCvGxxq059/g3MNA=="
+          "hash": "siEi/iVC2vZcSWbPEKpGGw=="
         }
       },
       "is_incremental": false,
@@ -429,10 +429,10 @@
       "output": {
         ".html": {
           "relative_path": "api/MCWrapper.RPC.Options.RpcOptions.html",
-          "hash": "YIR0p0ZsyEGzHLxy5gWGDQ=="
+          "hash": "/k/+0Kl9EsJLub541DeaAQ=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -441,10 +441,10 @@
       "output": {
         ".html": {
           "relative_path": "api/MCWrapper.RPC.Options.html",
-          "hash": "k9GoKqxMjvacPBfoeCc+Mw=="
+          "hash": "OV+Dp02TWsfjj0sW0fQimQ=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -456,7 +456,7 @@
           "hash": "rLNmnmB6s2/ujbJIkc7w+g=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -480,7 +480,7 @@
           "hash": "gpnZs7IXBiHiJ4139Bwrrw=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -504,7 +504,7 @@
           "hash": "0zDnPitw8ndCnSe8envGJA=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -523,39 +523,37 @@
   "incremental_info": [
     {
       "status": {
-        "can_incremental": false,
-        "details": "Cannot build incrementally because last build info is missing.",
+        "can_incremental": true,
         "incrementalPhase": "build",
         "total_file_count": 0,
-        "skipped_file_count": 0,
-        "full_build_reason_code": "NoAvailableBuildCache"
+        "skipped_file_count": 0
       },
       "processors": {
+        "ConceptualDocumentProcessor": {
+          "can_incremental": true,
+          "incrementalPhase": "build",
+          "total_file_count": 3,
+          "skipped_file_count": 3
+        },
+        "ManagedReferenceDocumentProcessor": {
+          "can_incremental": true,
+          "incrementalPhase": "build",
+          "total_file_count": 37,
+          "skipped_file_count": 18
+        },
         "TocDocumentProcessor": {
           "can_incremental": false,
           "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
           "incrementalPhase": "build",
           "total_file_count": 0,
           "skipped_file_count": 0
-        },
-        "ManagedReferenceDocumentProcessor": {
-          "can_incremental": false,
-          "incrementalPhase": "build",
-          "total_file_count": 37,
-          "skipped_file_count": 0
-        },
-        "ConceptualDocumentProcessor": {
-          "can_incremental": false,
-          "incrementalPhase": "build",
-          "total_file_count": 3,
-          "skipped_file_count": 0
         }
       }
     },
     {
       "status": {
-        "can_incremental": false,
-        "details": "Cannot support incremental post processing, the reason is: last post processor info is null.",
+        "can_incremental": true,
+        "details": "Can support incremental post processing.",
         "incrementalPhase": "postProcessing",
         "total_file_count": 0,
         "skipped_file_count": 0
