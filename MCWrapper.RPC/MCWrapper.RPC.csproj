@@ -17,7 +17,7 @@
     <LangVersion>8.0</LangVersion>
     <Nullable>enable</Nullable>
     <PackageReleaseNotes>Version 5.0.2:
-Apparently a recent change caused explicit and IConfiguration-based use of AddMultiChainCoreServices, AddMultiChainCoreCliServices, and AddMultiChainCoreRpcServices to not function properly. This issue should be resolved now.
+Apparently a recent change caused explicit and IConfiguration-based use of AddMultiChainCoreRpcServices to not function properly. This issue should be resolved now.
 
 All Unit Tests Passed | 358 total tests | 80 skipped | Completed in 15 seconds on brand new MultiChain Core blockchain node. As a blockchain matures the unit test durations seem to increase as well.
 
