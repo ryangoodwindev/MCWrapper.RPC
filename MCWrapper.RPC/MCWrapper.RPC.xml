@@ -7,7 +7,7 @@
         <member name="T:MCWrapper.RPC.Connection.ConnectionHelper">
             <summary>
             Offers methods to construct MultiChain blockchain Service URL and AuthenticationHeaderValue
-            </summary>
+            </summary> 
         </member>
         <member name="M:MCWrapper.RPC.Connection.ConnectionHelper.GetServiceUrl(MCWrapper.RPC.Options.RpcOptions)">
             <summary>
@@ -173,10 +173,10 @@
         </member>
         <member name="T:MCWrapper.RPC.Options.RpcOptions">
             <summary>
-            BlockchainRpcOptions values are mostly required for proper blockchain interaction to occur
+            RpcOptions values are mostly required for proper blockchain interaction to occur
             via the MCWrapper.RPC client.
             <para>
-                The MCWrapper RPC client requires the following BlockchainProfileOptions be assigned a valid value
+                The MCWrapper RPC client requires the following RpcOptions be assigned a valid value
                     ChainUseSsl;
                     ChainSslPath 
                         (ChainSslPath only required to be assigned a file path value if ChainUseSsl is true, 
@@ -192,13 +192,13 @@
         </member>
         <member name="M:MCWrapper.RPC.Options.RpcOptions.#ctor">
             <summary>
-            Create a new BlockchainRpcOptions object
+            Create a new RpcOptions object
             No arguments
             </summary>
         </member>
         <member name="M:MCWrapper.RPC.Options.RpcOptions.#ctor(System.Boolean)">
             <summary>
-            Create a new BlockchainRpcOptions object
+            Create a new RpcOptions object
             No arguments
             </summary>
         </member>
@@ -422,7 +422,7 @@
         </member>
         <member name="M:MCWrapper.RPC.Ledger.Clients.MultiChainRpcControlClient.#ctor(System.Net.Http.HttpClient,Microsoft.Extensions.Options.IOptions{MCWrapper.RPC.Options.RpcOptions})">
             <summary>
-            Create a new Control RPC client
+            Create a new MultiChainRpcControlClient instance
             </summary>
             <param name="httpClient"></param>
             <param name="options"></param>
@@ -671,7 +671,7 @@
         </member>
         <member name="M:MCWrapper.RPC.Ledger.Clients.MultiChainRpcGeneralClient.#ctor(System.Net.Http.HttpClient,Microsoft.Extensions.Options.IOptions{MCWrapper.RPC.Options.RpcOptions})">
             <summary>
-            Create a new Blockchain RPC client
+            Create a new MultiChainRpcGeneralClient instance
             </summary>
             <param name="httpClient"></param>
             <param name="options"></param>
@@ -1449,7 +1449,7 @@
         </member>
         <member name="M:MCWrapper.RPC.Ledger.Clients.MultiChainRpcGenerateClient.#ctor(System.Net.Http.HttpClient,Microsoft.Extensions.Options.IOptions{MCWrapper.RPC.Options.RpcOptions})">
             <summary>
-            Create a new Generate RPC client
+            Create a new MultiChainRpcGenerateClient instance
             </summary>
             <param name="httpClient"></param>
             <param name="options"></param>
@@ -1536,7 +1536,7 @@
         </member>
         <member name="M:MCWrapper.RPC.Ledger.Clients.MultiChainRpcMiningClient.#ctor(System.Net.Http.HttpClient,Microsoft.Extensions.Options.IOptions{MCWrapper.RPC.Options.RpcOptions})">
             <summary>
-            Create a new Mining RPC client
+            Create a new MultiChainRpcMiningClient instance
             </summary>
             <param name="httpClient"></param>
             <param name="options"></param>
@@ -1710,7 +1710,7 @@
         </member>
         <member name="M:MCWrapper.RPC.Ledger.Clients.MultiChainRpcNetworkClient.#ctor(System.Net.Http.HttpClient,Microsoft.Extensions.Options.IOptions{MCWrapper.RPC.Options.RpcOptions})">
             <summary>
-            Create a new Network RPC client
+            Create a new MultiChainRpcNetworkClient instance
             </summary>
             <param name="httpClient"></param>
             <param name="options"></param>
@@ -1928,7 +1928,7 @@
         </member>
         <member name="M:MCWrapper.RPC.Ledger.Clients.MultiChainRpcOffChainClient.#ctor(System.Net.Http.HttpClient,Microsoft.Extensions.Options.IOptions{MCWrapper.RPC.Options.RpcOptions})">
             <summary>
-            Create a OffChain RPC client
+            Create a new MultiChainRpcOffChainClient instance
             </summary>
             <param name="httpClient"></param>
             <param name="options"></param>
@@ -2078,7 +2078,7 @@
         </member>
         <member name="M:MCWrapper.RPC.Ledger.Clients.MultiChainRpcRawClient.#ctor(System.Net.Http.HttpClient,Microsoft.Extensions.Options.IOptions{MCWrapper.RPC.Options.RpcOptions})">
             <summary>
-            Create a new Raw RPC client
+            Create a new MultiChainRpcRawClient instance
             </summary>
             <param name="httpClient"></param>
             <param name="options"></param>
@@ -2351,7 +2351,7 @@
         </member>
         <member name="M:MCWrapper.RPC.Ledger.Clients.MultiChainRpcUtilityClient.#ctor(System.Net.Http.HttpClient,Microsoft.Extensions.Options.IOptions{MCWrapper.RPC.Options.RpcOptions})">
             <summary>
-            Create a new Utility RPC client
+            Create a new MultiChainRpcUtilityClient instance
             </summary>
             <param name="httpClient"></param>
             <param name="options"></param>
@@ -2612,7 +2612,7 @@
         </member>
         <member name="M:MCWrapper.RPC.Ledger.Clients.MultiChainRpcWalletClient.#ctor(System.Net.Http.HttpClient,Microsoft.Extensions.Options.IOptions{MCWrapper.RPC.Options.RpcOptions})">
             <summary>
-            Create a new Wallet RPC client
+            Create a new MultiChainRpcWalletClient instance
             </summary>
             <param name="httpClient"></param>
             <param name="options"></param>
@@ -11058,6 +11058,51 @@
             MultiChainRpcClientFactory provides access to a collection of MultiChainRpcClients
             </summary>
         </member>
+        <member name="P:MCWrapper.RPC.Ledger.Clients.IMultiChainRpcClientFactory.MultiChainRpcGenerateClient">
+            <summary>
+            Provides access to Generate (native currency or coins) MultChain Core methods
+            </summary>
+        </member>
+        <member name="P:MCWrapper.RPC.Ledger.Clients.IMultiChainRpcClientFactory.MultiChainRpcOffChainClient">
+            <summary>
+            Provides access to OffChain MultChain Core methods
+            </summary>
+        </member>
+        <member name="P:MCWrapper.RPC.Ledger.Clients.IMultiChainRpcClientFactory.MultiChainRpcControlClient">
+            <summary>
+            Provides access to Control MultChain Core methods
+            </summary>
+        </member>
+        <member name="P:MCWrapper.RPC.Ledger.Clients.IMultiChainRpcClientFactory.MultiChainRpcGeneralClient">
+            <summary>
+            Provides access to General MultChain Core methods
+            </summary>
+        </member>
+        <member name="P:MCWrapper.RPC.Ledger.Clients.IMultiChainRpcClientFactory.MultiChainRpcNetworkClient">
+            <summary>
+            Provides access to Network MultChain Core methods
+            </summary>
+        </member>
+        <member name="P:MCWrapper.RPC.Ledger.Clients.IMultiChainRpcClientFactory.MultiChainRpcUtilityClient">
+            <summary>
+            Provides access to Utility MultChain Core methods
+            </summary>
+        </member>
+        <member name="P:MCWrapper.RPC.Ledger.Clients.IMultiChainRpcClientFactory.MultiChainRpcMiningClient">
+            <summary>
+            Provides access to Mining MultChain Core methods
+            </summary>
+        </member>
+        <member name="P:MCWrapper.RPC.Ledger.Clients.IMultiChainRpcClientFactory.MultiChainRpcWalletClient">
+            <summary>
+            Provides access to Wallet MultChain Core methods
+            </summary>
+        </member>
+        <member name="P:MCWrapper.RPC.Ledger.Clients.IMultiChainRpcClientFactory.MultiChainRpcRawClient">
+            <summary>
+            Provides access to Raw MultChain Core methods
+            </summary>
+        </member>
         <member name="M:MCWrapper.RPC.Ledger.Clients.IMultiChainRpcClientFactory.GetRequiredRpcClient``1">
             <summary>
             Get a required IMultiChainRpc instance. Must be derived from IMultiChainRpc
@@ -11073,51 +11118,6 @@
             <typeparam name="IMultiChainRpc">Return a service derived from IMultiChainRpc</typeparam>
             <returns></returns>
         </member>
-        <member name="P:MCWrapper.RPC.Ledger.Clients.IMultiChainRpcClientFactory.BlockchainRpcGenerateClient">
-            <summary>
-            Provides access to Generate (native currency or coins) MultChain Core methods
-            </summary>
-        </member>
-        <member name="P:MCWrapper.RPC.Ledger.Clients.IMultiChainRpcClientFactory.BlockchainRpcOffChainClient">
-            <summary>
-            Provides access to OffChain MultChain Core methods
-            </summary>
-        </member>
-        <member name="P:MCWrapper.RPC.Ledger.Clients.IMultiChainRpcClientFactory.BlockchainRpcControlClient">
-            <summary>
-            Provides access to Control MultChain Core methods
-            </summary>
-        </member>
-        <member name="P:MCWrapper.RPC.Ledger.Clients.IMultiChainRpcClientFactory.BlockchainRpcGeneralClient">
-            <summary>
-            Provides access to General MultChain Core methods
-            </summary>
-        </member>
-        <member name="P:MCWrapper.RPC.Ledger.Clients.IMultiChainRpcClientFactory.BlockchainRpcNetworkClient">
-            <summary>
-            Provides access to Network MultChain Core methods
-            </summary>
-        </member>
-        <member name="P:MCWrapper.RPC.Ledger.Clients.IMultiChainRpcClientFactory.BlockchainRpcUtilityClient">
-            <summary>
-            Provides access to Utility MultChain Core methods
-            </summary>
-        </member>
-        <member name="P:MCWrapper.RPC.Ledger.Clients.IMultiChainRpcClientFactory.BlockchainRpcMiningClient">
-            <summary>
-            Provides access to Mining MultChain Core methods
-            </summary>
-        </member>
-        <member name="P:MCWrapper.RPC.Ledger.Clients.IMultiChainRpcClientFactory.BlockchainRpcWalletClient">
-            <summary>
-            Provides access to Wallet MultChain Core methods
-            </summary>
-        </member>
-        <member name="P:MCWrapper.RPC.Ledger.Clients.IMultiChainRpcClientFactory.BlockchainRpcRawClient">
-            <summary>
-            Provides access to Raw MultChain Core methods
-            </summary>
-        </member>
         <member name="T:MCWrapper.RPC.Ledger.Clients.MultiChainRpcClientFactory">
             <summary>
             MultiChainRpcClientFactory provides access to a collection of MultiChainRpcClients
@@ -11127,64 +11127,64 @@
             <summary>
             MultiChainRpcClientFactory provides access to a collection of MultiChainRpcClients
             </summary>
-            <param name="blockchainRpcGenerate">Provides access to Generate (native currency or coins) MultChain Core methods</param>
-            <param name="blockchainRpcOffChain">Provides access to OffChain MultChain Core methods</param>
-            <param name="blockchainRpcControl">Provides access to Control MultChain Core methods</param>
-            <param name="blockchainRpcGeneral">Provides access to General MultChain Core methods</param>
-            <param name="blockchainRpcNetwork">Provides access to Network MultChain Core methods</param>
-            <param name="blockchainRpcUtility">Provides access to Utility MultChain Core methods</param>
-            <param name="blockchainRpcMining">Provides access to Mining MultChain Core methods</param>
-            <param name="blockchainRpcWallet">Provides access to Waller MultChain Core methods</param>
-            <param name="blockchainRpcRaw">Provides access to Raw MultChain Core methods</param>
+            <param name="multiChainRpcGenerate">Provides access to Generate (native currency or coins) MultChain Core methods</param>
+            <param name="multiChainRpcOffChain">Provides access to OffChain MultChain Core methods</param>
+            <param name="multiChainRpcControl">Provides access to Control MultChain Core methods</param>
+            <param name="multiChainRpcGeneral">Provides access to General MultChain Core methods</param>
+            <param name="multiChainRpcNetwork">Provides access to Network MultChain Core methods</param>
+            <param name="multiChainRpcUtility">Provides access to Utility MultChain Core methods</param>
+            <param name="multiChainRpcMining">Provides access to Mining MultChain Core methods</param>
+            <param name="multiChainRpcWallet">Provides access to Waller MultChain Core methods</param>
+            <param name="multiChainRpcRaw">Provides access to Raw MultChain Core methods</param>
         </member>
         <member name="M:MCWrapper.RPC.Ledger.Clients.MultiChainRpcClientFactory.GetRequiredRpcClient``1">
             <summary>
             Get a required MultiChainRpcClient
             </summary>
-            <typeparam name="T"></typeparam>
+            <typeparam name="IMultiChainRpc"></typeparam>
             <returns></returns>
         </member>
-        <member name="P:MCWrapper.RPC.Ledger.Clients.MultiChainRpcClientFactory.BlockchainRpcGenerateClient">
+        <member name="P:MCWrapper.RPC.Ledger.Clients.MultiChainRpcClientFactory.MultiChainRpcGenerateClient">
             <summary>
             Provides access to Generate (native currency or coins) MultChain Core methods
             </summary>
         </member>
-        <member name="P:MCWrapper.RPC.Ledger.Clients.MultiChainRpcClientFactory.BlockchainRpcOffChainClient">
+        <member name="P:MCWrapper.RPC.Ledger.Clients.MultiChainRpcClientFactory.MultiChainRpcOffChainClient">
             <summary>
             Provides access to OffChain MultChain Core methods
             </summary>
         </member>
-        <member name="P:MCWrapper.RPC.Ledger.Clients.MultiChainRpcClientFactory.BlockchainRpcControlClient">
+        <member name="P:MCWrapper.RPC.Ledger.Clients.MultiChainRpcClientFactory.MultiChainRpcControlClient">
             <summary>
             Provides access to Control MultChain Core methods
             </summary>
         </member>
-        <member name="P:MCWrapper.RPC.Ledger.Clients.MultiChainRpcClientFactory.BlockchainRpcGeneralClient">
+        <member name="P:MCWrapper.RPC.Ledger.Clients.MultiChainRpcClientFactory.MultiChainRpcGeneralClient">
             <summary>
             Provides access to General MultChain Core methods
             </summary>
         </member>
-        <member name="P:MCWrapper.RPC.Ledger.Clients.MultiChainRpcClientFactory.BlockchainRpcNetworkClient">
+        <member name="P:MCWrapper.RPC.Ledger.Clients.MultiChainRpcClientFactory.MultiChainRpcNetworkClient">
             <summary>
             Provides access to Network MultChain Core methods
             </summary>
         </member>
-        <member name="P:MCWrapper.RPC.Ledger.Clients.MultiChainRpcClientFactory.BlockchainRpcUtilityClient">
+        <member name="P:MCWrapper.RPC.Ledger.Clients.MultiChainRpcClientFactory.MultiChainRpcUtilityClient">
             <summary>
             Provides access to Utility MultChain Core methods
             </summary>
         </member>
-        <member name="P:MCWrapper.RPC.Ledger.Clients.MultiChainRpcClientFactory.BlockchainRpcMiningClient">
+        <member name="P:MCWrapper.RPC.Ledger.Clients.MultiChainRpcClientFactory.MultiChainRpcMiningClient">
             <summary>
             Provides access to Mining MultChain Core methods
             </summary>
         </member>
-        <member name="P:MCWrapper.RPC.Ledger.Clients.MultiChainRpcClientFactory.BlockchainRpcWalletClient">
+        <member name="P:MCWrapper.RPC.Ledger.Clients.MultiChainRpcClientFactory.MultiChainRpcWalletClient">
             <summary>
             Provides access to Wallet MultChain Core methods
             </summary>
         </member>
-        <member name="P:MCWrapper.RPC.Ledger.Clients.MultiChainRpcClientFactory.BlockchainRpcRawClient">
+        <member name="P:MCWrapper.RPC.Ledger.Clients.MultiChainRpcClientFactory.MultiChainRpcRawClient">
             <summary>
             Provides access to Raw MultChain Core methods
             </summary>

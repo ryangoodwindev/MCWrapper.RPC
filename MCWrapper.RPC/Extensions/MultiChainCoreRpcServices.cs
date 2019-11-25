@@ -160,8 +160,8 @@ namespace MCWrapper.RPC.Extensions
             services.Configure<RuntimeParamOptions>(configuration)
                 .Configure<RpcOptions>(configuration);
 
-            // todo change this, I don't like it. create your own service provider and pull from that
-            RpcOptions _rpcOptions = new RpcOptions();
+            var provider = services.BuildServiceProvider();
+            RpcOptions _rpcOptions = provider.GetRequiredService<IOptions<RpcOptions>>().Value;
 
             // todo maybe we need some error handling here to detect lack of configuration early in the pipleline, as well. TBD
 
@@ -169,8 +169,6 @@ namespace MCWrapper.RPC.Extensions
             services.AddHttpClient<IMultiChainRpcGeneral, MultiChainRpcGeneralClient>()
                .ConfigureHttpClient((sp, httpClient) =>
                {
-                   // todo see line #163
-                   _rpcOptions = sp.GetRequiredService<IOptions<RpcOptions>>().Value;
                    httpClient.BaseAddress = new Uri(ConnectionHelper.GetServiceUrl(_rpcOptions));
                    httpClient.DefaultRequestHeaders.Authorization = ConnectionHelper.GetAuthenticationHeaderValue(_rpcOptions);
                });
@@ -260,22 +258,46 @@ namespace MCWrapper.RPC.Extensions
         /// <returns></returns>
         public static IServiceCollection AddMultiChainCoreRpcServices(this IServiceCollection services, Action<RpcOptions> rpcOptions, [Optional] Action<RuntimeParamOptions> runtimeParamOptions)
         {
-            // configure Options
-            services.Configure((Action<RuntimeParamOptions>)(config => runtimeParamOptions?.Invoke(new RuntimeParamOptions())))
-                .Configure((Action<RpcOptions>)(config => rpcOptions?.Invoke(new RpcOptions())));
+            var _runtimeParamOptions = new RuntimeParamOptions();
+            var _rpcOptions = new RpcOptions();
 
-            // todo change this, I don't like it. 
-            // todo create your own service provider and pull from that
-            RpcOptions _rpcOptions = new RpcOptions();
+            runtimeParamOptions?.Invoke(_runtimeParamOptions);
+            rpcOptions?.Invoke(_rpcOptions);
 
             // todo maybe we need some error handling here to detect lack of configuration early in the pipleline, as well. TBD
+
+            // configure Options
+            services.Configure<RuntimeParamOptions>(config =>
+            {
+                config.BanTx = _runtimeParamOptions.BanTx;
+                config.LockBlock = _runtimeParamOptions.LockBlock;
+                config.MaxShownData = _runtimeParamOptions.MaxShownData;
+                config.AutoSubscribe = _runtimeParamOptions.AutoSubscribe;
+                config.HandshakeLocal = _runtimeParamOptions.HandshakeLocal;
+                config.MiningTurnOver = _runtimeParamOptions.MiningTurnOver;
+                config.MineEmptyRounds = _runtimeParamOptions.MineEmptyRounds;
+                config.HideKnownOpDrops = _runtimeParamOptions.HideKnownOpDrops;
+                config.MaxQueryScanItems = _runtimeParamOptions.MaxQueryScanItems;
+                config.LockAdminMineRounds = _runtimeParamOptions.LockAdminMineRounds;
+                config.MiningRequiresPeers = _runtimeParamOptions.MiningRequiresPeers;
+            })
+            .Configure<RpcOptions>(config =>
+            {
+                config.ChainName = _rpcOptions.ChainName;
+                config.ChainUseSsl = _rpcOptions.ChainUseSsl;
+                config.ChainRpcPort = _rpcOptions.ChainRpcPort;
+                config.ChainSslPath = _rpcOptions.ChainSslPath;
+                config.ChainHostname = _rpcOptions.ChainHostname;
+                config.ChainPassword = _rpcOptions.ChainPassword;
+                config.ChainUsername = _rpcOptions.ChainUsername;
+                config.ChainBurnAddress = _rpcOptions.ChainBurnAddress;
+                config.ChainAdminAddress = _rpcOptions.ChainAdminAddress;
+            });
 
             // typed HttpClient configuration
             services.AddHttpClient<IMultiChainRpcGeneral, MultiChainRpcGeneralClient>()
                .ConfigureHttpClient((sp, httpClient) =>
                {
-                   // todo see line #267
-                   _rpcOptions = sp.GetRequiredService<IOptions<RpcOptions>>().Value;
                    httpClient.BaseAddress = new Uri(ConnectionHelper.GetServiceUrl(_rpcOptions));
                    httpClient.DefaultRequestHeaders.Authorization = ConnectionHelper.GetAuthenticationHeaderValue(_rpcOptions);
                });
@@ -336,7 +358,7 @@ namespace MCWrapper.RPC.Extensions
                    httpClient.DefaultRequestHeaders.Authorization = ConnectionHelper.GetAuthenticationHeaderValue(_rpcOptions);
                });
 
-            // RpcClients and RpcClientFactory
+            // IMultiChainRpcClientFactory serves up instances of IMultiChainRpc
             services.AddTransient<IMultiChainRpcClientFactory, MultiChainRpcClientFactory>();
 
             return services;

@@ -2,9 +2,9 @@
 
   <PropertyGroup>
     <TargetFrameworks>netcoreapp3.0;netcoreapp2.2;netcoreapp2.1</TargetFrameworks>
-    <AssemblyVersion>5.0.1.0</AssemblyVersion>
-    <FileVersion>5.0.1.0</FileVersion>
-    <Version>5.0.1</Version>
+    <AssemblyVersion>5.0.2.0</AssemblyVersion>
+    <FileVersion>5.0.2.0</FileVersion>
+    <Version>5.0.2</Version>
     <Authors>Myndblock LLC, Ryan Goodwin</Authors>
     <Company>Myndblock LLC</Company>
     <Copyright>2019</Copyright>
@@ -16,7 +16,10 @@
     <Description>A simple .NET Core wrapper for the MultiChain Core blockchain library that utilitzes Remote Procedure Calls (RPC) to communicate with distributed ledgers. Written with C# 8.0 and supports .NET Core 2.1, 2.2, and 3.0.</Description>
     <LangVersion>8.0</LangVersion>
     <Nullable>enable</Nullable>
-    <PackageReleaseNotes>All Unit Tests Passed | 358 total tests | 80 skipped | Completed in 15 seconds on brand new MultiChain Core blockchain node. As a blockchain matures the unit test durations seem to increase as well.
+    <PackageReleaseNotes>Version 5.0.2:
+Apparently a recent change caused explicit and IConfiguration-based use of AddMultiChainCoreServices, AddMultiChainCoreCliServices, and AddMultiChainCoreRpcServices to not function properly. This issue should be resolved now.
+
+All Unit Tests Passed | 358 total tests | 80 skipped | Completed in 15 seconds on brand new MultiChain Core blockchain node. As a blockchain matures the unit test durations seem to increase as well.
 
 Please, for more information, visit our GitHub repository or Project URL to learn more about implementing MCWrapper and/or MultiChain Core in your .NET Core project(s).
 
