@@ -5,15 +5,16 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>This is the HOMEPAGE. </title>
+    <title>MCWrapper.RPC Documentation</title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="This is the HOMEPAGE. ">
+    <meta name="title" content="MCWrapper.RPC Documentation">
     <meta name="generator" content="docfx 2.47.0.0">
     
-    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="shortcut icon" href="block.png">
     <link rel="stylesheet" href="styles/docfx.vendor.css">
     <link rel="stylesheet" href="styles/docfx.css">
     <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/prism.css">
     <meta property="docfx:navrel" content="toc.html">
     <meta property="docfx:tocrel" content="toc.html">
     
@@ -35,7 +36,7 @@
               </button>
               
               <a class="navbar-brand" href="index.html">
-                <img id="logo" class="svg" src="logo.svg" alt="">
+                <img id="logo" class="svg" src="block.png" alt="">
               </a>
             </div>
             <div class="collapse navbar-collapse" id="navbar">
@@ -60,49 +61,245 @@
         <div class="article row grid">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="this-is-the-homepage">This is the <strong>HOMEPAGE</strong>.</h1>
+        <h1 id="this-is-the-homepage">Learn more about <strong>MCWrapper.RPC</strong></h1>
 
-<p>Refer to <a href="http://daringfireball.net/projects/markdown/">Markdown</a> for how to write markdown files.</p>
-<h2 id="quick-start-notes">Quick Start Notes:</h2>
-<ol>
-<li>Add images to the <em>images</em> folder if the file is referencing an image.</li>
-</ol>
-</article>
-          </div>
-          
-          <div class="hidden-sm col-md-2" role="complementary">
-            <div class="sideaffix">
-              <div class="contribution">
-                <ul class="nav">
-                  <li>
-                    <a href="https://github.com/ryangoodwindev/MCWrapper.RPC/blob/master/MCWrapper.RPC/index.md/#L1" class="contribution-link">Improve this Doc</a>
-                  </li>
-                </ul>
-              </div>
-              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
-              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
-              </nav>
-            </div>
-          </div>
-        </div>
-      </div>
+        <p>A simple .NET Core wrapper for the MultiChain Core blockchain library using JSON-RPC (RPC) clients.</p>
+        <h2 id="quick-start-notes">Quick Start Notes:</h2>
+        <ol>
+          <li>Start a new .NET Core project in Visual Studio 2019</li>
+          <ul>
+            <li>Using a Web App or Web API project is easiest since the Dependency Injection (DI) pipeline is already built.</li>
+          </ul>
+          <li>Install the latest stable version of MCWrapper.RPC from the NuGet Package Manager or use the Package Manager command <code>Install-Package MCWrapper.RPC</code></li>
+          <li>Follow the steps to download and install the most recent stable version of <a href="https://www.multichain.com/download-community/" target="_blank">MultiChain Community</a> according to your operating system.</li>
+          <li>Complete step one of <a href="https://www.multichain.com/getting-started/" target="_blank">Getting Started with MultiChain</a>.</li>
+          <li>We will need the following information from the new MultiChain node.</li>
+          <ul>
+            <li>The name of the new blockchain node.</li>
+            <li>The new blockchain node admin's wallet address</li>
+            <ul>
+              <li>Run command > multichain-cli {blockchain name} listaddresses</li>
+              <li>There should only be one address listed at this point.</li>
+            </ul>
+            <li>The new blockchain node's burn address</li>
+            <ul>
+              <li>Run command > multichain-cli {blockchain name} getinfo</li>
+            </ul>
+            <li>The JSON-RPC port number (printed to the console when -deamon command is used in step 4),</li>
+            <li>The new MultiChain JSON-RPC username (usually <em>multichainrpc</em> by defaul),</li>
+            <li>The new MultiChain JSON-RPC password</li>
+            <ul>
+              <li>The JSON-RPC username and password can be located in the multichain.conf file of the new MultiChain blockchain node.</li>
+            </ul>
+            <li>Next we will add MCWrapper.RPC to our application's service container pipeline.</li>
+          </ul>
+        </ol>
+        <p>
+          Configuration for the MCWrapper.RPC clients is handled internally via the IOptions pattern.
+          The options pattern uses classes to represent groups of related settings. Visit the GitHub page to preview
+          the <a href="https://github.com/ryangoodwindev/MCWrapper.RPC/blob/master/MCWrapper.RPC/Connection/RpcOptions.cs">RpcOptions</a> class.
+        </p>
+      </article>
       
-      <footer>
-        <div class="grad-bottom"></div>
-        <div class="footer">
-          <div class="container">
-            <span class="pull-right">
-              <a href="#top">Back to top</a>
-            </span>
+      <article class="context wrap" id="_config" data-uid="">
+        <h2 id="configure-services">Configure Services:</h2>
+        <p>
+          Option #1 (preferred): This option is the most secure. Store the
+          MCWrapper.RPC RpcOptions as Environment Variables 
+          that are automatically loaded on startup. Simply call the 
+          <em>AddMultiChainCoreRpcServices</em> extension method after configuring 
+          the environment. More information is available at our help page 
+          for this <a href="https://mcwrapper.com/configure-options">topic</a>.
+        </p>
+<pre><code class="language-dotnet">// Startup class of the Web App or Web API
+public class Startup
+{
+  public Startup(IConfiguration configuration)
+  {
+    Configuration = configuration;
+  }
+
+  public IConfiguration Configuration { get; }
+
+  public void ConfigureServices(IServiceCollection services)
+  {
+    // ... previous code removed for brevity
+
+    services.AddMultiChainCoreRpcServices();
+  }
+
+  public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+  {
+    // ... remaining code removed for brevity
+  }
+}</code></pre>
+        <br />
+        <p>
+          Option #2: This option is the still somewhat secure, depending on the
+          production environment. Store the MCWrapper.RPC RpcOptions as
+          variables on an external configuration file (appsettings.json) that are 
+          automatically loaded on startup. Simply call the <em>AddMultiChainCoreRpcServices</em>
+          extension method and pass in the IConfiguration Configuration property after configuring the file.
+           More information is available at our help page for this <a href="https://mcwrapper.com/configure-options">topic</a>.
+        </p>
+<pre><code class="language-dotnet">// Startup class of the Web App or Web API
+public class Startup
+{
+  public Startup(IConfiguration configuration)
+  {
+    Configuration = configuration;
+  }
+
+  public IConfiguration Configuration { get; }
+
+  public void ConfigureServices(IServiceCollection services)
+  {
+    // ... previous code removed for brevity
+
+    services.AddMultiChainCoreRpcServices(Configuration);
+  }
+
+  public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+  {
+    // ... remaining code removed for brevity
+  }
+}</code></pre>
+        <br />
+        <p>
+          Option #3: This option is not secure and should only be used in non-production
+          environments. Explicitly pass the MCWrapper.RPC RpcOptions as
+          arguments into the <em>AddMultiChainCoreRpcServices</em> extension method and they will be
+          loaded during startup. More information is available at our help page for this
+            <a href="https://mcwrapper.com/configure-options">topic</a>.
+        </p>
+        <p>Your values will differ from ours, the values listed below are just an example.</p>
+<pre><code class="language-dotnet">// Startup class of the Web App or Web API
+public class Startup
+{
+  public Startup(IConfiguration configuration)
+  {
+    Configuration = configuration;
+  }
+
+  public IConfiguration Configuration { get; }
+
+  public void ConfigureServices(IServiceCollection services)
+  {
+    // ... previous code removed for brevity
+
+    services.AddMultiChainCoreRpcServices(rpcOptions =>
+    {
+      rpcOptions.ChainAdminAddress = "1F5WvCAwc9sX6ZMJKE8GRZA6UQQPnxgB8FbU7t";
+      rpcOptions.ChainBurnAddress = "1XXXXXXXDXXXXXXX7bXXXXXXVsXXXXXXXCT2tS";
+      rpcOptions.ChainPassword = "EmjbtUBfbg2SikAXVnAJSQKmbeZhxbpSopsVKk58zrE";
+      rpcOptions.ChainUsername = "multichainrpc";
+      // localhost or a remote node's address eg. NewChain@192.168.1.1:7764
+      rpcOptions.ChainHostname = "localhost";
+      rpcOptions.ChainName = "NewChain";
+      rpcOptions.ChainRpcPort = 7764;
+      // default is HTTP if this is left empty
+      rpcOptions.ChainSslPath = string.Empty;
+      rpcOptions.ChainUseSsl = false;
+    });
+  }
+
+  public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+  {
+    // ... remaining code removed for brevity
+  }
+}</code></pre>
+      </article>
+
+      <article class="context wrap" id="_environment" data-uid="">
+        <h2 id="environment-variables">Environment Variables:</h2>
+        <p>
+          When using the parameterless AddMultiChainCoreRpcServices method MCWrapper.RPC will depend on the local machine's Environment
+          Variable store.
+        </p>
+        <p>
+          While depending on the Environment Variable store the following variable names are used.
+        </p>
+        <ul>
+          <li>Environment variable names required by MCWrapper.RPC</li>
+          <ul>
+            <li>ChainAdminAddress (string)</li>
+            <li>ChainBurnAddress (string)</li>
+            <li>ChainName (string)</li>
+            <li>ChainPassword (string)</li>
+            <li>ChainUsername (string)</li>
+            <li>ChainHostname (string)</li>
+            <li>ChainRpcPort (int)</li>
+            <li>ChainSslPath (string)</li>
+            <li>ChainUseSsl (bool)</li>
+          </ul>
+        </ul>
+      </article>
+      <article class="context wrap" id="_iconfig" data-uid="">
+        <h2 id="iconfiguration">IConfiguration:</h2>
+        <p>
+          When using the IConfiguration argument along with the AddMultiChainCoreRpcServices method MCWrapper.RPC will depend on
+          an external JSON Configuration file, generally named appsettings.json.
+        </p>
+        <p>
+          The external JSON configration file should contain the following variable names along with
+          their values.
+        </p>
+        <p>Your values will differ from ours, the values listed below are just an example.</p>
+<pre><code class="language-json">{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Warning"
+    }
+  },
+  "AllowedHosts": "*",
+  // values required by RpcOptions when passing the,
+  // IConfiguration object to the AddMultiChainCoreCliServices method.
+  "ChainAdminAddress": "1F5WvCAwc9sX6ZMJKE8GRZA6UQQPnxgB8FbU7t",
+  "ChainBurnAddress": "1XXXXXXXDXXXXXXX7bXXXXXXVsXXXXXXXCT2tS",
+  "ChainName": "NewChain",
+  "ChainPassword": "EmjbtUBfbg2SikAXVnAJSQKmbeZhxbpSopsVKk58zrE",
+  "ChainUsername": "multichainrpc",
+  "ChainHostname": "localhost",
+  "ChainRpcPort": 7764,
+  "ChainSslPath": "",
+  "ChainUseSsl": false
+}</code></pre>
+
+      </article>
+    </div>
+          
+  <div class="hidden-sm col-md-2" role="complementary">
+    <div class="sideaffix">
+      <div class="contribution">
+                <ul class="nav">
+                  
+                </ul>
+      </div>
+      <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+      </nav>
+    </div>
+  </div>
+  </div>
+</div>
+      
+  <footer>
+    <div class="grad-bottom"></div>
+          <div class="footer">
+              <div class="container">
+                <span class="pull-right">
+                    <a href="#top">Back to top</a>
+                </span>
             
             <span>Generated by <strong>DocFX</strong></span>
           </div>
         </div>
-      </footer>
-    </div>
+  </footer>
+</div>
     
     <script type="text/javascript" src="styles/docfx.vendor.js"></script>
     <script type="text/javascript" src="styles/docfx.js"></script>
     <script type="text/javascript" src="styles/main.js"></script>
+    <script type="text/javascript" src="styles/prism.js"></script>
   </body>
 </html>
