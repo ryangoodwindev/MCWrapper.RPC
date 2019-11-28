@@ -493,6 +493,20 @@
              </summary>
              <returns></returns>
         </member>
+        <member name="M:MCWrapper.RPC.Ledger.Clients.MultiChainRpcControlClient.GetInitStatusAsync(System.String,System.String)">
+            <summary>
+            Returns information about initialization status of this node
+            </summary>
+            <param name="blockchainName"></param>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MCWrapper.RPC.Ledger.Clients.MultiChainRpcControlClient.GetInitStatusAsync">
+            <summary>
+            Returns information about initialization status of this node
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:MCWrapper.RPC.Ledger.Clients.MultiChainRpcControlClient.GetRuntimeParamsAsync(System.String,System.String)">
              <summary>
             
@@ -5596,6 +5610,20 @@
              <param name="blockchainName">Name of target blockchain</param>
              <param name="id">String value to identify this transaction</param>
              <returns></returns>
+        </member>
+        <member name="M:MCWrapper.RPC.Ledger.Clients.IMultiChainRpcControl.GetInitStatusAsync">
+            <summary>
+            Returns information about initialization status of this node
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MCWrapper.RPC.Ledger.Clients.IMultiChainRpcControl.GetInitStatusAsync(System.String,System.String)">
+            <summary>
+            Returns information about initialization status of this node
+            </summary>
+            <param name="blockchainName">Name of target blockchain</param>
+            <param name="id">String value to identify this transaction</param>
+            <returns></returns>
         </member>
         <member name="M:MCWrapper.RPC.Ledger.Clients.IMultiChainRpcControl.GetRuntimeParamsAsync">
              <summary>

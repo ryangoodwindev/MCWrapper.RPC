@@ -101,6 +101,22 @@ namespace MCWrapper.RPC.Ledger.Clients
             GetInfoAsync(RpcOptions.ChainName, UUID.NoHyphens);
 
         /// <summary>
+        /// Returns information about initialization status of this node
+        /// </summary>
+        /// <param name="blockchainName"></param>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public Task<RpcResponse<GetInitStatusResult>> GetInitStatusAsync(string blockchainName, string id) =>
+            TransactAsync<RpcResponse<GetInitStatusResult>>(blockchainName, ControlAction.GetInitStatus, id);
+
+        /// <summary>
+        /// Returns information about initialization status of this node
+        /// </summary>
+        /// <returns></returns>
+        public Task<RpcResponse<GetInitStatusResult>> GetInitStatusAsync() =>
+            GetInitStatusAsync(RpcOptions.ChainName, UUID.NoHyphens);
+
+        /// <summary>
         ///
         /// <para>Returns a selection of this node's runtime parameters.</para>
         /// <para>Blockchain name is explicitly passed as parameter.</para>
