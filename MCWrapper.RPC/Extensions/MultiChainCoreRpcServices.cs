@@ -57,7 +57,6 @@ namespace MCWrapper.RPC.Extensions
                 config.ChainName = rpcOptions.ChainName;
                 config.ChainUseSsl = rpcOptions.ChainUseSsl;
                 config.ChainRpcPort = rpcOptions.ChainRpcPort;
-                config.ChainSslPath = rpcOptions.ChainSslPath;
                 config.ChainHostname = rpcOptions.ChainHostname;
                 config.ChainPassword = rpcOptions.ChainPassword;
                 config.ChainUsername = rpcOptions.ChainUsername;
@@ -286,7 +285,6 @@ namespace MCWrapper.RPC.Extensions
                 config.ChainName = _rpcOptions.ChainName;
                 config.ChainUseSsl = _rpcOptions.ChainUseSsl;
                 config.ChainRpcPort = _rpcOptions.ChainRpcPort;
-                config.ChainSslPath = _rpcOptions.ChainSslPath;
                 config.ChainHostname = _rpcOptions.ChainHostname;
                 config.ChainPassword = _rpcOptions.ChainPassword;
                 config.ChainUsername = _rpcOptions.ChainUsername;

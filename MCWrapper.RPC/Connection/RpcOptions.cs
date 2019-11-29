@@ -8,9 +8,6 @@ namespace MCWrapper.RPC.Options
     /// <para>
     ///     The MCWrapper RPC client requires the following RpcOptions be assigned a valid value
     ///         ChainUseSsl;
-    ///         ChainSslPath 
-    ///             (ChainSslPath only required to be assigned a file path value if ChainUseSsl is true, 
-    ///              otherwise ChainSslPath can be empty string "");
     ///         ChainUsername;
     ///         ChainPassword;
     ///         ChainName;
@@ -45,7 +42,6 @@ namespace MCWrapper.RPC.Options
                 ChainPassword = nameof(ChainPassword).GetEnvironmentVariable();
                 bool.TryParse(nameof(ChainUseSsl).GetEnvironmentVariable(), out bool outChainUseSsl);
                 ChainUseSsl = outChainUseSsl;
-                ChainSslPath = nameof(ChainSslPath).GetEnvironmentVariable();
             }
         }
 
@@ -133,20 +129,5 @@ namespace MCWrapper.RPC.Options
         /// </para>
         /// </summary>
         public bool? ChainUseSsl { get; set; } = null;
-
-        /// <summary>
-        /// Local or remote file path to a copy of the same SSL certificate that is securing
-        /// the current node the application is interacting with.
-        /// <para>
-        ///     ChainSslPath is not required for the RPC client to function as expected;
-        /// </para>
-        /// <para>
-        ///     Please note: If the ChainUseSsl value is true, the ChainSslPath value
-        ///     MUST be populated and accurate. When starting an HTTPS blockahin ensure
-        ///     you pass the -rpcssl flag and properly configure your multichain.conf file
-        ///     properly to support HTTPS connections.
-        /// </para>
-        /// </summary>
-        public string ChainSslPath { get; set; } = string.Empty;
     }
 }
