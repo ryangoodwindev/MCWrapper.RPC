@@ -197,47 +197,43 @@ namespace MCWrapper.RPC.Extensions
         /// <param name="services">Service container</param>
         /// <param name="configuration">Configuration pipeline</param>
         /// <returns></returns>
-        public static IServiceCollection AddMultiChainCoreRpcServices(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddMultiChainCoreRpcServices(this IServiceCollection services, IConfiguration configuration, bool useSecrets)
         {
-            // load Options from the IConfiguration interface (appsettings.json file usually)
-            services.Configure<RuntimeParamOptions>(configuration)
-                .Configure<RpcOptions>(configuration);
+            if (!useSecrets)
+            {
+                // load Options from the IConfiguration interface (appsettings.json file usually)
+                services.Configure<RuntimeParamOptions>(configuration)
+                    .Configure<RpcOptions>(configuration);
+            }
+            else
+            {
+                // load Options from the IConfiguration interface (appsettings.json file usually)
+                services.Configure<RuntimeParamOptions>(configuration)
+                    .Configure<RpcOptions>(config =>
+                    {
+                        config.ChainAdminAddress = configuration["MULTICHAIN__ADMINADDRESS"];
+                        config.ChainBurnAddress = configuration["MULTICHAIN__BURNADDRESS"];
+                        config.ChainHostname = configuration["MULTICHAIN__HOSTNAME"];
+                        config.ChainPassword = configuration["MULTICHAIN__PASSWORD"];
+                        config.ChainUsername = configuration["MULTICHAIN__USERNAME"];
+                        config.ChainRpcPort = int.Parse(configuration["MULTICHAIN__RPCPORT"]);
+                        config.ChainUseSsl = bool.Parse(configuration["MULTICHAIN__USESSL"]);
+                        config.ChainName = configuration["MULTICHAIN__NAME"];
+                    }); ;
+            }
 
             var provider = services.BuildServiceProvider();
             RpcOptions _rpcOptions = provider.GetRequiredService<IOptions<RpcOptions>>().Value;
 
             // detect misconfiguration early in the pipeline
-            _rpcOptions.ChainAdminAddress = !string.IsNullOrEmpty(_rpcOptions.ChainAdminAddress) ? _rpcOptions.ChainAdminAddress 
-                : !string.IsNullOrEmpty(configuration["MULTICHAIN__ADMINADDRESS"]) ? configuration["MULTICHAIN__ADMINADDRESS"] 
-                : throw new ArgumentNullException($"{nameof(_rpcOptions.ChainAdminAddress)} is required and cannot be empty or null");
-
-            _rpcOptions.ChainBurnAddress = !string.IsNullOrEmpty(_rpcOptions.ChainBurnAddress) ? _rpcOptions.ChainBurnAddress
-                : !string.IsNullOrEmpty(configuration["MULTICHAIN__BURNADDRESS"]) ? configuration["MULTICHAIN_BURNADDRESS"] 
-                :throw new ArgumentNullException($"{nameof(_rpcOptions.ChainBurnAddress)} is required and cannot be empty or null");
-
-            _rpcOptions.ChainHostname = !string.IsNullOrEmpty(_rpcOptions.ChainHostname) ? _rpcOptions.ChainHostname
-                : !string.IsNullOrEmpty(configuration["MULTICHAIN__HOSTNAME"]) ? configuration["MULTICHAIN__HOSTNAME"]
-                : throw new ArgumentNullException($"{nameof(_rpcOptions.ChainHostname)} is required and cannot be empty or null");
-
-            _rpcOptions.ChainPassword = !string.IsNullOrEmpty(_rpcOptions.ChainPassword) ? _rpcOptions.ChainPassword
-                : !string.IsNullOrEmpty(configuration["MULTICHAIN__PASSWORD"]) ? configuration["MULTICHAIN__PASSWORD"]
-                : throw new ArgumentNullException($"{nameof(_rpcOptions.ChainPassword)} is required and cannot be empty or null");
-
-            _rpcOptions.ChainUsername = !string.IsNullOrEmpty(_rpcOptions.ChainUsername) ? _rpcOptions.ChainUsername
-                : !string.IsNullOrEmpty(configuration["MULTICHAIN__USERNAME"]) ? configuration["MULTICHAIN__USERNAME"]
-                : throw new ArgumentNullException($"{nameof(_rpcOptions.ChainUsername)} is required and cannot be empty or null");
-
-            _rpcOptions.ChainName = !string.IsNullOrEmpty(_rpcOptions.ChainName) ? _rpcOptions.ChainName
-                : !string.IsNullOrEmpty(configuration["MULTICHAIN__NAME"]) ? configuration["MULTICHAIN__NAME"]
-                : throw new ArgumentNullException($"{nameof(_rpcOptions.ChainName)} is required and cannot be empty or null");
-
-            _rpcOptions.ChainRpcPort = _rpcOptions.ChainRpcPort != null ? _rpcOptions.ChainRpcPort
-                : !string.IsNullOrEmpty(configuration["MULTICHAIN__RPCPORT"]) ? int.Parse(configuration["MULTICHAIN__RPCPORT"])
-                : throw new ArgumentNullException($"{nameof(_rpcOptions.ChainRpcPort)} is required and cannot be null");
-
-            _rpcOptions.ChainUseSsl = _rpcOptions.ChainUseSsl != null ? _rpcOptions.ChainUseSsl
-                : !string.IsNullOrEmpty(configuration["MULTICHAIN__USESSL"]) ? bool.Parse(configuration["MULTICHAIN__USESSL"])
-                : throw new ArgumentNullException($"{nameof(_rpcOptions.ChainUseSsl)} is required and cannot be null");
+            if (string.IsNullOrEmpty(_rpcOptions.ChainAdminAddress)) throw new ArgumentNullException($"{nameof(_rpcOptions.ChainAdminAddress)} is required and cannot be empty or null");
+            if (string.IsNullOrEmpty(_rpcOptions.ChainBurnAddress)) throw new ArgumentNullException($"{nameof(_rpcOptions.ChainBurnAddress)} is required and cannot be empty or null");
+            if (string.IsNullOrEmpty(_rpcOptions.ChainHostname)) throw new ArgumentNullException($"{nameof(_rpcOptions.ChainHostname)} is required and cannot be empty or null");
+            if (string.IsNullOrEmpty(_rpcOptions.ChainPassword)) throw new ArgumentNullException($"{nameof(_rpcOptions.ChainPassword)} is required and cannot be empty or null");
+            if (string.IsNullOrEmpty(_rpcOptions.ChainUsername)) throw new ArgumentNullException($"{nameof(_rpcOptions.ChainUsername)} is required and cannot be empty or null");
+            if (string.IsNullOrEmpty(_rpcOptions.ChainName)) throw new ArgumentNullException($"{nameof(_rpcOptions.ChainName)} is required and cannot be empty or null");
+            if (_rpcOptions.ChainRpcPort == null)  throw new ArgumentNullException($"{nameof(_rpcOptions.ChainRpcPort)} is required and cannot be null");
+            if (_rpcOptions.ChainUseSsl == null) throw new ArgumentNullException($"{nameof(_rpcOptions.ChainUseSsl)} is required and cannot be null");
 
             // typed HttpClient configuration
             services.AddHttpClient<IMultiChainRpcGeneral, MultiChainRpcGeneralClient>()

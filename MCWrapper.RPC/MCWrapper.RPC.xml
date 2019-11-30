@@ -359,7 +359,7 @@
             <param name="services">Service container</param>
             <returns></returns>
         </member>
-        <member name="M:MCWrapper.RPC.Extensions.MultiChainCoreRpcServices.AddMultiChainCoreRpcServices(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
+        <member name="M:MCWrapper.RPC.Extensions.MultiChainCoreRpcServices.AddMultiChainCoreRpcServices(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration,System.Boolean)">
             <summary>
             Add MultiChain Remote Procedure Call (RPC) services to an application's service container.
             
