@@ -403,6 +403,7 @@
             </summary>
             <param name="services">Service container</param>
             <param name="configuration">Configuration pipeline</param>
+            <param name="useSecrets">true = use Secrets Manager / false (default) = use appsettings.json</param>
             <returns></returns>
         </member>
         <member name="M:MCWrapper.RPC.Extensions.MultiChainCoreRpcServices.AddMultiChainCoreRpcServices(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{MCWrapper.RPC.Options.RpcOptions},System.Action{MCWrapper.Ledger.Entities.Options.RuntimeParamOptions})">

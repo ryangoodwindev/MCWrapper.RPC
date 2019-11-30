@@ -196,8 +196,9 @@ namespace MCWrapper.RPC.Extensions
         /// </summary>
         /// <param name="services">Service container</param>
         /// <param name="configuration">Configuration pipeline</param>
+        /// <param name="useSecrets">true = use Secrets Manager / false (default) = use appsettings.json</param>
         /// <returns></returns>
-        public static IServiceCollection AddMultiChainCoreRpcServices(this IServiceCollection services, IConfiguration configuration, bool useSecrets)
+        public static IServiceCollection AddMultiChainCoreRpcServices(this IServiceCollection services, IConfiguration configuration, bool useSecrets = false)
         {
             if (!useSecrets)
             {
