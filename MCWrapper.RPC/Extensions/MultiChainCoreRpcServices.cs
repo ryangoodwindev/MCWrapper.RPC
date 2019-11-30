@@ -474,9 +474,25 @@ namespace MCWrapper.RPC.Extensions
         /// <param name="adminAddress">MultiChain Core blockchain Admin address</param>
         /// <param name="runtimeParamOptions">Optional configuration of MultiChain Core runtime parameters</param>
         /// <returns></returns>
-        public static IServiceCollection AddMultiChainCoreRpcServices(this IServiceCollection services, string chainName, bool useSsl, int rpcPort, string hostname, string password, string username, string burnAddress, string adminAddress, [Optional] Action<RuntimeParamOptions> runtimeParamOptions)
+        public static IServiceCollection AddMultiChainCoreRpcServices(this IServiceCollection services,
+            string chainName,
+            bool useSsl,
+            int rpcPort,
+            string hostname,
+            string password,
+            string username,
+            string burnAddress,
+            string adminAddress,
+            [Optional] Action<RuntimeParamOptions> runtimeParamOptions)
         {
-            var rpcOptions = new RpcOptions(adminAddress, burnAddress, hostname, password, username, rpcPort, chainName, useSsl);
+            var rpcOptions = new RpcOptions(adminAddress,
+                burnAddress,
+                hostname,
+                password,
+                username,
+                rpcPort,
+                chainName,
+                useSsl);
 
             // configure Options
             services.Configure<RpcOptions>(config =>
