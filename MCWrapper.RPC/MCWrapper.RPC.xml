@@ -75,6 +75,13 @@
             <param name="stream"></param>
             <returns></returns>
         </member>
+        <member name="M:MCWrapper.RPC.Connection.MultiChainRpcClient.CreateRequest(MCWrapper.RPC.Connection.Request.RpcRequest)">
+            <summary>
+            Return a new HttpRequestMessage instance
+            </summary>
+            <param name="serviceRequest"></param>
+            <returns></returns>
+        </member>
         <member name="T:MCWrapper.RPC.Connection.Request.RpcRequest">
             <summary>
             Service request object enforces the required format to transact with a blockchain network
@@ -178,9 +185,6 @@
             <para>
                 The MCWrapper RPC client requires the following RpcOptions be assigned a valid value
                     ChainUseSsl;
-                    ChainSslPath 
-                        (ChainSslPath only required to be assigned a file path value if ChainUseSsl is true, 
-                         otherwise ChainSslPath can be empty string "");
                     ChainUsername;
                     ChainPassword;
                     ChainName;
@@ -287,21 +291,6 @@
             </para>
             </summary>
         </member>
-        <member name="P:MCWrapper.RPC.Options.RpcOptions.ChainSslPath">
-            <summary>
-            Local or remote file path to a copy of the same SSL certificate that is securing
-            the current node the application is interacting with.
-            <para>
-                ChainSslPath is not required for the RPC client to function as expected;
-            </para>
-            <para>
-                Please note: If the ChainUseSsl value is true, the ChainSslPath value
-                MUST be populated and accurate. When starting an HTTPS blockahin ensure
-                you pass the -rpcssl flag and properly configure your multichain.conf file
-                properly to support HTTPS connections.
-            </para>
-            </summary>
-        </member>
         <member name="T:MCWrapper.RPC.Constants.RpcUrlComponent">
             <summary>
             Helper object that stores some constant values we can use while configuring the base RpcClient
@@ -337,6 +326,11 @@
             StringContent MediaFormatHeader value
             </summary>
         </member>
+        <member name="T:MCWrapper.RPC.Extensions.MultiChainCoreRpcServices">
+            <summary>
+            Extension methods offering several different options for adding MultiChain Core JSON-RPC services to your .NET Core application.
+            </summary>
+        </member>
         <member name="M:MCWrapper.RPC.Extensions.MultiChainCoreRpcServices.AddMultiChainCoreRpcServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
             <summary>
             Add MultiChain Remote Procedure Call (RPC) services to an application's service container.
@@ -347,8 +341,19 @@
                 The MultiChain library and installation instructions are availabale at https://multichain.com
             </para>
             <para>
-                This method automatically loads the BlockchainProfileOptions and RuntimeParamOptions from the
+                This method automatically loads the RpcOptions and RuntimeParamOptions from the
                 local environment variable store.
+            </para>
+             <para>
+                RpcOptions environment variable names:
+                ChainAdminAddress,
+                ChainBurnAddress,
+                ChainHostname,
+                ChainPassword,
+                ChainUsername,
+                ChainName,
+                ChainRpcPort,
+                ChainUseSsl
             </para>
             </summary>
             <param name="services">Service container</param>
@@ -367,8 +372,33 @@
             </para>
             
             <para>
-                This method automatically loads the BlockchainProfileOptions and RuntimeParamOptions from the
-                IConfiguration interface (appsettings.json file usually).
+                This method automatically loads the RpcOptions and RuntimeParamOptions from the
+                IConfiguration interface (appsettings.json file usually). If no values are found
+                to be present on the configuration file the Secrets Manager store is verified next.
+            </para>
+            
+            <para>
+                RpcOptions appsettings.json variable names:
+                ChainAdminAddress,
+                ChainBurnAddress,
+                ChainHostname,
+                ChainPassword,
+                ChainUsername,
+                ChainName,
+                ChainRpcPort,
+                ChainUseSsl
+            </para>
+            
+            <para>
+                RpcOptions Secrets Manager variable names:
+                MULTICHAIN:ADMINADDRESS,
+                MULTICHAIN:BURNADDRESS,
+                MULTICHAIN:HOSTNAME,
+                MULTICHAIN:PASSWORD,
+                MULTICHAIN:USERNAME,
+                MULTICHAIN:NAME,
+                MULTICHAIN:RPCPORT,
+                MULTICHAIN:USESSL
             </para>
             </summary>
             <param name="services">Service container</param>
@@ -388,7 +418,7 @@
             </para>
             
             <para>
-                This method requires the BlockchainProfileOptions and RuntimeParamOptions property values to be
+                This method requires the RpcOptions and RuntimeParamOptions property values to be
                 explicitly passed via the <paramref name="runtimeParamOptions"/> and <paramref name="rpcOptions"/> 
                 Action parameters when added to the DI pipeline.
             </para>
@@ -398,16 +428,34 @@
             <param name="runtimeParamOptions">Runtime parameter configuration (How a MultiChain ledger should behave)</param>
             <returns></returns>
         </member>
-        <member name="T:MCWrapper.RPC.Extensions.ServiceRequestExtension">
+        <member name="M:MCWrapper.RPC.Extensions.MultiChainCoreRpcServices.AddMultiChainCoreRpcServices(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String,System.Boolean,System.Int32,System.String,System.String,System.String,System.String,System.String,System.Action{MCWrapper.Ledger.Entities.Options.RuntimeParamOptions})">
             <summary>
-            Offers extensions methods for ServiceRequest objects
+            Add MultiChain Remote Procedure Call (RPC) services to an application's service container.
+            
+            <para>
+                Be aware a MultiChain blockchain network must be installed and configured externally from this application.
+            </para>
+            
+            <para>
+                The MultiChain library and installation instructions are availabale at https://multichain.com
+            </para>
+            
+            <para>
+                This method requires the RpcOptions and RuntimeParamOptions property values to be
+                explicitly passed via the individual parameters for this method and the optional,
+                <paramref name="runtimeParamOptions"/> Action parameter when added to the DI pipeline.
+            </para>
             </summary>
-        </member>
-        <member name="M:MCWrapper.RPC.Extensions.ServiceRequestExtension.ToStringContent(MCWrapper.RPC.Connection.Request.RpcRequest)">
-            <summary>
-            Serialize ServiceRequest object to JSON formatted string
-            </summary>
-            <param name="request">RpcRequest type</param>
+            <param name="services">Service collection</param>
+            <param name="chainName">MultiChain Core blockchain node name</param>
+            <param name="useSsl">true = HTTPS / false = HTTP</param>
+            <param name="rpcPort">MultiChain Core blockchain JSON-RPC port number</param>
+            <param name="hostname">MultiChain Core blockchain hostname, usually 'localhost', 127.0.0.1, 0.0.0.0, or FQDN</param>
+            <param name="password">MultiChain Core blockchain possword located in the multichain.conf file</param>
+            <param name="username">MultiChain Core blockchain username located in the multichain.conf file</param>
+            <param name="burnAddress">MultiChain Core blockchain Burn address</param>
+            <param name="adminAddress">MultiChain Core blockchain Admin address</param>
+            <param name="runtimeParamOptions">Optional configuration of MultiChain Core runtime parameters</param>
             <returns></returns>
         </member>
         <member name="T:MCWrapper.RPC.Ledger.Clients.MultiChainRpcControlClient">

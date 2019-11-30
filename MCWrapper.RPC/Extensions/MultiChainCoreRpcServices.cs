@@ -10,6 +10,9 @@ using System.Runtime.InteropServices;
 
 namespace MCWrapper.RPC.Extensions
 {
+    /// <summary>
+    /// Extension methods offering several different options for adding MultiChain Core JSON-RPC services to your .NET Core application.
+    /// </summary>
     public static class MultiChainCoreRpcServices
     {
         /// <summary>
@@ -345,14 +348,14 @@ namespace MCWrapper.RPC.Extensions
             // configure Options
             services.Configure<RpcOptions>(config =>
             {
-                config.ChainName = _rpcOptions.ChainName;
-                config.ChainUseSsl = _rpcOptions.ChainUseSsl;
-                config.ChainRpcPort = _rpcOptions.ChainRpcPort;
+                config.ChainAdminAddress = _rpcOptions.ChainAdminAddress;
+                config.ChainBurnAddress = _rpcOptions.ChainBurnAddress;
                 config.ChainHostname = _rpcOptions.ChainHostname;
                 config.ChainPassword = _rpcOptions.ChainPassword;
                 config.ChainUsername = _rpcOptions.ChainUsername;
-                config.ChainBurnAddress = _rpcOptions.ChainBurnAddress;
-                config.ChainAdminAddress = _rpcOptions.ChainAdminAddress;
+                config.ChainRpcPort = _rpcOptions.ChainRpcPort;
+                config.ChainUseSsl = _rpcOptions.ChainUseSsl;
+                config.ChainName = _rpcOptions.ChainName;
             });
                 
             if (runtimeParamOptions != null)
@@ -362,17 +365,17 @@ namespace MCWrapper.RPC.Extensions
 
                 services.Configure<RuntimeParamOptions>(config =>
                 {
-                     config.BanTx = _runtimeParamOptions.BanTx;
-                     config.LockBlock = _runtimeParamOptions.LockBlock;
-                     config.MaxShownData = _runtimeParamOptions.MaxShownData;
-                     config.AutoSubscribe = _runtimeParamOptions.AutoSubscribe;
-                     config.HandshakeLocal = _runtimeParamOptions.HandshakeLocal;
-                     config.MiningTurnOver = _runtimeParamOptions.MiningTurnOver;
-                     config.MineEmptyRounds = _runtimeParamOptions.MineEmptyRounds;
-                     config.HideKnownOpDrops = _runtimeParamOptions.HideKnownOpDrops;
-                     config.MaxQueryScanItems = _runtimeParamOptions.MaxQueryScanItems;
-                     config.LockAdminMineRounds = _runtimeParamOptions.LockAdminMineRounds;
-                     config.MiningRequiresPeers = _runtimeParamOptions.MiningRequiresPeers;
+                    config.MiningRequiresPeers = _runtimeParamOptions.MiningRequiresPeers;
+                    config.LockAdminMineRounds = _runtimeParamOptions.LockAdminMineRounds;
+                    config.MaxQueryScanItems = _runtimeParamOptions.MaxQueryScanItems;
+                    config.HideKnownOpDrops = _runtimeParamOptions.HideKnownOpDrops;
+                    config.MineEmptyRounds = _runtimeParamOptions.MineEmptyRounds;
+                    config.MiningTurnOver = _runtimeParamOptions.MiningTurnOver;
+                    config.HandshakeLocal = _runtimeParamOptions.HandshakeLocal;
+                    config.AutoSubscribe = _runtimeParamOptions.AutoSubscribe;
+                    config.MaxShownData = _runtimeParamOptions.MaxShownData;
+                    config.LockBlock = _runtimeParamOptions.LockBlock;
+                    config.BanTx = _runtimeParamOptions.BanTx;
                 });
             }
 
@@ -438,6 +441,142 @@ namespace MCWrapper.RPC.Extensions
                {
                    httpClient.BaseAddress = new Uri(ConnectionHelper.GetServiceUrl(_rpcOptions));
                    httpClient.DefaultRequestHeaders.Authorization = ConnectionHelper.GetAuthenticationHeaderValue(_rpcOptions);
+               });
+
+            // IMultiChainRpcClientFactory serves up instances of IMultiChainRpc
+            services.AddTransient<IMultiChainRpcClientFactory, MultiChainRpcClientFactory>();
+
+            return services;
+        }
+
+        /// <summary>
+        /// Add MultiChain Remote Procedure Call (RPC) services to an application's service container.
+        /// 
+        /// <para>
+        ///     Be aware a MultiChain blockchain network must be installed and configured externally from this application.
+        /// </para>
+        /// 
+        /// <para>
+        ///     The MultiChain library and installation instructions are availabale at https://multichain.com
+        /// </para>
+        /// 
+        /// <para>
+        ///     This method requires the RpcOptions and RuntimeParamOptions property values to be
+        ///     explicitly passed via the individual parameters for this method and the optional,
+        ///     <paramref name="runtimeParamOptions"/> Action parameter when added to the DI pipeline.
+        /// </para>
+        /// </summary>
+        /// <param name="services">Service collection</param>
+        /// <param name="chainName">MultiChain Core blockchain node name</param>
+        /// <param name="useSsl">true = HTTPS / false = HTTP</param>
+        /// <param name="rpcPort">MultiChain Core blockchain JSON-RPC port number</param>
+        /// <param name="hostname">MultiChain Core blockchain hostname, usually 'localhost', 127.0.0.1, 0.0.0.0, or FQDN</param>
+        /// <param name="password">MultiChain Core blockchain possword located in the multichain.conf file</param>
+        /// <param name="username">MultiChain Core blockchain username located in the multichain.conf file</param>
+        /// <param name="burnAddress">MultiChain Core blockchain Burn address</param>
+        /// <param name="adminAddress">MultiChain Core blockchain Admin address</param>
+        /// <param name="runtimeParamOptions">Optional configuration of MultiChain Core runtime parameters</param>
+        /// <returns></returns>
+        public static IServiceCollection AddMultiChainCoreRpcServices(this IServiceCollection services, string chainName, bool useSsl, int rpcPort, string hostname, string password, string username, string burnAddress, string adminAddress, [Optional] Action<RuntimeParamOptions> runtimeParamOptions)
+        {
+            var rpcOptions = new RpcOptions(adminAddress, burnAddress, hostname, password, username, rpcPort, chainName, useSsl);
+
+            // configure Options
+            services.Configure<RpcOptions>(config =>
+            {
+                config.ChainAdminAddress = rpcOptions.ChainAdminAddress;
+                config.ChainBurnAddress = rpcOptions.ChainBurnAddress;
+                config.ChainHostname = rpcOptions.ChainHostname;
+                config.ChainPassword = rpcOptions.ChainPassword;
+                config.ChainUsername = rpcOptions.ChainUsername;
+                config.ChainRpcPort = rpcOptions.ChainRpcPort;
+                config.ChainUseSsl = rpcOptions.ChainUseSsl;
+                config.ChainName = rpcOptions.ChainName;
+            });
+
+            if (runtimeParamOptions != null)
+            {
+                var _runtimeParamOptions = new RuntimeParamOptions();
+                runtimeParamOptions?.Invoke(_runtimeParamOptions);
+
+                services.Configure<RuntimeParamOptions>(config =>
+                {
+                    config.MiningRequiresPeers = _runtimeParamOptions.MiningRequiresPeers;
+                    config.LockAdminMineRounds = _runtimeParamOptions.LockAdminMineRounds;
+                    config.MaxQueryScanItems = _runtimeParamOptions.MaxQueryScanItems;
+                    config.HideKnownOpDrops = _runtimeParamOptions.HideKnownOpDrops;
+                    config.MineEmptyRounds = _runtimeParamOptions.MineEmptyRounds;
+                    config.MiningTurnOver = _runtimeParamOptions.MiningTurnOver;
+                    config.HandshakeLocal = _runtimeParamOptions.HandshakeLocal;
+                    config.AutoSubscribe = _runtimeParamOptions.AutoSubscribe;
+                    config.MaxShownData = _runtimeParamOptions.MaxShownData;
+                    config.LockBlock = _runtimeParamOptions.LockBlock;
+                    config.BanTx = _runtimeParamOptions.BanTx;
+                });
+            }
+
+            // typed HttpClient configuration
+            services.AddHttpClient<IMultiChainRpcGeneral, MultiChainRpcGeneralClient>()
+               .ConfigureHttpClient((sp, httpClient) =>
+               {
+                   httpClient.BaseAddress = new Uri(ConnectionHelper.GetServiceUrl(rpcOptions));
+                   httpClient.DefaultRequestHeaders.Authorization = ConnectionHelper.GetAuthenticationHeaderValue(rpcOptions);
+               });
+
+            services.AddHttpClient<IMultiChainRpcControl, MultiChainRpcControlClient>()
+               .ConfigureHttpClient((sp, httpClient) =>
+               {
+                   httpClient.BaseAddress = new Uri(ConnectionHelper.GetServiceUrl(rpcOptions));
+                   httpClient.DefaultRequestHeaders.Authorization = ConnectionHelper.GetAuthenticationHeaderValue(rpcOptions);
+               });
+
+            services.AddHttpClient<IMultiChainRpcGenerate, MultiChainRpcGenerateClient>()
+               .ConfigureHttpClient((sp, httpClient) =>
+               {
+                   httpClient.BaseAddress = new Uri(ConnectionHelper.GetServiceUrl(rpcOptions));
+                   httpClient.DefaultRequestHeaders.Authorization = ConnectionHelper.GetAuthenticationHeaderValue(rpcOptions);
+               });
+
+            services.AddHttpClient<IMultiChainRpcMining, MultiChainRpcMiningClient>()
+               .ConfigureHttpClient((sp, httpClient) =>
+               {
+                   httpClient.BaseAddress = new Uri(ConnectionHelper.GetServiceUrl(rpcOptions));
+                   httpClient.DefaultRequestHeaders.Authorization = ConnectionHelper.GetAuthenticationHeaderValue(rpcOptions);
+               });
+
+            services.AddHttpClient<IMultiChainRpcNetwork, MultiChainRpcNetworkClient>()
+               .ConfigureHttpClient((sp, httpClient) =>
+               {
+                   httpClient.BaseAddress = new Uri(ConnectionHelper.GetServiceUrl(rpcOptions));
+                   httpClient.DefaultRequestHeaders.Authorization = ConnectionHelper.GetAuthenticationHeaderValue(rpcOptions);
+               });
+
+            services.AddHttpClient<IMultiChainRpcOffChain, MultiChainRpcOffChainClient>()
+               .ConfigureHttpClient((sp, httpClient) =>
+               {
+                   httpClient.BaseAddress = new Uri(ConnectionHelper.GetServiceUrl(rpcOptions));
+                   httpClient.DefaultRequestHeaders.Authorization = ConnectionHelper.GetAuthenticationHeaderValue(rpcOptions);
+               });
+
+            services.AddHttpClient<IMultiChainRpcRaw, MultiChainRpcRawClient>()
+               .ConfigureHttpClient((sp, httpClient) =>
+               {
+                   httpClient.BaseAddress = new Uri(ConnectionHelper.GetServiceUrl(rpcOptions));
+                   httpClient.DefaultRequestHeaders.Authorization = ConnectionHelper.GetAuthenticationHeaderValue(rpcOptions);
+               });
+
+            services.AddHttpClient<IMultiChainRpcUtility, MultiChainRpcUtilityClient>()
+               .ConfigureHttpClient((sp, httpClient) =>
+               {
+                   httpClient.BaseAddress = new Uri(ConnectionHelper.GetServiceUrl(rpcOptions));
+                   httpClient.DefaultRequestHeaders.Authorization = ConnectionHelper.GetAuthenticationHeaderValue(rpcOptions);
+               });
+
+            services.AddHttpClient<IMultiChainRpcWallet, MultiChainRpcWalletClient>()
+               .ConfigureHttpClient((sp, httpClient) =>
+               {
+                   httpClient.BaseAddress = new Uri(ConnectionHelper.GetServiceUrl(rpcOptions));
+                   httpClient.DefaultRequestHeaders.Authorization = ConnectionHelper.GetAuthenticationHeaderValue(rpcOptions);
                });
 
             // IMultiChainRpcClientFactory serves up instances of IMultiChainRpc

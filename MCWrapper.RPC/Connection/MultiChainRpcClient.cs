@@ -1,12 +1,12 @@
 ﻿using MCWrapper.Ledger.Entities.ErrorHandling;
 using MCWrapper.RPC.Connection.Request;
-using MCWrapper.RPC.Extensions;
+using MCWrapper.RPC.Constants;
 using MCWrapper.RPC.Options;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using System.IO;
 using System.Net.Http;
-using System.Threading;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace MCWrapper.RPC.Connection
@@ -47,15 +47,11 @@ namespace MCWrapper.RPC.Connection
         /// <returns></returns>
         public async Task<T> TransactAsync<T>(string blockchainName, string method, string id, params object[] args)
         {
-            using var request = new HttpRequestMessage(HttpMethod.Post, "")
-            {
-                // create a new ServiceRequest using the provided method, id, and argument (args) values
-                Content = new RpcRequest(id, method, args, blockchainName).ToStringContent()
-            };
+            var request = CreateRequest(new RpcRequest(id, method, args, blockchainName));
 
             // post StringContent to MutltiChain blockchain network
             // read HTTP JSON string response content
-            using var response = await HttpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead, new CancellationToken());
+            var response = await HttpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead).ConfigureAwait(false);
 
             using var stream = await response.Content.ReadAsStreamAsync();
 
@@ -77,15 +73,11 @@ namespace MCWrapper.RPC.Connection
         /// <returns></returns>
         public async Task<T> TransactAsync<T>(RpcRequest serviceRequest)
         {
-            using var request = new HttpRequestMessage(HttpMethod.Post, "")
-            {
-                // create a new ServiceRequest using the provided method, id, and argument (args) values
-                Content = serviceRequest.ToStringContent()
-            };
+            var request = CreateRequest(serviceRequest);
 
             // post StringContent to MutltiChain blockchain network
             // read HTTP JSON string response content
-            using var response = await HttpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead, new CancellationToken());
+            var response = await HttpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead).ConfigureAwait(false);
 
             using var stream = await response.Content.ReadAsStreamAsync();
 
@@ -129,13 +121,29 @@ namespace MCWrapper.RPC.Connection
         /// <returns></returns>
         private static async Task<string> StreamToStringAsync(Stream stream)
         {
-            string? content = null;
-
             if (stream != null)
-                using (var sr = new StreamReader(stream))
-                    content = await sr.ReadToEndAsync();
+            {
+                using var sr = new StreamReader(stream);
+                return await sr.ReadToEndAsync();
+            }
 
-            return content ?? string.Empty;
+            return string.Empty;
         }
+
+        /// <summary>
+        /// Return a new HttpRequestMessage instance
+        /// </summary>
+        /// <param name="serviceRequest"></param>
+        /// <returns></returns>
+        private static HttpRequestMessage CreateRequest(RpcRequest serviceRequest) =>
+            new HttpRequestMessage(HttpMethod.Post, "")
+            {
+                // create a new ServiceRequest using the provided method, id, and argument (args) values
+                Content = new StringContent(
+                    content: JsonConvert.SerializeObject(serviceRequest.GetNamedValues),
+                    encoding: Encoding.UTF8,
+                    mediaType: RpcUrlComponent.JsonRPCMediaType)
+            };
+
     }
 }

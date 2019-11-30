@@ -45,6 +45,18 @@ namespace MCWrapper.RPC.Options
             }
         }
 
+        public RpcOptions(string chainAdminAddress, string chainBurnAddress, string chainHostname, string chainPassword, string chainUsername, int chainRpcPort, string chainName, bool chainUseSsl)
+        {
+            ChainAdminAddress = chainAdminAddress;
+            ChainBurnAddress = chainBurnAddress;
+            ChainHostname = chainHostname;
+            ChainPassword = chainPassword;
+            ChainUsername = chainUsername;
+            ChainRpcPort = chainRpcPort;
+            ChainName = chainName;
+            ChainUseSsl = chainUseSsl;
+        }
+
         /// <summary>
         /// Multichain blockchain name as declared in the params.dat file;
         /// 
