@@ -21,8 +21,19 @@ namespace MCWrapper.RPC.Extensions
         ///     The MultiChain library and installation instructions are availabale at https://multichain.com
         /// </para>
         /// <para>
-        ///     This method automatically loads the BlockchainProfileOptions and RuntimeParamOptions from the
+        ///     This method automatically loads the RpcOptions and RuntimeParamOptions from the
         ///     local environment variable store.
+        /// </para>
+        ///  <para>
+        ///     RpcOptions environment variable names:
+        ///     ChainAdminAddress,
+        ///     ChainBurnAddress,
+        ///     ChainHostname,
+        ///     ChainPassword,
+        ///     ChainUsername,
+        ///     ChainName,
+        ///     ChainRpcPort,
+        ///     ChainUseSsl
         /// </para>
         /// </summary>
         /// <param name="services">Service container</param>
@@ -32,37 +43,42 @@ namespace MCWrapper.RPC.Extensions
             var rpcOptions = new RpcOptions(true);
             var runtimeOptions = new RuntimeParamOptions(true);
 
-            // todo maybe we need to also check the Secret Manager for variable values?
-            // todo perhap we can analyze cliOptions and/or runtimeOptions and if null'ish then we can verify Secret Manager
-
-            // todo maybe we need some error handling here to detect lack of configuration early in the pipleline, as well. TBD
+            // detect misconfiguration early in the pipeline
+            if (string.IsNullOrEmpty(rpcOptions.ChainAdminAddress)) throw new ArgumentNullException($"{nameof(rpcOptions.ChainAdminAddress)} is required and cannot be empty or null");
+            if (string.IsNullOrEmpty(rpcOptions.ChainBurnAddress)) throw new ArgumentNullException($"{nameof(rpcOptions.ChainBurnAddress)} is required and cannot be empty or null");
+            if (string.IsNullOrEmpty(rpcOptions.ChainHostname)) throw new ArgumentNullException($"{nameof(rpcOptions.ChainHostname)} is required and cannot be empty or null");
+            if (string.IsNullOrEmpty(rpcOptions.ChainPassword)) throw new ArgumentNullException($"{nameof(rpcOptions.ChainPassword)} is required and cannot be empty or null");
+            if (string.IsNullOrEmpty(rpcOptions.ChainUsername)) throw new ArgumentNullException($"{nameof(rpcOptions.ChainUsername)} is required and cannot be empty or null");
+            if (string.IsNullOrEmpty(rpcOptions.ChainName)) throw new ArgumentNullException($"{nameof(rpcOptions.ChainName)} is required and cannot be empty or null");
+            if (rpcOptions.ChainRpcPort == null) throw new ArgumentNullException($"{nameof(rpcOptions.ChainRpcPort)} is required and cannot be null");
+            if (rpcOptions.ChainUseSsl == null) throw new ArgumentNullException($"{nameof(rpcOptions.ChainUseSsl)} is required and cannot be null");
 
             // load Options from the local environment variable store
-            services.Configure<RuntimeParamOptions>(config =>
+            services.Configure<RpcOptions>(config =>
             {
-                config.BanTx = runtimeOptions.BanTx;
-                config.LockBlock = runtimeOptions.LockBlock;
-                config.MaxShownData = runtimeOptions.MaxShownData;
-                config.AutoSubscribe = runtimeOptions.AutoSubscribe;
-                config.HandshakeLocal = runtimeOptions.HandshakeLocal;
-                config.MiningTurnOver = runtimeOptions.MiningTurnOver;
-                config.MineEmptyRounds = runtimeOptions.MineEmptyRounds;
-                config.HideKnownOpDrops = runtimeOptions.HideKnownOpDrops;
-                config.MaxQueryScanItems = runtimeOptions.MaxQueryScanItems;
-                config.LockAdminMineRounds = runtimeOptions.LockAdminMineRounds;
-                config.MiningRequiresPeers = runtimeOptions.MiningRequiresPeers;
-            })
-            .Configure<RpcOptions>(config =>
-            {
-                config.ChainName = rpcOptions.ChainName;
-                config.ChainUseSsl = rpcOptions.ChainUseSsl;
-                config.ChainRpcPort = rpcOptions.ChainRpcPort;
+                config.ChainAdminAddress = rpcOptions.ChainAdminAddress;
+                config.ChainBurnAddress = rpcOptions.ChainBurnAddress;
                 config.ChainHostname = rpcOptions.ChainHostname;
                 config.ChainPassword = rpcOptions.ChainPassword;
                 config.ChainUsername = rpcOptions.ChainUsername;
-                config.ChainBurnAddress = rpcOptions.ChainBurnAddress;
-                config.ChainAdminAddress = rpcOptions.ChainAdminAddress;
-            });
+                config.ChainRpcPort = rpcOptions.ChainRpcPort;
+                config.ChainUseSsl = rpcOptions.ChainUseSsl;
+                config.ChainName = rpcOptions.ChainName;
+            })
+                .Configure<RuntimeParamOptions>(config =>
+                {
+                    config.MiningRequiresPeers = runtimeOptions.MiningRequiresPeers;
+                    config.LockAdminMineRounds = runtimeOptions.LockAdminMineRounds;
+                    config.MaxQueryScanItems = runtimeOptions.MaxQueryScanItems;
+                    config.HideKnownOpDrops = runtimeOptions.HideKnownOpDrops;
+                    config.MineEmptyRounds = runtimeOptions.MineEmptyRounds;
+                    config.HandshakeLocal = runtimeOptions.HandshakeLocal;
+                    config.MiningTurnOver = runtimeOptions.MiningTurnOver;
+                    config.AutoSubscribe = runtimeOptions.AutoSubscribe;
+                    config.MaxShownData = runtimeOptions.MaxShownData;
+                    config.LockBlock = runtimeOptions.LockBlock;
+                    config.BanTx = runtimeOptions.BanTx;
+                });
 
             // typed HttpClient configuration
             services.AddHttpClient<IMultiChainRpcGeneral, MultiChainRpcGeneralClient>()
@@ -146,8 +162,33 @@ namespace MCWrapper.RPC.Extensions
         /// </para>
         /// 
         /// <para>
-        ///     This method automatically loads the BlockchainProfileOptions and RuntimeParamOptions from the
-        ///     IConfiguration interface (appsettings.json file usually).
+        ///     This method automatically loads the RpcOptions and RuntimeParamOptions from the
+        ///     IConfiguration interface (appsettings.json file usually). If no values are found
+        ///     to be present on the configuration file the Secrets Manager store is verified next.
+        /// </para>
+        /// 
+        /// <para>
+        ///     RpcOptions appsettings.json variable names:
+        ///     ChainAdminAddress,
+        ///     ChainBurnAddress,
+        ///     ChainHostname,
+        ///     ChainPassword,
+        ///     ChainUsername,
+        ///     ChainName,
+        ///     ChainRpcPort,
+        ///     ChainUseSsl
+        /// </para>
+        /// 
+        /// <para>
+        ///     RpcOptions Secrets Manager variable names:
+        ///     MULTICHAIN:ADMINADDRESS,
+        ///     MULTICHAIN:BURNADDRESS,
+        ///     MULTICHAIN:HOSTNAME,
+        ///     MULTICHAIN:PASSWORD,
+        ///     MULTICHAIN:USERNAME,
+        ///     MULTICHAIN:NAME,
+        ///     MULTICHAIN:RPCPORT,
+        ///     MULTICHAIN:USESSL
         /// </para>
         /// </summary>
         /// <param name="services">Service container</param>
@@ -162,7 +203,38 @@ namespace MCWrapper.RPC.Extensions
             var provider = services.BuildServiceProvider();
             RpcOptions _rpcOptions = provider.GetRequiredService<IOptions<RpcOptions>>().Value;
 
-            // todo maybe we need some error handling here to detect lack of configuration early in the pipleline, as well. TBD
+            // detect misconfiguration early in the pipeline
+            _rpcOptions.ChainAdminAddress = !string.IsNullOrEmpty(_rpcOptions.ChainAdminAddress) ? _rpcOptions.ChainAdminAddress 
+                : !string.IsNullOrEmpty(configuration["MULTICHAIN__ADMINADDRESS"]) ? configuration["MULTICHAIN__ADMINADDRESS"] 
+                : throw new ArgumentNullException($"{nameof(_rpcOptions.ChainAdminAddress)} is required and cannot be empty or null");
+
+            _rpcOptions.ChainBurnAddress = !string.IsNullOrEmpty(_rpcOptions.ChainBurnAddress) ? _rpcOptions.ChainBurnAddress
+                : !string.IsNullOrEmpty(configuration["MULTICHAIN__BURNADDRESS"]) ? configuration["MULTICHAIN_BURNADDRESS"] 
+                :throw new ArgumentNullException($"{nameof(_rpcOptions.ChainBurnAddress)} is required and cannot be empty or null");
+
+            _rpcOptions.ChainHostname = !string.IsNullOrEmpty(_rpcOptions.ChainHostname) ? _rpcOptions.ChainHostname
+                : !string.IsNullOrEmpty(configuration["MULTICHAIN__HOSTNAME"]) ? configuration["MULTICHAIN__HOSTNAME"]
+                : throw new ArgumentNullException($"{nameof(_rpcOptions.ChainHostname)} is required and cannot be empty or null");
+
+            _rpcOptions.ChainPassword = !string.IsNullOrEmpty(_rpcOptions.ChainPassword) ? _rpcOptions.ChainPassword
+                : !string.IsNullOrEmpty(configuration["MULTICHAIN__PASSWORD"]) ? configuration["MULTICHAIN__PASSWORD"]
+                : throw new ArgumentNullException($"{nameof(_rpcOptions.ChainPassword)} is required and cannot be empty or null");
+
+            _rpcOptions.ChainUsername = !string.IsNullOrEmpty(_rpcOptions.ChainUsername) ? _rpcOptions.ChainUsername
+                : !string.IsNullOrEmpty(configuration["MULTICHAIN__USERNAME"]) ? configuration["MULTICHAIN__USERNAME"]
+                : throw new ArgumentNullException($"{nameof(_rpcOptions.ChainUsername)} is required and cannot be empty or null");
+
+            _rpcOptions.ChainName = !string.IsNullOrEmpty(_rpcOptions.ChainName) ? _rpcOptions.ChainName
+                : !string.IsNullOrEmpty(configuration["MULTICHAIN__NAME"]) ? configuration["MULTICHAIN__NAME"]
+                : throw new ArgumentNullException($"{nameof(_rpcOptions.ChainName)} is required and cannot be empty or null");
+
+            _rpcOptions.ChainRpcPort = _rpcOptions.ChainRpcPort != null ? _rpcOptions.ChainRpcPort
+                : !string.IsNullOrEmpty(configuration["MULTICHAIN__RPCPORT"]) ? int.Parse(configuration["MULTICHAIN__RPCPORT"])
+                : throw new ArgumentNullException($"{nameof(_rpcOptions.ChainRpcPort)} is required and cannot be null");
+
+            _rpcOptions.ChainUseSsl = _rpcOptions.ChainUseSsl != null ? _rpcOptions.ChainUseSsl
+                : !string.IsNullOrEmpty(configuration["MULTICHAIN__USESSL"]) ? bool.Parse(configuration["MULTICHAIN__USESSL"])
+                : throw new ArgumentNullException($"{nameof(_rpcOptions.ChainUseSsl)} is required and cannot be null");
 
             // typed HttpClient configuration
             services.AddHttpClient<IMultiChainRpcGeneral, MultiChainRpcGeneralClient>()
@@ -246,7 +318,7 @@ namespace MCWrapper.RPC.Extensions
         /// </para>
         /// 
         /// <para>
-        ///     This method requires the BlockchainProfileOptions and RuntimeParamOptions property values to be
+        ///     This method requires the RpcOptions and RuntimeParamOptions property values to be
         ///     explicitly passed via the <paramref name="runtimeParamOptions"/> and <paramref name="rpcOptions"/> 
         ///     Action parameters when added to the DI pipeline.
         /// </para>
@@ -257,30 +329,21 @@ namespace MCWrapper.RPC.Extensions
         /// <returns></returns>
         public static IServiceCollection AddMultiChainCoreRpcServices(this IServiceCollection services, Action<RpcOptions> rpcOptions, [Optional] Action<RuntimeParamOptions> runtimeParamOptions)
         {
-            var _runtimeParamOptions = new RuntimeParamOptions();
             var _rpcOptions = new RpcOptions();
-
-            runtimeParamOptions?.Invoke(_runtimeParamOptions);
             rpcOptions?.Invoke(_rpcOptions);
 
-            // todo maybe we need some error handling here to detect lack of configuration early in the pipleline, as well. TBD
+            // detect misconfiguration early in the pipeline
+            if (string.IsNullOrEmpty(_rpcOptions.ChainAdminAddress)) throw new ArgumentNullException($"{nameof(_rpcOptions.ChainAdminAddress)} is required and cannot be empty or null");
+            if (string.IsNullOrEmpty(_rpcOptions.ChainBurnAddress)) throw new ArgumentNullException($"{nameof(_rpcOptions.ChainBurnAddress)} is required and cannot be empty or null");
+            if (string.IsNullOrEmpty(_rpcOptions.ChainHostname)) throw new ArgumentNullException($"{nameof(_rpcOptions.ChainHostname)} is required and cannot be empty or null");
+            if (string.IsNullOrEmpty(_rpcOptions.ChainPassword)) throw new ArgumentNullException($"{nameof(_rpcOptions.ChainPassword)} is required and cannot be empty or null");
+            if (string.IsNullOrEmpty(_rpcOptions.ChainUsername)) throw new ArgumentNullException($"{nameof(_rpcOptions.ChainUsername)} is required and cannot be empty or null");
+            if (string.IsNullOrEmpty(_rpcOptions.ChainName)) throw new ArgumentNullException($"{nameof(_rpcOptions.ChainName)} is required and cannot be empty or null");
+            if (_rpcOptions.ChainRpcPort == null) throw new ArgumentNullException($"{nameof(_rpcOptions.ChainRpcPort)} is required and cannot be null");
+            if (_rpcOptions.ChainUseSsl == null) throw new ArgumentNullException($"{nameof(_rpcOptions.ChainUseSsl)} is required and cannot be null");
 
             // configure Options
-            services.Configure<RuntimeParamOptions>(config =>
-            {
-                config.BanTx = _runtimeParamOptions.BanTx;
-                config.LockBlock = _runtimeParamOptions.LockBlock;
-                config.MaxShownData = _runtimeParamOptions.MaxShownData;
-                config.AutoSubscribe = _runtimeParamOptions.AutoSubscribe;
-                config.HandshakeLocal = _runtimeParamOptions.HandshakeLocal;
-                config.MiningTurnOver = _runtimeParamOptions.MiningTurnOver;
-                config.MineEmptyRounds = _runtimeParamOptions.MineEmptyRounds;
-                config.HideKnownOpDrops = _runtimeParamOptions.HideKnownOpDrops;
-                config.MaxQueryScanItems = _runtimeParamOptions.MaxQueryScanItems;
-                config.LockAdminMineRounds = _runtimeParamOptions.LockAdminMineRounds;
-                config.MiningRequiresPeers = _runtimeParamOptions.MiningRequiresPeers;
-            })
-            .Configure<RpcOptions>(config =>
+            services.Configure<RpcOptions>(config =>
             {
                 config.ChainName = _rpcOptions.ChainName;
                 config.ChainUseSsl = _rpcOptions.ChainUseSsl;
@@ -291,6 +354,27 @@ namespace MCWrapper.RPC.Extensions
                 config.ChainBurnAddress = _rpcOptions.ChainBurnAddress;
                 config.ChainAdminAddress = _rpcOptions.ChainAdminAddress;
             });
+                
+            if (runtimeParamOptions != null)
+            {
+                var _runtimeParamOptions = new RuntimeParamOptions();
+                runtimeParamOptions?.Invoke(_runtimeParamOptions);
+
+                services.Configure<RuntimeParamOptions>(config =>
+                {
+                     config.BanTx = _runtimeParamOptions.BanTx;
+                     config.LockBlock = _runtimeParamOptions.LockBlock;
+                     config.MaxShownData = _runtimeParamOptions.MaxShownData;
+                     config.AutoSubscribe = _runtimeParamOptions.AutoSubscribe;
+                     config.HandshakeLocal = _runtimeParamOptions.HandshakeLocal;
+                     config.MiningTurnOver = _runtimeParamOptions.MiningTurnOver;
+                     config.MineEmptyRounds = _runtimeParamOptions.MineEmptyRounds;
+                     config.HideKnownOpDrops = _runtimeParamOptions.HideKnownOpDrops;
+                     config.MaxQueryScanItems = _runtimeParamOptions.MaxQueryScanItems;
+                     config.LockAdminMineRounds = _runtimeParamOptions.LockAdminMineRounds;
+                     config.MiningRequiresPeers = _runtimeParamOptions.MiningRequiresPeers;
+                });
+            }
 
             // typed HttpClient configuration
             services.AddHttpClient<IMultiChainRpcGeneral, MultiChainRpcGeneralClient>()
