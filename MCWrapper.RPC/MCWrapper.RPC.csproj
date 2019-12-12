@@ -2,9 +2,9 @@
 
   <PropertyGroup>
     <TargetFrameworks>netcoreapp3.0;netcoreapp2.2;netcoreapp2.1</TargetFrameworks>
-    <AssemblyVersion>5.0.5.0</AssemblyVersion>
-    <FileVersion>5.0.5.0</FileVersion>
-    <Version>5.0.5</Version>
+    <AssemblyVersion>5.0.6.0</AssemblyVersion>
+    <FileVersion>5.0.6.0</FileVersion>
+    <Version>5.0.6</Version>
     <Authors>Myndblock LLC, Ryan Goodwin</Authors>
     <Company>Myndblock LLC</Company>
     <Copyright>2019</Copyright>
@@ -16,7 +16,9 @@
     <Description>A simple .NET Core wrapper for the MultiChain Core blockchain library that utilitzes Remote Procedure Calls (RPC) to communicate with distributed ledgers. Written with C# 8.0 and supports .NET Core 2.1, 2.2, and 3.0.</Description>
     <LangVersion>8.0</LangVersion>
     <Nullable>enable</Nullable>
-    <PackageReleaseNotes>Fixed a minor bug introduced with version 5.0.4.
+    <PackageReleaseNotes>Added Code Comments back into package
+
+Fixed a minor bug introduced with version 5.0.4.
 
 RpcOptions property "ChainSslPath" has been removed as it was unnecessary. Apparently our certificate was setup incorrectly in staging. When a valid SSL certificate is used by MultiChain Core, MCWrapper has no issue and does not require to know the local path to the certificate any longer. This helps simplify RpcOptions configuration a bit.
 Added new extension method that allows for RpcOptions to be passed as arguments instead of an Action&lt;T&gt;.
