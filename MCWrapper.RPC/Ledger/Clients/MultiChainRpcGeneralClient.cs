@@ -160,8 +160,8 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="id"></param>
         /// <param name="hashOrHeight"></param>
         /// <returns></returns>
-        public Task<string> GetBlockEncodedAsync(string blockchainName, string id, string hashOrHeight) =>
-            TransactAsync<string>(blockchainName, BlockchainAction.GetBlockMethod, id, hashOrHeight, false);
+        public Task<RpcResponse<string>> GetBlockEncodedAsync(string blockchainName, string id, string hashOrHeight) =>
+            TransactAsync<RpcResponse<string>>(blockchainName, BlockchainAction.GetBlockMethod, id, hashOrHeight, false);
 
         /// <summary>
         /// 
@@ -171,7 +171,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// </summary>
         /// <param name="hashOrHeight"></param>
         /// <returns></returns>
-        public Task<string> GetBlockEncodedAsync(string hashOrHeight) =>
+        public Task<RpcResponse<string>> GetBlockEncodedAsync(string hashOrHeight) =>
             GetBlockEncodedAsync(RpcOptions.ChainName, UUID.NoHyphens, hashOrHeight);
 
         /// <summary>
@@ -184,8 +184,8 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="id"></param>
         /// <param name="hashOrHeight"></param>
         /// <returns></returns>
-        public Task<GetBlockVerboseResult> GetBlockVerboseAsync(string blockchainName, string id, string hashOrHeight) =>
-            TransactAsync<GetBlockVerboseResult>(blockchainName, BlockchainAction.GetBlockMethod, id, hashOrHeight, true);
+        public Task<RpcResponse<GetBlockVerboseResult>> GetBlockVerboseAsync(string blockchainName, string id, string hashOrHeight) =>
+            TransactAsync<RpcResponse<GetBlockVerboseResult>>(blockchainName, BlockchainAction.GetBlockMethod, id, hashOrHeight, true);
 
         /// <summary>
         /// 
@@ -195,7 +195,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// </summary>
         /// <param name="hashOrHeight"></param>
         /// <returns></returns>
-        public Task<GetBlockVerboseResult> GetBlockVerboseAsync(string hashOrHeight) =>
+        public Task<RpcResponse<GetBlockVerboseResult>> GetBlockVerboseAsync(string hashOrHeight) =>
             GetBlockVerboseAsync(RpcOptions.ChainName, UUID.NoHyphens, hashOrHeight);
 
         /// <summary>
@@ -208,8 +208,8 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="id"></param>
         /// <param name="hashOrHeight"></param>
         /// <returns></returns>
-        public Task<GetBlockResultV1> GetBlockVerboseVersionOneAsync(string blockchainName, string id, string hashOrHeight) =>
-            TransactAsync<GetBlockResultV1>(blockchainName, BlockchainAction.GetBlockMethod, id, hashOrHeight, 1);
+        public Task<RpcResponse<GetBlockV1Result>> GetBlockV1Async(string blockchainName, string id, string hashOrHeight) =>
+            TransactAsync<RpcResponse<GetBlockResultV1>>(blockchainName, BlockchainAction.GetBlockMethod, id, hashOrHeight, 1);
 
         /// <summary>
         /// 
@@ -219,8 +219,8 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// </summary>
         /// <param name="hashOrHeight"></param>
         /// <returns></returns>
-        public Task<GetBlockResultV1> GetBlockVerboseVersionOneAsync(string hashOrHeight) =>
-            GetBlockVerboseVersionOneAsync(RpcOptions.ChainName, UUID.NoHyphens, hashOrHeight);
+        public Task<RpcResponse<GetBlockV1Result>> GetBlockV1Async(string hashOrHeight) =>
+            GetBlockV1Async(RpcOptions.ChainName, UUID.NoHyphens, hashOrHeight);
 
         /// <summary>
         /// 
@@ -232,8 +232,8 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="id"></param>
         /// <param name="hashOrHeight"></param>
         /// <returns></returns>
-        public Task<GetBlockResultV2> GetBlockVerboseVersionTwoAsync(string blockchainName, string id, string hashOrHeight) =>
-            TransactAsync<GetBlockResultV2>(blockchainName, BlockchainAction.GetBlockMethod, id, hashOrHeight, 2);
+        public Task<RpcResponse<GetBlockV2Result>> GetBlockV2Async(string blockchainName, string id, string hashOrHeight) =>
+            TransactAsync<RpcResponse<GetBlockResultV2>>(blockchainName, BlockchainAction.GetBlockMethod, id, hashOrHeight, 2);
 
         /// <summary>
         /// 
@@ -243,8 +243,8 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// </summary>
         /// <param name="hashOrHeight"></param>
         /// <returns></returns>
-        public Task<GetBlockResultV2> GetBlockVerboseVersionTwoAsync(string hashOrHeight) =>
-            GetBlockVerboseVersionTwoAsync(RpcOptions.ChainName, UUID.NoHyphens, hashOrHeight);
+        public Task<RpcResponse<GetBlockV2Result>> GetBlockV2Async(string hashOrHeight) =>
+            GetBlockV2Async(RpcOptions.ChainName, UUID.NoHyphens, hashOrHeight);
 
         /// <summary>
         /// 
@@ -256,8 +256,8 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="id"></param>
         /// <param name="hashOrHeight"></param>
         /// <returns></returns>
-        public Task<GetBlockResultV3> GetBlockVerboseVersionThreeAsync(string blockchainName, string id, string hashOrHeight) =>
-            TransactAsync<GetBlockResultV3>(blockchainName, BlockchainAction.GetBlockMethod, id, hashOrHeight, 3);
+        public Task<RpcResponse<GetBlockV3Result>> GetBlockV3Async(string blockchainName, string id, string hashOrHeight) =>
+            TransactAsync<RpcResponse<GetBlockResultV3>>(blockchainName, BlockchainAction.GetBlockMethod, id, hashOrHeight, 3);
 
         /// <summary>
         /// 
@@ -267,8 +267,8 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// </summary>
         /// <param name="hashOrHeight"></param>
         /// <returns></returns>
-        public Task<GetBlockResultV3> GetBlockVerboseVersionThreeAsync(string hashOrHeight) =>
-            GetBlockVerboseVersionThreeAsync(RpcOptions.ChainName, UUID.NoHyphens, hashOrHeight);
+        public Task<RpcResponse<GetBlockV3Result>> GetBlockV3Async(string hashOrHeight) =>
+            GetBlockV3Async(RpcOptions.ChainName, UUID.NoHyphens, hashOrHeight);
 
         /// <summary>
         /// 
@@ -280,8 +280,8 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="id"></param>
         /// <param name="hashOrHeight"></param>
         /// <returns></returns>
-        public Task<GetBlockResultV4> GetBlockVerboseVersionFourAsync(string blockchainName, string id, string hashOrHeight) =>
-            TransactAsync<GetBlockResultV4>(blockchainName, BlockchainAction.GetBlockMethod, id, hashOrHeight);
+        public Task<RpcResponse<GetBlockV4Result>> GetBlockV4Async(string blockchainName, string id, string hashOrHeight) =>
+            TransactAsync<RpcResponse<GetBlockResultV4>>(blockchainName, BlockchainAction.GetBlockMethod, id, hashOrHeight);
 
         /// <summary>
         /// 
@@ -291,8 +291,8 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// </summary>
         /// <param name="hashOrHeight"></param>
         /// <returns></returns>
-        public Task<GetBlockResultV4> GetBlockVerboseVersionFourAsync(string hashOrHeight) =>
-            GetBlockVerboseVersionFourAsync(RpcOptions.ChainName, UUID.NoHyphens, hashOrHeight);
+        public Task<RpcResponse<GetBlockV4Result>> GetBlockV4Async(string hashOrHeight) =>
+            GetBlockV4Async(RpcOptions.ChainName, UUID.NoHyphens, hashOrHeight);
 
         /// <summary>
         ///
