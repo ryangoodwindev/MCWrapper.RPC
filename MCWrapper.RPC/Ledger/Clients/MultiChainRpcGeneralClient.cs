@@ -209,7 +209,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="hashOrHeight"></param>
         /// <returns></returns>
         public Task<RpcResponse<GetBlockV1Result>> GetBlockV1Async(string blockchainName, string id, string hashOrHeight) =>
-            TransactAsync<RpcResponse<GetBlockResultV1>>(blockchainName, BlockchainAction.GetBlockMethod, id, hashOrHeight, 1);
+            TransactAsync<RpcResponse<GetBlockV1Result>>(blockchainName, BlockchainAction.GetBlockMethod, id, hashOrHeight, 1);
 
         /// <summary>
         /// 
@@ -233,7 +233,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="hashOrHeight"></param>
         /// <returns></returns>
         public Task<RpcResponse<GetBlockV2Result>> GetBlockV2Async(string blockchainName, string id, string hashOrHeight) =>
-            TransactAsync<RpcResponse<GetBlockResultV2>>(blockchainName, BlockchainAction.GetBlockMethod, id, hashOrHeight, 2);
+            TransactAsync<RpcResponse<GetBlockV2Result>>(blockchainName, BlockchainAction.GetBlockMethod, id, hashOrHeight, 2);
 
         /// <summary>
         /// 
@@ -257,7 +257,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="hashOrHeight"></param>
         /// <returns></returns>
         public Task<RpcResponse<GetBlockV3Result>> GetBlockV3Async(string blockchainName, string id, string hashOrHeight) =>
-            TransactAsync<RpcResponse<GetBlockResultV3>>(blockchainName, BlockchainAction.GetBlockMethod, id, hashOrHeight, 3);
+            TransactAsync<RpcResponse<GetBlockV3Result>>(blockchainName, BlockchainAction.GetBlockMethod, id, hashOrHeight, 3);
 
         /// <summary>
         /// 
@@ -281,7 +281,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="hashOrHeight"></param>
         /// <returns></returns>
         public Task<RpcResponse<GetBlockV4Result>> GetBlockV4Async(string blockchainName, string id, string hashOrHeight) =>
-            TransactAsync<RpcResponse<GetBlockResultV4>>(blockchainName, BlockchainAction.GetBlockMethod, id, hashOrHeight);
+            TransactAsync<RpcResponse<GetBlockV4Result>>(blockchainName, BlockchainAction.GetBlockMethod, id, hashOrHeight);
 
         /// <summary>
         /// 
