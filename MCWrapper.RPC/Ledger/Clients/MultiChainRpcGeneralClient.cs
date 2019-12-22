@@ -281,7 +281,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="hashOrHeight"></param>
         /// <returns></returns>
         public Task<RpcResponse<GetBlockV4Result>> GetBlockV4Async(string blockchainName, string id, string hashOrHeight) =>
-            TransactAsync<RpcResponse<GetBlockV4Result>>(blockchainName, BlockchainAction.GetBlockMethod, id, hashOrHeight);
+            TransactAsync<RpcResponse<GetBlockV4Result>>(blockchainName, BlockchainAction.GetBlockMethod, id, hashOrHeight, 4);
 
         /// <summary>
         /// 

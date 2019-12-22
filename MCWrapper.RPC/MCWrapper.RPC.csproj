@@ -2,9 +2,9 @@
 
   <PropertyGroup>
     <TargetFrameworks>netcoreapp3.0;netcoreapp2.2;netcoreapp2.1</TargetFrameworks>
-    <AssemblyVersion>5.1.7.0</AssemblyVersion>
-    <FileVersion>5.1.7.0</FileVersion>
-    <Version>5.1.7</Version>
+    <AssemblyVersion>5.1.8.0</AssemblyVersion>
+    <FileVersion>5.1.8.0</FileVersion>
+    <Version>5.1.8</Version>
     <Authors>Myndblock LLC, Ryan Goodwin</Authors>
     <Company>Myndblock LLC</Company>
     <Copyright>2019</Copyright>
@@ -16,7 +16,7 @@
     <Description>A simple .NET Core wrapper for the MultiChain Core blockchain library that utilitzes Remote Procedure Calls (RPC) to communicate with distributed ledgers. Written with C# 8.0 and supports .NET Core 2.1, 2.2, and 3.0.</Description>
     <LangVersion>8.0</LangVersion>
     <Nullable>enable</Nullable>
-    <PackageReleaseNotes>Small fix to data model, update to MCWrapper.Data.Models v2.0.2
+    <PackageReleaseNotes>Small fix to IMultChainRpcGeneral.GetBlockV4Async, it wasn't passing the verbose argument properly.
 
 GetBlockAsync&lt;T&gt; has been removed and has been replaced with the following methods to accommodate and infer all possible Verbose arguments - false, true, 1, 2, 3, 4
 
