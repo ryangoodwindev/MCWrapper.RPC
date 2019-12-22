@@ -134,8 +134,7 @@ namespace MCWrapper.RPC.Options
         ///     be and equal true
         /// </para>
         /// <para>
-        ///     Please note: If the ChainUseSsl value is true, the ChainSslPath value
-        ///     MUST be populated and accurate. When starting an HTTPS blockahin ensure
+        ///     Please note: When starting an HTTPS blockahin ensure
         ///     you pass the -rpcssl flag and properly configure your multichain.conf file
         ///     properly to support HTTPS connection.
         /// </para>

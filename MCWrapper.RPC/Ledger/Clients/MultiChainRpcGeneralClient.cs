@@ -44,13 +44,14 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="asset_identifier">One of: issue txid, asset reference, asset name</param>
         /// <param name="verbose">If true, returns list of all issue transactions, including follow-ons</param>
         /// <returns></returns>
-        public Task<RpcResponse<GetAssetInfoResult>> GetAssetInfoAsync(string blockchainName, string id, string asset_identifier, bool verbose = false) =>
+        public Task<RpcResponse<GetAssetInfoResult>> GetAssetInfoAsync(string blockchainName, string id,
+                                                                       string asset_identifier, bool verbose = false) =>
             TransactAsync<RpcResponse<GetAssetInfoResult>>(blockchainName, BlockchainAction.GetAssetInfoMethod, id, asset_identifier, verbose);
 
         /// <summary>
         ///
         /// <para>Returns information about a single blockchain asset referenced by issue txid, asset reference, or asset name.</para>
-        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
+        /// <para>Blockchain name is inferred from RpcOptions properties.</para>
         ///
         /// </summary>
         /// <param name="asset_identifier">One of: issue txid, asset reference, asset name</param>
@@ -74,38 +75,12 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <summary>
         ///
         /// <para>Returns a hex encoded hash of the best (tip) block in the longest block chain.</para>
-        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
+        /// <para>Blockchain name is inferred from RpcOptions properties.</para>
         ///
         /// </summary>
         /// <returns></returns>
         public Task<RpcResponse<string>> GetBestBlockHashAsync() =>
             GetBestBlockHashAsync(RpcOptions.ChainName, UUID.NoHyphens);
-
-        /// <summary>
-        ///
-        /// <para>Returns hex-encoded data or json object for block.</para>
-        /// <para>Blockchain name is explicitly passed as parameter.</para>
-        ///
-        /// </summary>
-        /// <param name="blockchainName">Name of target blockchain</param>
-        /// <param name="id">String value to identify this transaction</param>
-        /// <param name="hash_or_height">(string or numeric) The block hash or height in the active chain</param>
-        /// <param name="verbose">(numeric or boolean, optional, default=1) 0(or false) - encoded data, 1(or true) - json object, 2 - with tx encoded data, 4 - with tx json object</param>
-        /// <returns></returns>
-        public Task<T> GetBlockAsync<T>(string blockchainName, string id, object hash_or_height, [Optional] object verbose) =>
-            TransactAsync<T>(blockchainName, BlockchainAction.GetBlockMethod, id, hash_or_height, verbose);
-
-        /// <summary>
-        ///
-        /// <para>Returns hex-encoded data or json object for block.</para>
-        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
-        ///
-        /// </summary>
-        /// <param name="hash_or_height">(string or numeric) The block hash or height in the active chain</param>
-        /// <param name="verbose">(numeric or boolean, optional, default=1) 0(or false) - encoded data, 1(or true) - json object, 2 - with tx encoded data, 4 - with tx json object</param>
-        /// <returns></returns>
-        public Task<T> GetBlockAsync<T>(object hash_or_height, [Optional] object verbose) =>
-            GetBlockAsync<T>(RpcOptions.ChainName, UUID.NoHyphens, hash_or_height, verbose);
 
         /// <summary>
         ///
@@ -122,7 +97,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <summary>
         ///
         /// <para>Returns an object containing various state info regarding block chain processing.</para>
-        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
+        /// <para>Blockchain name is inferred from RpcOptions properties.</para>
         ///
         /// </summary>
         /// <returns></returns>
@@ -144,7 +119,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <summary>
         ///
         /// <para>Returns the number of blocks in the longest block chain.</para>
-        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
+        /// <para>Blockchain name is inferred from RpcOptions properties.</para>
         ///
         /// </summary>
         /// <returns></returns>
@@ -167,13 +142,157 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <summary>
         ///
         /// <para>Returns hash of block in best-block-chain at index provided.</para>
-        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
+        /// <para>Blockchain name is inferred from RpcOptions properties.</para>
         ///
         /// </summary>
         /// <param name="index">The integer block index</param>
         /// <returns></returns>
         public Task<RpcResponse<string>> GetBlockHashAsync(int index) =>
             GetBlockHashAsync(RpcOptions.ChainName, UUID.NoHyphens, index);
+
+        /// <summary>
+        /// 
+        /// <para>Returns hex-encoded block.</para>
+        /// <para>Blockchain name is explicitly passed as parameter.</para>
+        /// 
+        /// </summary>
+        /// <param name="blockchainName"></param>
+        /// <param name="id"></param>
+        /// <param name="hashOrHeight"></param>
+        /// <returns></returns>
+        public Task<string> GetBlockEncodedAsync(string blockchainName, string id, string hashOrHeight) =>
+            TransactAsync<string>(blockchainName, BlockchainAction.GetBlockMethod, id, hashOrHeight, false);
+
+        /// <summary>
+        /// 
+        /// <para>Returns hex-encoded block.</para>
+        /// <para>Blockchain name is inferred from RpcOptions properties.</para>
+        /// 
+        /// </summary>
+        /// <param name="hashOrHeight"></param>
+        /// <returns></returns>
+        public Task<string> GetBlockEncodedAsync(string hashOrHeight) =>
+            GetBlockEncodedAsync(RpcOptions.ChainName, UUID.NoHyphens, hashOrHeight);
+
+        /// <summary>
+        /// 
+        /// <para>Returns JSON object for block.</para>
+        /// <para>Blockchain name is explicitly passed as parameter.</para>
+        /// 
+        /// </summary>
+        /// <param name="blockchainName"></param>
+        /// <param name="id"></param>
+        /// <param name="hashOrHeight"></param>
+        /// <returns></returns>
+        public Task<GetBlockVerboseResult> GetBlockVerboseAsync(string blockchainName, string id, string hashOrHeight) =>
+            TransactAsync<GetBlockVerboseResult>(blockchainName, BlockchainAction.GetBlockMethod, id, hashOrHeight, true);
+
+        /// <summary>
+        /// 
+        /// <para>Returns JSON object for block.</para>
+        /// <para>Blockchain name is inferred from RpcOptions properties.</para>
+        /// 
+        /// </summary>
+        /// <param name="hashOrHeight"></param>
+        /// <returns></returns>
+        public Task<GetBlockVerboseResult> GetBlockVerboseAsync(string hashOrHeight) =>
+            GetBlockVerboseAsync(RpcOptions.ChainName, UUID.NoHyphens, hashOrHeight);
+
+        /// <summary>
+        /// 
+        /// <para>Returns JSON object for block.</para>
+        /// <para>Blockchain name is explicitly passed as parameter.</para>
+        /// 
+        /// </summary>
+        /// <param name="blockchainName"></param>
+        /// <param name="id"></param>
+        /// <param name="hashOrHeight"></param>
+        /// <returns></returns>
+        public Task<GetBlockResultV1> GetBlockVerboseVersionOneAsync(string blockchainName, string id, string hashOrHeight) =>
+            TransactAsync<GetBlockResultV1>(blockchainName, BlockchainAction.GetBlockMethod, id, hashOrHeight, 1);
+
+        /// <summary>
+        /// 
+        /// <para>Returns JSON object for block.</para>
+        /// <para>Blockchain name is inferred from RpcOptions properties.</para>
+        /// 
+        /// </summary>
+        /// <param name="hashOrHeight"></param>
+        /// <returns></returns>
+        public Task<GetBlockResultV1> GetBlockVerboseVersionOneAsync(string hashOrHeight) =>
+            GetBlockVerboseVersionOneAsync(RpcOptions.ChainName, UUID.NoHyphens, hashOrHeight);
+
+        /// <summary>
+        /// 
+        /// <para>Returns JSON object for block.</para>
+        /// <para>Blockchain name is explicitly passed as parameter.</para>
+        /// 
+        /// </summary>
+        /// <param name="blockchainName"></param>
+        /// <param name="id"></param>
+        /// <param name="hashOrHeight"></param>
+        /// <returns></returns>
+        public Task<GetBlockResultV2> GetBlockVerboseVersionTwoAsync(string blockchainName, string id, string hashOrHeight) =>
+            TransactAsync<GetBlockResultV2>(blockchainName, BlockchainAction.GetBlockMethod, id, hashOrHeight, 2);
+
+        /// <summary>
+        /// 
+        /// <para>Returns JSON object for block.</para>
+        /// <para>Blockchain name is inferred from RpcOptions properties.</para>
+        /// 
+        /// </summary>
+        /// <param name="hashOrHeight"></param>
+        /// <returns></returns>
+        public Task<GetBlockResultV2> GetBlockVerboseVersionTwoAsync(string hashOrHeight) =>
+            GetBlockVerboseVersionTwoAsync(RpcOptions.ChainName, UUID.NoHyphens, hashOrHeight);
+
+        /// <summary>
+        /// 
+        /// <para>Returns JSON object for block.</para>
+        /// <para>Blockchain name is explicitly passed as parameter.</para>
+        /// 
+        /// </summary>
+        /// <param name="blockchainName"></param>
+        /// <param name="id"></param>
+        /// <param name="hashOrHeight"></param>
+        /// <returns></returns>
+        public Task<GetBlockResultV3> GetBlockVerboseVersionThreeAsync(string blockchainName, string id, string hashOrHeight) =>
+            TransactAsync<GetBlockResultV3>(blockchainName, BlockchainAction.GetBlockMethod, id, hashOrHeight, 3);
+
+        /// <summary>
+        /// 
+        /// <para>Returns JSON object for block.</para>
+        /// <para>Blockchain name is inferred from RpcOptions properties.</para>
+        /// 
+        /// </summary>
+        /// <param name="hashOrHeight"></param>
+        /// <returns></returns>
+        public Task<GetBlockResultV3> GetBlockVerboseVersionThreeAsync(string hashOrHeight) =>
+            GetBlockVerboseVersionThreeAsync(RpcOptions.ChainName, UUID.NoHyphens, hashOrHeight);
+
+        /// <summary>
+        /// 
+        /// <para>Returns JSON object for block.</para>
+        /// <para>Blockchain name is explicitly passed as parameter.</para>
+        /// 
+        /// </summary>
+        /// <param name="blockchainName"></param>
+        /// <param name="id"></param>
+        /// <param name="hashOrHeight"></param>
+        /// <returns></returns>
+        public Task<GetBlockResultV4> GetBlockVerboseVersionFourAsync(string blockchainName, string id, string hashOrHeight) =>
+            TransactAsync<GetBlockResultV4>(blockchainName, BlockchainAction.GetBlockMethod, id, hashOrHeight);
+
+        /// <summary>
+        /// 
+        /// <para>Returns JSON object for block.</para>
+        /// <para>Blockchain name is inferred from RpcOptions properties.</para>
+        /// 
+        /// </summary>
+        /// <param name="hashOrHeight"></param>
+        /// <returns></returns>
+        public Task<GetBlockResultV4> GetBlockVerboseVersionFourAsync(string hashOrHeight) =>
+            GetBlockVerboseVersionFourAsync(RpcOptions.ChainName, UUID.NoHyphens, hashOrHeight);
 
         /// <summary>
         ///
@@ -190,7 +309,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <summary>
         ///
         /// <para>Return information about all known tips in the block tree, including the main chain as well as orphaned branches.</para>
-        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
+        /// <para>Blockchain name is inferred from RpcOptions properties.</para>
         ///
         /// </summary>
         /// <returns></returns>
@@ -212,7 +331,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <summary>
         ///
         /// <para>Returns the proof-of-work difficulty as a multiple of the minimum difficulty.</para>
-        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
+        /// <para>Blockchain name is inferred from RpcOptions properties.</para>
         ///
         /// </summary>
         /// <returns></returns>
@@ -235,7 +354,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <summary>
         ///
         /// <para>Returns code for specified filter</para>
-        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
+        /// <para>Blockchain name is inferred from RpcOptions properties.</para>
         ///
         /// </summary>
         /// <param name="filter_identifier">One of: create txid, filter reference, filter name</param>
@@ -259,7 +378,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <summary>
         ///
         /// <para>Returns information about the last or recent blocks in the active chain.</para>
-        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
+        /// <para>Blockchain name is inferred from RpcOptions properties.</para>
         ///
         /// </summary>
         /// <param name="skip">The number of blocks back to skip. Default 0</param>
@@ -282,7 +401,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <summary>
         ///
         /// <para>Returns details on the active state of the TX memory pool.</para>
-        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
+        /// <para>Blockchain name is inferred from RpcOptions properties.</para>
         ///
         /// </summary>
         /// <returns></returns>
@@ -305,7 +424,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <summary>
         ///
         /// <para>Returns all transaction ids in memory pool as a json array of string transaction ids.</para>
-        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
+        /// <para>Blockchain name is inferred from RpcOptions properties.</para>
         ///
         /// </summary>
         /// <param name="verbose">true for a json object, false for array of transaction ids</param>
@@ -324,13 +443,14 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="stream_identifier">One of: create txid, stream reference, stream name</param>
         /// <param name="verbose">If true, returns list of creators</param>
         /// <returns></returns>
-        public Task<RpcResponse<GetStreamInfoResult>> GetStreamInfoAsync(string blockchainName, string id, string stream_identifier, bool verbose = false) =>
+        public Task<RpcResponse<GetStreamInfoResult>> GetStreamInfoAsync(string blockchainName, string id,
+                                                                         string stream_identifier, bool verbose = false) =>
             TransactAsync<RpcResponse<GetStreamInfoResult>>(blockchainName, BlockchainAction.GetStreamInfoMethod, id, stream_identifier, verbose);
 
         /// <summary>
         ///
         /// <para>Returns information about a single stream.</para>
-        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
+        /// <para>Blockchain name is inferred from RpcOptions properties.</para>
         ///
         /// </summary>
         /// <param name="stream_identifier">One of: create txid, stream reference, stream name</param>
@@ -351,13 +471,14 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="n">vout value</param>
         /// <param name="include_mem_pool">Whether to included the mem pool</param>
         /// <returns></returns>
-        public Task<RpcResponse<GetTxOutResult>> GetTxOutAsync(string blockchainName, string id, string txid, int n, bool include_mem_pool = true) =>
+        public Task<RpcResponse<GetTxOutResult>> GetTxOutAsync(string blockchainName, string id, string txid, int n,
+                                                               bool include_mem_pool = true) =>
             TransactAsync<RpcResponse<GetTxOutResult>>(blockchainName, BlockchainAction.GetTxOutMethod, id, txid, n, include_mem_pool);
 
         /// <summary>
         ///
         /// <para>Returns details about an unspent transaction output.</para>
-        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
+        /// <para>Blockchain name is inferred from RpcOptions properties.</para>
         ///
         /// </summary>
         /// <param name="txid">The transaction id</param>
@@ -382,7 +503,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <summary>
         ///
         /// <para>Returns statistics about the unspent transaction output set. Note this call may take some time.</para>
-        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
+        /// <para>Blockchain name is inferred from RpcOptions properties.</para>
         ///
         /// </summary>
         /// <returns></returns>
@@ -402,13 +523,16 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="count">The number of assets to display</param>
         /// <param name="start">Start from specific asset, 0 based, if negative - from the end</param>
         /// <returns></returns>
-        public Task<RpcResponse<ListAssetsResult[]>> ListAssetsAsync(string blockchainName, string id, [Optional] object asset_identifiers, [Optional] bool verbose, [Optional] int count, [Optional] int start) =>
+        public Task<RpcResponse<ListAssetsResult[]>> ListAssetsAsync(string blockchainName, string id,
+                                                                     [Optional] object asset_identifiers,
+                                                                     [Optional] bool verbose, [Optional] int count,
+                                                                     [Optional] int start) =>
             TransactAsync<RpcResponse<ListAssetsResult[]>>(blockchainName, BlockchainAction.ListAssetsMethod, id, asset_identifiers, verbose, count, start);
 
         /// <summary>
         ///
         /// <para>Returns list of defined assets.</para>
-        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
+        /// <para>Blockchain name is inferred from RpcOptions properties.</para>
         ///
         /// </summary>
         /// <param name="asset_identifiers">(string, optional) Asset identifier - one of the following: issue txid, asset reference, asset name, or (array, optional) A json array of asset identifiers</param>
@@ -416,7 +540,9 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="count">The number of assets to display</param>
         /// <param name="start">Start from specific asset, 0 based, if negative - from the end</param>
         /// <returns></returns>
-        public Task<RpcResponse<ListAssetsResult[]>> ListAssetsAsync([Optional] object asset_identifiers, [Optional] bool verbose, [Optional] int count, [Optional] int start) =>
+        public Task<RpcResponse<ListAssetsResult[]>> ListAssetsAsync([Optional] object asset_identifiers,
+                                                                     [Optional] bool verbose, [Optional] int count,
+                                                                     [Optional] int start) =>
             ListAssetsAsync(RpcOptions.ChainName, UUID.NoHyphens, asset_identifiers, verbose, count, start);
 
         /// <summary>
@@ -442,13 +568,14 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// </param>
         /// <param name="verbose">If true, returns more information</param>
         /// <returns></returns>
-        public Task<RpcResponse<ListBlocksResult[]>> ListBlocksAsync(string blockchainName, string id, object block_set_identifier, bool verbose = false) =>
+        public Task<RpcResponse<ListBlocksResult[]>> ListBlocksAsync(string blockchainName, string id,
+                                                                     object block_set_identifier, bool verbose = false) =>
             TransactAsync<RpcResponse<ListBlocksResult[]>>(blockchainName, BlockchainAction.ListBlocksMethod, id, block_set_identifier, verbose);
 
         /// <summary>
         ///
         /// <para>Returns list of block information objects</para>
-        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
+        /// <para>Blockchain name is inferred from RpcOptions properties.</para>
         ///
         /// </summary>
         /// <param name="block_set_identifier">
@@ -485,13 +612,16 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// </param>
         /// <param name="verbose">If true, returns list of pending grants</param>
         /// <returns></returns>
-        public Task<RpcResponse<ListPermissionsResult[]>> ListPermissionsAsync(string blockchainName, string id, [Optional] string permissions, [Optional] object addresses, [Optional] bool verbose) =>
+        public Task<RpcResponse<ListPermissionsResult[]>> ListPermissionsAsync(string blockchainName, string id,
+                                                                               [Optional] string permissions,
+                                                                               [Optional] object addresses,
+                                                                               [Optional] bool verbose) =>
             TransactAsync<RpcResponse<ListPermissionsResult[]>>(blockchainName, BlockchainAction.ListPermissionsMethod, id, permissions, addresses, verbose);
 
         /// <summary>
         ///
         /// <para>Returns a list of all permissions which have been explicitly granted to addresses.</para>
-        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
+        /// <para>Blockchain name is inferred from RpcOptions properties.</para>
         ///
         /// </summary>
         /// <param name="permissions">Permission strings, comma delimited. Possible values: connect,send,receive,issue,mine,admin,activate,create. Default: all</param>
@@ -502,7 +632,9 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// </param>
         /// <param name="verbose">If true, returns list of pending grants</param>
         /// <returns></returns>
-        public Task<RpcResponse<ListPermissionsResult[]>> ListPermissionsAsync([Optional] string permissions, [Optional] object addresses, [Optional] bool verbose) =>
+        public Task<RpcResponse<ListPermissionsResult[]>> ListPermissionsAsync([Optional] string permissions,
+                                                                               [Optional] object addresses,
+                                                                               [Optional] bool verbose) =>
             ListPermissionsAsync(RpcOptions.ChainName, UUID.NoHyphens, permissions, addresses, verbose);
 
         /// <summary>
@@ -520,13 +652,15 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// </param>
         /// <param name="verbose">If true, returns list of creators and approval details</param>
         /// <returns></returns>
-        public Task<RpcResponse<ListStreamFiltersResult[]>> ListStreamFiltersAsync(string blockchainName, string id, [Optional] object filter_identifers, [Optional] bool verbose) =>
+        public Task<RpcResponse<ListStreamFiltersResult[]>> ListStreamFiltersAsync(string blockchainName, string id,
+                                                                                   [Optional] object filter_identifers,
+                                                                                   [Optional] bool verbose) =>
             TransactAsync<RpcResponse<ListStreamFiltersResult[]>>(blockchainName, BlockchainAction.ListStreamFiltersMethod, id, filter_identifers, verbose);
 
         /// <summary>
         ///
         /// <para>Returns list of defined stream filters</para>
-        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
+        /// <para>Blockchain name is inferred from RpcOptions properties.</para>
         ///
         /// </summary>
         /// <param name="filter_identifers">
@@ -556,13 +690,16 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="count">The number of streams to display</param>
         /// <param name="start">Start from specific stream, 0 based, if negative - from the end</param>
         /// <returns></returns>
-        public Task<RpcResponse<ListStreamsResult[]>> ListStreamsAsync(string blockchainName, string id, [Optional] object stream_identifiers, [Optional] bool verbose, [Optional] int count, [Optional] int start) =>
+        public Task<RpcResponse<ListStreamsResult[]>> ListStreamsAsync(string blockchainName, string id,
+                                                                       [Optional] object stream_identifiers,
+                                                                       [Optional] bool verbose, [Optional] int count,
+                                                                       [Optional] int start) =>
             TransactAsync<RpcResponse<ListStreamsResult[]>>(blockchainName, BlockchainAction.ListStreamsMethod, id, stream_identifiers, verbose, count, start);
 
         /// <summary>
         ///
         /// <para>Returns list of defined streams</para>
-        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
+        /// <para>Blockchain name is inferred from RpcOptions properties.</para>
         ///
         /// </summary>
         /// <param name="stream_identifiers">
@@ -574,7 +711,9 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="count">The number of streams to display</param>
         /// <param name="start">Start from specific stream, 0 based, if negative - from the end</param>
         /// <returns></returns>
-        public Task<RpcResponse<ListStreamsResult[]>> ListStreamsAsync([Optional] object stream_identifiers, [Optional] bool verbose, [Optional] int count, [Optional] int start) =>
+        public Task<RpcResponse<ListStreamsResult[]>> ListStreamsAsync([Optional] object stream_identifiers,
+                                                                       [Optional] bool verbose, [Optional] int count,
+                                                                       [Optional] int start) =>
             ListStreamsAsync(RpcOptions.ChainName, UUID.NoHyphens, stream_identifiers, verbose, count, start);
 
         /// <summary>
@@ -592,13 +731,15 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// </param>
         /// <param name="verbose">If true, returns list of creators and approval details</param>
         /// <returns></returns>
-        public Task<RpcResponse<ListTxFiltersResult[]>> ListTxFiltersAsync(string blockchainName, string id, [Optional] object filter_identifiers, [Optional] bool verbose) =>
+        public Task<RpcResponse<ListTxFiltersResult[]>> ListTxFiltersAsync(string blockchainName, string id,
+                                                                           [Optional] object filter_identifiers,
+                                                                           [Optional] bool verbose) =>
             TransactAsync<RpcResponse<ListTxFiltersResult[]>>(blockchainName, BlockchainAction.ListTxFiltersMethod, id, filter_identifiers, verbose);
 
         /// <summary>
         ///
         /// <para>Returns list of defined tx filters</para>
-        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
+        /// <para>Blockchain name is inferred from RpcOptions properties.</para>
         ///
         /// </summary>
         /// <param name="filter_identifiers">
@@ -631,7 +772,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <summary>
         ///
         /// <para>Returns list of defined upgrades</para>
-        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
+        /// <para>Blockchain name is inferred from RpcOptions properties.</para>
         ///
         /// </summary>
         /// <param name="upgrade_identifiers">
@@ -659,13 +800,16 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// </param>
         /// <param name="vout">The output number, if omitted and txid/tx-hex is specified, found automatically</param>
         /// <returns></returns>
-        public Task<RpcResponse<RunStreamFilterResult>> RunStreamFilterAsync(string blockchainName, string id, string filter_identifier, [Optional] string tx_hex, [Optional] int vout) =>
+        public Task<RpcResponse<RunStreamFilterResult>> RunStreamFilterAsync(string blockchainName, string id,
+                                                                             string filter_identifier,
+                                                                             [Optional] string tx_hex,
+                                                                             [Optional] int vout) =>
             TransactAsync<RpcResponse<RunStreamFilterResult>>(blockchainName, BlockchainAction.RunStreamFilterMethod, id, filter_identifier, tx_hex, vout);
 
         /// <summary>
         ///
         /// <para>Compile an existing filter and optionally test it on a transaction</para>
-        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
+        /// <para>Blockchain name is inferred from RpcOptions properties.</para>
         ///
         /// </summary>
         /// <param name="filter_identifier">One of: create txid, filter reference, filter name</param>
@@ -676,7 +820,9 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// </param>
         /// <param name="vout">The output number, if omitted and txid/tx-hex is specified, found automatically</param>
         /// <returns></returns>
-        public Task<RpcResponse<RunStreamFilterResult>> RunStreamFilterAsync(string filter_identifier, [Optional] string tx_hex, [Optional] int vout) =>
+        public Task<RpcResponse<RunStreamFilterResult>> RunStreamFilterAsync(string filter_identifier,
+                                                                             [Optional] string tx_hex,
+                                                                             [Optional] int vout) =>
             RunStreamFilterAsync(RpcOptions.ChainName, UUID.NoHyphens, filter_identifier, tx_hex, vout);
 
         /// <summary>
@@ -694,13 +840,15 @@ namespace MCWrapper.RPC.Ledger.Clients
         ///     <para>(string, optional) The transaction id</para>
         /// </param>
         /// <returns></returns>
-        public Task<RpcResponse<RunTxFilterResult>> RunTxFilterAsync(string blockchainName, string id, [Optional] string filter_identifier, [Optional] string tx_hex) =>
+        public Task<RpcResponse<RunTxFilterResult>> RunTxFilterAsync(string blockchainName, string id,
+                                                                     [Optional] string filter_identifier,
+                                                                     [Optional] string tx_hex) =>
             TransactAsync<RpcResponse<RunTxFilterResult>>(blockchainName, BlockchainAction.RunTxFilterMethod, id, filter_identifier, tx_hex);
 
         /// <summary>
         ///
         /// <para>Compile an existing filter and optionally test it on a transaction</para>
-        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
+        /// <para>Blockchain name is inferred from RpcOptions properties.</para>
         ///
         /// </summary>
         /// <param name="filter_identifier">One of: create txid, filter reference, filter name</param>
@@ -730,13 +878,17 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// </param>
         /// <param name="vout">The output number, if omitted and txid/tx-hex is specified, found automatically</param>
         /// <returns></returns>
-        public Task<RpcResponse<TestStreamFilterResult>> TestStreamFilterAsync(string blockchainName, string id, object restrictions, string javascript_code, [Optional] string tx_hex, [Optional] int vout) =>
+        public Task<RpcResponse<TestStreamFilterResult>> TestStreamFilterAsync(string blockchainName, string id,
+                                                                               object restrictions,
+                                                                               string javascript_code,
+                                                                               [Optional] string tx_hex,
+                                                                               [Optional] int vout) =>
             TransactAsync<RpcResponse<TestStreamFilterResult>>(blockchainName, BlockchainAction.TestStreamFilterMethod, id, restrictions, javascript_code, tx_hex, vout);
 
         /// <summary>
         ///
         /// <para>Compile a test filter and optionally test it on a transaction</para>
-        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
+        /// <para>Blockchain name is inferred from RpcOptions properties.</para>
         ///
         /// </summary>
         /// <param name="restrictions">A json object with filter restrictions</param>
@@ -748,7 +900,10 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// </param>
         /// <param name="vout">The output number, if omitted and txid/tx-hex is specified, found automatically</param>
         /// <returns></returns>
-        public Task<RpcResponse<TestStreamFilterResult>> TestStreamFilterAsync(object restrictions, string javascript_code, [Optional] string tx_hex, [Optional] int vout) =>
+        public Task<RpcResponse<TestStreamFilterResult>> TestStreamFilterAsync(object restrictions,
+                                                                               string javascript_code,
+                                                                               [Optional] string tx_hex,
+                                                                               [Optional] int vout) =>
             TestStreamFilterAsync(RpcOptions.ChainName, UUID.NoHyphens, restrictions, javascript_code, tx_hex, vout);
 
         /// <summary>
@@ -773,13 +928,15 @@ namespace MCWrapper.RPC.Ledger.Clients
         ///     <para>or</para>
         ///     <para>(string, optional) The transaction id</para></param>
         /// <returns></returns>
-        public Task<RpcResponse<TestTxFilterResult>> TestTxFilterAsync(string blockchainName, string id, object restrictions, string javascript_code, [Optional] string tx_hex) =>
+        public Task<RpcResponse<TestTxFilterResult>> TestTxFilterAsync(string blockchainName, string id,
+                                                                       object restrictions, string javascript_code,
+                                                                       [Optional] string tx_hex) =>
             TransactAsync<RpcResponse<TestTxFilterResult>>(blockchainName, BlockchainAction.TestTxFilterMethod, id, restrictions, javascript_code, tx_hex);
 
         /// <summary>
         ///
         /// <para>Compile a test filter and optionally test it on a transaction</para>
-        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
+        /// <para>Blockchain name is inferred from RpcOptions properties.</para>
         ///
         /// </summary>
         /// <param name="restrictions">
@@ -796,7 +953,8 @@ namespace MCWrapper.RPC.Ledger.Clients
         ///     <para>or</para>
         ///     <para>(string, optional) The transaction id</para></param>
         /// <returns></returns>
-        public Task<RpcResponse<TestTxFilterResult>> TestTxFilterAsync(object restrictions, string javascript_code, [Optional] string tx_hex) =>
+        public Task<RpcResponse<TestTxFilterResult>> TestTxFilterAsync(object restrictions, string javascript_code,
+                                                                       [Optional] string tx_hex) =>
             TestTxFilterAsync(RpcOptions.ChainName, UUID.NoHyphens, restrictions, javascript_code, tx_hex);
 
         /// <summary>
@@ -810,13 +968,14 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="check_level">(numeric, optional, 0-4, default=3) How thorough the block verification is</param>
         /// <param name="num_blocks">(numeric, optional, default=288, 0=all) The number of blocks to check</param>
         /// <returns></returns>
-        public Task<RpcResponse<bool>> VerifyChainAsync(string blockchainName, string id, [Optional] int check_level, [Optional] int num_blocks) =>
+        public Task<RpcResponse<bool>> VerifyChainAsync(string blockchainName, string id, [Optional] int check_level,
+                                                        [Optional] int num_blocks) =>
             TransactAsync<RpcResponse<bool>>(blockchainName, BlockchainAction.VerifyChainMethod, id, check_level, num_blocks);
 
         /// <summary>
         ///
         /// <para>Verifies blockchain database.</para>
-        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
+        /// <para>Blockchain name is inferred from RpcOptions properties.</para>
         ///
         /// </summary>
         /// <param name="check_level">(numeric, optional, 0-4, default=3) How thorough the block verification is</param>
@@ -842,7 +1001,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <summary>
         ///
         /// <para>Verify permissions on this blockchain</para>
-        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
+        /// <para>Blockchain name is inferred from RpcOptions properties.</para>
         ///
         /// </summary>
         /// <param name="address">The address to verify permission for</param>
