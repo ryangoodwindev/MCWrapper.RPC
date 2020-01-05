@@ -1089,7 +1089,6 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="include_watch_only">Whether to include watchonly addresses in balance calculation and details[]</param>
         /// <param name="verbose">If true, returns detailed array of inputs and outputs and raw hex of transactions</param>
         /// <returns></returns>
-
         Task<RpcResponse<GetWalletTransactionResult>> GetWalletTransactionAsync(string txid, bool include_watch_only = false, bool verbose = false);
 
         /// <summary>
@@ -1425,7 +1424,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="quantity">The asset total amount in display units. eg. 1234.56</param>
         /// <param name="smallestUnit">Number of raw units in one displayed unit, eg 0.01 for cents. Default value is 1</param>
         /// <param name="nativeCurrencyAmount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
-        /// <param name="customFields">a json object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
+        /// <param name="customFields">a dictionary object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
         /// <returns></returns>
         Task<RpcResponse<string>> IssueAsync(string blockchainName,
                                              string id,
@@ -1449,7 +1448,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="quantity">The asset total amount in display units. eg. 1234.56</param>
         /// <param name="smallestUnit">Number of raw units in one displayed unit, eg 0.01 for cents. Default value is 1</param>
         /// <param name="nativeCurrencyAmount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
-        /// <param name="customFields">a json object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
+        /// <param name="customFields">a dictionary object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
         /// <returns></returns>
         Task<RpcResponse<string>> IssueAsync(string blockchainName,
                                              string id,
@@ -1473,7 +1472,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="quantity">The asset total amount in display units. eg. 1234.56</param>
         /// <param name="smallestUnit">Number of raw units in one displayed unit, eg 0.01 for cents. Default value is 1</param>
         /// <param name="nativeCurrencyAmount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
-        /// <param name="customFields">a json object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
+        /// <param name="customFields">a dictionary object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
         /// <returns></returns>
         Task<RpcResponse<string>> IssueAsync(string blockchainName,
                                              string id,
@@ -1495,7 +1494,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="quantity">The asset total amount in display units. eg. 1234.56</param>
         /// <param name="smallestUnit">Number of raw units in one displayed unit, eg 0.01 for cents. Default value is 1</param>
         /// <param name="nativeCurrencyAmount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
-        /// <param name="customFields">a json object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
+        /// <param name="customFields">a dictionary object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
         /// <returns></returns>
         Task<RpcResponse<string>> IssueAsync(string toAddress,
                                              AssetEntity assetParams,
@@ -1506,7 +1505,7 @@ namespace MCWrapper.RPC.Ledger.Clients
 
         /// <summary>
         ///
-        /// <para>Issue a new AssetEntity model to an address on the blockchain network.</para>
+        /// <para>Issue a new Asset using object params to an address on the blockchain network.</para>
         /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         ///
         /// </summary>
@@ -1515,7 +1514,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="quantity">The asset total amount in display units. eg. 1234.56</param>
         /// <param name="smallestUnit">Number of raw units in one displayed unit, eg 0.01 for cents. Default value is 1</param>
         /// <param name="nativeCurrencyAmount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
-        /// <param name="customFields">a json object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
+        /// <param name="customFields">a dictionary object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
         /// <returns></returns>
         Task<RpcResponse<string>> IssueAsync(string toAddress,
                                              object assetParams,
@@ -1535,7 +1534,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="quantity">The asset total amount in display units. eg. 1234.56</param>
         /// <param name="smallestUnit">Number of raw units in one displayed unit, eg 0.01 for cents. Default value is 1</param>
         /// <param name="nativeCurrencyAmount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
-        /// <param name="customFields">a json object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
+        /// <param name="customFields">a dictionary object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
         /// <returns></returns>
         Task<RpcResponse<string>> IssueAsync(string toAddress,
                                              string assetName,
@@ -1558,7 +1557,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="quantity">The asset total amount in display units. eg. 1234.56</param>
         /// <param name="smallestUnit">Number of raw units in one displayed unit, eg 0.01 for cents. Default value is 1</param>
         /// <param name="nativeCurrencyAmount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
-        /// <param name="customFields">a json object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
+        /// <param name="customFields">a dictionary object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
         /// <returns></returns>
         Task<RpcResponse<string>> IssueFromAsync(string blockchainName,
                                                  string id,
@@ -1584,7 +1583,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="quantity">The asset total amount in display units. eg. 1234.56</param>
         /// <param name="smallestUnit">Number of raw units in one displayed unit, eg 0.01 for cents. Default value is 1</param>
         /// <param name="nativeCurrencyAmount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
-        /// <param name="customFields">a json object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
+        /// <param name="customFields">a dictionary object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
         /// <returns></returns>
         Task<RpcResponse<string>> IssueFromAsync(string blockchainName,
                                                  string id,
@@ -1610,7 +1609,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="quantity">The asset total amount in display units. eg. 1234.56</param>
         /// <param name="smallestUnit">Number of raw units in one displayed unit, eg 0.01 for cents. Default value is 1</param>
         /// <param name="nativeCurrencyAmount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
-        /// <param name="customFields">a json object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
+        /// <param name="customFields">a dictionary object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
         /// <returns></returns>
         Task<RpcResponse<string>> IssueFromAsync(string blockchainName,
                                                  string id,
