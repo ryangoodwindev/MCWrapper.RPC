@@ -40,7 +40,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="data_hex">The hex string to be added to binary cache item</param>
         /// <returns></returns>
         public Task<RpcResponse<int>> AppendBinaryCacheAsync(string blockchainName, string id, string identifier, string data_hex) =>
-            TransactAsync<RpcResponse<int>>(blockchainName, UtilityAction.AppendBinaryCacheMethod, id, identifier, data_hex);
+            TransactAsync<int>(blockchainName, UtilityAction.AppendBinaryCacheMethod, id, identifier, data_hex);
 
         /// <summary>
         ///
@@ -63,7 +63,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="id">String value to identify this transaction</param>
         /// <returns></returns>
         public Task<RpcResponse<string>> CreateBinaryCacheAsync(string blockchainName, string id) =>
-            TransactAsync<RpcResponse<string>>(blockchainName, UtilityAction.CreateBinaryCacheMethod, id);
+            TransactAsync<string>(blockchainName, UtilityAction.CreateBinaryCacheMethod, id);
 
         /// <summary>
         ///
@@ -86,7 +86,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="count">Number of key pairs to generate</param>
         /// <returns></returns>
         public Task<RpcResponse<CreateKeyPairsResult[]>> CreateKeyPairsAsync(string blockchainName, string id, int count = 1) =>
-            TransactAsync<RpcResponse<CreateKeyPairsResult[]>>(blockchainName, UtilityAction.CreateKeyPairsMethod, id, count);
+            TransactAsync<CreateKeyPairsResult[]>(blockchainName, UtilityAction.CreateKeyPairsMethod, id, count);
 
         /// <summary>
         ///
@@ -112,7 +112,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="keys">A json array of keys which are addresses or hex-encoded public keys</param>
         /// <returns></returns>
         public Task<RpcResponse<CreateMultiSigResult>> CreateMultiSigAsync(string blockchainName, string id, int n_required, string[] keys) =>
-            TransactAsync<RpcResponse<CreateMultiSigResult>>(blockchainName, UtilityAction.CreateMultiSigMethod, id, n_required, keys);
+            TransactAsync<CreateMultiSigResult>(blockchainName, UtilityAction.CreateMultiSigMethod, id, n_required, keys);
 
         /// <summary>
         ///
@@ -138,7 +138,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="identifier">Binary cache item identifier, "*" - to clear all items</param>
         /// <returns></returns>
         public Task<RpcResponse<object>> DeleteBinaryCacheAsync(string blockchainName, string id, string identifier) =>
-            TransactAsync<RpcResponse<object>>(blockchainName, UtilityAction.DeleteBinaryCacheMethod, id, identifier);
+            TransactAsync<object>(blockchainName, UtilityAction.DeleteBinaryCacheMethod, id, identifier);
 
         /// <summary>
         ///
@@ -162,7 +162,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="n_blocks">Number of blocks to estimate fee for</param>
         /// <returns></returns>
         public Task<RpcResponse<object>> EstimateFeeAsync(string blockchainName, string id, int n_blocks) =>
-            TransactAsync<RpcResponse<object>>(blockchainName, UtilityAction.EstimateFeeMethod, id, n_blocks);
+            TransactAsync<object>(blockchainName, UtilityAction.EstimateFeeMethod, id, n_blocks);
 
         /// <summary>
         ///
@@ -187,7 +187,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="n_blocks">Number of blocks to estimate priority for</param>
         /// <returns></returns>
         public Task<RpcResponse<object>> EstimatePriorityAsync(string blockchainName, string id, int n_blocks) =>
-            TransactAsync<RpcResponse<object>>(blockchainName, UtilityAction.EstimatePriorityMethod, id, n_blocks);
+            TransactAsync<object>(blockchainName, UtilityAction.EstimatePriorityMethod, id, n_blocks);
 
         /// <summary>
         ///
@@ -218,7 +218,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// </param>
         /// <returns></returns>
         public Task<RpcResponse<ValidateAddressResult>> ValidateAddressAsync(string blockchainName, string id, string address_or_pubkey_or_privkey) =>
-            TransactAsync<RpcResponse<ValidateAddressResult>>(blockchainName, UtilityAction.ValidateAddressMethod, id, address_or_pubkey_or_privkey);
+            TransactAsync<ValidateAddressResult>(blockchainName, UtilityAction.ValidateAddressMethod, id, address_or_pubkey_or_privkey);
 
         /// <summary>
         ///
@@ -251,7 +251,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="message">The message that was signed</param>
         /// <returns></returns>
         public Task<RpcResponse<bool>> VerifyMessageAsync(string blockchainName, string id, string address, string signature, string message) =>
-            TransactAsync<RpcResponse<bool>>(blockchainName, UtilityAction.VerifyMessageMethod, id, address, signature, message);
+            TransactAsync<bool>(blockchainName, UtilityAction.VerifyMessageMethod, id, address, signature, message);
 
         /// <summary>
         ///

@@ -45,7 +45,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// </param>
         /// <returns></returns>
         public Task<RpcResponse<object>> GetBlockTemplateAsync(string blockchainName, string id, string json_request_object) =>
-            TransactAsync<RpcResponse<object>>(blockchainName, MiningAction.GetBlockTemplateMethod, id, json_request_object);
+            TransactAsync<object>(blockchainName, MiningAction.GetBlockTemplateMethod, id, json_request_object);
 
         /// <summary>
         /// <para>Deprecated for the current version of Multichain; Do Not Use;</para>
@@ -75,7 +75,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="id">String value to identify this transaction</param>
         /// <returns></returns>
         public Task<RpcResponse<object>> GetMiningInfoAsync(string blockchainName, string id) =>
-            TransactAsync<RpcResponse<object>>(blockchainName, MiningAction.GetMiningInfoMethod, id);
+            TransactAsync<object>(blockchainName, MiningAction.GetMiningInfoMethod, id);
 
         /// <summary>
         ///
@@ -103,11 +103,11 @@ namespace MCWrapper.RPC.Ledger.Clients
         public Task<RpcResponse<object>> GetNetworkHashPsAsync(string blockchainName, string id, int blocks = 120, int height = -1)
         {
             if (blocks == 0 && height == 0)
-                return TransactAsync<RpcResponse<object>>(blockchainName, MiningAction.GetNetworkHashPsMethod, id);
+                return TransactAsync<object>(blockchainName, MiningAction.GetNetworkHashPsMethod, id);
             else if (blocks != 0 && height == 0)
-                return TransactAsync<RpcResponse<object>>(blockchainName, MiningAction.GetNetworkHashPsMethod, id, blocks);
+                return TransactAsync<object>(blockchainName, MiningAction.GetNetworkHashPsMethod, id, blocks);
             else
-                return TransactAsync<RpcResponse<object>>(blockchainName, MiningAction.GetNetworkHashPsMethod, id, blocks, height);
+                return TransactAsync<object>(blockchainName, MiningAction.GetNetworkHashPsMethod, id, blocks, height);
         }
 
         /// <summary>
@@ -144,7 +144,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// </param>
         /// <returns></returns>
         public Task<RpcResponse<object>> PrioritiseTransactionAsync(string blockchainName, string id, string txid, double priority_delta, double fee_delta) =>
-            TransactAsync<RpcResponse<object>>(blockchainName, MiningAction.PrioritiseTransactionMethod, id, txid, priority_delta, fee_delta);
+            TransactAsync<object>(blockchainName, MiningAction.PrioritiseTransactionMethod, id, txid, priority_delta, fee_delta);
 
         /// <summary>
         ///
@@ -182,7 +182,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// </param>
         /// <returns></returns>
         public Task<RpcResponse<object>> SubmitBlockAsync(string blockchainName, string id, object hex_data, string json_parameters_object = "") =>
-            TransactAsync<RpcResponse<object>>(blockchainName, MiningAction.SubmitBlockMethod, id, hex_data, json_parameters_object);
+            TransactAsync<object>(blockchainName, MiningAction.SubmitBlockMethod, id, hex_data, json_parameters_object);
 
         /// <summary>
         ///

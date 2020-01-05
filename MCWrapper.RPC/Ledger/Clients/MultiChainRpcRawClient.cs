@@ -42,7 +42,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="native_fee">Native currency value deducted from that amount so it becomes a transaction fee. Default - calculated automatically</param>
         /// <returns></returns>
         public Task<RpcResponse<object>> AppendRawChangeAsync(string blockchainName, string id, string tx_hex, string address, [Optional] double native_fee) =>
-            TransactAsync<RpcResponse<object>>(blockchainName, RawAction.AppendRawChangeMethod, id, tx_hex, address, native_fee);
+            TransactAsync<object>(blockchainName, RawAction.AppendRawChangeMethod, id, tx_hex, address, native_fee);
 
         /// <summary>
         ///
@@ -71,7 +71,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="data">(string or object, required) Data, see help data-all for details</param>
         /// <returns></returns>
         public Task<RpcResponse<object>> AppendRawDataAsync(string blockchainName, string id, string tx_hex, object data) =>
-            TransactAsync<RpcResponse<object>>(blockchainName, RawAction.AppendRawDataMethod, id, tx_hex, data);
+            TransactAsync<object>(blockchainName, RawAction.AppendRawDataMethod, id, tx_hex, data);
 
         /// <summary>
         ///
@@ -101,7 +101,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="action">Additional actions: "lock", "sign", "lock,sign", "sign,lock", "send"</param>
         /// <returns></returns>
         public Task<RpcResponse<object>> AppendRawTransactionAsync(string blockchainName, string id, string tx_hex, object[] transactions, object addresses, [Optional] object[] data, string action = "") =>
-            TransactAsync<RpcResponse<object>>(blockchainName, RawAction.AppendRawTransactionMethod, id, tx_hex, transactions, addresses, data, action);
+            TransactAsync<object>(blockchainName, RawAction.AppendRawTransactionMethod, id, tx_hex, transactions, addresses, data, action);
 
         /// <summary>
         ///
@@ -131,7 +131,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="action">Additional actions: "lock", "sign", "lock,sign", "sign,lock", "send"</param>
         /// <returns></returns>
         public Task<RpcResponse<object>> CreateRawTransactionAsync(string blockchainName, string id, object[] transactions, object assets, [Optional] object[] data, string action = "") =>
-            TransactAsync<RpcResponse<object>>(blockchainName, RawAction.CreateRawTransactionMethod, id, transactions, assets, data, action);
+            TransactAsync<object>(blockchainName, RawAction.CreateRawTransactionMethod, id, transactions, assets, data, action);
 
         /// <summary>
         ///
@@ -154,7 +154,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="tx_hex">The transaction hex string</param>
         /// <returns></returns>
         public Task<RpcResponse<DecodeRawTransactionResult>> DecodeRawTransactionAsync(string blockchainName, string id, string tx_hex) =>
-            TransactAsync<RpcResponse<DecodeRawTransactionResult>>(blockchainName, RawAction.DecodeRawTransactionMethod, id, tx_hex);
+            TransactAsync<DecodeRawTransactionResult>(blockchainName, RawAction.DecodeRawTransactionMethod, id, tx_hex);
 
         /// <summary>
         ///
@@ -178,7 +178,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="script_hex">The hex encoded script</param>
         /// <returns></returns>
         public Task<RpcResponse<object>> DecodeScriptAsync(string blockchainName, string id, string script_hex) =>
-            TransactAsync<RpcResponse<object>>(blockchainName, RawAction.DecodeScriptMethod, id, script_hex);
+            TransactAsync<object>(blockchainName, RawAction.DecodeScriptMethod, id, script_hex);
 
         /// <summary>
         ///
@@ -206,7 +206,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="verbose">(numeric or boolean, optional, default=0(false)) If 0, return a string, other return a json object</param>
         /// <returns></returns>
         public Task<RpcResponse<object>> GetRawTransactionAsync(string blockchainName, string id, string txid, [Optional] object verbose) =>
-            TransactAsync<RpcResponse<object>>(blockchainName, RawAction.GetRawTransactionMethod, id, txid, verbose);
+            TransactAsync<object>(blockchainName, RawAction.GetRawTransactionMethod, id, txid, verbose);
 
         /// <summary>
         ///
@@ -236,7 +236,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="allow_high_fees">Allow high fees</param>
         /// <returns></returns>
         public Task<RpcResponse<object>> SendRawTransactionAsync(string blockchainName, string id, string tx_hex, bool allow_high_fees = false) =>
-            TransactAsync<RpcResponse<object>>(blockchainName, RawAction.SendRawTransactionMethod, id, tx_hex, allow_high_fees);
+            TransactAsync<object>(blockchainName, RawAction.SendRawTransactionMethod, id, tx_hex, allow_high_fees);
 
         /// <summary>
         ///
@@ -275,7 +275,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="sighashtype">The signature hash type. Must be one of: "All", "NONE", "SINGLE", "ALL|ANYONECANPAY", "NONE|ANYONECANPAY", "SINGLE|ANYONECANPAY"</param>
         /// <returns></returns>
         public Task<RpcResponse<SignRawTransactionResult>> SignRawTransactionAsync(string blockchainName, string id, string tx_hex, [Optional] object[] prevtxs, [Optional] object[] privatekeys, [Optional] string sighashtype) =>
-            TransactAsync<RpcResponse<SignRawTransactionResult>>(blockchainName, RawAction.SignRawTransactionMethod, id, tx_hex, prevtxs, privatekeys, sighashtype);
+            TransactAsync<SignRawTransactionResult>(blockchainName, RawAction.SignRawTransactionMethod, id, tx_hex, prevtxs, privatekeys, sighashtype);
 
         /// <summary>
         ///

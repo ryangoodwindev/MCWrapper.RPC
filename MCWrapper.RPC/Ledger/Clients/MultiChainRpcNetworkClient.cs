@@ -41,7 +41,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="action">'add' to add a node to the list, 'remove' to remove a node from the list, 'onetry' to try a connection to the node once</param>
         /// <returns></returns>
         public Task<RpcResponse<object>> AddNodeAsync(string blockchainName, string id, string node, string action) =>
-            TransactAsync<RpcResponse<object>>(blockchainName, NetworkAction.AddNodeMethod, id, node, action);
+            TransactAsync<object>(blockchainName, NetworkAction.AddNodeMethod, id, node, action);
 
         /// <summary>
         /// 
@@ -70,7 +70,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="node">If provided, return information about this specific node,otherwise all nodes are returned</param>
         /// <returns></returns>
         public Task<RpcResponse<GetAddNodeInfoResult[]>> GetAddedNodeInfoAsync(string blockchainName, string id, bool dns, [Optional] string node) =>
-            TransactAsync<RpcResponse<GetAddNodeInfoResult[]>>(blockchainName, NetworkAction.GetAddedNodeInfoMethod, id, dns, node);
+            TransactAsync<GetAddNodeInfoResult[]>(blockchainName, NetworkAction.GetAddedNodeInfoMethod, id, dns, node);
 
         /// <summary>
         /// 
@@ -96,7 +96,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="id">String value to identify this transaction</param>
         /// <returns></returns>
         public Task<RpcResponse<object>> GetChunkQueueInfoAsync(string blockchainName, string id) =>
-            TransactAsync<RpcResponse<object>>(blockchainName, NetworkAction.GetChunkQueueInfoMethod, id);
+            TransactAsync<object>(blockchainName, NetworkAction.GetChunkQueueInfoMethod, id);
 
         /// <summary>
         ///
@@ -118,7 +118,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="id">String value to identify this transaction</param>
         /// <returns></returns>
         public Task<RpcResponse<object>> GetChunkQueueTotalsAsync(string blockchainName, string id) =>
-            TransactAsync<RpcResponse<object>>(blockchainName, NetworkAction.GetChunkQueueTotalsMethod, id);
+            TransactAsync<object>(blockchainName, NetworkAction.GetChunkQueueTotalsMethod, id);
 
         /// <summary>
         /// 
@@ -140,7 +140,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="id">String value to identify this transaction</param>
         /// <returns></returns>
         public Task<RpcResponse<object>> GetConnectionCountAsync(string blockchainName, string id) =>
-            TransactAsync<RpcResponse<object>>(blockchainName, NetworkAction.GetConnectionCountMethod, id);
+            TransactAsync<object>(blockchainName, NetworkAction.GetConnectionCountMethod, id);
 
         /// <summary>
         /// 
@@ -162,7 +162,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="id">String value to identify this transaction</param>
         /// <returns></returns>
         public Task<RpcResponse<object>> GetNetTotalsAsync(string blockchainName, string id) =>
-            TransactAsync<RpcResponse<object>>(blockchainName, NetworkAction.GetNetTotalsMethod, id);
+            TransactAsync<object>(blockchainName, NetworkAction.GetNetTotalsMethod, id);
 
         /// <summary>
         /// 
@@ -184,7 +184,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="id">String value to identify this transaction</param>
         /// <returns></returns>
         public Task<RpcResponse<GetNetworkInfoResult>> GetNetworkInfoAsync(string blockchainName, string id) =>
-            TransactAsync<RpcResponse<GetNetworkInfoResult>>(blockchainName, NetworkAction.GetNetworkInfoMethod, id);
+            TransactAsync<GetNetworkInfoResult>(blockchainName, NetworkAction.GetNetworkInfoMethod, id);
 
         /// <summary>
         /// 
@@ -206,7 +206,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="id">String value to identify this transaction</param>
         /// <returns></returns>
         public Task<RpcResponse<object>> GetPeerInfoAsync(string blockchainName, string id) =>
-            TransactAsync<RpcResponse<object>>(blockchainName, NetworkAction.GetPeerInfoMethod, id);
+            TransactAsync<object>(blockchainName, NetworkAction.GetPeerInfoMethod, id);
 
         /// <summary>
         /// 
@@ -230,7 +230,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="id">String value to identify this transaction</param>
         /// <returns></returns>
         public Task<RpcResponse<object>> PingAsync(string blockchainName, string id) =>
-            TransactAsync<RpcResponse<object>>(blockchainName, NetworkAction.PingMethod, id);
+            TransactAsync<object>(blockchainName, NetworkAction.PingMethod, id);
 
         /// <summary>
         /// 

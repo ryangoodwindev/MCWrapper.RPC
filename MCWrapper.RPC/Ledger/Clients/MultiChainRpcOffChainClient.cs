@@ -49,7 +49,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// </param>
         /// <returns></returns>
         public Task<RpcResponse<object>> PurgePublishedItemsAsync(string blockchainName, string id, object items) =>
-            TransactAsync<RpcResponse<object>>(blockchainName, OffChainAction.PurgePublishedItems, id, items);
+            TransactAsync<object>(blockchainName, OffChainAction.PurgePublishedItems, id, items);
 
         /// <summary>
         /// 
@@ -94,7 +94,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// </param>
         /// <returns></returns>
         public Task<RpcResponse<object>> PurgeStreamItemsAsync(string blockchainName, string id, string stream, object items) =>
-            TransactAsync<RpcResponse<object>>(blockchainName, OffChainAction.PurgeStreamItems, id, stream, items);
+            TransactAsync<object>(blockchainName, OffChainAction.PurgeStreamItems, id, stream, items);
 
         /// <summary>
         /// 
@@ -142,7 +142,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// </param>
         /// <returns></returns>
         public Task<RpcResponse<object>> RetrieveStreamItemsAsync(string blockchainName, string id, string stream, object items) =>
-            TransactAsync<RpcResponse<object>>(blockchainName, OffChainAction.RetrieveStreamItems, id, stream, items);
+            TransactAsync<object>(blockchainName, OffChainAction.RetrieveStreamItems, id, stream, items);
 
         /// <summary>
         ///

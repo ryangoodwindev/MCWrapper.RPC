@@ -45,7 +45,7 @@ namespace MCWrapper.RPC.Connection
         /// <param name="id"></param>
         /// <param name="args"></param>
         /// <returns></returns>
-        public async Task<T> TransactAsync<T>(string blockchainName, string method, string id, params object[] args)
+        public async Task<RpcResponse<T>> TransactAsync<T>(string blockchainName, string method, string id, params object[] args)
         {
             var request = CreateRequest(new RpcRequest(id, method, args, blockchainName));
 
@@ -56,7 +56,7 @@ namespace MCWrapper.RPC.Connection
             using var stream = await response.Content.ReadAsStreamAsync();
 
             if (response.IsSuccessStatusCode)
-                return DeserializeJsonFromStream<T>(stream);
+                return DeserializeJsonFromStream<RpcResponse<T>>(stream);
 
             var message = await StreamToStringAsync(stream);
             throw new ClientException(message)
@@ -71,7 +71,7 @@ namespace MCWrapper.RPC.Connection
         /// </summary>
         /// <param name="serviceRequest"></param>
         /// <returns></returns>
-        public async Task<T> TransactAsync<T>(RpcRequest serviceRequest)
+        public async Task<RpcResponse<T>> TransactAsync<T>(RpcRequest serviceRequest)
         {
             var request = CreateRequest(serviceRequest);
 
@@ -82,7 +82,7 @@ namespace MCWrapper.RPC.Connection
             using var stream = await response.Content.ReadAsStreamAsync();
 
             if (response.IsSuccessStatusCode)
-                return DeserializeJsonFromStream<T>(stream);
+                return DeserializeJsonFromStream<RpcResponse<T>>(stream);
 
             var message = await StreamToStringAsync(stream);
             throw new ClientException(message)

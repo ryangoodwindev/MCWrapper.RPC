@@ -36,7 +36,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="id">String value to identify this transaction</param>
         /// <returns>If the server is set to generate coins or not</returns>
         public Task<RpcResponse<bool>> GetGenerateAsync(string blockchainName, string id) =>
-            TransactAsync<RpcResponse<bool>>(blockchainName, GenerateAction.GetGenerateMethod, id);
+            TransactAsync<bool>(blockchainName, GenerateAction.GetGenerateMethod, id);
 
         /// <summary>
         /// <para>Return if the server is set to generate coins or not. The default is false.</para>
@@ -59,7 +59,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="id">String value to identify this transaction</param>
         /// <returns>(numeric) The recent hashes per second when generation is on (will return 0 if generation is off)</returns>
         public Task<RpcResponse<int>> GetHashesPerSecAsync(string blockchainName, string id) =>
-            TransactAsync<RpcResponse<int>>(blockchainName, GenerateAction.GetHashesPerSecMethod, id);
+            TransactAsync<int>(blockchainName, GenerateAction.GetHashesPerSecMethod, id);
 
         /// <summary>
         /// <para>Returns a recent hashes per second performance measurement while generating.</para>
@@ -85,7 +85,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="gen_proc_limit">Set the processor limit for when generation is on. Can be -1 for unlimited.</param>
         /// <returns>String value identifying this transaction</returns>
         public Task<RpcResponse<object>> SetGenerateAsync(string blockchainName, string id, bool generate, int gen_proc_limit) =>
-            TransactAsync<RpcResponse<object>>(blockchainName, GenerateAction.SetGenerateMethod, id, generate, gen_proc_limit);
+            TransactAsync<object>(blockchainName, GenerateAction.SetGenerateMethod, id, generate, gen_proc_limit);
 
         /// <summary>
         ///

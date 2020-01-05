@@ -1,10 +1,12 @@
 ﻿using MCWrapper.Data.Models.Wallet;
 using MCWrapper.Data.Models.Wallet.CustomModels;
 using MCWrapper.Ledger.Actions;
+using MCWrapper.Ledger.Entities;
 using MCWrapper.Ledger.Entities.Extensions;
 using MCWrapper.RPC.Connection;
 using MCWrapper.RPC.Options;
 using Microsoft.Extensions.Options;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
@@ -1238,16 +1240,16 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="comment">A comment used to store what the transaction is for. This is not part of the transaction, just kept in your wallet.</param>
         /// <param name="comment_to"> A comment to store the name of the person or organization to which you're sending the transaction. This is not part of the transaction, just kept in your wallet.</param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> GrantAsync(string blockchainName, string id, string addresses, string permissions, [Optional] decimal native_amount, [Optional] int start_block, [Optional] uint end_block, [Optional] string comment, [Optional] string comment_to)
+        public Task<RpcResponse<string>> GrantAsync(string blockchainName, string id, string addresses, string permissions, [Optional] decimal native_amount, [Optional] int start_block, [Optional] uint end_block, [Optional] string comment, [Optional] string comment_to)
         {
             if (native_amount == 0 && start_block == 0 && end_block == 0)
-                return TransactAsync<RpcResponse<object>>(blockchainName, WalletAction.GrantMethod, id, addresses, permissions);
+                return TransactAsync<RpcResponse<string>>(blockchainName, WalletAction.GrantMethod, id, addresses, permissions);
             else if (start_block == 0 && end_block == 0)
-                return TransactAsync<RpcResponse<object>>(blockchainName, WalletAction.GrantMethod, id, addresses, permissions, native_amount);
+                return TransactAsync<RpcResponse<string>>(blockchainName, WalletAction.GrantMethod, id, addresses, permissions, native_amount);
             else if (end_block == 0)
-                return TransactAsync<RpcResponse<object>>(blockchainName, WalletAction.GrantMethod, id, addresses, permissions, native_amount, start_block);
+                return TransactAsync<RpcResponse<string>>(blockchainName, WalletAction.GrantMethod, id, addresses, permissions, native_amount, start_block);
             else
-                return TransactAsync<RpcResponse<object>>(blockchainName, WalletAction.GrantMethod, id, addresses, permissions, native_amount, start_block, end_block, comment, comment_to);
+                return TransactAsync<RpcResponse<string>>(blockchainName, WalletAction.GrantMethod, id, addresses, permissions, native_amount, start_block, end_block, comment, comment_to);
         }
 
         /// <summary>
@@ -1275,7 +1277,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="comment">A comment used to store what the transaction is for. This is not part of the transaction, just kept in your wallet.</param>
         /// <param name="comment_to"> A comment to store the name of the person or organization to which you're sending the transaction. This is not part of the transaction, just kept in your wallet.</param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> GrantAsync(string addresses, string permissions, [Optional] decimal native_amount, [Optional] int start_block, [Optional] uint end_block, [Optional] string comment, [Optional] string comment_to) =>
+        public Task<RpcResponse<string>> GrantAsync(string addresses, string permissions, [Optional] decimal native_amount, [Optional] int start_block, [Optional] uint end_block, [Optional] string comment, [Optional] string comment_to) =>
             GrantAsync(RpcOptions.ChainName, UUID.NoHyphens, addresses, permissions, native_amount, start_block, end_block, comment, comment_to);
 
         /// <summary>
@@ -1307,16 +1309,16 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="comment">A comment used to store what the transaction is for. This is not part of the transaction, just kept in your wallet.</param>
         /// <param name="comment_to"> A comment to store the name of the person or organization to which you're sending the transaction. This is not part of the transaction, just kept in your wallet.</param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> GrantFromAsync(string blockchainName, string id, string from_address, string addresses, string permissions, [Optional] decimal native_amount, [Optional] int start_block, [Optional] uint end_block, [Optional] string comment, [Optional] string comment_to)
+        public Task<RpcResponse<string>> GrantFromAsync(string blockchainName, string id, string from_address, string addresses, string permissions, [Optional] decimal native_amount, [Optional] int start_block, [Optional] uint end_block, [Optional] string comment, [Optional] string comment_to)
         {
             if (native_amount == 0 && start_block == 0 && end_block == 0)
-                return TransactAsync<RpcResponse<object>>(blockchainName, WalletAction.GrantFromMethod, id, from_address, addresses, permissions);
+                return TransactAsync<RpcResponse<string>>(blockchainName, WalletAction.GrantFromMethod, id, from_address, addresses, permissions);
             else if (start_block == 0 && end_block == 0)
-                return TransactAsync<RpcResponse<object>>(blockchainName, WalletAction.GrantFromMethod, id, from_address, addresses, permissions, native_amount);
+                return TransactAsync<RpcResponse<string>>(blockchainName, WalletAction.GrantFromMethod, id, from_address, addresses, permissions, native_amount);
             else if (end_block == 0)
-                return TransactAsync<RpcResponse<object>>(blockchainName, WalletAction.GrantFromMethod, id, from_address, addresses, permissions, native_amount, start_block);
+                return TransactAsync<RpcResponse<string>>(blockchainName, WalletAction.GrantFromMethod, id, from_address, addresses, permissions, native_amount, start_block);
             else
-                return TransactAsync<RpcResponse<object>>(blockchainName, WalletAction.GrantFromMethod, id, from_address, addresses, permissions, native_amount, start_block, end_block, comment, comment_to);
+                return TransactAsync<RpcResponse<string>>(blockchainName, WalletAction.GrantFromMethod, id, from_address, addresses, permissions, native_amount, start_block, end_block, comment, comment_to);
         }
 
         /// <summary>
@@ -1346,7 +1348,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="comment">A comment used to store what the transaction is for. This is not part of the transaction, just kept in your wallet.</param>
         /// <param name="comment_to"> A comment to store the name of the person or organization to which you're sending the transaction. This is not part of the transaction, just kept in your wallet.</param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> GrantFromAsync(string from_address, string addresses, string permissions, [Optional] decimal native_amount, [Optional] int start_block, [Optional] uint end_block, [Optional] string comment, [Optional] string comment_to) =>
+        public Task<RpcResponse<string>> GrantFromAsync(string from_address, string addresses, string permissions, [Optional] decimal native_amount, [Optional] int start_block, [Optional] uint end_block, [Optional] string comment, [Optional] string comment_to) =>
             GrantFromAsync(RpcOptions.ChainName, UUID.NoHyphens, from_address, addresses, permissions, native_amount, start_block, end_block, comment, comment_to);
 
         /// <summary>
@@ -1375,8 +1377,8 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="start_block">Block to apply permissions from (inclusive). Default - 0</param>
         /// <param name="end_block">Block to apply permissions to (exclusive). Default - 4294967295; If -1 is specified default value is used.</param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> GrantWithDataAsync(string blockchainName, string id, string addresses, string permissions, object object_or_hex, [Optional] decimal native_amount, [Optional] int start_block, [Optional] uint end_block) =>
-            TransactAsync<RpcResponse<object>>(blockchainName, WalletAction.GrantWithDataMethod, id, addresses, permissions, object_or_hex, native_amount, start_block, end_block);
+        public Task<RpcResponse<string>> GrantWithDataAsync(string blockchainName, string id, string addresses, string permissions, object object_or_hex, [Optional] decimal native_amount, [Optional] int start_block, [Optional] uint end_block) =>
+            TransactAsync<RpcResponse<string>>(blockchainName, WalletAction.GrantWithDataMethod, id, addresses, permissions, object_or_hex, native_amount, start_block, end_block);
 
         /// <summary>
         ///
@@ -1402,7 +1404,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="start_block">Block to apply permissions from (inclusive). Default - 0</param>
         /// <param name="end_block">Block to apply permissions to (exclusive). Default - 4294967295; If -1 is specified default value is used.</param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> GrantWithDataAsync(string addresses, string permissions, object object_or_hex, [Optional] decimal native_amount, [Optional] int start_block, [Optional] uint end_block) =>
+        public Task<RpcResponse<string>> GrantWithDataAsync(string addresses, string permissions, object object_or_hex, [Optional] decimal native_amount, [Optional] int start_block, [Optional] uint end_block) =>
             GrantWithDataAsync(RpcOptions.ChainName, UUID.NoHyphens, addresses, permissions, object_or_hex, native_amount, start_block, end_block);
 
         /// <summary>
@@ -1433,8 +1435,8 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="start_block">Block to apply permissions from (inclusive). Default - 0</param>
         /// <param name="end_block">Block to apply permissions to (exclusive). Default - 4294967295; If -1 is specified default value is used.</param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> GrantWithDataFromAsync(string blockchainName, string id, string from_address, string to_addresses, string permissions, object object_or_hex, [Optional] decimal native_amount, [Optional] int start_block, [Optional] uint end_block) =>
-            TransactAsync<RpcResponse<object>>(blockchainName, WalletAction.GrantWithDataFromMethod, id, from_address, to_addresses, permissions, object_or_hex, native_amount, start_block, end_block);
+        public Task<RpcResponse<string>> GrantWithDataFromAsync(string blockchainName, string id, string from_address, string to_addresses, string permissions, object object_or_hex, [Optional] decimal native_amount, [Optional] int start_block, [Optional] uint end_block) =>
+            TransactAsync<RpcResponse<string>>(blockchainName, WalletAction.GrantWithDataFromMethod, id, from_address, to_addresses, permissions, object_or_hex, native_amount, start_block, end_block);
 
         /// <summary>
         ///
@@ -1462,7 +1464,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="start_block">Block to apply permissions from (inclusive). Default - 0</param>
         /// <param name="end_block">Block to apply permissions to (exclusive). Default - 4294967295; If -1 is specified default value is used.</param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> GrantWithDataFromAsync(string from_address, string to_addresses, string permissions, object object_or_hex, [Optional] decimal native_amount, [Optional] int start_block, [Optional] uint end_block) =>
+        public Task<RpcResponse<string>> GrantWithDataFromAsync(string from_address, string to_addresses, string permissions, object object_or_hex, [Optional] decimal native_amount, [Optional] int start_block, [Optional] uint end_block) =>
             GrantWithDataFromAsync(RpcOptions.ChainName, UUID.NoHyphens, from_address, to_addresses, permissions, object_or_hex, native_amount, start_block, end_block);
 
         /// <summary>
@@ -1549,75 +1551,295 @@ namespace MCWrapper.RPC.Ledger.Clients
         public Task<RpcResponse<object>> ImportWalletAsync(string filename, [Optional] object rescan) =>
             ImportWalletAsync(RpcOptions.ChainName, UUID.NoHyphens, filename, rescan);
 
+
         /// <summary>
         ///
-        /// <para>Issue a new Asset to an address on the blockchain network.</para>
+        /// <para>Issue a new AssetEntity model to an address on the blockchain network.</para>
         /// <para>Blockchain name is explicitly passed as parameter.</para>
         ///
         /// </summary>
         /// <param name="blockchainName">Name of target blockchain</param>
         /// <param name="id">String value to identify this transaction</param>
-        /// <param name="to_address">The address to send newly created asset to</param>
-        /// <param name="asset_params"> (string, required) Asset name, if not "" should be unique or (object, required) A json object of with asset params</param>
+        /// <param name="toAddress">The address to send newly created asset to</param>
+        /// <param name="assetParams">(AssetEntity type, required) A strongly typed object with asset params (string)name, (bool)open, and (string, comma delimited)restrict</param>
         /// <param name="quantity">The asset total amount in display units. eg. 1234.56</param>
-        /// <param name="smallest_unit">Number of raw units in one displayed unit, eg 0.01 for cents. Default value is 1</param>
-        /// <param name="native_amount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
-        /// <param name="custom_fields">a json object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
+        /// <param name="smallestUnit">Number of raw units in one displayed unit, eg 0.01 for cents. Default value is 1</param>
+        /// <param name="nativeCurrencyAmount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
+        /// <param name="customFields">a dictionary object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
         /// <returns></returns>
-        public Task<RpcResponse<string>> IssueAsync(string blockchainName, string id, string to_address, object asset_params, int quantity, [Optional] double smallest_unit, [Optional] decimal native_amount, [Optional] object custom_fields) =>
-            TransactAsync<RpcResponse<string>>(blockchainName, WalletAction.IssueMethod, id, to_address, asset_params, quantity, smallest_unit, native_amount, custom_fields);
+        public Task<RpcResponse<string>> IssueAsync(string blockchainName,
+                                                    string id,
+                                                    string toAddress,
+                                                    AssetEntity assetParams,
+                                                    int quantity,
+                                                    [Optional] double smallestUnit,
+                                                    [Optional] decimal nativeCurrencyAmount,
+                                                    [Optional] Dictionary<string, string> customFields) =>
+            TransactAsync<RpcResponse<string>>(blockchainName, WalletAction.IssueMethod, id, toAddress, assetParams, quantity, smallestUnit, nativeCurrencyAmount, customFields);
 
         /// <summary>
         ///
-        /// <para>Issue a new Asset to an address on the blockchain network.</para>
-        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
-        ///
-        /// </summary>
-        /// <param name="to_address">The address to send newly created asset to</param>
-        /// <param name="asset_params"> (string, required) Asset name, if not "" should be unique or (object, required) A json object of with asset params</param>
-        /// <param name="quantity">The asset total amount in display units. eg. 1234.56</param>
-        /// <param name="smallest_unit">Number of raw units in one displayed unit, eg 0.01 for cents. Default value is 1</param>
-        /// <param name="native_amount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
-        /// <param name="custom_fields">a json object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
-        /// <returns></returns>
-        public Task<RpcResponse<string>> IssueAsync(string to_address, object asset_params, int quantity, [Optional] double smallest_unit, [Optional] decimal native_amount, [Optional] object custom_fields) =>
-            IssueAsync(RpcOptions.ChainName, UUID.NoHyphens, to_address, asset_params, quantity, smallest_unit, native_amount, custom_fields);
-
-        /// <summary>
-        ///
-        /// <para>Issue asset using specific address</para>
+        /// <para>Issue a new Asset using object params to an address on the blockchain network.</para>
         /// <para>Blockchain name is explicitly passed as parameter.</para>
         ///
         /// </summary>
         /// <param name="blockchainName">Name of target blockchain</param>
         /// <param name="id">String value to identify this transaction</param>
-        /// <param name="from_address">Address used for issuing</param>
-        /// <param name="to_address">The address to send newly created asset to</param>
-        /// <param name="asset_params"> (string, required) Asset name, if not "" should be unique or (object, required) A json object of with asset params</param>
+        /// <param name="toAddress">The address to send newly created asset to</param>
+        /// <param name="assetParams">(object type, required) A generic object that must include asset params (string)name, (bool)open, and (string, comma delimited)restrict</param>
         /// <param name="quantity">The asset total amount in display units. eg. 1234.56</param>
-        /// <param name="smallest_unit">Number of raw units in one displayed unit, eg 0.01 for cents. Default value is 1</param>
-        /// <param name="native_amount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
-        /// <param name="custom_fields">a json object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
+        /// <param name="smallestUnit">Number of raw units in one displayed unit, eg 0.01 for cents. Default value is 1</param>
+        /// <param name="nativeCurrencyAmount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
+        /// <param name="customFields">a dictionary object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
         /// <returns></returns>
-        public Task<RpcResponse<string>> IssueFromAsync(string blockchainName, string id, string from_address, string to_address, object asset_params, int quantity, [Optional] double smallest_unit, [Optional] decimal native_amount, [Optional] object custom_fields) =>
-            TransactAsync<RpcResponse<string>>(blockchainName, WalletAction.IssueFromMethod, id, from_address, to_address, asset_params, quantity, smallest_unit, native_amount, custom_fields);
+        public Task<RpcResponse<string>> IssueAsync(string blockchainName,
+                                                    string id,
+                                                    string toAddress,
+                                                    object assetParams,
+                                                    int quantity,
+                                                    [Optional] double smallestUnit,
+                                                    [Optional] decimal nativeCurrencyAmount,
+                                                    [Optional] Dictionary<string, string> customFields) =>
+            TransactAsync<RpcResponse<string>>(blockchainName, WalletAction.IssueMethod, id, toAddress, assetParams, quantity, smallestUnit, nativeCurrencyAmount, customFields);
 
         /// <summary>
         ///
-        /// <para>Issue asset using specific address</para>
+        /// <para>Issue a new Asset by name to an address on the blockchain network.</para>
+        /// <para>Blockchain name is explicitly passed as parameter.</para>
+        ///
+        /// </summary>
+        /// <param name="blockchainName">Name of target blockchain</param>
+        /// <param name="id">String value to identify this transaction</param>
+        /// <param name="toAddress">The address to send newly created asset to</param>
+        /// <param name="assetName"> (string, required) Asset name, if not "" should be unique</param>
+        /// <param name="quantity">The asset total amount in display units. eg. 1234.56</param>
+        /// <param name="smallestUnit">Number of raw units in one displayed unit, eg 0.01 for cents. Default value is 1</param>
+        /// <param name="nativeCurrencyAmount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
+        /// <param name="customFields">a dictionary object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
+        /// <returns></returns>
+        public Task<RpcResponse<string>> IssueAsync(string blockchainName,
+                                                    string id,
+                                                    string toAddress,
+                                                    string assetName,
+                                                    int quantity,
+                                                    [Optional] double smallestUnit,
+                                                    [Optional] decimal nativeCurrencyAmount,
+                                                    [Optional] Dictionary<string, string> customFields) =>
+            TransactAsync<RpcResponse<string>>(blockchainName, WalletAction.IssueMethod, id, toAddress, assetName, quantity, smallestUnit, nativeCurrencyAmount, customFields);
+
+        /// <summary>
+        ///
+        /// <para>Issue a new AssetEntity model to an address on the blockchain network.</para>
         /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         ///
         /// </summary>
-        /// <param name="from_address">Address used for issuing</param>
-        /// <param name="to_address">The address to send newly created asset to</param>
-        /// <param name="asset_params"> (string, required) Asset name, if not "" should be unique or (object, required) A json object of with asset params</param>
+        /// <param name="toAddress">The address to send newly created asset to</param>
+        /// <param name="assetParams">(AssetEntity type, required) A strongly typed object with asset params (string)name, (bool)open, and (string, comma delimited)restrict</param>
         /// <param name="quantity">The asset total amount in display units. eg. 1234.56</param>
-        /// <param name="smallest_unit">Number of raw units in one displayed unit, eg 0.01 for cents. Default value is 1</param>
-        /// <param name="native_amount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
-        /// <param name="custom_fields">a json object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
+        /// <param name="smallestUnit">Number of raw units in one displayed unit, eg 0.01 for cents. Default value is 1</param>
+        /// <param name="nativeCurrencyAmount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
+        /// <param name="customFields">a dictionary object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
         /// <returns></returns>
-        public Task<RpcResponse<string>> IssueFromAsync(string from_address, string to_address, object asset_params, int quantity, [Optional] double smallest_unit, [Optional] decimal native_amount, [Optional] object custom_fields) =>
-            IssueFromAsync(RpcOptions.ChainName, UUID.NoHyphens, from_address, to_address, asset_params, quantity, smallest_unit, native_amount, custom_fields);
+        public Task<RpcResponse<string>> IssueAsync(string toAddress,
+                                                    AssetEntity assetParams,
+                                                    int quantity,
+                                                    [Optional] double smallestUnit,
+                                                    [Optional] decimal nativeCurrencyAmount,
+                                                    [Optional] Dictionary<string, string> customFields) =>
+            IssueAsync(RpcOptions.ChainName, UUID.NoHyphens, toAddress, assetParams, quantity, smallestUnit, nativeCurrencyAmount, customFields);
+
+        /// <summary>
+        ///
+        /// <para>Issue a new Asset using object params to an address on the blockchain network.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
+        ///
+        /// </summary>
+        /// <param name="toAddress">The address to send newly created asset to</param>
+        /// <param name="assetParams">(object type, required) A generic object that must include asset params (string)name, (bool)open, and (string, comma delimited)restrict</param>
+        /// <param name="quantity">The asset total amount in display units. eg. 1234.56</param>
+        /// <param name="smallestUnit">Number of raw units in one displayed unit, eg 0.01 for cents. Default value is 1</param>
+        /// <param name="nativeCurrencyAmount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
+        /// <param name="customFields">a dictionary object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
+        /// <returns></returns>
+        public Task<RpcResponse<string>> IssueAsync(string toAddress,
+                                                    object assetParams,
+                                                    int quantity,
+                                                    [Optional] double smallestUnit,
+                                                    [Optional] decimal nativeCurrencyAmount,
+                                                    [Optional] Dictionary<string, string> customFields) =>
+            IssueAsync(RpcOptions.ChainName, UUID.NoHyphens, toAddress, assetParams, quantity, smallestUnit, nativeCurrencyAmount, customFields);
+
+        /// <summary>
+        ///
+        /// <para>Issue a new Asset by name to an address on the blockchain network.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
+        ///
+        /// </summary>
+        /// <param name="toAddress">The address to send newly created asset to</param>
+        /// <param name="assetName">(string, required) Asset name, if not "" should be unique</param>
+        /// <param name="quantity">The asset total amount in display units. eg. 1234.56</param>
+        /// <param name="smallestUnit">Number of raw units in one displayed unit, eg 0.01 for cents. Default value is 1</param>
+        /// <param name="nativeCurrencyAmount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
+        /// <param name="customFields">a dictionary object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
+        /// <returns></returns>
+        public Task<RpcResponse<string>> IssueAsync(string toAddress,
+                                                    string assetName,
+                                                    int quantity,
+                                                    [Optional] double smallestUnit,
+                                                    [Optional] decimal nativeCurrencyAmount,
+                                                    [Optional] Dictionary<string, string> customFields) =>
+            IssueAsync(RpcOptions.ChainName, UUID.NoHyphens, toAddress, assetName, quantity, smallestUnit, nativeCurrencyAmount, customFields);
+
+
+        /// <summary>
+        ///
+        /// <para>Issue a new AssetEntity model to an address on the blockchain network.</para>
+        /// <para>Blockchain name is explicitly passed as parameter.</para>
+        ///
+        /// </summary>
+        /// <param name="blockchainName">Name of target blockchain</param>
+        /// <param name="id">String value to identify this transaction</param>
+        /// <param name="fromAddress">Address used for issuing</param>
+        /// <param name="toAddress">The address to send newly created asset to</param>
+        /// <param name="assetParams">(AssetEntity type, required) A strongly typed object with asset params (string)name, (bool)open, and (string, comma delimited)restrict</param>
+        /// <param name="quantity">The asset total amount in display units. eg. 1234.56</param>
+        /// <param name="smallestUnit">Number of raw units in one displayed unit, eg 0.01 for cents. Default value is 1</param>
+        /// <param name="nativeCurrencyAmount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
+        /// <param name="customFields">a dictionary object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
+        /// <returns></returns>
+        public Task<RpcResponse<string>> IssueFromAsync(string blockchainName,
+                                                        string id,
+                                                        string fromAddress,
+                                                        string toAddress,
+                                                        AssetEntity assetParams,
+                                                        int quantity,
+                                                        [Optional] double smallestUnit,
+                                                        [Optional] decimal nativeCurrencyAmount,
+                                                        [Optional] Dictionary<string, string> customFields) =>
+            TransactAsync<RpcResponse<string>>(blockchainName, WalletAction.IssueFromMethod, id, fromAddress, toAddress, assetParams, quantity, smallestUnit, nativeCurrencyAmount, customFields);
+
+        /// <summary>
+        ///
+        /// <para>Issue a new Asset using object params to an address on the blockchain network.</para>
+        /// <para>Blockchain name is explicitly passed as parameter.</para>
+        ///
+        /// </summary>
+        /// <param name="blockchainName">Name of target blockchain</param>
+        /// <param name="id">String value to identify this transaction</param>
+        /// <param name="fromAddress">Address used for issuing</param>
+        /// <param name="toAddress">The address to send newly created asset to</param>
+        /// <param name="assetParams">(object type, required) A generic object that must include asset params (string)name, (bool)open, and (string, comma delimited)restrict</param>
+        /// <param name="quantity">The asset total amount in display units. eg. 1234.56</param>
+        /// <param name="smallestUnit">Number of raw units in one displayed unit, eg 0.01 for cents. Default value is 1</param>
+        /// <param name="nativeCurrencyAmount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
+        /// <param name="customFields">a dictionary object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
+        /// <returns></returns>
+        public Task<RpcResponse<string>> IssueFromAsync(string blockchainName,
+                                                        string id,
+                                                        string fromAddress,
+                                                        string toAddress,
+                                                        object assetParams,
+                                                        int quantity,
+                                                        [Optional] double smallestUnit,
+                                                        [Optional] decimal nativeCurrencyAmount,
+                                                        [Optional] Dictionary<string, string> customFields) =>
+            TransactAsync<RpcResponse<string>>(blockchainName, WalletAction.IssueFromMethod, id, fromAddress, toAddress, assetParams, quantity, smallestUnit, nativeCurrencyAmount, customFields);
+
+        /// <summary>
+        ///
+        /// <para>Issue a new Asset by name to an address on the blockchain network.</para>
+        /// <para>Blockchain name is explicitly passed as parameter.</para>
+        ///
+        /// </summary>
+        /// <param name="blockchainName">Name of target blockchain</param>
+        /// <param name="id">String value to identify this transaction</param>
+        /// <param name="fromAddress">Address used for issuing</param>
+        /// <param name="toAddress">The address to send newly created asset to</param>
+        /// <param name="assetName">(string, required) Asset name, if not "" should be unique</param>
+        /// <param name="quantity">The asset total amount in display units. eg. 1234.56</param>
+        /// <param name="smallestUnit">Number of raw units in one displayed unit, eg 0.01 for cents. Default value is 1</param>
+        /// <param name="nativeCurrencyAmount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
+        /// <param name="customFields">a dictionary object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
+        /// <returns></returns>
+        public Task<RpcResponse<string>> IssueFromAsync(string blockchainName,
+                                                        string id,
+                                                        string fromAddress,
+                                                        string toAddress,
+                                                        string assetName,
+                                                        int quantity,
+                                                        [Optional] double smallestUnit,
+                                                        [Optional] decimal nativeCurrencyAmount,
+                                                        [Optional] Dictionary<string, string> customFields) =>
+            TransactAsync<RpcResponse<string>>(blockchainName, WalletAction.IssueFromMethod, id, fromAddress, toAddress, assetName, quantity, smallestUnit, nativeCurrencyAmount, customFields);
+
+        /// <summary>
+        ///
+        /// <para>Issue a new AssetEntity model to an address on the blockchain network.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
+        ///
+        /// </summary>
+        /// <param name="fromAddress">Address used for issuing</param>
+        /// <param name="toAddress">The address to send newly created asset to</param>
+        /// <param name="assetParams">(AssetEntity type, required) A strongly typed object with asset params (string)name, (bool)open, and (string, comma delimited)restrict</param>
+        /// <param name="quantity">The asset total amount in display units. eg. 1234.56</param>
+        /// <param name="smallestUnit">Number of raw units in one displayed unit, eg 0.01 for cents. Default value is 1</param>
+        /// <param name="nativeCurrencyAmount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
+        /// <param name="customFields">a dictionary object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
+        /// <returns></returns>
+        public Task<RpcResponse<string>> IssueFromAsync(string fromAddress,
+                                                        string toAddress,
+                                                        AssetEntity assetParams,
+                                                        int quantity,
+                                                        [Optional] double smallestUnit,
+                                                        [Optional] decimal nativeCurrencyAmount,
+                                                        [Optional] Dictionary<string, string> customFields) =>
+            IssueFromAsync(RpcOptions.ChainName, UUID.NoHyphens, fromAddress, toAddress, assetParams, quantity, smallestUnit, nativeCurrencyAmount, customFields);
+
+        /// <summary>
+        ///
+        /// <para>Issue a new Asset using object params to an address on the blockchain network.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
+        ///
+        /// </summary>
+        /// <param name="fromAddress">Address used for issuing</param>
+        /// <param name="toAddress">The address to send newly created asset to</param>
+        /// <param name="assetParams">(object type, required) A generic object that must include asset params (string)name, (bool)open, and (string, comma delimited)restrict</param>
+        /// <param name="quantity">The asset total amount in display units. eg. 1234.56</param>
+        /// <param name="smallestUnit">Number of raw units in one displayed unit, eg 0.01 for cents. Default value is 1</param>
+        /// <param name="nativeCurrencyAmount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
+        /// <param name="customFields">a dictionary object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
+        /// <returns></returns>
+        public Task<RpcResponse<string>> IssueFromAsync(string fromAddress,
+                                                        string toAddress,
+                                                        object assetParams,
+                                                        int quantity,
+                                                        [Optional] double smallestUnit,
+                                                        [Optional] decimal nativeCurrencyAmount,
+                                                        [Optional] Dictionary<string, string> customFields) =>
+            IssueFromAsync(RpcOptions.ChainName, UUID.NoHyphens, fromAddress, toAddress, assetParams, quantity, smallestUnit, nativeCurrencyAmount, customFields);
+
+        /// <summary>
+        ///
+        /// <para>Issue a new Asset by name to an address on the blockchain network.</para>
+        /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
+        ///
+        /// </summary>
+        /// <param name="fromAddress">Address used for issuing</param>
+        /// <param name="toAddress">The address to send newly created asset to</param>
+        /// <param name="assetName">(string, required) Asset name, if not "" should be unique</param>
+        /// <param name="quantity">The asset total amount in display units. eg. 1234.56</param>
+        /// <param name="smallestUnit">Number of raw units in one displayed unit, eg 0.01 for cents. Default value is 1</param>
+        /// <param name="nativeCurrencyAmount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
+        /// <param name="customFields">a dictionary object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
+        /// <returns></returns>
+        public Task<RpcResponse<string>> IssueFromAsync(string fromAddress,
+                                                        string toAddress,
+                                                        string assetName,
+                                                        int quantity,
+                                                        [Optional] double smallestUnit,
+                                                        [Optional] decimal nativeCurrencyAmount,
+                                                        [Optional] Dictionary<string, string> customFields) =>
+            IssueFromAsync(RpcOptions.ChainName, UUID.NoHyphens, fromAddress, toAddress, assetName, quantity, smallestUnit, nativeCurrencyAmount, customFields);
 
         /// <summary>
         ///
@@ -1627,14 +1849,20 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// </summary>
         /// <param name="blockchainName">Name of target blockchain</param>
         /// <param name="id">String value to identify this transaction</param>
-        /// <param name="to_address">The address to send newly created asset to</param>
-        /// <param name="asset_identifier">One of the following: issue txid, asset reference, asset name</param>
+        /// <param name="toAddress">The address to send newly created asset to</param>
+        /// <param name="assetIdentifier">One of the following: issue txid, asset reference, asset name</param>
         /// <param name="quantity">The asset total amount in display units. eg. 1234.56</param>
-        /// <param name="native_amount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
-        /// <param name="custom_fields">a json object with custom fields</param>
+        /// <param name="nativeCurrencyAmount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
+        /// <param name="customFields">a dictionary object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> IssueMoreAsync(string blockchainName, string id, string to_address, string asset_identifier, int quantity, [Optional] decimal native_amount, [Optional] object custom_fields) =>
-            TransactAsync<RpcResponse<object>>(blockchainName, WalletAction.IssueMoreMethod, id, to_address, asset_identifier, quantity, native_amount, custom_fields);
+        public Task<RpcResponse<object>> IssueMoreAsync(string blockchainName,
+                                                        string id,
+                                                        string toAddress,
+                                                        string assetIdentifier,
+                                                        int quantity,
+                                                        [Optional] decimal nativeCurrencyAmount,
+                                                        [Optional] Dictionary<string, string> customFields) =>
+            TransactAsync<RpcResponse<object>>(blockchainName, WalletAction.IssueMoreMethod, id, toAddress, assetIdentifier, quantity, nativeCurrencyAmount, customFields);
 
         /// <summary>
         ///
@@ -1642,14 +1870,18 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         ///
         /// </summary>
-        /// <param name="to_address">The address to send newly created asset to</param>
-        /// <param name="asset_identifier">One of the following: issue txid, asset reference, asset name</param>
+        /// <param name="toAddress">The address to send newly created asset to</param>
+        /// <param name="assetIdentifier">One of the following: issue txid, asset reference, asset name</param>
         /// <param name="quantity">The asset total amount in display units. eg. 1234.56</param>
-        /// <param name="native_amount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
-        /// <param name="custom_fields">a json object with custom fields</param>
+        /// <param name="nativeCurrencyAmount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
+        /// <param name="customFields">a dictionary object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> IssueMoreAsync(string to_address, string asset_identifier, int quantity, [Optional] decimal native_amount, [Optional] object custom_fields) =>
-            IssueMoreAsync(RpcOptions.ChainName, UUID.NoHyphens, to_address, asset_identifier, quantity, native_amount, custom_fields);
+        public Task<RpcResponse<object>> IssueMoreAsync(string toAddress,
+                                                        string assetIdentifier,
+                                                        int quantity,
+                                                        [Optional] decimal nativeCurrencyAmount,
+                                                        [Optional] Dictionary<string, string> customFields) =>
+            IssueMoreAsync(RpcOptions.ChainName, UUID.NoHyphens, toAddress, assetIdentifier, quantity, nativeCurrencyAmount, customFields);
 
         /// <summary>
         ///
@@ -1659,15 +1891,22 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// </summary>
         /// <param name="blockchainName">Name of target blockchain</param>
         /// <param name="id">String value to identify this transaction</param>
-        /// <param name="from_address">Address used for issuing</param>
-        /// <param name="to_address">The address to send newly created asset to</param>
-        /// <param name="asset_identifier">One of the following: issue txid, asset reference, asset name</param>
+        /// <param name="fromAddress">Address used for issuing</param>
+        /// <param name="toAddress">The address to send newly created asset to</param>
+        /// <param name="assetIdentifier">One of the following: issue txid, asset reference, asset name</param>
         /// <param name="quantity">The asset total amount in display units. eg. 1234.56</param>
-        /// <param name="native_amount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
-        /// <param name="custom_fields">a json object with custom fields</param>
+        /// <param name="nativeCurrencyAmount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
+        /// <param name="customFields">a dictionary object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> IssueMoreFromAsync(string blockchainName, string id, string from_address, string to_address, string asset_identifier, int quantity, [Optional] decimal native_amount, [Optional] object custom_fields) =>
-            TransactAsync<RpcResponse<object>>(blockchainName, WalletAction.IssueMoreFromMethod, id, from_address, to_address, asset_identifier, quantity, native_amount, custom_fields);
+        public Task<RpcResponse<object>> IssueMoreFromAsync(string blockchainName,
+                                                            string id,
+                                                            string fromAddress,
+                                                            string toAddress,
+                                                            string assetIdentifier,
+                                                            int quantity,
+                                                            [Optional] decimal nativeCurrencyAmount,
+                                                            [Optional] Dictionary<string, string> customFields) =>
+            TransactAsync<RpcResponse<object>>(blockchainName, WalletAction.IssueMoreFromMethod, id, fromAddress, toAddress, assetIdentifier, quantity, nativeCurrencyAmount, customFields);
 
         /// <summary>
         ///
@@ -1675,15 +1914,20 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
         ///
         /// </summary>
-        /// <param name="from_address">Address used for issuing</param>
-        /// <param name="to_address">The address to send newly created asset to</param>
-        /// <param name="asset_identifier">One of the following: issue txid, asset reference, asset name</param>
+        /// <param name="fromAddress">Address used for issuing</param>
+        /// <param name="toAddress">The address to send newly created asset to</param>
+        /// <param name="assetIdentifier">One of the following: issue txid, asset reference, asset name</param>
         /// <param name="quantity">The asset total amount in display units. eg. 1234.56</param>
-        /// <param name="native_amount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
-        /// <param name="custom_fields">a json object with custom fields</param>
+        /// <param name="nativeCurrencyAmount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
+        /// <param name="customFields">a dictionary object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> IssueMoreFromAsync(string from_address, string to_address, string asset_identifier, int quantity, [Optional] decimal native_amount, [Optional] object custom_fields) =>
-            IssueMoreFromAsync(RpcOptions.ChainName, UUID.NoHyphens, from_address, to_address, asset_identifier, quantity, native_amount, custom_fields);
+        public Task<RpcResponse<object>> IssueMoreFromAsync(string fromAddress,
+                                                            string toAddress,
+                                                            string assetIdentifier,
+                                                            int quantity,
+                                                            [Optional] decimal nativeCurrencyAmount,
+                                                            [Optional] Dictionary<string, string> customFields) =>
+            IssueMoreFromAsync(RpcOptions.ChainName, UUID.NoHyphens, fromAddress, toAddress, assetIdentifier, quantity, nativeCurrencyAmount, customFields);
 
         /// <summary>
         ///

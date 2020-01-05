@@ -39,7 +39,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="id">String value to identify this transaction</param>
         /// <returns></returns>
         public Task<RpcResponse<string>> ClearMemPoolAsync(string blockchainName, string id) =>
-            TransactAsync<RpcResponse<string>>(blockchainName, ControlAction.ClearMemPoolMethod, id);
+            TransactAsync<string>(blockchainName, ControlAction.ClearMemPoolMethod, id);
 
         /// <summary>
         ///
@@ -64,7 +64,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="with_upgrades">Take upgrades into account</param>
         /// <returns></returns>
         public Task<RpcResponse<GetBlockchainParamsResult>> GetBlockchainParamsAsync(string blockchainName, string id, bool display_names = false, bool with_upgrades = false) =>
-            TransactAsync<RpcResponse<GetBlockchainParamsResult>>(blockchainName, ControlAction.GetBlockchainParamsMethod, id, display_names, with_upgrades);
+            TransactAsync<GetBlockchainParamsResult>(blockchainName, ControlAction.GetBlockchainParamsMethod, id, display_names, with_upgrades);
 
         /// <summary>
         ///
@@ -88,7 +88,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="id">String value to identify this transaction</param>
         /// <returns></returns>
         public Task<RpcResponse<GetInfoResult>> GetInfoAsync(string blockchainName, string id) =>
-            TransactAsync<RpcResponse<GetInfoResult>>(blockchainName, ControlAction.GetInfoMethod, id);
+            TransactAsync<GetInfoResult>(blockchainName, ControlAction.GetInfoMethod, id);
 
         /// <summary>
         ///
@@ -107,7 +107,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="id"></param>
         /// <returns></returns>
         public Task<RpcResponse<GetInitStatusResult>> GetInitStatusAsync(string blockchainName, string id) =>
-            TransactAsync<RpcResponse<GetInitStatusResult>>(blockchainName, ControlAction.GetInitStatus, id);
+            TransactAsync<GetInitStatusResult>(blockchainName, ControlAction.GetInitStatus, id);
 
         /// <summary>
         /// Returns information about initialization status of this node
@@ -126,7 +126,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="id">String value to identify this transaction</param>
         /// <returns></returns>
         public Task<RpcResponse<GetRuntimeParamsResult>> GetRuntimeParamsAsync(string blockchainName, string id) =>
-            TransactAsync<RpcResponse<GetRuntimeParamsResult>>(blockchainName, ControlAction.GetRuntimeParamsMethod, id);
+            TransactAsync<GetRuntimeParamsResult>(blockchainName, ControlAction.GetRuntimeParamsMethod, id);
 
         /// <summary>
         ///
@@ -149,7 +149,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="command">The command to get help with</param>
         /// <returns></returns>
         public Task<RpcResponse<object>> HelpAsync(string blockchainName, string id, string command = "getinfo") =>
-            TransactAsync<RpcResponse<object>>(blockchainName, ControlAction.HelpMethod, id, command);
+            TransactAsync<object>(blockchainName, ControlAction.HelpMethod, id, command);
 
         /// <summary>
         ///
@@ -173,7 +173,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="tasks">Task(s) to be paused. Possible values: incoming,mining,offchain</param>
         /// <returns></returns>
         public Task<RpcResponse<object>> PauseAsync(string blockchainName, string id, string tasks = "incoming,mining") =>
-            TransactAsync<RpcResponse<object>>(blockchainName, ControlAction.PauseMethod, id, tasks);
+            TransactAsync<object>(blockchainName, ControlAction.PauseMethod, id, tasks);
 
         /// <summary>
         ///
@@ -197,7 +197,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="tasks">Task(s) to be resumed. Possible values: incoming,mining,offchain</param>
         /// <returns></returns>
         public Task<RpcResponse<object>> ResumeAsync(string blockchainName, string id, string tasks = "incoming,mining") =>
-            TransactAsync<RpcResponse<object>>(blockchainName, ControlAction.ResumeMethod, id, tasks);
+            TransactAsync<object>(blockchainName, ControlAction.ResumeMethod, id, tasks);
 
         /// <summary>
         ///
@@ -225,7 +225,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// </param>
         /// <returns></returns>
         public Task<RpcResponse<object>> SetLastBlockAsync(string blockchainName, string id, [Optional] object hash_or_height) =>
-            TransactAsync<RpcResponse<object>>(blockchainName, ControlAction.SetLastBlockMethod, id, hash_or_height);
+            TransactAsync<object>(blockchainName, ControlAction.SetLastBlockMethod, id, hash_or_height);
 
         /// <summary>
         ///
@@ -255,7 +255,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="parameter_value">parameter value</param>
         /// <returns></returns>
         public Task<RpcResponse<object>> SetRuntimeParamAsync(string blockchainName, string id, string runtimeParam, object parameter_value) =>
-            TransactAsync<RpcResponse<object>>(blockchainName, ControlAction.SetRuntimeParamMethod, id, runtimeParam, parameter_value);
+            TransactAsync<object>(blockchainName, ControlAction.SetRuntimeParamMethod, id, runtimeParam, parameter_value);
 
         /// <summary>
         ///
@@ -279,7 +279,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="id">String value to identify this transaction</param>
         /// <returns></returns>
         public Task<RpcResponse<string>> StopAsync(string blockchainName, string id) =>
-            TransactAsync<RpcResponse<string>>(blockchainName, ControlAction.StopMethod, id);
+            TransactAsync<string>(blockchainName, ControlAction.StopMethod, id);
 
         /// <summary>
         ///
