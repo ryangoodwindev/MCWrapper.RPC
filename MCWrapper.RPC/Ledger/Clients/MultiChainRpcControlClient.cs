@@ -148,8 +148,8 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="id">String value to identify this transaction</param>
         /// <param name="command">The command to get help with</param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> HelpAsync(string blockchainName, string id, string command = "getinfo") =>
-            TransactAsync<object>(blockchainName, ControlAction.HelpMethod, id, command);
+        public Task<RpcResponse<string>> HelpAsync(string blockchainName, string id, string command = "getinfo") =>
+            TransactAsync<string>(blockchainName, ControlAction.HelpMethod, id, command);
 
         /// <summary>
         ///
@@ -159,7 +159,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// </summary>
         /// <param name="command">The command to get help with</param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> HelpAsync(string command = "getinfo") =>
+        public Task<RpcResponse<string>> HelpAsync(string command = "getinfo") =>
             HelpAsync(RpcOptions.ChainName, UUID.NoHyphens, command);
 
         /// <summary>
@@ -224,8 +224,8 @@ namespace MCWrapper.RPC.Ledger.Clients
         ///     <para>(numeric, optional) The block height in active chain or height before current tip (if negative)</para>
         /// </param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> SetLastBlockAsync(string blockchainName, string id, [Optional] object hash_or_height) =>
-            TransactAsync<object>(blockchainName, ControlAction.SetLastBlockMethod, id, hash_or_height);
+        public Task<RpcResponse<string>> SetLastBlockAsync(string blockchainName, string id, [Optional] object hash_or_height) =>
+            TransactAsync<string>(blockchainName, ControlAction.SetLastBlockMethod, id, hash_or_height);
 
         /// <summary>
         ///
@@ -240,7 +240,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         ///     <para>(numeric, optional) The block height in active chain or height before current tip (if negative)</para>
         /// </param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> SetLastBlockAsync([Optional] object hash_or_height) =>
+        public Task<RpcResponse<string>> SetLastBlockAsync([Optional] object hash_or_height) =>
             SetLastBlockAsync(RpcOptions.ChainName, UUID.NoHyphens, hash_or_height);
 
         /// <summary>

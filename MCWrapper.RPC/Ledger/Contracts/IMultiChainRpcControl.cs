@@ -123,7 +123,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// </summary>
         /// <param name="command">The command to get help with</param>
         /// <returns></returns>
-        Task<RpcResponse<object>> HelpAsync(string command = "getinfo");
+        Task<RpcResponse<string>> HelpAsync(string command = "getinfo");
 
         /// <summary>
         ///
@@ -135,7 +135,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="id">String value to identify this transaction</param>
         /// <param name="command">The command to get help with</param>
         /// <returns></returns>
-        Task<RpcResponse<object>> HelpAsync(string blockchainName, string id, string command = "getinfo");
+        Task<RpcResponse<string>> HelpAsync(string blockchainName, string id, string command = "getinfo");
 
         /// <summary>
         ///
@@ -193,7 +193,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         ///     <para>(numeric, optional) The block height in active chain or height before current tip (if negative)</para>
         /// </param>
         /// <returns></returns>
-        Task<RpcResponse<object>> SetLastBlockAsync([Optional] object hash_or_height);
+        Task<RpcResponse<string>> SetLastBlockAsync([Optional] object hash_or_height);
 
         /// <summary>
         ///
@@ -210,7 +210,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         ///     <para>(numeric, optional) The block height in active chain or height before current tip (if negative)</para>
         /// </param>
         /// <returns></returns>
-        Task<RpcResponse<object>> SetLastBlockAsync(string blockchainName, string id, [Optional] object hash_or_height);
+        Task<RpcResponse<string>> SetLastBlockAsync(string blockchainName, string id, [Optional] object hash_or_height);
 
         /// <summary>
         ///
