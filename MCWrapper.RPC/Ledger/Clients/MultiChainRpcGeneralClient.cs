@@ -761,13 +761,26 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="blockchainName">Name of target blockchain</param>
         /// <param name="id">String value to identify this transaction</param>
         /// <param name="upgrade_identifiers">
-        ///     <para>(string, optional, default=*, all upgrades) Upgrade identifier - one of the following: upgrade txid, upgrade name.</para>
-        ///     <para>or</para>
         ///     <para>(array, optional) A json array of upgrade identifiers</para>
         /// </param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> ListUpgradesAsync(string blockchainName, string id, [Optional] object upgrade_identifiers) =>
-            TransactAsync<object>(blockchainName, BlockchainAction.ListUpgradesMethod, id, upgrade_identifiers);
+        public Task<RpcResponse<ListUpgradesResult[]>> ListUpgradesAsync(string blockchainName, string id, [Optional] string[] upgrade_identifiers) =>
+            TransactAsync<ListUpgradesResult[]>(blockchainName, BlockchainAction.ListUpgradesMethod, id, upgrade_identifiers);
+
+        /// <summary>
+        ///
+        /// <para>Returns list of defined upgrades</para>
+        /// <para>Blockchain name is explicitly passed as parameter.</para>
+        ///
+        /// </summary>
+        /// <param name="blockchainName">Name of target blockchain</param>
+        /// <param name="id">String value to identify this transaction</param>
+        /// <param name="upgrade_identifier">
+        ///     <para>(string, optional, default=*, all upgrades) Upgrade identifier - one of the following: upgrade txid, upgrade name.</para>
+        /// </param>
+        /// <returns></returns>
+        public Task<RpcResponse<ListUpgradesResult[]>> ListUpgradesAsync(string blockchainName, string id, [Optional] string upgrade_identifier) =>
+            TransactAsync<ListUpgradesResult[]>(blockchainName, BlockchainAction.ListUpgradesMethod, id, upgrade_identifier);
 
         /// <summary>
         ///
@@ -776,13 +789,24 @@ namespace MCWrapper.RPC.Ledger.Clients
         ///
         /// </summary>
         /// <param name="upgrade_identifiers">
-        ///     <para>(string, optional, default=*, all upgrades) Upgrade identifier - one of the following: upgrade txid, upgrade name.</para>
-        ///     <para>or</para>
         ///     <para>(array, optional) A json array of upgrade identifiers</para>
         /// </param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> ListUpgradesAsync([Optional] object upgrade_identifiers) =>
+        public Task<RpcResponse<ListUpgradesResult[]>> ListUpgradesAsync([Optional] string[] upgrade_identifiers) =>
             ListUpgradesAsync(RpcOptions.ChainName, UUID.NoHyphens, upgrade_identifiers);
+
+        /// <summary>
+        ///
+        /// <para>Returns list of defined upgrades</para>
+        /// <para>Blockchain name is inferred from RpcOptions properties.</para>
+        ///
+        /// </summary>
+        /// <param name="upgrade_identifier">
+        ///     <para>(string, optional, default=*, all upgrades) Upgrade identifier - one of the following: upgrade txid, upgrade name.</para>
+        /// </param>
+        /// <returns></returns>
+        public Task<RpcResponse<ListUpgradesResult[]>> ListUpgradesAsync([Optional] string upgrade_identifier) =>
+            ListUpgradesAsync(RpcOptions.ChainName, UUID.NoHyphens, upgrade_identifier);
 
         /// <summary>
         ///
