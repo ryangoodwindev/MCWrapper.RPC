@@ -63,10 +63,4 @@ Please view all supported MultiChain Community Edition methods here, https://mcw
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
   </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\..\MCWrapper.Data.Models\MCWrapper.Data.Models\MCWrapper.Data.Models.csproj" />
-    <ProjectReference Include="..\..\MCWrapper.Ledger.Actions\MCWrapper.Ledger.Actions\MCWrapper.Ledger.Actions.csproj" />
-    <ProjectReference Include="..\..\MCWrapper.Ledger.Entities\MCWrapper.Ledger.Entities\MCWrapper.Ledger.Entities.csproj" />
-  </ItemGroup>
 </Project>
