@@ -1,4 +1,5 @@
-﻿using MCWrapper.RPC.Connection;
+﻿using MCWrapper.Data.Models.Mining;
+using MCWrapper.RPC.Connection;
 using System.Threading.Tasks;
 
 namespace MCWrapper.RPC.Ledger.Clients
@@ -57,7 +58,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         ///
         /// </summary>
         /// <returns></returns>
-        Task<RpcResponse<object>> GetMiningInfoAsync();
+        Task<RpcResponse<GetMiningInfoResult>> GetMiningInfoAsync();
 
         /// <summary>
         ///
@@ -68,7 +69,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="blockchainName">Name of target blockchain</param>
         /// <param name="id">String value to identify this transaction</param>
         /// <returns></returns>
-        Task<RpcResponse<object>> GetMiningInfoAsync(string blockchainName, string id);
+        Task<RpcResponse<GetMiningInfoResult>> GetMiningInfoAsync(string blockchainName, string id);
 
         /// <summary>
         ///
@@ -81,7 +82,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="blocks">(numeric, optional, default=120) The number of blocks, or -1 for blocks since last difficulty change</param>
         /// <param name="height">(numeric, optional, default=-1) To estimate at the time of the given height</param>
         /// <returns></returns>
-        Task<RpcResponse<object>> GetNetworkHashPsAsync(int blocks = 120, int height = -1);
+        Task<RpcResponse<int>> GetNetworkHashPsAsync(int blocks = 120, int height = -1);
 
         /// <summary>
         ///
@@ -96,7 +97,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="blocks">(numeric, optional, default=120) The number of blocks, or -1 for blocks since last difficulty change</param>
         /// <param name="height">(numeric, optional, default=-1) To estimate at the time of the given height</param>
         /// <returns></returns>
-        Task<RpcResponse<object>> GetNetworkHashPsAsync(string blockchainName, string id, int blocks = 120, int height = -1);
+        Task<RpcResponse<int>> GetNetworkHashPsAsync(string blockchainName, string id, int blocks = 120, int height = -1);
 
         /// <summary>
         ///

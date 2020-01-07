@@ -39,6 +39,40 @@ namespace MCWrapper.RPC.Connection
     }
 
     /// <summary>
+    /// Service response object
+    /// </summary>
+    public class RpcResponse
+    {
+        /// <summary>
+        /// Create a new Service Response
+        /// </summary>
+        public RpcResponse()
+        {
+            Id = string.Empty;
+            Error = new ServiceError();
+            Result = new { };
+        }
+
+        /// <summary>
+        /// Request id
+        /// </summary>
+        [JsonProperty("id")]
+        public string Id { get; set; }
+
+        /// <summary>
+        /// Error object
+        /// </summary>
+        [JsonProperty("error")]
+        public ServiceError Error { get; set; }
+
+        /// <summary>
+        /// Generic Result may be string, object, or int, or bool, or Array, etc...
+        /// </summary>
+        [JsonProperty("result")]
+        public object Result { get; set; }
+    }
+
+    /// <summary>
     /// ServiceError object
     /// </summary>
     public class ServiceError

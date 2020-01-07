@@ -65,7 +65,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="generate">Set to true to turn on generation, off to turn off.</param>
         /// <param name="gen_proc_limit">Set the processor limit for when generation is on. Can be -1 for unlimited.</param>
         /// <returns>String value identifying this transaction</returns>
-        Task<RpcResponse<object>> SetGenerateAsync(bool generate, int gen_proc_limit);
+        Task<RpcResponse> SetGenerateAsync(bool generate, int gen_proc_limit);
 
         /// <summary>
         ///
@@ -80,6 +80,6 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="generate">Set to true to turn on generation, off to turn off.</param>
         /// <param name="gen_proc_limit">Set the processor limit for when generation is on. Can be -1 for unlimited.</param>
         /// <returns>String value identifying this transaction</returns>
-        Task<RpcResponse<object>> SetGenerateAsync(string blockchainName, string id, bool generate, int gen_proc_limit);
+        Task<RpcResponse> SetGenerateAsync(string blockchainName, string id, bool generate, int gen_proc_limit);
     }
 }

@@ -172,8 +172,8 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="id">String value to identify this transaction</param>
         /// <param name="tasks">Task(s) to be paused. Possible values: incoming,mining,offchain</param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> PauseAsync(string blockchainName, string id, string tasks = "incoming,mining") =>
-            TransactAsync<object>(blockchainName, ControlAction.PauseMethod, id, tasks);
+        public Task<RpcResponse<string>> PauseAsync(string blockchainName, string id, string tasks = "incoming,mining") =>
+            TransactAsync<string>(blockchainName, ControlAction.PauseMethod, id, tasks);
 
         /// <summary>
         ///
@@ -183,7 +183,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// </summary>
         /// <param name="tasks">Task(s) to be paused. Possible values: incoming,mining,offchain</param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> PauseAsync(string tasks = "incoming,mining") =>
+        public Task<RpcResponse<string>> PauseAsync(string tasks = "incoming,mining") =>
             PauseAsync(RpcOptions.ChainName, UUID.NoHyphens, tasks);
 
         /// <summary>
@@ -196,8 +196,8 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="id">String value to identify this transaction</param>
         /// <param name="tasks">Task(s) to be resumed. Possible values: incoming,mining,offchain</param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> ResumeAsync(string blockchainName, string id, string tasks = "incoming,mining") =>
-            TransactAsync<object>(blockchainName, ControlAction.ResumeMethod, id, tasks);
+        public Task<RpcResponse<string>> ResumeAsync(string blockchainName, string id, string tasks = "incoming,mining") =>
+            TransactAsync<string>(blockchainName, ControlAction.ResumeMethod, id, tasks);
 
         /// <summary>
         ///
@@ -206,7 +206,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         ///
         /// </summary>
         /// <param name="tasks">Task(s) to be resumed. Possible values: incoming,mining,offchain</param>
-        public Task<RpcResponse<object>> ResumeAsync(string tasks = "incoming,mining") =>
+        public Task<RpcResponse<string>> ResumeAsync(string tasks = "incoming,mining") =>
             ResumeAsync(RpcOptions.ChainName, UUID.NoHyphens, tasks);
 
         /// <summary>
@@ -254,8 +254,8 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="runtimeParam">Parameter name, one of the following: miningrequirespeers,mineemptyrounds,miningturnover,lockadminminerounds,maxshowndata,maxqueryscanitems,bantx,lockblock,autosubscribe,handshakelocal,hideknownopdrops</param>
         /// <param name="parameter_value">parameter value</param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> SetRuntimeParamAsync(string blockchainName, string id, string runtimeParam, object parameter_value) =>
-            TransactAsync<object>(blockchainName, ControlAction.SetRuntimeParamMethod, id, runtimeParam, parameter_value);
+        public Task<RpcResponse> SetRuntimeParamAsync(string blockchainName, string id, string runtimeParam, object parameter_value) =>
+            TransactAsync(blockchainName, ControlAction.SetRuntimeParamMethod, id, runtimeParam, parameter_value);
 
         /// <summary>
         ///
@@ -266,7 +266,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="runtimeParam">Parameter name, one of the following: miningrequirespeers,mineemptyrounds,miningturnover,lockadminminerounds,maxshowndata,maxqueryscanitems,bantx,lockblock,autosubscribe,handshakelocal,hideknownopdrops</param>
         /// <param name="parameter_value">parameter value</param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> SetRuntimeParamAsync(string runtimeParam, object parameter_value) =>
+        public Task<RpcResponse> SetRuntimeParamAsync(string runtimeParam, object parameter_value) =>
             SetRuntimeParamAsync(RpcOptions.ChainName, UUID.NoHyphens, runtimeParam, parameter_value);
 
         /// <summary>

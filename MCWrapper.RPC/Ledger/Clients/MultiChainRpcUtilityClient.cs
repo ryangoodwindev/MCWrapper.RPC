@@ -137,8 +137,8 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="id">String value to identify this transaction</param>
         /// <param name="identifier">Binary cache item identifier, "*" - to clear all items</param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> DeleteBinaryCacheAsync(string blockchainName, string id, string identifier) =>
-            TransactAsync<object>(blockchainName, UtilityAction.DeleteBinaryCacheMethod, id, identifier);
+        public Task<RpcResponse> DeleteBinaryCacheAsync(string blockchainName, string id, string identifier) =>
+            TransactAsync(blockchainName, UtilityAction.DeleteBinaryCacheMethod, id, identifier);
 
         /// <summary>
         ///
@@ -148,7 +148,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// </summary>
         /// <param name="identifier">Binary cache item identifier, "*" - to clear all items</param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> DeleteBinaryCacheAsync(string identifier) =>
+        public Task<RpcResponse> DeleteBinaryCacheAsync(string identifier) =>
             DeleteBinaryCacheAsync(RpcOptions.ChainName, UUID.NoHyphens, identifier);
 
         /// <summary>
@@ -161,8 +161,8 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="id">String value to identify this transaction</param>
         /// <param name="n_blocks">Number of blocks to estimate fee for</param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> EstimateFeeAsync(string blockchainName, string id, int n_blocks) =>
-            TransactAsync<object>(blockchainName, UtilityAction.EstimateFeeMethod, id, n_blocks);
+        public Task<RpcResponse<long>> EstimateFeeAsync(string blockchainName, string id, int n_blocks) =>
+            TransactAsync<long>(blockchainName, UtilityAction.EstimateFeeMethod, id, n_blocks);
 
         /// <summary>
         ///
@@ -172,7 +172,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// </summary>
         /// <param name="n_blocks">Number of blocks to estimate fee for</param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> EstimateFeeAsync(int n_blocks) =>
+        public Task<RpcResponse<long>> EstimateFeeAsync(int n_blocks) =>
             EstimateFeeAsync(RpcOptions.ChainName, UUID.NoHyphens, n_blocks);
 
         /// <summary>
@@ -186,8 +186,8 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="id">String value to identify this transaction</param>
         /// <param name="n_blocks">Number of blocks to estimate priority for</param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> EstimatePriorityAsync(string blockchainName, string id, int n_blocks) =>
-            TransactAsync<object>(blockchainName, UtilityAction.EstimatePriorityMethod, id, n_blocks);
+        public Task<RpcResponse<float>> EstimatePriorityAsync(string blockchainName, string id, int n_blocks) =>
+            TransactAsync<float>(blockchainName, UtilityAction.EstimatePriorityMethod, id, n_blocks);
 
         /// <summary>
         ///
@@ -198,7 +198,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// </summary>
         /// <param name="n_blocks">Number of blocks to estimate priority for</param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> EstimatePriorityAsync(int n_blocks) =>
+        public Task<RpcResponse<float>> EstimatePriorityAsync(int n_blocks) =>
             EstimatePriorityAsync(RpcOptions.ChainName, UUID.NoHyphens, n_blocks);
 
         /// <summary>

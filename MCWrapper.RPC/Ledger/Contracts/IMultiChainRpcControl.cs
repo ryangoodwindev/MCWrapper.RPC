@@ -145,7 +145,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// </summary>
         /// <param name="tasks">Task(s) to be paused. Possible values: incoming,mining,offchain</param>
         /// <returns></returns>
-        Task<RpcResponse<object>> PauseAsync(string tasks = "incoming,mining");
+        Task<RpcResponse<string>> PauseAsync(string tasks = "incoming,mining");
 
         /// <summary>
         ///
@@ -157,7 +157,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="id">String value to identify this transaction</param>
         /// <param name="tasks">Task(s) to be paused. Possible values: incoming,mining,offchain</param>
         /// <returns></returns>
-        Task<RpcResponse<object>> PauseAsync(string blockchainName, string id, string tasks = "incoming,mining");
+        Task<RpcResponse<string>> PauseAsync(string blockchainName, string id, string tasks = "incoming,mining");
 
         /// <summary>
         ///
@@ -166,7 +166,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         ///
         /// </summary>
         /// <param name="tasks">Task(s) to be resumed. Possible values: incoming,mining,offchain</param>
-        Task<RpcResponse<object>> ResumeAsync(string tasks = "incoming,mining");
+        Task<RpcResponse<string>> ResumeAsync(string tasks = "incoming,mining");
 
         /// <summary>
         ///
@@ -178,7 +178,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="id">String value to identify this transaction</param>
         /// <param name="tasks">Task(s) to be resumed. Possible values: incoming,mining,offchain</param>
         /// <returns></returns>
-        Task<RpcResponse<object>> ResumeAsync(string blockchainName, string id, string tasks = "incoming,mining");
+        Task<RpcResponse<string>> ResumeAsync(string blockchainName, string id, string tasks = "incoming,mining");
 
         /// <summary>
         ///
@@ -221,7 +221,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="runtimeParam">Parameter name, one of the following: miningrequirespeers,mineemptyrounds,miningturnover,lockadminminerounds,maxshowndata,maxqueryscanitems,bantx,lockblock,autosubscribe,handshakelocal,hideknownopdrops</param>
         /// <param name="parameter_value">parameter value</param>
         /// <returns></returns>
-        Task<RpcResponse<object>> SetRuntimeParamAsync(string runtimeParam, object parameter_value);
+        Task<RpcResponse> SetRuntimeParamAsync(string runtimeParam, object parameter_value);
 
         /// <summary>
         ///
@@ -234,7 +234,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="runtimeParam">Parameter name, one of the following: miningrequirespeers,mineemptyrounds,miningturnover,lockadminminerounds,maxshowndata,maxqueryscanitems,bantx,lockblock,autosubscribe,handshakelocal,hideknownopdrops</param>
         /// <param name="parameter_value">parameter value</param>
         /// <returns></returns>
-        Task<RpcResponse<object>> SetRuntimeParamAsync(string blockchainName, string id, string runtimeParam, object parameter_value);
+        Task<RpcResponse> SetRuntimeParamAsync(string blockchainName, string id, string runtimeParam, object parameter_value);
 
         /// <summary>
         ///
