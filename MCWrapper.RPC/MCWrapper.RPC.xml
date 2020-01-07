@@ -43,6 +43,23 @@
             MultiChain RPC options
             </summary>
         </member>
+        <member name="M:MCWrapper.RPC.Connection.MultiChainRpcClient.TransactAsync(System.String,System.String,System.String,System.Object[])">
+            <summary>
+            Asynchronous blockchain transaction with parameters
+            </summary>
+            <param name="blockchainName"></param>
+            <param name="method"></param>
+            <param name="id"></param>
+            <param name="args"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MCWrapper.RPC.Connection.MultiChainRpcClient.TransactAsync(MCWrapper.RPC.Connection.Request.RpcRequest)">
+            <summary>
+            Asynchronous blockchain transaction with Typed object
+            </summary>
+            <param name="serviceRequest"></param>
+            <returns></returns>
+        </member>
         <member name="M:MCWrapper.RPC.Connection.MultiChainRpcClient.TransactAsync``1(System.String,System.String,System.String,System.Object[])">
             <summary>
             Asynchronous blockchain transaction with parameters
@@ -159,6 +176,31 @@
             </summary>
         </member>
         <member name="P:MCWrapper.RPC.Connection.RpcResponse`1.Result">
+            <summary>
+            Generic Result may be string, object, or int, or bool, or Array, etc...
+            </summary>
+        </member>
+        <member name="T:MCWrapper.RPC.Connection.RpcResponse">
+            <summary>
+            Service response object
+            </summary>
+        </member>
+        <member name="M:MCWrapper.RPC.Connection.RpcResponse.#ctor">
+            <summary>
+            Create a new Service Response
+            </summary>
+        </member>
+        <member name="P:MCWrapper.RPC.Connection.RpcResponse.Id">
+            <summary>
+            Request id
+            </summary>
+        </member>
+        <member name="P:MCWrapper.RPC.Connection.RpcResponse.Error">
+            <summary>
+            Error object
+            </summary>
+        </member>
+        <member name="P:MCWrapper.RPC.Connection.RpcResponse.Result">
             <summary>
             Generic Result may be string, object, or int, or bool, or Array, etc...
             </summary>
@@ -1382,7 +1424,7 @@
              <param name="verbose">If true, returns list of creators and approval details</param>
              <returns></returns>
         </member>
-        <member name="M:MCWrapper.RPC.Ledger.Clients.MultiChainRpcGeneralClient.ListUpgradesAsync(System.String,System.String,System.Object)">
+        <member name="M:MCWrapper.RPC.Ledger.Clients.MultiChainRpcGeneralClient.ListUpgradesAsync(System.String,System.String,System.String[])">
              <summary>
             
              <para>Returns list of defined upgrades</para>
@@ -1392,13 +1434,25 @@
              <param name="blockchainName">Name of target blockchain</param>
              <param name="id">String value to identify this transaction</param>
              <param name="upgrade_identifiers">
-                 <para>(string, optional, default=*, all upgrades) Upgrade identifier - one of the following: upgrade txid, upgrade name.</para>
-                 <para>or</para>
                  <para>(array, optional) A json array of upgrade identifiers</para>
              </param>
              <returns></returns>
         </member>
-        <member name="M:MCWrapper.RPC.Ledger.Clients.MultiChainRpcGeneralClient.ListUpgradesAsync(System.Object)">
+        <member name="M:MCWrapper.RPC.Ledger.Clients.MultiChainRpcGeneralClient.ListUpgradesAsync(System.String,System.String,System.String)">
+             <summary>
+            
+             <para>Returns list of defined upgrades</para>
+             <para>Blockchain name is explicitly passed as parameter.</para>
+            
+             </summary>
+             <param name="blockchainName">Name of target blockchain</param>
+             <param name="id">String value to identify this transaction</param>
+             <param name="upgrade_identifier">
+                 <para>(string, optional, default=*, all upgrades) Upgrade identifier - one of the following: upgrade txid, upgrade name.</para>
+             </param>
+             <returns></returns>
+        </member>
+        <member name="M:MCWrapper.RPC.Ledger.Clients.MultiChainRpcGeneralClient.ListUpgradesAsync(System.String[])">
              <summary>
             
              <para>Returns list of defined upgrades</para>
@@ -1406,9 +1460,19 @@
             
              </summary>
              <param name="upgrade_identifiers">
-                 <para>(string, optional, default=*, all upgrades) Upgrade identifier - one of the following: upgrade txid, upgrade name.</para>
-                 <para>or</para>
                  <para>(array, optional) A json array of upgrade identifiers</para>
+             </param>
+             <returns></returns>
+        </member>
+        <member name="M:MCWrapper.RPC.Ledger.Clients.MultiChainRpcGeneralClient.ListUpgradesAsync(System.String)">
+             <summary>
+            
+             <para>Returns list of defined upgrades</para>
+             <para>Blockchain name is inferred from RpcOptions properties.</para>
+            
+             </summary>
+             <param name="upgrade_identifier">
+                 <para>(string, optional, default=*, all upgrades) Upgrade identifier - one of the following: upgrade txid, upgrade name.</para>
              </param>
              <returns></returns>
         </member>
@@ -4156,70 +4220,416 @@
              <param name="rescan">(boolean or integer, optional, default=true) Rescan the wallet for transactions. If integer rescan from block, if negative - from the end.</param>
              <returns></returns>
         </member>
-        <member name="M:MCWrapper.RPC.Ledger.Clients.MultiChainRpcWalletClient.IssueAsync(System.String,System.String,System.String,System.Object,System.Int32,System.Double,System.Decimal,System.Object)">
+        <member name="M:MCWrapper.RPC.Ledger.Clients.MultiChainRpcWalletClient.IssueAsync(System.String,System.String,System.String,MCWrapper.Ledger.Entities.AssetEntity,System.Int32,System.Double,System.Decimal,System.Collections.Generic.Dictionary{System.String,System.String})">
              <summary>
             
-             <para>Issue a new Asset to an address on the blockchain network.</para>
+             <para>Issue a new AssetEntity model to an address on the blockchain network.</para>
              <para>Blockchain name is explicitly passed as parameter.</para>
             
              </summary>
              <param name="blockchainName">Name of target blockchain</param>
              <param name="id">String value to identify this transaction</param>
-             <param name="to_address">The address to send newly created asset to</param>
-             <param name="asset_params"> (string, required) Asset name, if not "" should be unique or (object, required) A json object of with asset params</param>
+             <param name="toAddress">The address to send newly created asset to</param>
+             <param name="assetParams">(AssetEntity type, required) A strongly typed object with asset params (string)name, (bool)open, and (string, comma delimited)restrict</param>
              <param name="quantity">The asset total amount in display units. eg. 1234.56</param>
-             <param name="smallest_unit">Number of raw units in one displayed unit, eg 0.01 for cents. Default value is 1</param>
-             <param name="native_amount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
-             <param name="custom_fields">a json object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
+             <param name="smallestUnit">Number of raw units in one displayed unit, eg 0.01 for cents. Default value is 1</param>
+             <param name="nativeCurrencyAmount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
+             <param name="customFields">a dictionary object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
+             <returns></returns>
+        </member>
+        <member name="M:MCWrapper.RPC.Ledger.Clients.MultiChainRpcWalletClient.IssueAsync(System.String,System.String,System.String,MCWrapper.Ledger.Entities.AssetEntity,System.Int32,System.Double,System.Decimal,System.Object)">
+             <summary>
+            
+             <para>Issue a new AssetEntity model to an address on the blockchain network.</para>
+             <para>Blockchain name is explicitly passed as parameter.</para>
+            
+             </summary>
+             <param name="blockchainName">Name of target blockchain</param>
+             <param name="id">String value to identify this transaction</param>
+             <param name="toAddress">The address to send newly created asset to</param>
+             <param name="assetParams">(AssetEntity type, required) A strongly typed object with asset params (string)name, (bool)open, and (string, comma delimited)restrict</param>
+             <param name="quantity">The asset total amount in display units. eg. 1234.56</param>
+             <param name="smallestUnit">Number of raw units in one displayed unit, eg 0.01 for cents. Default value is 1</param>
+             <param name="nativeCurrencyAmount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
+             <param name="customFields">a json object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
+             <returns></returns>
+        </member>
+        <member name="M:MCWrapper.RPC.Ledger.Clients.MultiChainRpcWalletClient.IssueAsync(System.String,System.String,System.String,System.Object,System.Int32,System.Double,System.Decimal,System.Collections.Generic.Dictionary{System.String,System.String})">
+             <summary>
+            
+             <para>Issue a new Asset using object params to an address on the blockchain network.</para>
+             <para>Blockchain name is explicitly passed as parameter.</para>
+            
+             </summary>
+             <param name="blockchainName">Name of target blockchain</param>
+             <param name="id">String value to identify this transaction</param>
+             <param name="toAddress">The address to send newly created asset to</param>
+             <param name="assetParams">(object type, required) A generic object that must include asset params (string)name, (bool)open, and (string, comma delimited)restrict</param>
+             <param name="quantity">The asset total amount in display units. eg. 1234.56</param>
+             <param name="smallestUnit">Number of raw units in one displayed unit, eg 0.01 for cents. Default value is 1</param>
+             <param name="nativeCurrencyAmount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
+             <param name="customFields">a dictionary object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
+             <returns></returns>
+        </member>
+        <member name="M:MCWrapper.RPC.Ledger.Clients.MultiChainRpcWalletClient.IssueAsync(System.String,System.String,System.String,System.Object,System.Int32,System.Double,System.Decimal,System.Object)">
+             <summary>
+            
+             <para>Issue a new Asset using object params to an address on the blockchain network.</para>
+             <para>Blockchain name is explicitly passed as parameter.</para>
+            
+             </summary>
+             <param name="blockchainName">Name of target blockchain</param>
+             <param name="id">String value to identify this transaction</param>
+             <param name="toAddress">The address to send newly created asset to</param>
+             <param name="assetParams">(object type, required) A generic object that must include asset params (string)name, (bool)open, and (string, comma delimited)restrict</param>
+             <param name="quantity">The asset total amount in display units. eg. 1234.56</param>
+             <param name="smallestUnit">Number of raw units in one displayed unit, eg 0.01 for cents. Default value is 1</param>
+             <param name="nativeCurrencyAmount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
+             <param name="customFields">a json object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
+             <returns></returns>
+        </member>
+        <member name="M:MCWrapper.RPC.Ledger.Clients.MultiChainRpcWalletClient.IssueAsync(System.String,System.String,System.String,System.String,System.Int32,System.Double,System.Decimal,System.Collections.Generic.Dictionary{System.String,System.String})">
+             <summary>
+            
+             <para>Issue a new Asset by name to an address on the blockchain network.</para>
+             <para>Blockchain name is explicitly passed as parameter.</para>
+            
+             </summary>
+             <param name="blockchainName">Name of target blockchain</param>
+             <param name="id">String value to identify this transaction</param>
+             <param name="toAddress">The address to send newly created asset to</param>
+             <param name="assetName"> (string, required) Asset name, if not "" should be unique</param>
+             <param name="quantity">The asset total amount in display units. eg. 1234.56</param>
+             <param name="smallestUnit">Number of raw units in one displayed unit, eg 0.01 for cents. Default value is 1</param>
+             <param name="nativeCurrencyAmount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
+             <param name="customFields">a dictionary object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
+             <returns></returns>
+        </member>
+        <member name="M:MCWrapper.RPC.Ledger.Clients.MultiChainRpcWalletClient.IssueAsync(System.String,System.String,System.String,System.String,System.Int32,System.Double,System.Decimal,System.Object)">
+             <summary>
+            
+             <para>Issue a new Asset by name to an address on the blockchain network.</para>
+             <para>Blockchain name is explicitly passed as parameter.</para>
+            
+             </summary>
+             <param name="blockchainName">Name of target blockchain</param>
+             <param name="id">String value to identify this transaction</param>
+             <param name="toAddress">The address to send newly created asset to</param>
+             <param name="assetName"> (string, required) Asset name, if not "" should be unique</param>
+             <param name="quantity">The asset total amount in display units. eg. 1234.56</param>
+             <param name="smallestUnit">Number of raw units in one displayed unit, eg 0.01 for cents. Default value is 1</param>
+             <param name="nativeCurrencyAmount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
+             <param name="customFields">a json object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
+             <returns></returns>
+        </member>
+        <member name="M:MCWrapper.RPC.Ledger.Clients.MultiChainRpcWalletClient.IssueAsync(System.String,MCWrapper.Ledger.Entities.AssetEntity,System.Int32,System.Double,System.Decimal,System.Collections.Generic.Dictionary{System.String,System.String})">
+             <summary>
+            
+             <para>Issue a new AssetEntity model to an address on the blockchain network.</para>
+             <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
+            
+             </summary>
+             <param name="toAddress">The address to send newly created asset to</param>
+             <param name="assetParams">(AssetEntity type, required) A strongly typed object with asset params (string)name, (bool)open, and (string, comma delimited)restrict</param>
+             <param name="quantity">The asset total amount in display units. eg. 1234.56</param>
+             <param name="smallestUnit">Number of raw units in one displayed unit, eg 0.01 for cents. Default value is 1</param>
+             <param name="nativeCurrencyAmount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
+             <param name="customFields">a dictionary object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
+             <returns></returns>
+        </member>
+        <member name="M:MCWrapper.RPC.Ledger.Clients.MultiChainRpcWalletClient.IssueAsync(System.String,MCWrapper.Ledger.Entities.AssetEntity,System.Int32,System.Double,System.Decimal,System.Object)">
+             <summary>
+            
+             <para>Issue a new AssetEntity model to an address on the blockchain network.</para>
+             <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
+            
+             </summary>
+             <param name="toAddress">The address to send newly created asset to</param>
+             <param name="assetParams">(AssetEntity type, required) A strongly typed object with asset params (string)name, (bool)open, and (string, comma delimited)restrict</param>
+             <param name="quantity">The asset total amount in display units. eg. 1234.56</param>
+             <param name="smallestUnit">Number of raw units in one displayed unit, eg 0.01 for cents. Default value is 1</param>
+             <param name="nativeCurrencyAmount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
+             <param name="customFields">a json object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
+             <returns></returns>
+        </member>
+        <member name="M:MCWrapper.RPC.Ledger.Clients.MultiChainRpcWalletClient.IssueAsync(System.String,System.Object,System.Int32,System.Double,System.Decimal,System.Collections.Generic.Dictionary{System.String,System.String})">
+             <summary>
+            
+             <para>Issue a new Asset using object params to an address on the blockchain network.</para>
+             <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
+            
+             </summary>
+             <param name="toAddress">The address to send newly created asset to</param>
+             <param name="assetParams">(object type, required) A generic object that must include asset params (string)name, (bool)open, and (string, comma delimited)restrict</param>
+             <param name="quantity">The asset total amount in display units. eg. 1234.56</param>
+             <param name="smallestUnit">Number of raw units in one displayed unit, eg 0.01 for cents. Default value is 1</param>
+             <param name="nativeCurrencyAmount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
+             <param name="customFields">a dictionary object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
              <returns></returns>
         </member>
         <member name="M:MCWrapper.RPC.Ledger.Clients.MultiChainRpcWalletClient.IssueAsync(System.String,System.Object,System.Int32,System.Double,System.Decimal,System.Object)">
              <summary>
             
-             <para>Issue a new Asset to an address on the blockchain network.</para>
+             <para>Issue a new Asset using object params to an address on the blockchain network.</para>
              <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
             
              </summary>
-             <param name="to_address">The address to send newly created asset to</param>
-             <param name="asset_params"> (string, required) Asset name, if not "" should be unique or (object, required) A json object of with asset params</param>
+             <param name="toAddress">The address to send newly created asset to</param>
+             <param name="assetParams">(object type, required) A generic object that must include asset params (string)name, (bool)open, and (string, comma delimited)restrict</param>
              <param name="quantity">The asset total amount in display units. eg. 1234.56</param>
-             <param name="smallest_unit">Number of raw units in one displayed unit, eg 0.01 for cents. Default value is 1</param>
-             <param name="native_amount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
-             <param name="custom_fields">a json object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
+             <param name="smallestUnit">Number of raw units in one displayed unit, eg 0.01 for cents. Default value is 1</param>
+             <param name="nativeCurrencyAmount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
+             <param name="customFields">a json object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
              <returns></returns>
         </member>
-        <member name="M:MCWrapper.RPC.Ledger.Clients.MultiChainRpcWalletClient.IssueFromAsync(System.String,System.String,System.String,System.String,System.Object,System.Int32,System.Double,System.Decimal,System.Object)">
+        <member name="M:MCWrapper.RPC.Ledger.Clients.MultiChainRpcWalletClient.IssueAsync(System.String,System.String,System.Int32,System.Double,System.Decimal,System.Collections.Generic.Dictionary{System.String,System.String})">
              <summary>
             
-             <para>Issue asset using specific address</para>
+             <para>Issue a new Asset by name to an address on the blockchain network.</para>
+             <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
+            
+             </summary>
+             <param name="toAddress">The address to send newly created asset to</param>
+             <param name="assetName">(string, required) Asset name, if not "" should be unique</param>
+             <param name="quantity">The asset total amount in display units. eg. 1234.56</param>
+             <param name="smallestUnit">Number of raw units in one displayed unit, eg 0.01 for cents. Default value is 1</param>
+             <param name="nativeCurrencyAmount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
+             <param name="customFields">a dictionary object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
+             <returns></returns>
+        </member>
+        <member name="M:MCWrapper.RPC.Ledger.Clients.MultiChainRpcWalletClient.IssueAsync(System.String,System.String,System.Int32,System.Double,System.Decimal,System.Object)">
+             <summary>
+            
+             <para>Issue a new Asset by name to an address on the blockchain network.</para>
+             <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
+            
+             </summary>
+             <param name="toAddress">The address to send newly created asset to</param>
+             <param name="assetName">(string, required) Asset name, if not "" should be unique</param>
+             <param name="quantity">The asset total amount in display units. eg. 1234.56</param>
+             <param name="smallestUnit">Number of raw units in one displayed unit, eg 0.01 for cents. Default value is 1</param>
+             <param name="nativeCurrencyAmount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
+             <param name="customFields">a json object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
+             <returns></returns>
+        </member>
+        <member name="M:MCWrapper.RPC.Ledger.Clients.MultiChainRpcWalletClient.IssueFromAsync(System.String,System.String,System.String,System.String,MCWrapper.Ledger.Entities.AssetEntity,System.Int32,System.Double,System.Decimal,System.Collections.Generic.Dictionary{System.String,System.String})">
+             <summary>
+            
+             <para>Issue a new AssetEntity model to an address on the blockchain network.</para>
              <para>Blockchain name is explicitly passed as parameter.</para>
             
              </summary>
              <param name="blockchainName">Name of target blockchain</param>
              <param name="id">String value to identify this transaction</param>
-             <param name="from_address">Address used for issuing</param>
-             <param name="to_address">The address to send newly created asset to</param>
-             <param name="asset_params"> (string, required) Asset name, if not "" should be unique or (object, required) A json object of with asset params</param>
+             <param name="fromAddress">Address used for issuing</param>
+             <param name="toAddress">The address to send newly created asset to</param>
+             <param name="assetParams">(AssetEntity type, required) A strongly typed object with asset params (string)name, (bool)open, and (string, comma delimited)restrict</param>
              <param name="quantity">The asset total amount in display units. eg. 1234.56</param>
-             <param name="smallest_unit">Number of raw units in one displayed unit, eg 0.01 for cents. Default value is 1</param>
-             <param name="native_amount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
-             <param name="custom_fields">a json object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
+             <param name="smallestUnit">Number of raw units in one displayed unit, eg 0.01 for cents. Default value is 1</param>
+             <param name="nativeCurrencyAmount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
+             <param name="customFields">a dictionary object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
+             <returns></returns>
+        </member>
+        <member name="M:MCWrapper.RPC.Ledger.Clients.MultiChainRpcWalletClient.IssueFromAsync(System.String,System.String,System.String,System.String,MCWrapper.Ledger.Entities.AssetEntity,System.Int32,System.Double,System.Decimal,System.Object)">
+             <summary>
+            
+             <para>Issue a new AssetEntity model to an address on the blockchain network.</para>
+             <para>Blockchain name is explicitly passed as parameter.</para>
+            
+             </summary>
+             <param name="blockchainName">Name of target blockchain</param>
+             <param name="id">String value to identify this transaction</param>
+             <param name="fromAddress">Address used for issuing</param>
+             <param name="toAddress">The address to send newly created asset to</param>
+             <param name="assetParams">(AssetEntity type, required) A strongly typed object with asset params (string)name, (bool)open, and (string, comma delimited)restrict</param>
+             <param name="quantity">The asset total amount in display units. eg. 1234.56</param>
+             <param name="smallestUnit">Number of raw units in one displayed unit, eg 0.01 for cents. Default value is 1</param>
+             <param name="nativeCurrencyAmount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
+             <param name="customFields">a json object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
+             <returns></returns>
+        </member>
+        <member name="M:MCWrapper.RPC.Ledger.Clients.MultiChainRpcWalletClient.IssueFromAsync(System.String,System.String,System.String,System.String,System.Object,System.Int32,System.Double,System.Decimal,System.Collections.Generic.Dictionary{System.String,System.String})">
+             <summary>
+            
+             <para>Issue a new Asset using object params to an address on the blockchain network.</para>
+             <para>Blockchain name is explicitly passed as parameter.</para>
+            
+             </summary>
+             <param name="blockchainName">Name of target blockchain</param>
+             <param name="id">String value to identify this transaction</param>
+             <param name="fromAddress">Address used for issuing</param>
+             <param name="toAddress">The address to send newly created asset to</param>
+             <param name="assetParams">(object type, required) A generic object that must include asset params (string)name, (bool)open, and (string, comma delimited)restrict</param>
+             <param name="quantity">The asset total amount in display units. eg. 1234.56</param>
+             <param name="smallestUnit">Number of raw units in one displayed unit, eg 0.01 for cents. Default value is 1</param>
+             <param name="nativeCurrencyAmount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
+             <param name="customFields">a dictionary object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
+             <returns></returns>
+        </member>
+        <member name="M:MCWrapper.RPC.Ledger.Clients.MultiChainRpcWalletClient.IssueFromAsync(System.String,System.String,System.String,System.String,System.Object,System.Int32,System.Double,System.Decimal,System.Object)">
+             <summary>
+            
+             <para>Issue a new Asset using object params to an address on the blockchain network.</para>
+             <para>Blockchain name is explicitly passed as parameter.</para>
+            
+             </summary>
+             <param name="blockchainName">Name of target blockchain</param>
+             <param name="id">String value to identify this transaction</param>
+             <param name="fromAddress">Address used for issuing</param>
+             <param name="toAddress">The address to send newly created asset to</param>
+             <param name="assetParams">(object type, required) A generic object that must include asset params (string)name, (bool)open, and (string, comma delimited)restrict</param>
+             <param name="quantity">The asset total amount in display units. eg. 1234.56</param>
+             <param name="smallestUnit">Number of raw units in one displayed unit, eg 0.01 for cents. Default value is 1</param>
+             <param name="nativeCurrencyAmount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
+             <param name="customFields">a json object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
+             <returns></returns>
+        </member>
+        <member name="M:MCWrapper.RPC.Ledger.Clients.MultiChainRpcWalletClient.IssueFromAsync(System.String,System.String,System.String,System.String,System.String,System.Int32,System.Double,System.Decimal,System.Collections.Generic.Dictionary{System.String,System.String})">
+             <summary>
+            
+             <para>Issue a new Asset by name to an address on the blockchain network.</para>
+             <para>Blockchain name is explicitly passed as parameter.</para>
+            
+             </summary>
+             <param name="blockchainName">Name of target blockchain</param>
+             <param name="id">String value to identify this transaction</param>
+             <param name="fromAddress">Address used for issuing</param>
+             <param name="toAddress">The address to send newly created asset to</param>
+             <param name="assetName">(string, required) Asset name, if not "" should be unique</param>
+             <param name="quantity">The asset total amount in display units. eg. 1234.56</param>
+             <param name="smallestUnit">Number of raw units in one displayed unit, eg 0.01 for cents. Default value is 1</param>
+             <param name="nativeCurrencyAmount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
+             <param name="customFields">a dictionary object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
+             <returns></returns>
+        </member>
+        <member name="M:MCWrapper.RPC.Ledger.Clients.MultiChainRpcWalletClient.IssueFromAsync(System.String,System.String,System.String,System.String,System.String,System.Int32,System.Double,System.Decimal,System.Object)">
+             <summary>
+            
+             <para>Issue a new Asset by name to an address on the blockchain network.</para>
+             <para>Blockchain name is explicitly passed as parameter.</para>
+            
+             </summary>
+             <param name="blockchainName">Name of target blockchain</param>
+             <param name="id">String value to identify this transaction</param>
+             <param name="fromAddress">Address used for issuing</param>
+             <param name="toAddress">The address to send newly created asset to</param>
+             <param name="assetName">(string, required) Asset name, if not "" should be unique</param>
+             <param name="quantity">The asset total amount in display units. eg. 1234.56</param>
+             <param name="smallestUnit">Number of raw units in one displayed unit, eg 0.01 for cents. Default value is 1</param>
+             <param name="nativeCurrencyAmount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
+             <param name="customFields">a json object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
+             <returns></returns>
+        </member>
+        <member name="M:MCWrapper.RPC.Ledger.Clients.MultiChainRpcWalletClient.IssueFromAsync(System.String,System.String,MCWrapper.Ledger.Entities.AssetEntity,System.Int32,System.Double,System.Decimal,System.Collections.Generic.Dictionary{System.String,System.String})">
+             <summary>
+            
+             <para>Issue a new AssetEntity model to an address on the blockchain network.</para>
+             <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
+            
+             </summary>
+             <param name="fromAddress">Address used for issuing</param>
+             <param name="toAddress">The address to send newly created asset to</param>
+             <param name="assetParams">(AssetEntity type, required) A strongly typed object with asset params (string)name, (bool)open, and (string, comma delimited)restrict</param>
+             <param name="quantity">The asset total amount in display units. eg. 1234.56</param>
+             <param name="smallestUnit">Number of raw units in one displayed unit, eg 0.01 for cents. Default value is 1</param>
+             <param name="nativeCurrencyAmount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
+             <param name="customFields">a dictionary object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
+             <returns></returns>
+        </member>
+        <member name="M:MCWrapper.RPC.Ledger.Clients.MultiChainRpcWalletClient.IssueFromAsync(System.String,System.String,MCWrapper.Ledger.Entities.AssetEntity,System.Int32,System.Double,System.Decimal,System.Object)">
+             <summary>
+            
+             <para>Issue a new AssetEntity model to an address on the blockchain network.</para>
+             <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
+            
+             </summary>
+             <param name="fromAddress">Address used for issuing</param>
+             <param name="toAddress">The address to send newly created asset to</param>
+             <param name="assetParams">(AssetEntity type, required) A strongly typed object with asset params (string)name, (bool)open, and (string, comma delimited)restrict</param>
+             <param name="quantity">The asset total amount in display units. eg. 1234.56</param>
+             <param name="smallestUnit">Number of raw units in one displayed unit, eg 0.01 for cents. Default value is 1</param>
+             <param name="nativeCurrencyAmount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
+             <param name="customFields">a json object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
+             <returns></returns>
+        </member>
+        <member name="M:MCWrapper.RPC.Ledger.Clients.MultiChainRpcWalletClient.IssueFromAsync(System.String,System.String,System.Object,System.Int32,System.Double,System.Decimal,System.Collections.Generic.Dictionary{System.String,System.String})">
+             <summary>
+            
+             <para>Issue a new Asset using object params to an address on the blockchain network.</para>
+             <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
+            
+             </summary>
+             <param name="fromAddress">Address used for issuing</param>
+             <param name="toAddress">The address to send newly created asset to</param>
+             <param name="assetParams">(object type, required) A generic object that must include asset params (string)name, (bool)open, and (string, comma delimited)restrict</param>
+             <param name="quantity">The asset total amount in display units. eg. 1234.56</param>
+             <param name="smallestUnit">Number of raw units in one displayed unit, eg 0.01 for cents. Default value is 1</param>
+             <param name="nativeCurrencyAmount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
+             <param name="customFields">a dictionary object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
              <returns></returns>
         </member>
         <member name="M:MCWrapper.RPC.Ledger.Clients.MultiChainRpcWalletClient.IssueFromAsync(System.String,System.String,System.Object,System.Int32,System.Double,System.Decimal,System.Object)">
              <summary>
             
-             <para>Issue asset using specific address</para>
+             <para>Issue a new Asset using object params to an address on the blockchain network.</para>
              <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
             
              </summary>
-             <param name="from_address">Address used for issuing</param>
-             <param name="to_address">The address to send newly created asset to</param>
-             <param name="asset_params"> (string, required) Asset name, if not "" should be unique or (object, required) A json object of with asset params</param>
+             <param name="fromAddress">Address used for issuing</param>
+             <param name="toAddress">The address to send newly created asset to</param>
+             <param name="assetParams">(object type, required) A generic object that must include asset params (string)name, (bool)open, and (string, comma delimited)restrict</param>
              <param name="quantity">The asset total amount in display units. eg. 1234.56</param>
-             <param name="smallest_unit">Number of raw units in one displayed unit, eg 0.01 for cents. Default value is 1</param>
-             <param name="native_amount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
-             <param name="custom_fields">a json object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
+             <param name="smallestUnit">Number of raw units in one displayed unit, eg 0.01 for cents. Default value is 1</param>
+             <param name="nativeCurrencyAmount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
+             <param name="customFields">a json object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
+             <returns></returns>
+        </member>
+        <member name="M:MCWrapper.RPC.Ledger.Clients.MultiChainRpcWalletClient.IssueFromAsync(System.String,System.String,System.String,System.Int32,System.Double,System.Decimal,System.Collections.Generic.Dictionary{System.String,System.String})">
+             <summary>
+            
+             <para>Issue a new Asset by name to an address on the blockchain network.</para>
+             <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
+            
+             </summary>
+             <param name="fromAddress">Address used for issuing</param>
+             <param name="toAddress">The address to send newly created asset to</param>
+             <param name="assetName">(string, required) Asset name, if not "" should be unique</param>
+             <param name="quantity">The asset total amount in display units. eg. 1234.56</param>
+             <param name="smallestUnit">Number of raw units in one displayed unit, eg 0.01 for cents. Default value is 1</param>
+             <param name="nativeCurrencyAmount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
+             <param name="customFields">a dictionary object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
+             <returns></returns>
+        </member>
+        <member name="M:MCWrapper.RPC.Ledger.Clients.MultiChainRpcWalletClient.IssueFromAsync(System.String,System.String,System.String,System.Int32,System.Double,System.Decimal,System.Object)">
+             <summary>
+            
+             <para>Issue a new Asset by name to an address on the blockchain network.</para>
+             <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
+            
+             </summary>
+             <param name="fromAddress">Address used for issuing</param>
+             <param name="toAddress">The address to send newly created asset to</param>
+             <param name="assetName">(string, required) Asset name, if not "" should be unique</param>
+             <param name="quantity">The asset total amount in display units. eg. 1234.56</param>
+             <param name="smallestUnit">Number of raw units in one displayed unit, eg 0.01 for cents. Default value is 1</param>
+             <param name="nativeCurrencyAmount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
+             <param name="customFields">a json object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
+             <returns></returns>
+        </member>
+        <member name="M:MCWrapper.RPC.Ledger.Clients.MultiChainRpcWalletClient.IssueMoreAsync(System.String,System.String,System.String,System.String,System.Int32,System.Decimal,System.Collections.Generic.Dictionary{System.String,System.String})">
+             <summary>
+            
+             <para>Create more units for asset</para>
+             <para>Blockchain name is explicitly passed as parameter.</para>
+            
+             </summary>
+             <param name="blockchainName">Name of target blockchain</param>
+             <param name="id">String value to identify this transaction</param>
+             <param name="toAddress">The address to send newly created asset to</param>
+             <param name="assetIdentifier">One of the following: issue txid, asset reference, asset name</param>
+             <param name="quantity">The asset total amount in display units. eg. 1234.56</param>
+             <param name="nativeCurrencyAmount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
+             <param name="customFields">a dictionary object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
              <returns></returns>
         </member>
         <member name="M:MCWrapper.RPC.Ledger.Clients.MultiChainRpcWalletClient.IssueMoreAsync(System.String,System.String,System.String,System.String,System.Int32,System.Decimal,System.Object)">
@@ -4231,11 +4641,25 @@
              </summary>
              <param name="blockchainName">Name of target blockchain</param>
              <param name="id">String value to identify this transaction</param>
-             <param name="to_address">The address to send newly created asset to</param>
-             <param name="asset_identifier">One of the following: issue txid, asset reference, asset name</param>
+             <param name="toAddress">The address to send newly created asset to</param>
+             <param name="assetIdentifier">One of the following: issue txid, asset reference, asset name</param>
              <param name="quantity">The asset total amount in display units. eg. 1234.56</param>
-             <param name="native_amount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
-             <param name="custom_fields">a json object with custom fields</param>
+             <param name="nativeCurrencyAmount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
+             <param name="customFields">a json object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
+             <returns></returns>
+        </member>
+        <member name="M:MCWrapper.RPC.Ledger.Clients.MultiChainRpcWalletClient.IssueMoreAsync(System.String,System.String,System.Int32,System.Decimal,System.Collections.Generic.Dictionary{System.String,System.String})">
+             <summary>
+            
+             <para>Create more units for asset</para>
+             <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
+            
+             </summary>
+             <param name="toAddress">The address to send newly created asset to</param>
+             <param name="assetIdentifier">One of the following: issue txid, asset reference, asset name</param>
+             <param name="quantity">The asset total amount in display units. eg. 1234.56</param>
+             <param name="nativeCurrencyAmount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
+             <param name="customFields">a dictionary object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
              <returns></returns>
         </member>
         <member name="M:MCWrapper.RPC.Ledger.Clients.MultiChainRpcWalletClient.IssueMoreAsync(System.String,System.String,System.Int32,System.Decimal,System.Object)">
@@ -4245,11 +4669,28 @@
              <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
             
              </summary>
-             <param name="to_address">The address to send newly created asset to</param>
-             <param name="asset_identifier">One of the following: issue txid, asset reference, asset name</param>
+             <param name="toAddress">The address to send newly created asset to</param>
+             <param name="assetIdentifier">One of the following: issue txid, asset reference, asset name</param>
              <param name="quantity">The asset total amount in display units. eg. 1234.56</param>
-             <param name="native_amount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
-             <param name="custom_fields">a json object with custom fields</param>
+             <param name="nativeCurrencyAmount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
+             <param name="customFields">a json object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
+             <returns></returns>
+        </member>
+        <member name="M:MCWrapper.RPC.Ledger.Clients.MultiChainRpcWalletClient.IssueMoreFromAsync(System.String,System.String,System.String,System.String,System.String,System.Int32,System.Decimal,System.Collections.Generic.Dictionary{System.String,System.String})">
+             <summary>
+            
+             <para>Create more units for asset from specific address</para>
+             <para>Blockchain name is explicitly passed as parameter.</para>
+            
+             </summary>
+             <param name="blockchainName">Name of target blockchain</param>
+             <param name="id">String value to identify this transaction</param>
+             <param name="fromAddress">Address used for issuing</param>
+             <param name="toAddress">The address to send newly created asset to</param>
+             <param name="assetIdentifier">One of the following: issue txid, asset reference, asset name</param>
+             <param name="quantity">The asset total amount in display units. eg. 1234.56</param>
+             <param name="nativeCurrencyAmount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
+             <param name="customFields">a dictionary object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
              <returns></returns>
         </member>
         <member name="M:MCWrapper.RPC.Ledger.Clients.MultiChainRpcWalletClient.IssueMoreFromAsync(System.String,System.String,System.String,System.String,System.String,System.Int32,System.Decimal,System.Object)">
@@ -4261,12 +4702,27 @@
              </summary>
              <param name="blockchainName">Name of target blockchain</param>
              <param name="id">String value to identify this transaction</param>
-             <param name="from_address">Address used for issuing</param>
-             <param name="to_address">The address to send newly created asset to</param>
-             <param name="asset_identifier">One of the following: issue txid, asset reference, asset name</param>
+             <param name="fromAddress">Address used for issuing</param>
+             <param name="toAddress">The address to send newly created asset to</param>
+             <param name="assetIdentifier">One of the following: issue txid, asset reference, asset name</param>
              <param name="quantity">The asset total amount in display units. eg. 1234.56</param>
-             <param name="native_amount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
-             <param name="custom_fields">a json object with custom fields</param>
+             <param name="nativeCurrencyAmount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
+             <param name="customFields">a json object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
+             <returns></returns>
+        </member>
+        <member name="M:MCWrapper.RPC.Ledger.Clients.MultiChainRpcWalletClient.IssueMoreFromAsync(System.String,System.String,System.String,System.Int32,System.Decimal,System.Collections.Generic.Dictionary{System.String,System.String})">
+             <summary>
+            
+             <para>Create more units for asset from specific address</para>
+             <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
+            
+             </summary>
+             <param name="fromAddress">Address used for issuing</param>
+             <param name="toAddress">The address to send newly created asset to</param>
+             <param name="assetIdentifier">One of the following: issue txid, asset reference, asset name</param>
+             <param name="quantity">The asset total amount in display units. eg. 1234.56</param>
+             <param name="nativeCurrencyAmount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
+             <param name="customFields">a dictionary object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
              <returns></returns>
         </member>
         <member name="M:MCWrapper.RPC.Ledger.Clients.MultiChainRpcWalletClient.IssueMoreFromAsync(System.String,System.String,System.String,System.Int32,System.Decimal,System.Object)">
@@ -4276,12 +4732,12 @@
              <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
             
              </summary>
-             <param name="from_address">Address used for issuing</param>
-             <param name="to_address">The address to send newly created asset to</param>
-             <param name="asset_identifier">One of the following: issue txid, asset reference, asset name</param>
+             <param name="fromAddress">Address used for issuing</param>
+             <param name="toAddress">The address to send newly created asset to</param>
+             <param name="assetIdentifier">One of the following: issue txid, asset reference, asset name</param>
              <param name="quantity">The asset total amount in display units. eg. 1234.56</param>
-             <param name="native_amount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
-             <param name="custom_fields">a json object with custom fields</param>
+             <param name="nativeCurrencyAmount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
+             <param name="customFields">a json object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
              <returns></returns>
         </member>
         <member name="M:MCWrapper.RPC.Ledger.Clients.MultiChainRpcWalletClient.KeyPoolRefillAsync(System.String,System.String,System.Int32)">
@@ -6601,7 +7057,7 @@
              <param name="verbose">If true, returns list of creators and approval details</param>
              <returns></returns>
         </member>
-        <member name="M:MCWrapper.RPC.Ledger.Clients.IMultiChainRpcGeneral.ListUpgradesAsync(System.String,System.String,System.Object)">
+        <member name="M:MCWrapper.RPC.Ledger.Clients.IMultiChainRpcGeneral.ListUpgradesAsync(System.String,System.String,System.String[])">
              <summary>
             
              <para>Returns list of defined upgrades</para>
@@ -6611,13 +7067,11 @@
              <param name="blockchainName">Name of target blockchain</param>
              <param name="id">String value to identify this transaction</param>
              <param name="upgrade_identifiers">
-                 <para>(string, optional, default=*, all upgrades) Upgrade identifier - one of the following: upgrade txid, upgrade name.</para>
-                 <para>or</para>
                  <para>(array, optional) A json array of upgrade identifiers</para>
              </param>
              <returns></returns>
         </member>
-        <member name="M:MCWrapper.RPC.Ledger.Clients.IMultiChainRpcGeneral.ListUpgradesAsync(System.Object)">
+        <member name="M:MCWrapper.RPC.Ledger.Clients.IMultiChainRpcGeneral.ListUpgradesAsync(System.String[])">
              <summary>
             
              <para>Returns list of defined upgrades</para>
@@ -6625,9 +7079,33 @@
             
              </summary>
              <param name="upgrade_identifiers">
-                 <para>(string, optional, default=*, all upgrades) Upgrade identifier - one of the following: upgrade txid, upgrade name.</para>
-                 <para>or</para>
                  <para>(array, optional) A json array of upgrade identifiers</para>
+             </param>
+             <returns></returns>
+        </member>
+        <member name="M:MCWrapper.RPC.Ledger.Clients.IMultiChainRpcGeneral.ListUpgradesAsync(System.String,System.String,System.String)">
+             <summary>
+            
+             <para>Returns list of defined upgrades</para>
+             <para>Blockchain name is explicitly passed as parameter.</para>
+            
+             </summary>
+             <param name="blockchainName">Name of target blockchain</param>
+             <param name="id">String value to identify this transaction</param>
+             <param name="upgrade_identifier">
+                 <para>(string, optional, default=*, all upgrades) Upgrade identifier - one of the following: upgrade txid, upgrade name.</para>
+             </param>
+             <returns></returns>
+        </member>
+        <member name="M:MCWrapper.RPC.Ledger.Clients.IMultiChainRpcGeneral.ListUpgradesAsync(System.String)">
+             <summary>
+            
+             <para>Returns list of defined upgrades</para>
+             <para>Blockchain name is inferred from RpcOptions properties.</para>
+            
+             </summary>
+             <param name="upgrade_identifier">
+                 <para>(string, optional, default=*, all upgrades) Upgrade identifier - one of the following: upgrade txid, upgrade name.</para>
              </param>
              <returns></returns>
         </member>
@@ -8170,7 +8648,7 @@
              <param name="entity_type">One of stream, upgrade, tx filter, stream filter</param>
              <param name="entity_name">The unique name of the stream, upgrade, tx filter, stream filter</param>
              <param name="restrictions_or_open">A json object with optional stream, upgrade, or filter restrictions</param>
-             <param name="custom_fields">Custom fields objects or JavaScript code string</param>
+             <param name="customFields">Custom fields objects or JavaScript code string</param>
              <returns></returns>
         </member>
         <member name="M:MCWrapper.RPC.Ledger.Clients.IMultiChainRpcWallet.CreateAsync(System.String,System.String,System.String,System.String,System.Object,System.Object)">
@@ -8185,7 +8663,7 @@
              <param name="entity_type">One of stream, upgrade, tx filter, stream filter</param>
              <param name="entity_name">The unique name of the stream, upgrade, tx filter, stream filter</param>
              <param name="restrictions_or_open">A json object with optional stream, upgrade, or filter restrictions</param>
-             <param name="custom_fields">Custom fields objects or JavaScript code string</param>
+             <param name="customFields">Custom fields objects or JavaScript code string</param>
              <returns></returns>
         </member>
         <member name="M:MCWrapper.RPC.Ledger.Clients.IMultiChainRpcWallet.CreateFromAsync(System.String,System.String,System.String,System.Object,System.Object)">
@@ -8200,7 +8678,7 @@
              <param name="entity_type">One of stream, upgrade, tx filter, stream filter</param>
              <param name="entity_name">The unique name of the stream, upgrade, tx filter, stream filter</param>
              <param name="restrictions_or_open">A json object with optional stream, upgrade, or filter restrictions</param>
-             <param name="custom_fields">Custom fields objects or JavaScript code string</param>
+             <param name="customFields">Custom fields objects or JavaScript code string</param>
              <returns></returns>
         </member>
         <member name="M:MCWrapper.RPC.Ledger.Clients.IMultiChainRpcWallet.CreateFromAsync(System.String,System.String,System.String,System.String,System.String,System.Object,System.Object)">
@@ -8217,7 +8695,7 @@
              <param name="entity_type">One of stream, upgrade, tx filter, stream filter</param>
              <param name="entity_name">The unique name of the stream, upgrade, tx filter, stream filter</param>
              <param name="restrictions_or_open">A json object with optional stream, upgrade, or filter restrictions</param>
-             <param name="custom_fields">Custom fields objects or JavaScript code string</param>
+             <param name="customFields">Custom fields objects or JavaScript code string</param>
              <returns></returns>
         </member>
         <member name="M:MCWrapper.RPC.Ledger.Clients.IMultiChainRpcWallet.CreateRawExchangeAsync(System.String,System.Int32,System.Object)">
@@ -9326,70 +9804,414 @@
              <param name="rescan">(boolean or integer, optional, default=true) Rescan the wallet for transactions. If integer rescan from block, if negative - from the end.</param>
              <returns></returns>
         </member>
-        <member name="M:MCWrapper.RPC.Ledger.Clients.IMultiChainRpcWallet.IssueAsync(System.String,System.Object,System.Int32,System.Double,System.Decimal,System.Object)">
+        <member name="M:MCWrapper.RPC.Ledger.Clients.IMultiChainRpcWallet.IssueAsync(System.String,System.String,System.String,MCWrapper.Ledger.Entities.AssetEntity,System.Int32,System.Double,System.Decimal,System.Collections.Generic.Dictionary{System.String,System.String})">
              <summary>
             
-             <para>Issue a new Asset to an address on the blockchain network.</para>
-             <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
+             <para>Issue a new AssetEntity model to an address on the blockchain network.</para>
+             <para>Blockchain name is explicitly passed as parameter.</para>
             
              </summary>
-             <param name="to_address">The address to send newly created asset to</param>
-             <param name="asset_params"> (string, required) Asset name, if not "" should be unique or (object, required) A json object of with asset params</param>
+             <param name="blockchainName">Name of target blockchain</param>
+             <param name="id">String value to identify this transaction</param>
+             <param name="toAddress">The address to send newly created asset to</param>
+             <param name="assetParams">(AssetEntity type, required) A strongly typed object with asset params (string)name, (bool)open, and (string, comma delimited)restrict</param>
              <param name="quantity">The asset total amount in display units. eg. 1234.56</param>
-             <param name="smallest_unit">Number of raw units in one displayed unit, eg 0.01 for cents. Default value is 1</param>
-             <param name="native_amount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
-             <param name="custom_fields">a json object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
+             <param name="smallestUnit">Number of raw units in one displayed unit, eg 0.01 for cents. Default value is 1</param>
+             <param name="nativeCurrencyAmount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
+             <param name="customFields">a dictionary object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
+             <returns></returns>
+        </member>
+        <member name="M:MCWrapper.RPC.Ledger.Clients.IMultiChainRpcWallet.IssueAsync(System.String,System.String,System.String,MCWrapper.Ledger.Entities.AssetEntity,System.Int32,System.Double,System.Decimal,System.Object)">
+             <summary>
+            
+             <para>Issue a new AssetEntity model to an address on the blockchain network.</para>
+             <para>Blockchain name is explicitly passed as parameter.</para>
+            
+             </summary>
+             <param name="blockchainName">Name of target blockchain</param>
+             <param name="id">String value to identify this transaction</param>
+             <param name="toAddress">The address to send newly created asset to</param>
+             <param name="assetParams">(AssetEntity type, required) A strongly typed object with asset params (string)name, (bool)open, and (string, comma delimited)restrict</param>
+             <param name="quantity">The asset total amount in display units. eg. 1234.56</param>
+             <param name="smallestUnit">Number of raw units in one displayed unit, eg 0.01 for cents. Default value is 1</param>
+             <param name="nativeCurrencyAmount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
+             <param name="customFields">a json object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
+             <returns></returns>
+        </member>
+        <member name="M:MCWrapper.RPC.Ledger.Clients.IMultiChainRpcWallet.IssueAsync(System.String,System.String,System.String,System.Object,System.Int32,System.Double,System.Decimal,System.Collections.Generic.Dictionary{System.String,System.String})">
+             <summary>
+            
+             <para>Issue a new Asset using object params to an address on the blockchain network.</para>
+             <para>Blockchain name is explicitly passed as parameter.</para>
+            
+             </summary>
+             <param name="blockchainName">Name of target blockchain</param>
+             <param name="id">String value to identify this transaction</param>
+             <param name="toAddress">The address to send newly created asset to</param>
+             <param name="assetParams">(object type, required) A generic object that must include asset params (string)name, (bool)open, and (string, comma delimited)restrict</param>
+             <param name="quantity">The asset total amount in display units. eg. 1234.56</param>
+             <param name="smallestUnit">Number of raw units in one displayed unit, eg 0.01 for cents. Default value is 1</param>
+             <param name="nativeCurrencyAmount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
+             <param name="customFields">a dictionary object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
              <returns></returns>
         </member>
         <member name="M:MCWrapper.RPC.Ledger.Clients.IMultiChainRpcWallet.IssueAsync(System.String,System.String,System.String,System.Object,System.Int32,System.Double,System.Decimal,System.Object)">
              <summary>
             
-             <para>Issue a new Asset to an address on the blockchain network.</para>
+             <para>Issue a new Asset using object params to an address on the blockchain network.</para>
              <para>Blockchain name is explicitly passed as parameter.</para>
             
              </summary>
              <param name="blockchainName">Name of target blockchain</param>
              <param name="id">String value to identify this transaction</param>
-             <param name="to_address">The address to send newly created asset to</param>
-             <param name="asset_params"> (string, required) Asset name, if not "" should be unique or (object, required) A json object of with asset params</param>
+             <param name="toAddress">The address to send newly created asset to</param>
+             <param name="assetParams">(object type, required) A generic object that must include asset params (string)name, (bool)open, and (string, comma delimited)restrict</param>
              <param name="quantity">The asset total amount in display units. eg. 1234.56</param>
-             <param name="smallest_unit">Number of raw units in one displayed unit, eg 0.01 for cents. Default value is 1</param>
-             <param name="native_amount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
-             <param name="custom_fields">a json object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
+             <param name="smallestUnit">Number of raw units in one displayed unit, eg 0.01 for cents. Default value is 1</param>
+             <param name="nativeCurrencyAmount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
+             <param name="customFields">a json object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
              <returns></returns>
         </member>
-        <member name="M:MCWrapper.RPC.Ledger.Clients.IMultiChainRpcWallet.IssueFromAsync(System.String,System.String,System.Object,System.Int32,System.Double,System.Decimal,System.Object)">
+        <member name="M:MCWrapper.RPC.Ledger.Clients.IMultiChainRpcWallet.IssueAsync(System.String,System.String,System.String,System.String,System.Int32,System.Double,System.Decimal,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            
+            <para>Issue a new Asset by name to an address on the blockchain network.</para>
+            <para>Blockchain name is explicitly passed as parameter.</para>
+            
+            </summary>
+            <param name="blockchainName">Name of target blockchain</param>
+            <param name="id">String value to identify this transaction</param>
+            <param name="toAddress">The address to send newly created asset to</param>
+            <param name="assetName">(string, required) Asset name, if not "" should be unique</param>
+            <param name="quantity">The asset total amount in display units. eg. 1234.56</param>
+            <param name="smallestUnit">Number of raw units in one displayed unit, eg 0.01 for cents. Default value is 1</param>
+            <param name="nativeCurrencyAmount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
+            <param name="customFields">a dictionary object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
+            <returns></returns>
+        </member>
+        <member name="M:MCWrapper.RPC.Ledger.Clients.IMultiChainRpcWallet.IssueAsync(System.String,System.String,System.String,System.String,System.Int32,System.Double,System.Decimal,System.Object)">
+            <summary>
+            
+            <para>Issue a new Asset by name to an address on the blockchain network.</para>
+            <para>Blockchain name is explicitly passed as parameter.</para>
+            
+            </summary>
+            <param name="blockchainName">Name of target blockchain</param>
+            <param name="id">String value to identify this transaction</param>
+            <param name="toAddress">The address to send newly created asset to</param>
+            <param name="assetName">(string, required) Asset name, if not "" should be unique</param>
+            <param name="quantity">The asset total amount in display units. eg. 1234.56</param>
+            <param name="smallestUnit">Number of raw units in one displayed unit, eg 0.01 for cents. Default value is 1</param>
+            <param name="nativeCurrencyAmount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
+            <param name="customFields">a json object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
+            <returns></returns>
+        </member>
+        <member name="M:MCWrapper.RPC.Ledger.Clients.IMultiChainRpcWallet.IssueAsync(System.String,MCWrapper.Ledger.Entities.AssetEntity,System.Int32,System.Double,System.Decimal,System.Collections.Generic.Dictionary{System.String,System.String})">
              <summary>
             
-             <para>Issue asset using specific address</para>
+             <para>Issue a new AssetEntity model to an address on the blockchain network.</para>
              <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
             
              </summary>
-             <param name="from_address">Address used for issuing</param>
-             <param name="to_address">The address to send newly created asset to</param>
-             <param name="asset_params"> (string, required) Asset name, if not "" should be unique or (object, required) A json object of with asset params</param>
+             <param name="toAddress">The address to send newly created asset to</param>
+             <param name="assetParams">(AssetEntity type, required) A strongly typed object with asset params (string)name, (bool)open, and (string, comma delimited)restrict</param>
              <param name="quantity">The asset total amount in display units. eg. 1234.56</param>
-             <param name="smallest_unit">Number of raw units in one displayed unit, eg 0.01 for cents. Default value is 1</param>
-             <param name="native_amount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
-             <param name="custom_fields">a json object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
+             <param name="smallestUnit">Number of raw units in one displayed unit, eg 0.01 for cents. Default value is 1</param>
+             <param name="nativeCurrencyAmount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
+             <param name="customFields">a dictionary object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
+             <returns></returns>
+        </member>
+        <member name="M:MCWrapper.RPC.Ledger.Clients.IMultiChainRpcWallet.IssueAsync(System.String,MCWrapper.Ledger.Entities.AssetEntity,System.Int32,System.Double,System.Decimal,System.Object)">
+             <summary>
+            
+             <para>Issue a new AssetEntity model to an address on the blockchain network.</para>
+             <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
+            
+             </summary>
+             <param name="toAddress">The address to send newly created asset to</param>
+             <param name="assetParams">(AssetEntity type, required) A strongly typed object with asset params (string)name, (bool)open, and (string, comma delimited)restrict</param>
+             <param name="quantity">The asset total amount in display units. eg. 1234.56</param>
+             <param name="smallestUnit">Number of raw units in one displayed unit, eg 0.01 for cents. Default value is 1</param>
+             <param name="nativeCurrencyAmount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
+             <param name="customFields">a json object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
+             <returns></returns>
+        </member>
+        <member name="M:MCWrapper.RPC.Ledger.Clients.IMultiChainRpcWallet.IssueAsync(System.String,System.Object,System.Int32,System.Double,System.Decimal,System.Collections.Generic.Dictionary{System.String,System.String})">
+             <summary>
+            
+             <para>Issue a new Asset using object params to an address on the blockchain network.</para>
+             <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
+            
+             </summary>
+             <param name="toAddress">The address to send newly created asset to</param>
+             <param name="assetParams">(object type, required) A generic object that must include asset params (string)name, (bool)open, and (string, comma delimited)restrict</param>
+             <param name="quantity">The asset total amount in display units. eg. 1234.56</param>
+             <param name="smallestUnit">Number of raw units in one displayed unit, eg 0.01 for cents. Default value is 1</param>
+             <param name="nativeCurrencyAmount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
+             <param name="customFields">a dictionary object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
+             <returns></returns>
+        </member>
+        <member name="M:MCWrapper.RPC.Ledger.Clients.IMultiChainRpcWallet.IssueAsync(System.String,System.Object,System.Int32,System.Double,System.Decimal,System.Object)">
+             <summary>
+            
+             <para>Issue a new Asset using object params to an address on the blockchain network.</para>
+             <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
+            
+             </summary>
+             <param name="toAddress">The address to send newly created asset to</param>
+             <param name="assetParams">(object type, required) A generic object that must include asset params (string)name, (bool)open, and (string, comma delimited)restrict</param>
+             <param name="quantity">The asset total amount in display units. eg. 1234.56</param>
+             <param name="smallestUnit">Number of raw units in one displayed unit, eg 0.01 for cents. Default value is 1</param>
+             <param name="nativeCurrencyAmount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
+             <param name="customFields">a json object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
+             <returns></returns>
+        </member>
+        <member name="M:MCWrapper.RPC.Ledger.Clients.IMultiChainRpcWallet.IssueAsync(System.String,System.String,System.Int32,System.Double,System.Decimal,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            
+            <para>Issue a new Asset by name to an address on the blockchain network.</para>
+            <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
+            
+            </summary>
+            <param name="toAddress">The address to send newly created asset to</param>
+            <param name="assetName">(string, required) Asset name, if not "" should be unique</param>
+            <param name="quantity">The asset total amount in display units. eg. 1234.56</param>
+            <param name="smallestUnit">Number of raw units in one displayed unit, eg 0.01 for cents. Default value is 1</param>
+            <param name="nativeCurrencyAmount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
+            <param name="customFields">a dictionary object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
+            <returns></returns>
+        </member>
+        <member name="M:MCWrapper.RPC.Ledger.Clients.IMultiChainRpcWallet.IssueAsync(System.String,System.String,System.Int32,System.Double,System.Decimal,System.Object)">
+            <summary>
+            
+            <para>Issue a new Asset by name to an address on the blockchain network.</para>
+            <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
+            
+            </summary>
+            <param name="toAddress">The address to send newly created asset to</param>
+            <param name="assetName">(string, required) Asset name, if not "" should be unique</param>
+            <param name="quantity">The asset total amount in display units. eg. 1234.56</param>
+            <param name="smallestUnit">Number of raw units in one displayed unit, eg 0.01 for cents. Default value is 1</param>
+            <param name="nativeCurrencyAmount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
+            <param name="customFields">a json object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
+            <returns></returns>
+        </member>
+        <member name="M:MCWrapper.RPC.Ledger.Clients.IMultiChainRpcWallet.IssueFromAsync(System.String,System.String,System.String,System.String,MCWrapper.Ledger.Entities.AssetEntity,System.Int32,System.Double,System.Decimal,System.Collections.Generic.Dictionary{System.String,System.String})">
+             <summary>
+            
+             <para>Issue a new AssetEntity model to an address on the blockchain network.</para>
+             <para>Blockchain name is explicitly passed as parameter.</para>
+            
+             </summary>
+             <param name="blockchainName">Name of target blockchain</param>
+             <param name="id">String value to identify this transaction</param>
+             <param name="fromAddress">Address used for issuing</param>
+             <param name="toAddress">The address to send newly created asset to</param>
+             <param name="assetParams">(AssetEntity type, required) A strongly typed object with asset params (string)name, (bool)open, and (string, comma delimited)restrict</param>
+             <param name="quantity">The asset total amount in display units. eg. 1234.56</param>
+             <param name="smallestUnit">Number of raw units in one displayed unit, eg 0.01 for cents. Default value is 1</param>
+             <param name="nativeCurrencyAmount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
+             <param name="customFields">a dictionary object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
+             <returns></returns>
+        </member>
+        <member name="M:MCWrapper.RPC.Ledger.Clients.IMultiChainRpcWallet.IssueFromAsync(System.String,System.String,System.String,System.String,MCWrapper.Ledger.Entities.AssetEntity,System.Int32,System.Double,System.Decimal,System.Object)">
+             <summary>
+            
+             <para>Issue a new AssetEntity model to an address on the blockchain network.</para>
+             <para>Blockchain name is explicitly passed as parameter.</para>
+            
+             </summary>
+             <param name="blockchainName">Name of target blockchain</param>
+             <param name="id">String value to identify this transaction</param>
+             <param name="fromAddress">Address used for issuing</param>
+             <param name="toAddress">The address to send newly created asset to</param>
+             <param name="assetParams">(AssetEntity type, required) A strongly typed object with asset params (string)name, (bool)open, and (string, comma delimited)restrict</param>
+             <param name="quantity">The asset total amount in display units. eg. 1234.56</param>
+             <param name="smallestUnit">Number of raw units in one displayed unit, eg 0.01 for cents. Default value is 1</param>
+             <param name="nativeCurrencyAmount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
+             <param name="customFields">a json object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
+             <returns></returns>
+        </member>
+        <member name="M:MCWrapper.RPC.Ledger.Clients.IMultiChainRpcWallet.IssueFromAsync(System.String,System.String,System.String,System.String,System.Object,System.Int32,System.Double,System.Decimal,System.Collections.Generic.Dictionary{System.String,System.String})">
+             <summary>
+            
+             <para>Issue a new Asset using object params to an address on the blockchain network.</para>
+             <para>Blockchain name is explicitly passed as parameter.</para>
+            
+             </summary>
+             <param name="blockchainName">Name of target blockchain</param>
+             <param name="id">String value to identify this transaction</param>
+             <param name="fromAddress">Address used for issuing</param>
+             <param name="toAddress">The address to send newly created asset to</param>
+             <param name="assetParams">(object type, required) A generic object that must include asset params (string)name, (bool)open, and (string, comma delimited)restrict</param>
+             <param name="quantity">The asset total amount in display units. eg. 1234.56</param>
+             <param name="smallestUnit">Number of raw units in one displayed unit, eg 0.01 for cents. Default value is 1</param>
+             <param name="nativeCurrencyAmount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
+             <param name="customFields">a dictionary object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
              <returns></returns>
         </member>
         <member name="M:MCWrapper.RPC.Ledger.Clients.IMultiChainRpcWallet.IssueFromAsync(System.String,System.String,System.String,System.String,System.Object,System.Int32,System.Double,System.Decimal,System.Object)">
              <summary>
             
-             <para>Issue asset using specific address</para>
+             <para>Issue a new Asset using object params to an address on the blockchain network.</para>
              <para>Blockchain name is explicitly passed as parameter.</para>
             
              </summary>
              <param name="blockchainName">Name of target blockchain</param>
              <param name="id">String value to identify this transaction</param>
-             <param name="from_address">Address used for issuing</param>
-             <param name="to_address">The address to send newly created asset to</param>
-             <param name="asset_params"> (string, required) Asset name, if not "" should be unique or (object, required) A json object of with asset params</param>
+             <param name="fromAddress">Address used for issuing</param>
+             <param name="toAddress">The address to send newly created asset to</param>
+             <param name="assetParams">(object type, required) A generic object that must include asset params (string)name, (bool)open, and (string, comma delimited)restrict</param>
              <param name="quantity">The asset total amount in display units. eg. 1234.56</param>
-             <param name="smallest_unit">Number of raw units in one displayed unit, eg 0.01 for cents. Default value is 1</param>
-             <param name="native_amount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
-             <param name="custom_fields">a json object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
+             <param name="smallestUnit">Number of raw units in one displayed unit, eg 0.01 for cents. Default value is 1</param>
+             <param name="nativeCurrencyAmount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
+             <param name="customFields">a json object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
+             <returns></returns>
+        </member>
+        <member name="M:MCWrapper.RPC.Ledger.Clients.IMultiChainRpcWallet.IssueFromAsync(System.String,System.String,System.String,System.String,System.String,System.Int32,System.Double,System.Decimal,System.Collections.Generic.Dictionary{System.String,System.String})">
+             <summary>
+            
+             <para>Issue a new Asset by name to an address on the blockchain network.</para>
+             <para>Blockchain name is explicitly passed as parameter.</para>
+            
+             </summary>
+             <param name="blockchainName">Name of target blockchain</param>
+             <param name="id">String value to identify this transaction</param>
+             <param name="fromAddress">Address used for issuing</param>
+             <param name="toAddress">The address to send newly created asset to</param>
+             <param name="assetName">(string, required) Asset name, if not "" should be unique</param>
+             <param name="quantity">The asset total amount in display units. eg. 1234.56</param>
+             <param name="smallestUnit">Number of raw units in one displayed unit, eg 0.01 for cents. Default value is 1</param>
+             <param name="nativeCurrencyAmount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
+             <param name="customFields">a dictionary object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
+             <returns></returns>
+        </member>
+        <member name="M:MCWrapper.RPC.Ledger.Clients.IMultiChainRpcWallet.IssueFromAsync(System.String,System.String,System.String,System.String,System.String,System.Int32,System.Double,System.Decimal,System.Object)">
+             <summary>
+            
+             <para>Issue a new Asset by name to an address on the blockchain network.</para>
+             <para>Blockchain name is explicitly passed as parameter.</para>
+            
+             </summary>
+             <param name="blockchainName">Name of target blockchain</param>
+             <param name="id">String value to identify this transaction</param>
+             <param name="fromAddress">Address used for issuing</param>
+             <param name="toAddress">The address to send newly created asset to</param>
+             <param name="assetName">(string, required) Asset name, if not "" should be unique</param>
+             <param name="quantity">The asset total amount in display units. eg. 1234.56</param>
+             <param name="smallestUnit">Number of raw units in one displayed unit, eg 0.01 for cents. Default value is 1</param>
+             <param name="nativeCurrencyAmount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
+             <param name="customFields">a json object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
+             <returns></returns>
+        </member>
+        <member name="M:MCWrapper.RPC.Ledger.Clients.IMultiChainRpcWallet.IssueFromAsync(System.String,System.String,MCWrapper.Ledger.Entities.AssetEntity,System.Int32,System.Double,System.Decimal,System.Collections.Generic.Dictionary{System.String,System.String})">
+             <summary>
+            
+             <para>Issue a new AssetEntity model to an address on the blockchain network.</para>
+             <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
+            
+             </summary>
+             <param name="fromAddress">Address used for issuing</param>
+             <param name="toAddress">The address to send newly created asset to</param>
+             <param name="assetParams">(AssetEntity type, required) A strongly typed object with asset params (string)name, (bool)open, and (string, comma delimited)restrict</param>
+             <param name="quantity">The asset total amount in display units. eg. 1234.56</param>
+             <param name="smallestUnit">Number of raw units in one displayed unit, eg 0.01 for cents. Default value is 1</param>
+             <param name="nativeCurrencyAmount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
+             <param name="customFields">a dictionary object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
+             <returns></returns>
+        </member>
+        <member name="M:MCWrapper.RPC.Ledger.Clients.IMultiChainRpcWallet.IssueFromAsync(System.String,System.String,MCWrapper.Ledger.Entities.AssetEntity,System.Int32,System.Double,System.Decimal,System.Object)">
+             <summary>
+            
+             <para>Issue a new AssetEntity model to an address on the blockchain network.</para>
+             <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
+            
+             </summary>
+             <param name="fromAddress">Address used for issuing</param>
+             <param name="toAddress">The address to send newly created asset to</param>
+             <param name="assetParams">(AssetEntity type, required) A strongly typed object with asset params (string)name, (bool)open, and (string, comma delimited)restrict</param>
+             <param name="quantity">The asset total amount in display units. eg. 1234.56</param>
+             <param name="smallestUnit">Number of raw units in one displayed unit, eg 0.01 for cents. Default value is 1</param>
+             <param name="nativeCurrencyAmount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
+             <param name="customFields">a json object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
+             <returns></returns>
+        </member>
+        <member name="M:MCWrapper.RPC.Ledger.Clients.IMultiChainRpcWallet.IssueFromAsync(System.String,System.String,System.Object,System.Int32,System.Double,System.Decimal,System.Collections.Generic.Dictionary{System.String,System.String})">
+             <summary>
+            
+             <para>Issue a new Asset using object params to an address on the blockchain network.</para>
+             <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
+            
+             </summary>
+             <param name="fromAddress">Address used for issuing</param>
+             <param name="toAddress">The address to send newly created asset to</param>
+             <param name="assetParams">(object type, required) A generic object that must include asset params (string)name, (bool)open, and (string, comma delimited)restrict</param>
+             <param name="quantity">The asset total amount in display units. eg. 1234.56</param>
+             <param name="smallestUnit">Number of raw units in one displayed unit, eg 0.01 for cents. Default value is 1</param>
+             <param name="nativeCurrencyAmount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
+             <param name="customFields">a dictionary object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
+             <returns></returns>
+        </member>
+        <member name="M:MCWrapper.RPC.Ledger.Clients.IMultiChainRpcWallet.IssueFromAsync(System.String,System.String,System.Object,System.Int32,System.Double,System.Decimal,System.Object)">
+             <summary>
+            
+             <para>Issue a new Asset using object params to an address on the blockchain network.</para>
+             <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
+            
+             </summary>
+             <param name="fromAddress">Address used for issuing</param>
+             <param name="toAddress">The address to send newly created asset to</param>
+             <param name="assetParams">(object type, required) A generic object that must include asset params (string)name, (bool)open, and (string, comma delimited)restrict</param>
+             <param name="quantity">The asset total amount in display units. eg. 1234.56</param>
+             <param name="smallestUnit">Number of raw units in one displayed unit, eg 0.01 for cents. Default value is 1</param>
+             <param name="nativeCurrencyAmount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
+             <param name="customFields">a json object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
+             <returns></returns>
+        </member>
+        <member name="M:MCWrapper.RPC.Ledger.Clients.IMultiChainRpcWallet.IssueFromAsync(System.String,System.String,System.String,System.Int32,System.Double,System.Decimal,System.Collections.Generic.Dictionary{System.String,System.String})">
+             <summary>
+            
+             <para>Issue a new Asset by name to an address on the blockchain network.</para>
+             <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
+            
+             </summary>
+             <param name="fromAddress">Address used for issuing</param>
+             <param name="toAddress">The address to send newly created asset to</param>
+             <param name="assetName">(string, required) Asset name, if not "" should be unique</param>
+             <param name="quantity">The asset total amount in display units. eg. 1234.56</param>
+             <param name="smallestUnit">Number of raw units in one displayed unit, eg 0.01 for cents. Default value is 1</param>
+             <param name="nativeCurrencyAmount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
+             <param name="customFields">a dictionary object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
+             <returns></returns>
+        </member>
+        <member name="M:MCWrapper.RPC.Ledger.Clients.IMultiChainRpcWallet.IssueFromAsync(System.String,System.String,System.String,System.Int32,System.Double,System.Decimal,System.Object)">
+             <summary>
+            
+             <para>Issue a new Asset by name to an address on the blockchain network.</para>
+             <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
+            
+             </summary>
+             <param name="fromAddress">Address used for issuing</param>
+             <param name="toAddress">The address to send newly created asset to</param>
+             <param name="assetName">(string, required) Asset name, if not "" should be unique</param>
+             <param name="quantity">The asset total amount in display units. eg. 1234.56</param>
+             <param name="smallestUnit">Number of raw units in one displayed unit, eg 0.01 for cents. Default value is 1</param>
+             <param name="nativeCurrencyAmount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
+             <param name="customFields">a json object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
+             <returns></returns>
+        </member>
+        <member name="M:MCWrapper.RPC.Ledger.Clients.IMultiChainRpcWallet.IssueMoreAsync(System.String,System.String,System.Int32,System.Decimal,System.Collections.Generic.Dictionary{System.String,System.String})">
+             <summary>
+            
+             <para>Create more units for asset</para>
+             <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
+            
+             </summary>
+             <param name="toAddress">The address to send newly created asset to</param>
+             <param name="assetIdentifier">One of the following: issue txid, asset reference, asset name</param>
+             <param name="quantity">The asset total amount in display units. eg. 1234.56</param>
+             <param name="nativeCurrencyAmount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
+             <param name="customFields">a dictionary object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
              <returns></returns>
         </member>
         <member name="M:MCWrapper.RPC.Ledger.Clients.IMultiChainRpcWallet.IssueMoreAsync(System.String,System.String,System.Int32,System.Decimal,System.Object)">
@@ -9399,11 +10221,27 @@
              <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
             
              </summary>
-             <param name="to_address">The address to send newly created asset to</param>
-             <param name="asset_identifier">One of the following: issue txid, asset reference, asset name</param>
+             <param name="toAddress">The address to send newly created asset to</param>
+             <param name="assetIdentifier">One of the following: issue txid, asset reference, asset name</param>
              <param name="quantity">The asset total amount in display units. eg. 1234.56</param>
-             <param name="native_amount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
-             <param name="custom_fields">a json object with custom fields</param>
+             <param name="nativeCurrencyAmount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
+             <param name="customFields">a json object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
+             <returns></returns>
+        </member>
+        <member name="M:MCWrapper.RPC.Ledger.Clients.IMultiChainRpcWallet.IssueMoreAsync(System.String,System.String,System.String,System.String,System.Int32,System.Decimal,System.Collections.Generic.Dictionary{System.String,System.String})">
+             <summary>
+            
+             <para>Create more units for asset</para>
+             <para>Blockchain name is explicitly passed as parameter.</para>
+            
+             </summary>
+             <param name="blockchainName">Name of target blockchain</param>
+             <param name="id">String value to identify this transaction</param>
+             <param name="toAddress">The address to send newly created asset to</param>
+             <param name="assetIdentifier">One of the following: issue txid, asset reference, asset name</param>
+             <param name="quantity">The asset total amount in display units. eg. 1234.56</param>
+             <param name="nativeCurrencyAmount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
+             <param name="customFields">a dictionary object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
              <returns></returns>
         </member>
         <member name="M:MCWrapper.RPC.Ledger.Clients.IMultiChainRpcWallet.IssueMoreAsync(System.String,System.String,System.String,System.String,System.Int32,System.Decimal,System.Object)">
@@ -9415,11 +10253,26 @@
              </summary>
              <param name="blockchainName">Name of target blockchain</param>
              <param name="id">String value to identify this transaction</param>
-             <param name="to_address">The address to send newly created asset to</param>
-             <param name="asset_identifier">One of the following: issue txid, asset reference, asset name</param>
+             <param name="toAddress">The address to send newly created asset to</param>
+             <param name="assetIdentifier">One of the following: issue txid, asset reference, asset name</param>
              <param name="quantity">The asset total amount in display units. eg. 1234.56</param>
-             <param name="native_amount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
-             <param name="custom_fields">a json object with custom fields</param>
+             <param name="nativeCurrencyAmount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
+             <param name="customFields">a json object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
+             <returns></returns>
+        </member>
+        <member name="M:MCWrapper.RPC.Ledger.Clients.IMultiChainRpcWallet.IssueMoreFromAsync(System.String,System.String,System.String,System.Int32,System.Decimal,System.Collections.Generic.Dictionary{System.String,System.String})">
+             <summary>
+            
+             <para>Create more units for asset from specific address</para>
+             <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
+            
+             </summary>
+             <param name="fromAddress">Address used for issuing</param>
+             <param name="toAddress">The address to send newly created asset to</param>
+             <param name="assetIdentifier">One of the following: issue txid, asset reference, asset name</param>
+             <param name="quantity">The asset total amount in display units. eg. 1234.56</param>
+             <param name="nativeCurrencyAmount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
+             <param name="customFields">a dictionary object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
              <returns></returns>
         </member>
         <member name="M:MCWrapper.RPC.Ledger.Clients.IMultiChainRpcWallet.IssueMoreFromAsync(System.String,System.String,System.String,System.Int32,System.Decimal,System.Object)">
@@ -9429,12 +10282,29 @@
              <para>Blockchain name is inferred from BlockchainRpcOptions properties.</para>
             
              </summary>
-             <param name="from_address">Address used for issuing</param>
-             <param name="to_address">The address to send newly created asset to</param>
-             <param name="asset_identifier">One of the following: issue txid, asset reference, asset name</param>
+             <param name="fromAddress">Address used for issuing</param>
+             <param name="toAddress">The address to send newly created asset to</param>
+             <param name="assetIdentifier">One of the following: issue txid, asset reference, asset name</param>
              <param name="quantity">The asset total amount in display units. eg. 1234.56</param>
-             <param name="native_amount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
-             <param name="custom_fields">a json object with custom fields</param>
+             <param name="nativeCurrencyAmount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
+             <param name="customFields">a json object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
+             <returns></returns>
+        </member>
+        <member name="M:MCWrapper.RPC.Ledger.Clients.IMultiChainRpcWallet.IssueMoreFromAsync(System.String,System.String,System.String,System.String,System.String,System.Int32,System.Decimal,System.Collections.Generic.Dictionary{System.String,System.String})">
+             <summary>
+            
+             <para>Create more units for asset from specific address</para>
+             <para>Blockchain name is explicitly passed as parameter.</para>
+            
+             </summary>
+             <param name="blockchainName">Name of target blockchain</param>
+             <param name="id">String value to identify this transaction</param>
+             <param name="fromAddress">Address used for issuing</param>
+             <param name="toAddress">The address to send newly created asset to</param>
+             <param name="assetIdentifier">One of the following: issue txid, asset reference, asset name</param>
+             <param name="quantity">The asset total amount in display units. eg. 1234.56</param>
+             <param name="nativeCurrencyAmount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
+             <param name="customFields">a dictionary object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
              <returns></returns>
         </member>
         <member name="M:MCWrapper.RPC.Ledger.Clients.IMultiChainRpcWallet.IssueMoreFromAsync(System.String,System.String,System.String,System.String,System.String,System.Int32,System.Decimal,System.Object)">
@@ -9446,12 +10316,12 @@
              </summary>
              <param name="blockchainName">Name of target blockchain</param>
              <param name="id">String value to identify this transaction</param>
-             <param name="from_address">Address used for issuing</param>
-             <param name="to_address">The address to send newly created asset to</param>
-             <param name="asset_identifier">One of the following: issue txid, asset reference, asset name</param>
+             <param name="fromAddress">Address used for issuing</param>
+             <param name="toAddress">The address to send newly created asset to</param>
+             <param name="assetIdentifier">One of the following: issue txid, asset reference, asset name</param>
              <param name="quantity">The asset total amount in display units. eg. 1234.56</param>
-             <param name="native_amount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
-             <param name="custom_fields">a json object with custom fields</param>
+             <param name="nativeCurrencyAmount">native currency amount to send. eg 0.1, Default: minimum-per-output.</param>
+             <param name="customFields">a json object with custom fields. { "param-name": "param-value"   (strings, required) The key is the parameter name, the value is parameter value, ,... }</param>
              <returns></returns>
         </member>
         <member name="M:MCWrapper.RPC.Ledger.Clients.IMultiChainRpcWallet.KeyPoolRefillAsync(System.Int32)">
