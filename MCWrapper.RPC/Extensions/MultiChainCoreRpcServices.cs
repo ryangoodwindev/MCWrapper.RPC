@@ -184,14 +184,14 @@ namespace MCWrapper.RPC.Extensions
         /// 
         /// <para>
         ///     RpcOptions Secrets Manager variable names:
-        ///     MULTICHAIN:ADMINADDRESS,
-        ///     MULTICHAIN:BURNADDRESS,
-        ///     MULTICHAIN:HOSTNAME,
-        ///     MULTICHAIN:PASSWORD,
-        ///     MULTICHAIN:USERNAME,
-        ///     MULTICHAIN:NAME,
-        ///     MULTICHAIN:RPCPORT,
-        ///     MULTICHAIN:USESSL
+        ///     MULTICHAIN__ADMINADDRESS,
+        ///     MULTICHAIN__BURNADDRESS,
+        ///     MULTICHAIN__HOSTNAME,
+        ///     MULTICHAIN__PASSWORD,
+        ///     MULTICHAIN__USERNAME,
+        ///     MULTICHAIN__NAME,
+        ///     MULTICHAIN__RPCPORT,
+        ///     MULTICHAIN__USESSL
         /// </para>
         /// </summary>
         /// <param name="services">Service container</param>

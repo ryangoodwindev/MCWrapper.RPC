@@ -5,6 +5,10 @@ VisualStudioVersion = 16.0.29409.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MCWrapper.RPC", "MCWrapper.RPC\MCWrapper.RPC.csproj", "{A10891D6-7792-496F-8C13-18AB18B3C1F0}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MCWrapper.RPC.Tests", "..\MCWrapper.RPC.Tests\MCWrapper.RPC.Tests.csproj", "{909FAB80-DA02-4B75-AE02-3DB22A67E87C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MCWrapper.Data.Models", "..\MCWrapper.Data.Models\MCWrapper.Data.Models\MCWrapper.Data.Models.csproj", "{BB157296-3C59-47C6-90BA-CF3DCFC5B3EB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{A10891D6-7792-496F-8C13-18AB18B3C1F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A10891D6-7792-496F-8C13-18AB18B3C1F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A10891D6-7792-496F-8C13-18AB18B3C1F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{909FAB80-DA02-4B75-AE02-3DB22A67E87C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{909FAB80-DA02-4B75-AE02-3DB22A67E87C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{909FAB80-DA02-4B75-AE02-3DB22A67E87C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{909FAB80-DA02-4B75-AE02-3DB22A67E87C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB157296-3C59-47C6-90BA-CF3DCFC5B3EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB157296-3C59-47C6-90BA-CF3DCFC5B3EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB157296-3C59-47C6-90BA-CF3DCFC5B3EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB157296-3C59-47C6-90BA-CF3DCFC5B3EB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

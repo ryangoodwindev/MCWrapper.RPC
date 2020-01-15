@@ -85,9 +85,7 @@ Please view all supported MultiChain Community Edition methods here, https://mcw
   </ItemGroup>
   
   <ItemGroup>
-    <PackageReference Include="MCWrapper.Data.Models">
-      <Version>2.1.5</Version>
-    </PackageReference>
+    <PackageReference Include="fastJSON" Version="2.3.1" />
     <PackageReference Include="MCWrapper.Ledger.Actions">
       <Version>1.0.2</Version>
     </PackageReference>
@@ -95,5 +93,9 @@ Please view all supported MultiChain Community Edition methods here, https://mcw
       <Version>2.1.1</Version>
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\..\MCWrapper.Data.Models\MCWrapper.Data.Models\MCWrapper.Data.Models.csproj" />
   </ItemGroup>
 </Project>

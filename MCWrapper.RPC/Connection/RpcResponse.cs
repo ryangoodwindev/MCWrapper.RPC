@@ -8,15 +8,12 @@ namespace MCWrapper.RPC.Connection
     /// <typeparam name="T"></typeparam>
     public class RpcResponse<T>
     {
-        #pragma warning disable CS8618 // Non-nullable field is uninitialized.
         /// <summary>
         /// Create a new Service Response
         /// </summary>
         public RpcResponse()
-        #pragma warning restore CS8618 // Non-nullable field is uninitialized.
         {
-            Id = string.Empty;
-            Error = new ServiceError();
+
         }
 
         /// <summary>
@@ -46,12 +43,7 @@ namespace MCWrapper.RPC.Connection
         /// <summary>
         /// Create a new Service Response
         /// </summary>
-        public RpcResponse()
-        {
-            Id = string.Empty;
-            Error = new ServiceError();
-            Result = new { };
-        }
+        public RpcResponse() { }
 
         /// <summary>
         /// Request id

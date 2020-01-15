@@ -3,8 +3,6 @@ using MCWrapper.RPC.Connection.Request;
 using MCWrapper.RPC.Constants;
 using MCWrapper.RPC.Options;
 using Microsoft.Extensions.Options;
-using Newtonsoft.Json;
-using System.IO;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -51,18 +49,17 @@ namespace MCWrapper.RPC.Connection
 
             // post StringContent to MutltiChain blockchain network
             // read HTTP JSON string response content
-            var response = await HttpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead).ConfigureAwait(false);
+            var httpResponse = await HttpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead);
 
-            using var stream = await response.Content.ReadAsStreamAsync();
+            var response = await httpResponse.Content.ReadAsStringAsync();
 
-            if (response.IsSuccessStatusCode)
-                return DeserializeJsonFromStream<RpcResponse>(stream);
+            if (httpResponse.IsSuccessStatusCode)
+                return fastJSON.JSON.ToObject<RpcResponse>(response);
 
-            var message = await StreamToStringAsync(stream);
-            throw new ClientException(message)
+            throw new ClientException(response)
             {
-                StatusCode = (int)response.StatusCode,
-                Content = message
+                StatusCode = (int)httpResponse.StatusCode,
+                Content = response
             };
         }
 
@@ -77,18 +74,17 @@ namespace MCWrapper.RPC.Connection
 
             // post StringContent to MutltiChain blockchain network
             // read HTTP JSON string response content
-            var response = await HttpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead).ConfigureAwait(false);
+            var httpResponse = await HttpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead);
 
-            using var stream = await response.Content.ReadAsStreamAsync();
+            var response = await httpResponse.Content.ReadAsStringAsync();
 
-            if (response.IsSuccessStatusCode)
-                return DeserializeJsonFromStream<RpcResponse>(stream);
+            if (httpResponse.IsSuccessStatusCode)
+                return fastJSON.JSON.ToObject<RpcResponse>(response);
 
-            var message = await StreamToStringAsync(stream);
-            throw new ClientException(message)
+            throw new ClientException(response)
             {
-                StatusCode = (int)response.StatusCode,
-                Content = message
+                StatusCode = (int)httpResponse.StatusCode,
+                Content = response
             };
         }
 
@@ -106,18 +102,17 @@ namespace MCWrapper.RPC.Connection
 
             // post StringContent to MutltiChain blockchain network
             // read HTTP JSON string response content
-            var response = await HttpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead).ConfigureAwait(false);
+            var httpResponse = await HttpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead);
 
-            using var stream = await response.Content.ReadAsStreamAsync();
+            var response = await httpResponse.Content.ReadAsStringAsync();
 
-            if (response.IsSuccessStatusCode)
-                return DeserializeJsonFromStream<RpcResponse<T>>(stream);
+            if (httpResponse.IsSuccessStatusCode)
+                return fastJSON.JSON.ToObject<RpcResponse<T>>(response);
 
-            var message = await StreamToStringAsync(stream);
-            throw new ClientException(message)
+            throw new ClientException(response)
             {
-                StatusCode = (int)response.StatusCode,
-                Content = message
+                StatusCode = (int)httpResponse.StatusCode,
+                Content = response
             };
         }
 
@@ -132,57 +127,18 @@ namespace MCWrapper.RPC.Connection
 
             // post StringContent to MutltiChain blockchain network
             // read HTTP JSON string response content
-            var response = await HttpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead).ConfigureAwait(false);
+            var httpResponse = await HttpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead);
 
-            using var stream = await response.Content.ReadAsStreamAsync();
+            var response = await httpResponse.Content.ReadAsStringAsync();
 
-            if (response.IsSuccessStatusCode)
-                return DeserializeJsonFromStream<RpcResponse<T>>(stream);
+            if (httpResponse.IsSuccessStatusCode)
+                return fastJSON.JSON.ToObject<RpcResponse<T>>(response);
 
-            var message = await StreamToStringAsync(stream);
-            throw new ClientException(message)
+            throw new ClientException(response)
             {
-                StatusCode = (int)response.StatusCode,
-                Content = message
+                StatusCode = (int)httpResponse.StatusCode,
+                Content = response
             };
-        }
-
-        /// <summary>
-        /// Get an object from a stream
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="stream"></param>
-        /// <returns></returns>
-        private static T DeserializeJsonFromStream<T>(Stream stream)
-        {
-            if (stream == null || !stream.CanRead)
-            {
-                object None = new { };
-                return (T)None;
-            }
-
-            using var sr = new StreamReader(stream);
-            using var jtr = new JsonTextReader(sr);
-            var js = new JsonSerializer();
-            var result = js.Deserialize<T>(jtr);
-
-            return result;
-        }
-
-        /// <summary>
-        /// Get a string from a stream
-        /// </summary>
-        /// <param name="stream"></param>
-        /// <returns></returns>
-        private static async Task<string> StreamToStringAsync(Stream stream)
-        {
-            if (stream != null)
-            {
-                using var sr = new StreamReader(stream);
-                return await sr.ReadToEndAsync();
-            }
-
-            return string.Empty;
         }
 
         /// <summary>
@@ -195,7 +151,7 @@ namespace MCWrapper.RPC.Connection
             {
                 // create a new ServiceRequest using the provided method, id, and argument (args) values
                 Content = new StringContent(
-                    content: JsonConvert.SerializeObject(serviceRequest.GetNamedValues),
+                    content: fastJSON.JSON.ToJSON(serviceRequest.GetNamedValues, new fastJSON.JSONParameters { UseExtensions = false, EnableAnonymousTypes = true, SerializeToLowerCaseNames = true }),
                     encoding: Encoding.UTF8,
                     mediaType: RpcUrlComponent.JsonRPCMediaType)
             };
