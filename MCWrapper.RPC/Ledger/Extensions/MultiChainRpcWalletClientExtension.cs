@@ -558,7 +558,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="publishMultiEntity"></param>
         /// <returns></returns>
         public static Task<RpcResponse<string>> PublishMultiStreamItems(this IMultiChainRpcWallet client, PublishMultiEntity publishMultiEntity) =>
-            client.PublishMultiAsync(publishMultiEntity.StreamIdentifier, publishMultiEntity.Items, publishMultiEntity.Options);
+            client.PublishMultiAsync(publishMultiEntity.StreamIdentifier, publishMultiEntity.Items.ToArray(), publishMultiEntity.Options);
 
         // *** PublishMultiStreamItems using an explicit blockchain name
 
@@ -571,7 +571,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="publishMultiEntity"></param>
         /// <returns></returns>
         public static Task<RpcResponse<string>> PublishMultiStreamItems(this IMultiChainRpcWallet client, string blockchainName, string id, PublishMultiEntity publishMultiEntity) =>
-            client.PublishMultiAsync(blockchainName, id, publishMultiEntity.StreamIdentifier, publishMultiEntity.Items, publishMultiEntity.Options);
+            client.PublishMultiAsync(blockchainName, id, publishMultiEntity.StreamIdentifier, publishMultiEntity.Items.ToArray(), publishMultiEntity.Options);
 
         // *** PublishMultiStreamItemsFrom using an inferred blockchain name
 
@@ -583,7 +583,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="publishMultiEntity"></param>
         /// <returns></returns>
         public static Task<RpcResponse<string>> PublishMultiStreamItemsFrom(this IMultiChainRpcWallet client, string fromAddress, PublishMultiEntity publishMultiEntity) =>
-            client.PublishMultiFromAsync(fromAddress, publishMultiEntity.StreamIdentifier, publishMultiEntity.Items, publishMultiEntity.Options);
+            client.PublishMultiFromAsync(fromAddress, publishMultiEntity.StreamIdentifier, publishMultiEntity.Items.ToArray(), publishMultiEntity.Options);
 
         // *** PublishMultiStreamItemsFrom using an explicit blockchain name
 
@@ -597,6 +597,6 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="publishMultiEntity"></param>
         /// <returns></returns>
         public static Task<RpcResponse<string>> PublishMultiStreamItemsFrom(this IMultiChainRpcWallet client, string blockchainName, string id, string fromAddress, PublishMultiEntity publishMultiEntity) =>
-            client.PublishMultiFromAsync(blockchainName, id, fromAddress, publishMultiEntity.StreamIdentifier, publishMultiEntity.Items, publishMultiEntity.Options);
+            client.PublishMultiFromAsync(blockchainName, id, fromAddress, publishMultiEntity.StreamIdentifier, publishMultiEntity.Items.ToArray(), publishMultiEntity.Options);
     }
 }

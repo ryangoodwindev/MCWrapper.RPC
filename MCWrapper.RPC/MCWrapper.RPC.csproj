@@ -2,9 +2,9 @@
 
   <PropertyGroup>
     <TargetFrameworks>netcoreapp3.1;netcoreapp2.2;netcoreapp2.1;netstandard2.1</TargetFrameworks>
-    <AssemblyVersion>6.0.0.0</AssemblyVersion>
-    <FileVersion>6.0.10.0</FileVersion>
-    <Version>6.0.0</Version>
+    <AssemblyVersion>7.0.0.0</AssemblyVersion>
+    <FileVersion>7.0.0.0</FileVersion>
+    <Version>7.0.0</Version>
     <Authors>Myndblock LLC, Ryan Goodwin</Authors>
     <Company>Myndblock LLC</Company>
     <Copyright>2019</Copyright>
@@ -16,31 +16,7 @@
     <Description>A simple .NET Core wrapper for the MultiChain Core blockchain library that utilitzes Remote Procedure Calls (RPC) to communicate with distributed ledgers. Written with C# 8.0 and supports .NET Core 2.1, 2.2, and 3.0.</Description>
     <LangVersion>8.0</LangVersion>
     <Nullable>enable</Nullable>
-    <PackageReleaseNotes>The following IMultiChainRpcWallet interface methods have had their return types changed to RpcResponse&lt;string&gt; from RpcResponse&lt;object&gt;;
-GrantAsync
-GrantFromAsync
-GrantWithDataAsync
-GrantWithDataFromAsync
-
-IssueAsync and IssueFromAsync methods are now expressed with generic and strongly (AssetEntity class) typed object parameters. Consumers may now also simply pass a string type unique name to these methods, versus using either object argument type option.
-
-IssueAsync and IssueFromAsync methods with a 'customFields' parameter are now have the parameter expressed as a Dictionary&lt;string, string&gt; instead of a generic object. Hopefully, this will make using the API a bit more explicit and easier to pass multiple fields.
-
-IssueMoreAsync and IssueMoreFromAsync with a 'customFields' parameter are now have the parameter expressed as a Dictionary&lt;string, string&gt; instead of a generic object. Hopefully, this will make using the API a bit more explicit and easier to pass multiple fields.
-
-Change to MultiChainRpcClient - Now only requires the base data type, to be wrapped by the RpcResponse, to be passed into the method. We now simply infer the RpcResponse type during Json deserialization. Probably a micro optimization but puts our RPC clients more in sync with how our CLI client library is constructed, more consistent code-base between our different libraries.
-
-A new Target Framework has been added, netstandard2.1.
-
-Prior to the release we are targeting:
-netcoreapp3.0;netcoreapp2.2;netcoreapp2.1
-
-Post release we will target:
-netcoreapp3.1;netcoreapp2.2;netcoreapp2.1;netstandard2.1
-
-We added several more data models to make our return types more strongly typed.
-
-Many methods return generic object types, they now return more specific accurate data model types or base types (string, bool, int, etc...).
+    <PackageReleaseNotes>Previously, many of our methods returned object[] or some Type or another. These methods now more properly return IList&lt;T&gt;.
 
 Please view all supported MultiChain Community Edition methods here, https://mcwrapper.com/supported-methods</PackageReleaseNotes>
     <PackageTags>MultiChain,CSharp,DotNetCore,Blockchain,API</PackageTags>
@@ -53,11 +29,11 @@ Please view all supported MultiChain Community Edition methods here, https://mcw
   </PropertyGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp3.1'">
-    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="3.1.0" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.1.0" />
-    <PackageReference Include="Microsoft.Extensions.Http.Polly" Version="3.1.0" />
-    <PackageReference Include="Microsoft.Extensions.Options" Version="3.1.0" />
-    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="3.1.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="3.1.1" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Http.Polly" Version="3.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Options" Version="3.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="3.1.1" />
   </ItemGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.1'">
@@ -83,19 +59,17 @@ Please view all supported MultiChain Community Edition methods here, https://mcw
     <PackageReference Include="Microsoft.Extensions.Options" Version="2.1.0" />
     <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="2.1.0" />
   </ItemGroup>
-  
+
   <ItemGroup>
-    <PackageReference Include="fastJSON" Version="2.3.1" />
-    <PackageReference Include="MCWrapper.Ledger.Actions">
-      <Version>1.0.2</Version>
-    </PackageReference>
-    <PackageReference Include="MCWrapper.Ledger.Entities">
-      <Version>2.1.1</Version>
-    </PackageReference>
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <None Include="..\.editorconfig" Link=".editorconfig" />
   </ItemGroup>
   
   <ItemGroup>
-    <ProjectReference Include="..\..\MCWrapper.Data.Models\MCWrapper.Data.Models\MCWrapper.Data.Models.csproj" />
+    <PackageReference Include="MCWrapper.Data.Models" Version="3.0.1" />
+    <PackageReference Include="MCWrapper.Ledger.Actions">
+      <Version>1.0.2</Version>
+    </PackageReference>
+    <PackageReference Include="MCWrapper.Ledger.Entities" Version="2.2.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
   </ItemGroup>
 </Project>

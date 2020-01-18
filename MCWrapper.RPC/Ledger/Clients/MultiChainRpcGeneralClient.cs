@@ -4,6 +4,7 @@ using MCWrapper.Ledger.Entities.Extensions;
 using MCWrapper.RPC.Connection;
 using MCWrapper.RPC.Options;
 using Microsoft.Extensions.Options;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
@@ -303,8 +304,8 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="blockchainName">Name of target blockchain</param>
         /// <param name="id">String value to identify this transaction</param>
         /// <returns></returns>
-        public Task<RpcResponse<GetChainTipsResult[]>> GetChainTipsAsync(string blockchainName, string id) =>
-            TransactAsync<GetChainTipsResult[]>(blockchainName, BlockchainAction.GetChainTipsMethod, id);
+        public Task<RpcResponse<IList<GetChainTipsResult>>> GetChainTipsAsync(string blockchainName, string id) =>
+            TransactAsync<IList<GetChainTipsResult>>(blockchainName, BlockchainAction.GetChainTipsMethod, id);
 
         /// <summary>
         ///
@@ -313,7 +314,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         ///
         /// </summary>
         /// <returns></returns>
-        public Task<RpcResponse<GetChainTipsResult[]>> GetChainTipsAsync() =>
+        public Task<RpcResponse<IList<GetChainTipsResult>>> GetChainTipsAsync() =>
             GetChainTipsAsync(RpcOptions.ChainName, UUID.NoHyphens);
 
         /// <summary>
@@ -523,11 +524,11 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="count">The number of assets to display</param>
         /// <param name="start">Start from specific asset, 0 based, if negative - from the end</param>
         /// <returns></returns>
-        public Task<RpcResponse<ListAssetsResult[]>> ListAssetsAsync(string blockchainName, string id,
+        public Task<RpcResponse<IList<ListAssetsResult>>> ListAssetsAsync(string blockchainName, string id,
                                                                      [Optional] object asset_identifiers,
                                                                      [Optional] bool verbose, [Optional] int count,
                                                                      [Optional] int start) =>
-            TransactAsync<ListAssetsResult[]>(blockchainName, BlockchainAction.ListAssetsMethod, id, asset_identifiers, verbose, count, start);
+            TransactAsync<IList<ListAssetsResult>>(blockchainName, BlockchainAction.ListAssetsMethod, id, asset_identifiers, verbose, count, start);
 
         /// <summary>
         ///
@@ -540,7 +541,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="count">The number of assets to display</param>
         /// <param name="start">Start from specific asset, 0 based, if negative - from the end</param>
         /// <returns></returns>
-        public Task<RpcResponse<ListAssetsResult[]>> ListAssetsAsync([Optional] object asset_identifiers,
+        public Task<RpcResponse<IList<ListAssetsResult>>> ListAssetsAsync([Optional] object asset_identifiers,
                                                                      [Optional] bool verbose, [Optional] int count,
                                                                      [Optional] int start) =>
             ListAssetsAsync(RpcOptions.ChainName, UUID.NoHyphens, asset_identifiers, verbose, count, start);
@@ -568,9 +569,9 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// </param>
         /// <param name="verbose">If true, returns more information</param>
         /// <returns></returns>
-        public Task<RpcResponse<ListBlocksResult[]>> ListBlocksAsync(string blockchainName, string id,
+        public Task<RpcResponse<IList<ListBlocksResult>>> ListBlocksAsync(string blockchainName, string id,
                                                                      object block_set_identifier, bool verbose = false) =>
-            TransactAsync<ListBlocksResult[]>(blockchainName, BlockchainAction.ListBlocksMethod, id, block_set_identifier, verbose);
+            TransactAsync<IList<ListBlocksResult>>(blockchainName, BlockchainAction.ListBlocksMethod, id, block_set_identifier, verbose);
 
         /// <summary>
         ///
@@ -593,7 +594,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// </param>
         /// <param name="verbose">If true, returns more information</param>
         /// <returns></returns>
-        public Task<RpcResponse<ListBlocksResult[]>> ListBlocksAsync(object block_set_identifier, bool verbose = false) =>
+        public Task<RpcResponse<IList<ListBlocksResult>>> ListBlocksAsync(object block_set_identifier, bool verbose = false) =>
             ListBlocksAsync(RpcOptions.ChainName, UUID.NoHyphens, block_set_identifier, verbose);
 
         /// <summary>
@@ -612,11 +613,11 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// </param>
         /// <param name="verbose">If true, returns list of pending grants</param>
         /// <returns></returns>
-        public Task<RpcResponse<ListPermissionsResult[]>> ListPermissionsAsync(string blockchainName, string id,
+        public Task<RpcResponse<IList<ListPermissionsResult>>> ListPermissionsAsync(string blockchainName, string id,
                                                                                [Optional] string permissions,
                                                                                [Optional] object addresses,
                                                                                [Optional] bool verbose) =>
-            TransactAsync<ListPermissionsResult[]>(blockchainName, BlockchainAction.ListPermissionsMethod, id, permissions, addresses, verbose);
+            TransactAsync<IList<ListPermissionsResult>>(blockchainName, BlockchainAction.ListPermissionsMethod, id, permissions, addresses, verbose);
 
         /// <summary>
         ///
@@ -632,7 +633,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// </param>
         /// <param name="verbose">If true, returns list of pending grants</param>
         /// <returns></returns>
-        public Task<RpcResponse<ListPermissionsResult[]>> ListPermissionsAsync([Optional] string permissions,
+        public Task<RpcResponse<IList<ListPermissionsResult>>> ListPermissionsAsync([Optional] string permissions,
                                                                                [Optional] object addresses,
                                                                                [Optional] bool verbose) =>
             ListPermissionsAsync(RpcOptions.ChainName, UUID.NoHyphens, permissions, addresses, verbose);
@@ -652,10 +653,10 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// </param>
         /// <param name="verbose">If true, returns list of creators and approval details</param>
         /// <returns></returns>
-        public Task<RpcResponse<ListStreamFiltersResult[]>> ListStreamFiltersAsync(string blockchainName, string id,
+        public Task<RpcResponse<IList<ListStreamFiltersResult>>> ListStreamFiltersAsync(string blockchainName, string id,
                                                                                    [Optional] object filter_identifers,
                                                                                    [Optional] bool verbose) =>
-            TransactAsync<ListStreamFiltersResult[]>(blockchainName, BlockchainAction.ListStreamFiltersMethod, id, filter_identifers, verbose);
+            TransactAsync<IList<ListStreamFiltersResult>>(blockchainName, BlockchainAction.ListStreamFiltersMethod, id, filter_identifers, verbose);
 
         /// <summary>
         ///
@@ -670,7 +671,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// </param>
         /// <param name="verbose">If true, returns list of creators and approval details</param>
         /// <returns></returns>
-        public Task<RpcResponse<ListStreamFiltersResult[]>> ListStreamFiltersAsync([Optional] object filter_identifers, [Optional] bool verbose) =>
+        public Task<RpcResponse<IList<ListStreamFiltersResult>>> ListStreamFiltersAsync([Optional] object filter_identifers, [Optional] bool verbose) =>
             ListStreamFiltersAsync(RpcOptions.ChainName, UUID.NoHyphens, filter_identifers, verbose);
 
         /// <summary>
@@ -690,11 +691,11 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="count">The number of streams to display</param>
         /// <param name="start">Start from specific stream, 0 based, if negative - from the end</param>
         /// <returns></returns>
-        public Task<RpcResponse<ListStreamsResult[]>> ListStreamsAsync(string blockchainName, string id,
+        public Task<RpcResponse<IList<ListStreamsResult>>> ListStreamsAsync(string blockchainName, string id,
                                                                        [Optional] object stream_identifiers,
                                                                        [Optional] bool verbose, [Optional] int count,
                                                                        [Optional] int start) =>
-            TransactAsync<ListStreamsResult[]>(blockchainName, BlockchainAction.ListStreamsMethod, id, stream_identifiers, verbose, count, start);
+            TransactAsync<IList<ListStreamsResult>>(blockchainName, BlockchainAction.ListStreamsMethod, id, stream_identifiers, verbose, count, start);
 
         /// <summary>
         ///
@@ -711,7 +712,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="count">The number of streams to display</param>
         /// <param name="start">Start from specific stream, 0 based, if negative - from the end</param>
         /// <returns></returns>
-        public Task<RpcResponse<ListStreamsResult[]>> ListStreamsAsync([Optional] object stream_identifiers,
+        public Task<RpcResponse<IList<ListStreamsResult>>> ListStreamsAsync([Optional] object stream_identifiers,
                                                                        [Optional] bool verbose, [Optional] int count,
                                                                        [Optional] int start) =>
             ListStreamsAsync(RpcOptions.ChainName, UUID.NoHyphens, stream_identifiers, verbose, count, start);
@@ -731,10 +732,10 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// </param>
         /// <param name="verbose">If true, returns list of creators and approval details</param>
         /// <returns></returns>
-        public Task<RpcResponse<ListTxFiltersResult[]>> ListTxFiltersAsync(string blockchainName, string id,
+        public Task<RpcResponse<IList<ListTxFiltersResult>>> ListTxFiltersAsync(string blockchainName, string id,
                                                                            [Optional] object filter_identifiers,
                                                                            [Optional] bool verbose) =>
-            TransactAsync<ListTxFiltersResult[]>(blockchainName, BlockchainAction.ListTxFiltersMethod, id, filter_identifiers, verbose);
+            TransactAsync<IList<ListTxFiltersResult>>(blockchainName, BlockchainAction.ListTxFiltersMethod, id, filter_identifiers, verbose);
 
         /// <summary>
         ///
@@ -749,7 +750,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// </param>
         /// <param name="verbose">If true, returns list of creators and approval details</param>
         /// <returns></returns>
-        public Task<RpcResponse<ListTxFiltersResult[]>> ListTxFiltersAsync([Optional] object filter_identifiers, [Optional] bool verbose) =>
+        public Task<RpcResponse<IList<ListTxFiltersResult>>> ListTxFiltersAsync([Optional] object filter_identifiers, [Optional] bool verbose) =>
             ListTxFiltersAsync(RpcOptions.ChainName, UUID.NoHyphens, filter_identifiers, verbose);
 
         /// <summary>
@@ -764,8 +765,8 @@ namespace MCWrapper.RPC.Ledger.Clients
         ///     <para>(array, optional) A json array of upgrade identifiers</para>
         /// </param>
         /// <returns></returns>
-        public Task<RpcResponse<ListUpgradesResult[]>> ListUpgradesAsync(string blockchainName, string id, [Optional] string[] upgrade_identifiers) =>
-            TransactAsync<ListUpgradesResult[]>(blockchainName, BlockchainAction.ListUpgradesMethod, id, upgrade_identifiers);
+        public Task<RpcResponse<IList<ListUpgradesResult>>> ListUpgradesAsync(string blockchainName, string id, [Optional] string[] upgrade_identifiers) =>
+            TransactAsync<IList<ListUpgradesResult>>(blockchainName, BlockchainAction.ListUpgradesMethod, id, upgrade_identifiers);
 
         /// <summary>
         ///
@@ -779,8 +780,8 @@ namespace MCWrapper.RPC.Ledger.Clients
         ///     <para>(string, optional, default=*, all upgrades) Upgrade identifier - one of the following: upgrade txid, upgrade name.</para>
         /// </param>
         /// <returns></returns>
-        public Task<RpcResponse<ListUpgradesResult[]>> ListUpgradesAsync(string blockchainName, string id, [Optional] string upgrade_identifier) =>
-            TransactAsync<ListUpgradesResult[]>(blockchainName, BlockchainAction.ListUpgradesMethod, id, upgrade_identifier);
+        public Task<RpcResponse<IList<ListUpgradesResult>>> ListUpgradesAsync(string blockchainName, string id, [Optional] string upgrade_identifier) =>
+            TransactAsync<IList<ListUpgradesResult>>(blockchainName, BlockchainAction.ListUpgradesMethod, id, upgrade_identifier);
 
         /// <summary>
         ///
@@ -792,7 +793,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         ///     <para>(array, optional) A json array of upgrade identifiers</para>
         /// </param>
         /// <returns></returns>
-        public Task<RpcResponse<ListUpgradesResult[]>> ListUpgradesAsync([Optional] string[] upgrade_identifiers) =>
+        public Task<RpcResponse<IList<ListUpgradesResult>>> ListUpgradesAsync([Optional] string[] upgrade_identifiers) =>
             ListUpgradesAsync(RpcOptions.ChainName, UUID.NoHyphens, upgrade_identifiers);
 
         /// <summary>
@@ -805,7 +806,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         ///     <para>(string, optional, default=*, all upgrades) Upgrade identifier - one of the following: upgrade txid, upgrade name.</para>
         /// </param>
         /// <returns></returns>
-        public Task<RpcResponse<ListUpgradesResult[]>> ListUpgradesAsync([Optional] string upgrade_identifier) =>
+        public Task<RpcResponse<IList<ListUpgradesResult>>> ListUpgradesAsync([Optional] string upgrade_identifier) =>
             ListUpgradesAsync(RpcOptions.ChainName, UUID.NoHyphens, upgrade_identifier);
 
         /// <summary>

@@ -4,6 +4,7 @@ using MCWrapper.Ledger.Entities.Extensions;
 using MCWrapper.RPC.Connection;
 using MCWrapper.RPC.Options;
 using Microsoft.Extensions.Options;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
@@ -69,8 +70,8 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="dns">If false, only a list of added nodes will be provided, otherwise connected information will also be available</param>
         /// <param name="node">If provided, return information about this specific node,otherwise all nodes are returned</param>
         /// <returns></returns>
-        public Task<RpcResponse<GetAddNodeInfoResult[]>> GetAddedNodeInfoAsync(string blockchainName, string id, bool dns, [Optional] string node) =>
-            TransactAsync<GetAddNodeInfoResult[]>(blockchainName, NetworkAction.GetAddedNodeInfoMethod, id, dns, node);
+        public Task<RpcResponse<IList<GetAddNodeInfoResult>>> GetAddedNodeInfoAsync(string blockchainName, string id, bool dns, [Optional] string node) =>
+            TransactAsync<IList<GetAddNodeInfoResult>>(blockchainName, NetworkAction.GetAddedNodeInfoMethod, id, dns, node);
 
         /// <summary>
         /// 
@@ -83,7 +84,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="dns">If false, only a list of added nodes will be provided, otherwise connected information will also be available</param>
         /// <param name="node">If provided, return information about this specific node,otherwise all nodes are returned</param>
         /// <returns></returns>
-        public Task<RpcResponse<GetAddNodeInfoResult[]>> GetAddedNodeInfoAsync(bool dns, [Optional] string node) =>
+        public Task<RpcResponse<IList<GetAddNodeInfoResult>>> GetAddedNodeInfoAsync(bool dns, [Optional] string node) =>
             GetAddedNodeInfoAsync(RpcOptions.ChainName, UUID.NoHyphens, dns, node);
 
         /// <summary>
@@ -205,8 +206,8 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="blockchainName">Name of target blockchain</param>
         /// <param name="id">String value to identify this transaction</param>
         /// <returns></returns>
-        public Task<RpcResponse<GetPeerInfoResult[]>> GetPeerInfoAsync(string blockchainName, string id) =>
-            TransactAsync<GetPeerInfoResult[]>(blockchainName, NetworkAction.GetPeerInfoMethod, id);
+        public Task<RpcResponse<IList<GetPeerInfoResult>>> GetPeerInfoAsync(string blockchainName, string id) =>
+            TransactAsync<IList<GetPeerInfoResult>>(blockchainName, NetworkAction.GetPeerInfoMethod, id);
 
         /// <summary>
         /// 
@@ -215,7 +216,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         ///
         /// </summary>
         /// <returns></returns>
-        public Task<RpcResponse<GetPeerInfoResult[]>> GetPeerInfoAsync() =>
+        public Task<RpcResponse<IList<GetPeerInfoResult>>> GetPeerInfoAsync() =>
             GetPeerInfoAsync(RpcOptions.ChainName, UUID.NoHyphens);
 
         /// <summary>

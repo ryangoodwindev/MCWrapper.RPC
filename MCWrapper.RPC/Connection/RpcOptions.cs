@@ -45,7 +45,14 @@ namespace MCWrapper.RPC.Options
             }
         }
 
-        public RpcOptions(string chainAdminAddress, string chainBurnAddress, string chainHostname, string chainPassword, string chainUsername, int chainRpcPort, string chainName, bool chainUseSsl)
+        public RpcOptions(string chainAdminAddress,
+                          string chainBurnAddress,
+                          string chainHostname,
+                          string chainPassword,
+                          string chainUsername,
+                          int chainRpcPort,
+                          string chainName,
+                          bool chainUseSsl)
         {
             ChainAdminAddress = chainAdminAddress;
             ChainBurnAddress = chainBurnAddress;
@@ -73,7 +80,8 @@ namespace MCWrapper.RPC.Options
         /// </para>
         /// 
         /// </summary>
-        public string ChainName { get; set; } = string.Empty;
+        public string ChainName { get; set; } 
+            = string.Empty;
 
         /// <summary>
         /// RPC port number as declared in the params.dat file or as override value in multichain.conf
@@ -81,7 +89,8 @@ namespace MCWrapper.RPC.Options
         ///     ChainRpcPort number is required for the RPC client to function as expected;
         /// </para>
         /// </summary>
-        public int? ChainRpcPort { get; set; } = null;
+        public int? ChainRpcPort { get; set; } 
+            = null;
 
         /// <summary>
         /// Your blockchain node administror's public key. In v2 we are only supporting a 
@@ -90,7 +99,8 @@ namespace MCWrapper.RPC.Options
         ///     ChainAdminAddress is required for the RPC client to function as expected;
         /// </para>
         /// </summary>
-        public string ChainAdminAddress { get; set; } = string.Empty;
+        public string ChainAdminAddress { get; set; } 
+            = string.Empty;
 
         /// <summary>
         /// IPv4 or FQDN of where the MultiChain network is hosted and/or accessible
@@ -98,7 +108,8 @@ namespace MCWrapper.RPC.Options
         ///     ChainHostname is required for the RPC client to function as expected;
         /// </para>
         /// </summary>
-        public string ChainHostname { get; set; } = string.Empty;
+        public string ChainHostname { get; set; } 
+            = string.Empty;
 
         /// <summary>
         /// Blockchain address used for 'burning' Assets/Streams. 
@@ -108,7 +119,8 @@ namespace MCWrapper.RPC.Options
         ///     ChainBurnAddress is not required for the RPC client to function as expected;
         /// </para>
         /// </summary>
-        public string ChainBurnAddress { get; set; } = string.Empty;
+        public string ChainBurnAddress { get; set; } 
+            = string.Empty;
 
         /// <summary>
         /// RPCJSON username for target blockchain
@@ -116,7 +128,8 @@ namespace MCWrapper.RPC.Options
         ///     ChainUsername is required for the RPC client to function as expected;
         /// </para>
         /// </summary>
-        public string ChainUsername { get; set; } = string.Empty;
+        public string ChainUsername { get; set; } 
+            = string.Empty;
 
         /// <summary>
         /// RPCJSON password for target blockchain
@@ -124,7 +137,8 @@ namespace MCWrapper.RPC.Options
         ///     ChainPassword is required for the RPC client to function as expected;
         /// </para>
         /// </summary>
-        public string ChainPassword { get; set; } = string.Empty;
+        public string ChainPassword { get; set; }
+            = string.Empty;
 
         /// <summary>
         /// SSL Flag
@@ -139,6 +153,7 @@ namespace MCWrapper.RPC.Options
         ///     properly to support HTTPS connection.
         /// </para>
         /// </summary>
-        public bool? ChainUseSsl { get; set; } = null;
+        public bool? ChainUseSsl { get; set; } 
+            = null;
     }
 }

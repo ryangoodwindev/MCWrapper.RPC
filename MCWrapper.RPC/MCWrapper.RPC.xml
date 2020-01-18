@@ -158,12 +158,7 @@
             <summary>
             Service response object
             </summary>
-            <typeparam name="T"></typeparam>
-        </member>
-        <member name="M:MCWrapper.RPC.Connection.RpcResponse`1.#ctor">
-            <summary>
-            Create a new Service Response
-            </summary>
+            <typeparam name="TObject"></typeparam>
         </member>
         <member name="P:MCWrapper.RPC.Connection.RpcResponse`1.Id">
             <summary>
@@ -183,11 +178,6 @@
         <member name="T:MCWrapper.RPC.Connection.RpcResponse">
             <summary>
             Service response object
-            </summary>
-        </member>
-        <member name="M:MCWrapper.RPC.Connection.RpcResponse.#ctor">
-            <summary>
-            Create a new Service Response
             </summary>
         </member>
         <member name="P:MCWrapper.RPC.Connection.RpcResponse.Id">
@@ -414,8 +404,8 @@
             
             <para>
                 This method automatically loads the RpcOptions and RuntimeParamOptions from the
-                IConfiguration interface (appsettings.json file usually). If no values are found
-                to be present on the configuration file the Secrets Manager store is verified next.
+                IConfiguration interface (appsettings.json file usually). Control Secret Manager source via the <paramref name="useSecrets"/> parameter 
+                which idiciates to this extension method to look to the Secrets Manager for RpcOptions and RuntimeParamOptions values.
             </para>
             
             <para>
@@ -432,14 +422,14 @@
             
             <para>
                 RpcOptions Secrets Manager variable names:
-                MULTICHAIN:ADMINADDRESS,
-                MULTICHAIN:BURNADDRESS,
-                MULTICHAIN:HOSTNAME,
-                MULTICHAIN:PASSWORD,
-                MULTICHAIN:USERNAME,
-                MULTICHAIN:NAME,
-                MULTICHAIN:RPCPORT,
-                MULTICHAIN:USESSL
+                MULTICHAIN__ADMINADDRESS,
+                MULTICHAIN__BURNADDRESS,
+                MULTICHAIN__HOSTNAME,
+                MULTICHAIN__PASSWORD,
+                MULTICHAIN__USERNAME,
+                MULTICHAIN__NAME,
+                MULTICHAIN__RPCPORT,
+                MULTICHAIN__USESSL
             </para>
             </summary>
             <param name="services">Service container</param>

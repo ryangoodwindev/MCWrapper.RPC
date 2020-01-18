@@ -16,6 +16,6 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <summary>
         /// Every JSON-RPC client should include RpcOptions which will support the IOptions pattern within the IConfiguration pipeline
         /// </summary>
-        RpcOptions RpcOptions { get; }
+        RpcOptions RpcOptions { get; set; }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using MCWrapper.Data.Models.Utility;
 using MCWrapper.RPC.Connection;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace MCWrapper.RPC.Ledger.Clients
@@ -66,7 +67,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// </summary>
         /// <param name="count">Number of key pairs to generate</param>
         /// <returns></returns>
-        Task<RpcResponse<CreateKeyPairsResult[]>> CreateKeyPairsAsync(int count = 1);
+        Task<RpcResponse<IList<CreateKeyPairsResult>>> CreateKeyPairsAsync(int count = 1);
 
         /// <summary>
         ///
@@ -78,7 +79,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="id">String value to identify this transaction</param>
         /// <param name="count">Number of key pairs to generate</param>
         /// <returns></returns>
-        Task<RpcResponse<CreateKeyPairsResult[]>> CreateKeyPairsAsync(string blockchainName, string id, int count = 1);
+        Task<RpcResponse<IList<CreateKeyPairsResult>>> CreateKeyPairsAsync(string blockchainName, string id, int count = 1);
 
         /// <summary>
         ///

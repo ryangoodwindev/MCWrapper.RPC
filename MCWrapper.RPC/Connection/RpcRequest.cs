@@ -12,7 +12,8 @@ namespace MCWrapper.RPC.Connection.Request
         /// <summary>
         /// Get name values
         /// </summary>
-        public Dictionary<string, object> GetNamedValues { get; set; } = new Dictionary<string, object>();
+        public Dictionary<string, object> GetNamedValues { get; set; }
+            = new Dictionary<string, object>();
 
         /// <summary>
         /// Create a new Service Request

@@ -166,8 +166,8 @@ namespace MCWrapper.RPC.Extensions
         /// 
         /// <para>
         ///     This method automatically loads the RpcOptions and RuntimeParamOptions from the
-        ///     IConfiguration interface (appsettings.json file usually). If no values are found
-        ///     to be present on the configuration file the Secrets Manager store is verified next.
+        ///     IConfiguration interface (appsettings.json file usually). Control Secret Manager source via the <paramref name="useSecrets"/> parameter 
+        ///     which idiciates to this extension method to look to the Secrets Manager for RpcOptions and RuntimeParamOptions values.
         /// </para>
         /// 
         /// <para>

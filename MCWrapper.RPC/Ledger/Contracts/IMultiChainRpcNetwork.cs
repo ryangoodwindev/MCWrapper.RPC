@@ -1,5 +1,6 @@
 ﻿using MCWrapper.Data.Models.Network;
 using MCWrapper.RPC.Connection;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 
@@ -52,7 +53,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="dns">If false, only a list of added nodes will be provided, otherwise connected information will also be available</param>
         /// <param name="node">If provided, return information about this specific node,otherwise all nodes are returned</param>
         /// <returns></returns>
-        Task<RpcResponse<GetAddNodeInfoResult[]>> GetAddedNodeInfoAsync(bool dns, [Optional] string node);
+        Task<RpcResponse<IList<GetAddNodeInfoResult>>> GetAddedNodeInfoAsync(bool dns, [Optional] string node);
 
         /// <summary>
         /// 
@@ -67,7 +68,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="dns">If false, only a list of added nodes will be provided, otherwise connected information will also be available</param>
         /// <param name="node">If provided, return information about this specific node,otherwise all nodes are returned</param>
         /// <returns></returns>
-        Task<RpcResponse<GetAddNodeInfoResult[]>> GetAddedNodeInfoAsync(string blockchainName, string id, bool dns, [Optional] string node);
+        Task<RpcResponse<IList<GetAddNodeInfoResult>>> GetAddedNodeInfoAsync(string blockchainName, string id, bool dns, [Optional] string node);
 
         /// <summary>
         ///
@@ -176,7 +177,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         ///
         /// </summary>
         /// <returns></returns>
-        Task<RpcResponse<GetPeerInfoResult[]>> GetPeerInfoAsync();
+        Task<RpcResponse<IList<GetPeerInfoResult>>> GetPeerInfoAsync();
 
         /// <summary>
         /// 
@@ -187,7 +188,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="blockchainName">Name of target blockchain</param>
         /// <param name="id">String value to identify this transaction</param>
         /// <returns></returns>
-        Task<RpcResponse<GetPeerInfoResult[]>> GetPeerInfoAsync(string blockchainName, string id);
+        Task<RpcResponse<IList<GetPeerInfoResult>>> GetPeerInfoAsync(string blockchainName, string id);
 
         /// <summary>
         /// 
