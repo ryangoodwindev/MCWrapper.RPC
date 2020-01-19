@@ -100,8 +100,8 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="data">Array of hexadecimal strings or data objects, see help data-all for details</param>
         /// <param name="action">Additional actions: "lock", "sign", "lock,sign", "sign,lock", "send"</param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> AppendRawTransactionAsync(string blockchainName, string id, string tx_hex, object[] transactions, object addresses, [Optional] object[] data, string action = "") =>
-            TransactAsync<object>(blockchainName, RawAction.AppendRawTransactionMethod, id, tx_hex, transactions, addresses, data, action);
+        public Task<RpcResponse> AppendRawTransactionAsync(string blockchainName, string id, string tx_hex, object[] transactions, object addresses, [Optional] object[] data, string action = "") =>
+            TransactAsync(blockchainName, RawAction.AppendRawTransactionMethod, id, tx_hex, transactions, addresses, data, action);
 
         /// <summary>
         ///
@@ -114,7 +114,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="addresses">Object with addresses as keys, see help addresses-all for details</param>
         /// <param name="data">Array of hexadecimal strings or data objects, see help data-all for details</param>
         /// <param name="action">Additional actions: "lock", "sign", "lock,sign", "sign,lock", "send"</param>
-        public Task<RpcResponse<object>> AppendRawTransactionAsync(string tx_hex, object[] transactions, object addresses, [Optional] object[] data, string action = "") =>
+        public Task<RpcResponse> AppendRawTransactionAsync(string tx_hex, object[] transactions, object addresses, [Optional] object[] data, string action = "") =>
             AppendRawTransactionAsync(RpcOptions.ChainName, UUID.NoHyphens, tx_hex, transactions, addresses, data, action);
 
         /// <summary>
@@ -130,8 +130,8 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="data">Array of hexadecimal strings or data objects, see help data-all for details</param>
         /// <param name="action">Additional actions: "lock", "sign", "lock,sign", "sign,lock", "send"</param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> CreateRawTransactionAsync(string blockchainName, string id, object[] transactions, object assets, [Optional] object[] data, string action = "") =>
-            TransactAsync<object>(blockchainName, RawAction.CreateRawTransactionMethod, id, transactions, assets, data, action);
+        public Task<RpcResponse> CreateRawTransactionAsync(string blockchainName, string id, object[] transactions, object assets, [Optional] object[] data, string action = "") =>
+            TransactAsync(blockchainName, RawAction.CreateRawTransactionMethod, id, transactions, assets, data, action);
 
         /// <summary>
         ///
@@ -143,7 +143,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="assets">Object with addresses as keys, see help addresses-all for details</param>
         /// <param name="data">Array of hexadecimal strings or data objects, see help data-all for details</param>
         /// <param name="action">Additional actions: "lock", "sign", "lock,sign", "sign,lock", "send"</param>
-        public Task<RpcResponse<object>> CreateRawTransactionAsync(object[] transactions, object assets, [Optional] object[] data, string action = "") =>
+        public Task<RpcResponse> CreateRawTransactionAsync(object[] transactions, object assets, [Optional] object[] data, string action = "") =>
             CreateRawTransactionAsync(RpcOptions.ChainName, UUID.NoHyphens, transactions, assets, data, action);
 
         /// <summary>
@@ -205,8 +205,8 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="txid">(string, required) The transaction id</param>
         /// <param name="verbose">(numeric or boolean, optional, default=0(false)) If 0, return a string, other return a json object</param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> GetRawTransactionAsync(string blockchainName, string id, string txid, [Optional] object verbose) =>
-            TransactAsync<object>(blockchainName, RawAction.GetRawTransactionMethod, id, txid, verbose);
+        public Task<RpcResponse> GetRawTransactionAsync(string blockchainName, string id, string txid, [Optional] object verbose) =>
+            TransactAsync(blockchainName, RawAction.GetRawTransactionMethod, id, txid, verbose);
 
         /// <summary>
         ///
@@ -220,7 +220,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         /// <param name="txid">(string, required) The transaction id</param>
         /// <param name="verbose">(numeric or boolean, optional, default=0(false)) If 0, return a string, other return a json object</param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> GetRawTransactionAsync(string txid, [Optional] object verbose) =>
+        public Task<RpcResponse> GetRawTransactionAsync(string txid, [Optional] object verbose) =>
             GetRawTransactionAsync(RpcOptions.ChainName, UUID.NoHyphens, txid, verbose);
 
         /// <summary>

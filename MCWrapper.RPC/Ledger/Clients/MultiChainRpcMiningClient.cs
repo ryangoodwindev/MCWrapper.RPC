@@ -45,8 +45,8 @@ namespace MCWrapper.RPC.Ledger.Clients
         ///     <para> ,...]}</para>
         /// </param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> GetBlockTemplateAsync(string blockchainName, string id, string json_request_object) =>
-            TransactAsync<object>(blockchainName, MiningAction.GetBlockTemplateMethod, id, json_request_object);
+        public Task<RpcResponse> GetBlockTemplateAsync(string blockchainName, string id, string json_request_object) =>
+            TransactAsync(blockchainName, MiningAction.GetBlockTemplateMethod, id, json_request_object);
 
         /// <summary>
         /// <para>Deprecated for the current version of Multichain; Do Not Use;</para>
@@ -63,7 +63,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         ///     <para> ,...]}</para>
         /// </param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> GetBlockTemplateAsync(string json_request_object) =>
+        public Task<RpcResponse> GetBlockTemplateAsync(string json_request_object) =>
             GetBlockTemplateAsync(RpcOptions.ChainName, UUID.NoHyphens, json_request_object);
 
         /// <summary>
@@ -144,8 +144,8 @@ namespace MCWrapper.RPC.Ledger.Clients
         ///     <para>The fee is not actually paid, only the algorithm for selecting transactions into a block considers the transaction as it would have paid a higher (or lower) fee</para>
         /// </param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> PrioritiseTransactionAsync(string blockchainName, string id, string txid, double priority_delta, double fee_delta) =>
-            TransactAsync<object>(blockchainName, MiningAction.PrioritiseTransactionMethod, id, txid, priority_delta, fee_delta);
+        public Task<RpcResponse> PrioritiseTransactionAsync(string blockchainName, string id, string txid, double priority_delta, double fee_delta) =>
+            TransactAsync(blockchainName, MiningAction.PrioritiseTransactionMethod, id, txid, priority_delta, fee_delta);
 
         /// <summary>
         ///
@@ -164,7 +164,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         ///     <para>he fee is not actually paid, only the algorithm for selecting transactions into a block considers the transaction as it would have paid a higher (or lower) fee</para>
         /// </param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> PrioritiseTransactionAsync(string txid, double priority_delta, double fee_delta) =>
+        public Task<RpcResponse> PrioritiseTransactionAsync(string txid, double priority_delta, double fee_delta) =>
             PrioritiseTransactionAsync(RpcOptions.ChainName, UUID.NoHyphens, txid, priority_delta, fee_delta);
 
         /// <summary>
@@ -182,8 +182,8 @@ namespace MCWrapper.RPC.Ledger.Clients
         ///     <para>{ "workid" : "id"               (string, optional) if the server provided a workid, it MUST be included with submissions }</para>
         /// </param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> SubmitBlockAsync(string blockchainName, string id, object hex_data, string json_parameters_object = "") =>
-            TransactAsync<object>(blockchainName, MiningAction.SubmitBlockMethod, id, hex_data, json_parameters_object);
+        public Task<RpcResponse> SubmitBlockAsync(string blockchainName, string id, object hex_data, string json_parameters_object = "") =>
+            TransactAsync(blockchainName, MiningAction.SubmitBlockMethod, id, hex_data, json_parameters_object);
 
         /// <summary>
         ///
@@ -198,7 +198,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         ///     <para>{ "workid" : "id"               (string, optional) if the server provided a workid, it MUST be included with submissions }</para>
         /// </param>
         /// <returns></returns>
-        public Task<RpcResponse<object>> SubmitBlockAsync(object hex_data, string json_parameters_object = "") =>
+        public Task<RpcResponse> SubmitBlockAsync(object hex_data, string json_parameters_object = "") =>
             SubmitBlockAsync(RpcOptions.ChainName, UUID.NoHyphens, hex_data, json_parameters_object);
     }
 }

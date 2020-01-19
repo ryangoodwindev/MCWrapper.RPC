@@ -29,7 +29,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         ///     <para> ,...]}</para>
         /// </param>
         /// <returns></returns>
-        Task<RpcResponse<object>> GetBlockTemplateAsync(string json_request_object);
+        Task<RpcResponse> GetBlockTemplateAsync(string json_request_object);
 
         /// <summary>
         ///
@@ -49,7 +49,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         ///     <para> ,...]}</para>
         /// </param>
         /// <returns></returns>
-        Task<RpcResponse<object>> GetBlockTemplateAsync(string blockchainName, string id, string json_request_object);
+        Task<RpcResponse> GetBlockTemplateAsync(string blockchainName, string id, string json_request_object);
 
         /// <summary>
         ///
@@ -116,7 +116,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         ///     <para>he fee is not actually paid, only the algorithm for selecting transactions into a block considers the transaction as it would have paid a higher (or lower) fee</para>
         /// </param>
         /// <returns></returns>
-        Task<RpcResponse<object>> PrioritiseTransactionAsync(string txid, double priority_delta, double fee_delta);
+        Task<RpcResponse> PrioritiseTransactionAsync(string txid, double priority_delta, double fee_delta);
 
         /// <summary>
         ///
@@ -137,7 +137,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         ///     <para>The fee is not actually paid, only the algorithm for selecting transactions into a block considers the transaction as it would have paid a higher (or lower) fee</para>
         /// </param>
         /// <returns></returns>
-        Task<RpcResponse<object>> PrioritiseTransactionAsync(string blockchainName, string id, string txid, double priority_delta, double fee_delta);
+        Task<RpcResponse> PrioritiseTransactionAsync(string blockchainName, string id, string txid, double priority_delta, double fee_delta);
 
         /// <summary>
         ///
@@ -152,7 +152,7 @@ namespace MCWrapper.RPC.Ledger.Clients
         ///     <para>{ "workid" : "id"               (string, optional) if the server provided a workid, it MUST be included with submissions }</para>
         /// </param>
         /// <returns></returns>
-        Task<RpcResponse<object>> SubmitBlockAsync(object hex_data, string json_parameters_object = "");
+        Task<RpcResponse> SubmitBlockAsync(object hex_data, string json_parameters_object = "");
 
         /// <summary>
         ///
@@ -169,6 +169,6 @@ namespace MCWrapper.RPC.Ledger.Clients
         ///     <para>{ "workid" : "id"               (string, optional) if the server provided a workid, it MUST be included with submissions }</para>
         /// </param>
         /// <returns></returns>
-        Task<RpcResponse<object>> SubmitBlockAsync(string blockchainName, string id, object hex_data, string json_parameters_object = "");
+        Task<RpcResponse> SubmitBlockAsync(string blockchainName, string id, object hex_data, string json_parameters_object = "");
     }
 }

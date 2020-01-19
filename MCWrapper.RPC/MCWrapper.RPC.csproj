@@ -2,9 +2,9 @@
 
   <PropertyGroup>
     <TargetFrameworks>netcoreapp3.1;netcoreapp2.2;netcoreapp2.1;netstandard2.1</TargetFrameworks>
-    <AssemblyVersion>7.0.0.0</AssemblyVersion>
-    <FileVersion>7.0.0.0</FileVersion>
-    <Version>7.0.0</Version>
+    <AssemblyVersion>7.1.0.0</AssemblyVersion>
+    <FileVersion>7.1.0.0</FileVersion>
+    <Version>7.1.0</Version>
     <Authors>Myndblock LLC, Ryan Goodwin</Authors>
     <Company>Myndblock LLC</Company>
     <Copyright>2019</Copyright>
@@ -16,7 +16,7 @@
     <Description>A simple .NET Core wrapper for the MultiChain Core blockchain library that utilitzes Remote Procedure Calls (RPC) to communicate with distributed ledgers. Written with C# 8.0 and supports .NET Core 2.1, 2.2, and 3.0.</Description>
     <LangVersion>8.0</LangVersion>
     <Nullable>enable</Nullable>
-    <PackageReleaseNotes>Previously, many of our methods returned object[] or some Type or another. These methods now more properly return IList&lt;T&gt;.
+    <PackageReleaseNotes>Previously, many of our methods returned object or object[]. These methods now more properly support and return IList&lt;T&gt;.
 
 Please view all supported MultiChain Community Edition methods here, https://mcwrapper.com/supported-methods</PackageReleaseNotes>
     <PackageTags>MultiChain,CSharp,DotNetCore,Blockchain,API</PackageTags>
