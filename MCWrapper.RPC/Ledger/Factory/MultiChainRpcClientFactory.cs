@@ -36,31 +36,31 @@ namespace MCWrapper.RPC.Ledger.Clients
             _clients = new Dictionary<Type, IMultiChainRpc>();
 
             _blockchainRpcGenerate = multiChainRpcGenerate;
-            _clients.TryAdd(typeof(IMultiChainRpcGenerate), multiChainRpcGenerate);
+            _clients.Add(typeof(IMultiChainRpcGenerate), multiChainRpcGenerate);
 
             _blockchainRpcOffChain = multiChainRpcOffChain;
-            _clients.TryAdd(typeof(IMultiChainRpcOffChain), multiChainRpcOffChain);
+            _clients.Add(typeof(IMultiChainRpcOffChain), multiChainRpcOffChain);
 
             _blockchainRpcControl = multiChainRpcControl;
-            _clients.TryAdd(typeof(IMultiChainRpcControl), multiChainRpcControl);
+            _clients.Add(typeof(IMultiChainRpcControl), multiChainRpcControl);
 
             _blockchainRpcGeneral = multiChainRpcGeneral;
-            _clients.TryAdd(typeof(IMultiChainRpcGeneral), multiChainRpcGeneral);
+            _clients.Add(typeof(IMultiChainRpcGeneral), multiChainRpcGeneral);
 
             _blockchainRpcNetwork = multiChainRpcNetwork;
-            _clients.TryAdd(typeof(IMultiChainRpcNetwork), multiChainRpcNetwork);
+            _clients.Add(typeof(IMultiChainRpcNetwork), multiChainRpcNetwork);
 
             _blockchainRpcUtility = multiChainRpcUtility;
-            _clients.TryAdd(typeof(IMultiChainRpcUtility), multiChainRpcUtility);
+            _clients.Add(typeof(IMultiChainRpcUtility), multiChainRpcUtility);
 
             _blockchainRpcMining = multiChainRpcMining;
-            _clients.TryAdd(typeof(IMultiChainRpcMining), multiChainRpcMining);
+            _clients.Add(typeof(IMultiChainRpcMining), multiChainRpcMining);
 
             _blockchainRpcWallet = multiChainRpcWallet;
-            _clients.TryAdd(typeof(IMultiChainRpcWallet), multiChainRpcWallet);
+            _clients.Add(typeof(IMultiChainRpcWallet), multiChainRpcWallet);
 
             _blockchainRpcRaw = multiChainRpcRaw;
-            _clients.TryAdd(typeof(IMultiChainRpcRaw), multiChainRpcRaw);
+            _clients.Add(typeof(IMultiChainRpcRaw), multiChainRpcRaw);
         }
 
         /// <summary>

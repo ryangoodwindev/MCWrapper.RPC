@@ -1,7 +1,6 @@
-﻿using MCWrapper.Data.Models.Blockchain;
-using MCWrapper.RPC.Connection;
+﻿using MCWrapper.RPC.Connection;
+using Myndblock.MultiChain.Models.Blockchain;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 

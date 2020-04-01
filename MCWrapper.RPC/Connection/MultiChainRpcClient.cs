@@ -1,8 +1,8 @@
-﻿using MCWrapper.Ledger.Entities.ErrorHandling;
-using MCWrapper.RPC.Connection.Request;
+﻿using MCWrapper.RPC.Connection.Request;
 using MCWrapper.RPC.Constants;
 using MCWrapper.RPC.Options;
 using Microsoft.Extensions.Options;
+using Myndblock.MultiChain.Entities.ErrorHandling;
 using Newtonsoft.Json;
 using System.IO;
 using System.Net.Http;
@@ -165,6 +165,12 @@ namespace MCWrapper.RPC.Connection
             using var jtr = new JsonTextReader(sr);
             var js = new JsonSerializer();
             var result = js.Deserialize<T>(jtr);
+
+            if (result == null)
+            {
+                object None = new { };
+                return (T)None;
+            }
 
             return result;
         }

@@ -1,5 +1,5 @@
-﻿using MCWrapper.Ledger.Entities;
-using MCWrapper.RPC.Connection;
+﻿using MCWrapper.RPC.Connection;
+using Myndblock.MultiChain.Entities;
 using System.Threading.Tasks;
 
 namespace MCWrapper.RPC.Ledger.Clients

@@ -1,4 +1,4 @@
-﻿using MCWrapper.Ledger.Entities.Extensions;
+﻿using Myndblock.MultiChain.Entities.Extensions;
 
 namespace MCWrapper.RPC.Options
 {

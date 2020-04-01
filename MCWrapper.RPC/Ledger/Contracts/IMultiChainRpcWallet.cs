@@ -1,8 +1,8 @@
-﻿using MCWrapper.Data.Models.Wallet;
-using MCWrapper.Data.Models.Wallet.CustomModels;
-using MCWrapper.Ledger.Entities;
-using MCWrapper.Ledger.Entities.Constants;
-using MCWrapper.RPC.Connection;
+﻿using MCWrapper.RPC.Connection;
+using Myndblock.MultiChain.Entities;
+using Myndblock.MultiChain.Entities.Constants;
+using Myndblock.MultiChain.Models.Wallet;
+using Myndblock.MultiChain.Models.Wallet.CustomModels;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;

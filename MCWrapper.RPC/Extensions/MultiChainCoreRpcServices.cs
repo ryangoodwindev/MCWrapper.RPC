@@ -1,10 +1,10 @@
-﻿using MCWrapper.Ledger.Entities.Options;
-using MCWrapper.RPC.Connection;
+﻿using MCWrapper.RPC.Connection;
 using MCWrapper.RPC.Ledger.Clients;
 using MCWrapper.RPC.Options;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
+using Myndblock.MultiChain.Entities.Options;
 using System;
 using System.Runtime.InteropServices;
 

@@ -1,8 +1,8 @@
-﻿using MCWrapper.Ledger.Actions;
-using MCWrapper.Ledger.Entities.Extensions;
-using MCWrapper.RPC.Connection;
+﻿using MCWrapper.RPC.Connection;
 using MCWrapper.RPC.Options;
 using Microsoft.Extensions.Options;
+using Myndblock.MultiChain.Actions;
+using Myndblock.MultiChain.Entities.Extensions;
 using System.Net.Http;
 using System.Threading.Tasks;
 

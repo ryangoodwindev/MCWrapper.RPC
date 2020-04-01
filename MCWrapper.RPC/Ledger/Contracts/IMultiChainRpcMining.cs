@@ -1,5 +1,5 @@
-﻿using MCWrapper.Data.Models.Mining;
-using MCWrapper.RPC.Connection;
+﻿using MCWrapper.RPC.Connection;
+using Myndblock.MultiChain.Models.Mining;
 using System.Threading.Tasks;
 
 namespace MCWrapper.RPC.Ledger.Clients

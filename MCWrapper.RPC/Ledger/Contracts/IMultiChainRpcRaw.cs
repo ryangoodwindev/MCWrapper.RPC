@@ -1,5 +1,5 @@
-﻿using MCWrapper.Data.Models.Raw;
-using MCWrapper.RPC.Connection;
+﻿using MCWrapper.RPC.Connection;
+using Myndblock.MultiChain.Models.Raw;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 
