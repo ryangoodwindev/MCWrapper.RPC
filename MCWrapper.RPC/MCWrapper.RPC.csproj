@@ -39,7 +39,7 @@ Please view all supported MultiChain Community Edition methods here, https://mcw
     <PackageReference Include="Myndblock.MultiChain.Actions" Version="1.0.0" />
     <PackageReference Include="Myndblock.MultiChain.Entities" Version="1.0.0" />
     <PackageReference Include="Myndblock.MultiChain.Models" Version="1.0.0" />
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
   </ItemGroup>
 
   <ItemGroup>
